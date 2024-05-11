@@ -1,0 +1,2 @@
+window.dev = [];
+window.ev = [];

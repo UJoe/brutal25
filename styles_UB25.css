@@ -1,0 +1,63 @@
+@font-face {
+	font-family: Oldenburg;
+	src: url("./assets/Oldenburg-Regular.ttf");
+}
+
+body {
+	font-family: Oldenburg;
+	background: #1f1e4d;
+	outline: none;
+	margin: 0 10px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+p,
+#main {
+	color: beige;
+	line-height: 1.7;
+}
+
+h1 {
+	text-align: center;
+	color: red;
+	filter: blur(1px);
+	filter: drop-shadow(0px 16px 20px rgb(219, 120, 219));
+	font-size: 5vw;
+	margin-bottom: 30px;
+}
+
+.btn {
+	font-size: 0.9rem;
+	transform: scale(1);
+	margin: 10px;
+	padding: 7px;
+	color: orangered;
+	background-color: darkblue;
+	border: solid 1px turquoise;
+	border-radius: 10px;
+	opacity: 1;
+	transition: all 0.5s;
+	width: 80%;
+	max-width: 150px;
+	outline: none;
+}
+
+.btn:hover {
+	transform: scale(1.1);
+	border: outset 2px turquoise;
+	color: red;
+	transition: all 0.3s;
+}
+
+.btn:active {
+	border: inset 2px lightseagreen;
+	color: orangered;
+}
+
+.btn:disabled {
+	color: darkslategray;
+	transform: scale(0.1);
+	opacity: 0;
+	transition: all 0.7s;
+}
