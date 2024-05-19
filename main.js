@@ -5,9 +5,12 @@ function _load() {
   sound.volume = 1;
   music.loop = true;
   let main = document.getElementById("main");
-  let footer = document.getElementById("footer");
-  let header = document.getElementById("header");
-  window.curmusic = "basicMusic";
+  let page = document.getElementById("page");
+  let modal = document.getElementById("modal");
+  page.style.display = "none";
+  modal.style.display = "none";
+  window.curMusic = "basicMusic";
+  music.src = "./audio/" + curMusic + ".mp3";
   window.musicOn = true;
   window.soundOn = true;
   window.tax = 40;
@@ -214,6 +217,50 @@ function _load() {
     }
   ];
   console.log(ker);
+  function pageUpdate(foldal, val) {
+    if (foldal) {
+      page.innerHTML = `
+      <div id="header">
+        <div id="topMenu">menu</div>
+        <div id="selectBar">selector</div>
+        <div id="extraInfo">xtra</div>
+      </div>
+      <div class="ker" id="k0">0</div>
+      <div class="ker" id="k1">1</div>
+      <div class="ker" id="k2">2</div>
+      <div class="ker" id="k3">3</div>
+      <div class="ker" id="k4">4</div>
+      <div class="ker" id="k5">5</div>
+      <div class="ker" id="k6">6</div>
+      <div class="ker" id="k7">7</div>
+      <div class="ker" id="k8">8</div>
+      `;
+
+
+
+      /*<div id="header">header</div>
+      <img class="thumb" src="./img/chars/${char.pic}.jpg">
+       <div id="stats"></div>
+       <button class="navBtn" id="saveBtn">SAVE</button>
+       <button class="navBtn" id="loadBtn">LOAD</button>
+       <img id='soundBtn' class="topBtns" src=${musIcon} alt="music">
+     </div>
+     <div id="message" class="disappear"></div>  */
+
+      /* document.getElementById("soundBtn").addEventListener("click", changeMusic);
+      document.getElementById("saveBtn").addEventListener("click", saveGame);
+      document.getElementById("loadBtn").addEventListener("click", loadGame);
+      document.getElementById("loadBtn").disabled = localStorage.getItem("charName") == null;
+      document.getElementById("saveBtn").disabled = false; */
+
+    }
+  }
+  document.getElementById("start").addEventListener("click", function () {
+    //music.play();
+    main.innerHTML = "";
+    page.style.display = "grid";
+    pageUpdate(true, "tax");
+  })
 
 }
 

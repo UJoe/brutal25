@@ -7,8 +7,8 @@ body {
 	font-family: Oldenburg;
 	background: #1f1e4d;
 	outline: none;
-	margin: 0 10px;
-	padding: 20px;
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
 
@@ -60,4 +60,95 @@ h1 {
 	transform: scale(0.1);
 	opacity: 0;
 	transition: all 0.7s;
+}
+
+#page {
+	display: grid;
+	height: 100vh;
+	width: 100vw;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	justify-items: center;
+	align-items: center;
+	color: white;
+}
+
+#header {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	grid-column-start: 1;
+	grid-column-end: span 3;
+	color: #fff;
+	height: 100%;
+	width: 100%;
+}
+
+#topMenu,
+#selectBar {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	width: 100%;
+	height: 33%;
+	align-items: center;
+}
+
+#topMenu {
+	background-image: linear-gradient(to right, #1f1e4d, purple);
+}
+
+#selectBar {
+	background-image: linear-gradient(to left, #1f1e4d, green);
+}
+
+#extraInfo {
+	width: 100%;
+}
+
+.navBtn,
+#soundBtn,
+#stats {
+	margin: 3px;
+	height: 29px;
+}
+
+#soundBtn {
+	padding-right: 55px;
+	width: 30px;
+}
+
+.navBtn {
+	width: 100px;
+	background-color: blue;
+	color: lime;
+	border-radius: 5px;
+	outline: none;
+}
+
+.navBtn:disabled {
+	color: lightgrey;
+	background-color: darkgrey;
+}
+
+.thumb {
+	display: inline-block;
+	height: 25px;
+	margin-top: 5px;
+	margin-right: 5px;
+	border-radius: 3px;
+}
+
+#stats {
+	color: whitesmoke;
+	line-height: 1.7;
+	max-width: 90vw;
+}
+
+.stat {
+	color: greenyellow;
+	transition: all 1s;
+	filter: brightness(1);
+	font-size: 0.9em;
 }
