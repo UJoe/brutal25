@@ -6,6 +6,7 @@
 body {
 	font-family: Oldenburg;
 	background: #1f1e4d;
+	font-size: 0.9rem;
 	outline: none;
 	margin: 0;
 	padding: 0;
@@ -15,7 +16,8 @@ body {
 p,
 #main {
 	color: beige;
-	line-height: 1.7;
+	line-height: 1.5;
+	margin: 10px;
 }
 
 h1 {
@@ -28,9 +30,9 @@ h1 {
 }
 
 .btn {
-	font-size: 0.9rem;
+	display: block;
 	transform: scale(1);
-	margin: 10px;
+	margin: 10px auto;
 	padding: 7px;
 	color: orangered;
 	background-color: darkblue;
@@ -106,7 +108,7 @@ h1 {
 }
 
 .ker {
-	font-size: 3vw;
+	font-size: max(3vw, 0.9em);
 	background-image: radial-gradient(royalblue 75%, darkblue);
 	text-align: center;
 	align-content: center;
@@ -136,8 +138,8 @@ h1 {
 .navBtn {
 	background-color: blue;
 	color: lime;
-	border-radius: 5px;
 	outline: none;
+	transition: transform 1s;
 }
 
 .navBtn:disabled {
@@ -154,6 +156,18 @@ h1 {
 .navPic {
 	display: inline-block;
 	border-radius: 5px;
+}
+
+.selected {
+	transform: scale(1.2);
+	background-color: red;
+	color: ghostwhite;
+}
+
+.unselected {
+	transform: scale(1);
+	background-color: darkgrey;
+	color: black;
 }
 
 /* .navNr {

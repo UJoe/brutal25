@@ -15,9 +15,49 @@ function _load() {
   window.soundOn = true;
   window.musIcon = "./img/soundOn.png";
   window.tax = 40;
+  window.money = 1000;
   window.day = 1;
   window.alien = 0;
   window.bascol = ["#f00", "#bbb", "#0f0"];
+  window.selector = [
+    {
+      name: "Adó",
+      val: "tax",
+      mer: "%",
+      sum: false
+    },
+    {
+      name: "Profit",
+      val: "pro",
+      mer: " $",
+      sum: true
+    },
+    {
+      name: "Polgár",
+      val: "pop",
+      mer: "",
+      sum: true
+    },
+    {
+      name: "Nívó",
+      val: "lvl",
+      mer: "%",
+      sum: false
+    },
+    {
+      name: "Rend",
+      val: "ord",
+      mer: "%",
+      sum: false
+    },
+    {
+      name: "Haderő",
+      val: "had",
+      mer: " ×",
+      sum: true
+    },
+  ];
+  window.selVal = "tax";
   window.ker = [
     {
       num: 0,
@@ -30,11 +70,13 @@ function _load() {
       lvl: Math.floor(30 + Math.random() * 30),
       ord: Math.floor(40 + Math.random() * 30),
       had: Math.floor(10 + Math.random() * 20),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: .7,
@@ -52,11 +94,13 @@ function _load() {
       lvl: Math.floor(5 + Math.random() * 25),
       ord: Math.floor(35 + Math.random() * 30),
       had: Math.floor(0 + Math.random() * 10),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: .7,
@@ -74,11 +118,13 @@ function _load() {
       lvl: Math.floor(0 + Math.random() * 20),
       ord: Math.floor(5 + Math.random() * 20),
       had: Math.floor(15 + Math.random() * 15),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: .7,
@@ -96,11 +142,13 @@ function _load() {
       lvl: Math.floor(40 + Math.random() * 30),
       ord: Math.floor(40 + Math.random() * 30),
       had: Math.floor(5 + Math.random() * 10),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: 1,
@@ -117,11 +165,13 @@ function _load() {
       lvl: Math.floor(55 + Math.random() * 45),
       ord: Math.floor(60 + Math.random() * 40),
       had: Math.floor(20 + Math.random() * 15),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: 1,
@@ -139,11 +189,13 @@ function _load() {
       lvl: Math.floor(70 + Math.random() * 30),
       ord: Math.floor(40 + Math.random() * 25),
       had: Math.floor(15 + Math.random() * 15),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: 1.3,
@@ -161,11 +213,13 @@ function _load() {
       lvl: Math.floor(5 + Math.random() * 25),
       ord: Math.floor(10 + Math.random() * 20),
       had: Math.floor(50 + Math.random() * 50),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: 1.3,
@@ -183,11 +237,13 @@ function _load() {
       lvl: Math.floor(30 + Math.random() * 40),
       ord: Math.floor(40 + Math.random() * 30),
       had: Math.floor(0 + Math.random() * 10),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: 1,
@@ -205,11 +261,13 @@ function _load() {
       lvl: Math.floor(65 + Math.random() * 35),
       ord: Math.floor(30 + Math.random() * 70),
       had: Math.floor(0 + Math.random() * 5),
+      pro: 0,
       popC: 0,
       mtnC: 0,
       lvlC: 0,
       ordC: 0,
       hadC: 0,
+      proC: 0,
       dev: [],
       ev: [],
       eco: 1.3,
@@ -218,8 +276,13 @@ function _load() {
     }
   ];
   console.log(ker);
-  function pageUpdate(foldal, val) {
+  function generateXtra() {
+    let xtraStr = "";
+    return xtraStr;
+  }
+  function pageUpdate(foldal) {
     if (foldal) {
+      let xtraStr = generateXtra();
       let pageStr = `
       <div id="header">
         <div id="topMenu">
@@ -236,12 +299,19 @@ function _load() {
           <img id='soundBtn' src=${musIcon} alt="music">
           <img class="navBtn" id="endBtn" src="./img/moon.jpg">
         </div>
-        <div id="selectBar">selector</div>
-        <div id="extraInfo">xtra</div>
+        <div id="selectBar">
+        `;
+      for (let k = 0; k < 6; k++) {
+        let selClass = selector[k].val === selVal ? "selected" : "unselected";
+        let selStr = `<button id="s${k}" class="navBtn ${selClass}">${selector[k].name}</button>`;
+        pageStr += selStr;
+      }
+      pageStr += `</div>
+        <div id="extraInfo">${xtraStr}</div>
       </div>
-      `;
+      `
       for (let k = 0; k < 9; k++) {
-        let kerStr = `<div id="k${k}" class="ker">${ker[k].name}</div>`;
+        let kerStr = `<div id = "k${k}" class="ker"> ${ker[k].name}</div> `;
         pageStr += kerStr;
       }
       page.innerHTML = pageStr;
@@ -260,7 +330,7 @@ function _load() {
     //music.play();
     main.innerHTML = "";
     page.style.display = "grid";
-    pageUpdate(true, "tax");
+    pageUpdate(true);
   })
 
 }
