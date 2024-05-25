@@ -13,6 +13,7 @@ function _load() {
   music.src = "./audio/" + curMusic + ".mp3";
   window.musicOn = true;
   window.soundOn = true;
+  window.musIcon = "./img/soundOn.png";
   window.tax = 40;
   window.day = 1;
   window.alien = 0;
@@ -36,7 +37,7 @@ function _load() {
       hadC: 0,
       dev: [],
       ev: [],
-      eco: 1,
+      eco: .7,
       ordo: 1,
       culto: 1,
     },
@@ -58,9 +59,9 @@ function _load() {
       hadC: 0,
       dev: [],
       ev: [],
-      eco: 1,
+      eco: .7,
       ordo: 1,
-      culto: 1,
+      culto: .7,
     },
     {
       num: 2,
@@ -80,9 +81,9 @@ function _load() {
       hadC: 0,
       dev: [],
       ev: [],
-      eco: 1,
-      ordo: 1,
-      culto: 1,
+      eco: .7,
+      ordo: .7,
+      culto: .7,
     },
     {
       num: 3,
@@ -124,7 +125,7 @@ function _load() {
       dev: [],
       ev: [],
       eco: 1,
-      ordo: 1,
+      ordo: 1.3,
       culto: 1,
     },
     {
@@ -145,8 +146,8 @@ function _load() {
       hadC: 0,
       dev: [],
       ev: [],
-      eco: 1,
-      ordo: 1,
+      eco: 1.3,
+      ordo: 1.3,
       culto: 1,
     },
     {
@@ -167,9 +168,9 @@ function _load() {
       hadC: 0,
       dev: [],
       ev: [],
-      eco: 1,
-      ordo: 1,
-      culto: 1,
+      eco: 1.3,
+      ordo: .7,
+      culto: .7,
     },
     {
       num: 7,
@@ -191,7 +192,7 @@ function _load() {
       ev: [],
       eco: 1,
       ordo: 1,
-      culto: 1,
+      culto: .7,
     },
     {
       num: 8,
@@ -211,41 +212,41 @@ function _load() {
       hadC: 0,
       dev: [],
       ev: [],
-      eco: 1,
+      eco: 1.3,
       ordo: 1,
-      culto: 1,
+      culto: 1.3,
     }
   ];
   console.log(ker);
   function pageUpdate(foldal, val) {
     if (foldal) {
-      page.innerHTML = `
+      let pageStr = `
       <div id="header">
-        <div id="topMenu">menu</div>
+        <div id="topMenu">
+          <span class="navPair">
+            <img class="navPic" src="./img/sun.jpg">
+            <span class="navNr">${day}</span>
+          </span>
+          <span class="navPair">
+            <img class="navPic" src="./img/alien.jpg">
+            <span class="navNr">${alien}%</span>
+          </span>
+          <button class="navBtn" id="saveBtn">SAVE</button>
+          <button class="navBtn" id="loadBtn">LOAD</button>
+          <img id='soundBtn' src=${musIcon} alt="music">
+          <img class="navBtn" id="endBtn" src="./img/moon.jpg">
+        </div>
         <div id="selectBar">selector</div>
         <div id="extraInfo">xtra</div>
       </div>
-      <div class="ker" id="k0">0</div>
-      <div class="ker" id="k1">1</div>
-      <div class="ker" id="k2">2</div>
-      <div class="ker" id="k3">3</div>
-      <div class="ker" id="k4">4</div>
-      <div class="ker" id="k5">5</div>
-      <div class="ker" id="k6">6</div>
-      <div class="ker" id="k7">7</div>
-      <div class="ker" id="k8">8</div>
       `;
+      for (let k = 0; k < 9; k++) {
+        let kerStr = `<div id="k${k}" class="ker">${ker[k].name}</div>`;
+        pageStr += kerStr;
+      }
+      page.innerHTML = pageStr;
 
 
-
-      /*<div id="header">header</div>
-      <img class="thumb" src="./img/chars/${char.pic}.jpg">
-       <div id="stats"></div>
-       <button class="navBtn" id="saveBtn">SAVE</button>
-       <button class="navBtn" id="loadBtn">LOAD</button>
-       <img id='soundBtn' class="topBtns" src=${musIcon} alt="music">
-     </div>
-     <div id="message" class="disappear"></div>  */
 
       /* document.getElementById("soundBtn").addEventListener("click", changeMusic);
       document.getElementById("saveBtn").addEventListener("click", saveGame);
