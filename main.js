@@ -15,10 +15,9 @@ function _load() {
   window.soundOn = true;
   window.musIcon = "./img/soundOn.png";
   window.tax = 40;
-  window.money = 1000;
+  window.money = 10000;
   window.day = 1;
-  window.alien = 0;
-  window.bascol = ["#f00", "#bbb", "#0f0"];
+  window.bascol = ["#f00", "#fff", "#0f0"];
   window.selector = [
     {
       name: "Adó",
@@ -40,19 +39,19 @@ function _load() {
     },
     {
       name: "Nívó",
-      val: "lvl",
+      val: "niv",
+      mer: "%",
+      sum: false
+    },
+    {
+      name: "Öröm",
+      val: "joy",
       mer: "%",
       sum: false
     },
     {
       name: "Rend",
-      val: "ord",
-      mer: "%",
-      sum: false
-    },
-    {
-      name: "Haderő",
-      val: "had",
+      val: "def",
       mer: " ×",
       sum: true
     },
@@ -67,20 +66,22 @@ function _load() {
       y: 1,
       pop: Math.floor(1 + Math.random() * 100),
       mtn: Math.floor(1 + Math.random() * 20),
-      lvl: Math.floor(30 + Math.random() * 30),
-      ord: Math.floor(40 + Math.random() * 30),
-      had: Math.floor(10 + Math.random() * 20),
+      niv: Math.floor(30 + Math.random() * 30),
+      joy: Math.floor(70 + Math.random() * 30),
+      def: Math.floor(40 + Math.random() * 30),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: .7,
-      ordo: 1,
+      defo: 1,
       culto: 1,
     },
     {
@@ -91,20 +92,22 @@ function _load() {
       y: 1,
       pop: Math.floor(100 + Math.random() * 400),
       mtn: Math.floor(10 + Math.random() * 40),
-      lvl: Math.floor(5 + Math.random() * 25),
-      ord: Math.floor(35 + Math.random() * 30),
-      had: Math.floor(0 + Math.random() * 10),
+      niv: Math.floor(5 + Math.random() * 25),
+      joy: Math.floor(25 + Math.random() * 50),
+      def: Math.floor(35 + Math.random() * 30),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: .7,
-      ordo: 1,
+      defo: 1,
       culto: .7,
     },
     {
@@ -115,20 +118,22 @@ function _load() {
       y: 1,
       pop: Math.floor(1500 + Math.random() * 1000),
       mtn: Math.floor(50 + Math.random() * 100),
-      lvl: Math.floor(0 + Math.random() * 20),
-      ord: Math.floor(5 + Math.random() * 20),
-      had: Math.floor(15 + Math.random() * 15),
+      niv: Math.floor(0 + Math.random() * 20),
+      joy: Math.floor(0 + Math.random() * 20),
+      def: Math.floor(5 + Math.random() * 20),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: .7,
-      ordo: .7,
+      defo: .7,
       culto: .7,
     },
     {
@@ -139,20 +144,22 @@ function _load() {
       y: 2,
       pop: Math.floor(50 + Math.random() * 300),
       mtn: Math.floor(100 + Math.random() * 100),
-      lvl: Math.floor(40 + Math.random() * 30),
-      ord: Math.floor(40 + Math.random() * 30),
-      had: Math.floor(5 + Math.random() * 10),
+      niv: Math.floor(40 + Math.random() * 30),
+      joy: Math.floor(50 + Math.random() * 30),
+      def: Math.floor(40 + Math.random() * 30),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: 1,
-      ordo: 1,
+      defo: 1,
       culto: 1,
     },
     {
@@ -162,20 +169,22 @@ function _load() {
       y: 2,
       pop: Math.floor(800 + Math.random() * 500),
       mtn: Math.floor(150 + Math.random() * 200),
-      lvl: Math.floor(55 + Math.random() * 45),
-      ord: Math.floor(60 + Math.random() * 40),
-      had: Math.floor(20 + Math.random() * 15),
+      niv: Math.floor(55 + Math.random() * 45),
+      joy: Math.floor(30 + Math.random() * 40),
+      def: Math.floor(60 + Math.random() * 40),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: 1,
-      ordo: 1.3,
+      defo: 1.3,
       culto: 1,
     },
     {
@@ -186,20 +195,22 @@ function _load() {
       y: 2,
       pop: Math.floor(800 + Math.random() * 600),
       mtn: Math.floor(200 + Math.random() * 250),
-      lvl: Math.floor(70 + Math.random() * 30),
-      ord: Math.floor(40 + Math.random() * 25),
-      had: Math.floor(15 + Math.random() * 15),
+      niv: Math.floor(70 + Math.random() * 30),
+      joy: Math.floor(30 + Math.random() * 30),
+      def: Math.floor(40 + Math.random() * 25),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: 1.3,
-      ordo: 1.3,
+      defo: 1.3,
       culto: 1,
     },
     {
@@ -210,20 +221,22 @@ function _load() {
       y: 3,
       pop: Math.floor(1000 + Math.random() * 700),
       mtn: Math.floor(140 + Math.random() * 150),
-      lvl: Math.floor(5 + Math.random() * 25),
-      ord: Math.floor(10 + Math.random() * 20),
-      had: Math.floor(50 + Math.random() * 50),
+      niv: Math.floor(5 + Math.random() * 25),
+      joy: Math.floor(0 + Math.random() * 5),
+      def: Math.floor(10 + Math.random() * 20),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: 1.3,
-      ordo: .7,
+      defo: .7,
       culto: .7,
     },
     {
@@ -234,20 +247,22 @@ function _load() {
       y: 3,
       pop: Math.floor(2000 + Math.random() * 1000),
       mtn: Math.floor(100 + Math.random() * 75),
-      lvl: Math.floor(30 + Math.random() * 40),
-      ord: Math.floor(40 + Math.random() * 30),
-      had: Math.floor(0 + Math.random() * 10),
+      niv: Math.floor(30 + Math.random() * 40),
+      joy: Math.floor(20 + Math.random() * 50),
+      def: Math.floor(40 + Math.random() * 30),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: 1,
-      ordo: 1,
+      defo: 1,
       culto: .7,
     },
     {
@@ -258,46 +273,63 @@ function _load() {
       y: 3,
       pop: Math.floor(700 + Math.random() * 500),
       mtn: Math.floor(250 + Math.random() * 250),
-      lvl: Math.floor(65 + Math.random() * 35),
-      ord: Math.floor(30 + Math.random() * 70),
-      had: Math.floor(0 + Math.random() * 5),
+      niv: Math.floor(65 + Math.random() * 35),
+      joy: Math.floor(75 + Math.random() * 25),
+      def: Math.floor(30 + Math.random() * 70),
+      ufo: 0,
       pro: 0,
       popC: 0,
       mtnC: 0,
-      lvlC: 0,
-      ordC: 0,
+      nivC: 0,
+      joyC: 0,
+      defC: 0,
       hadC: 0,
       proC: 0,
       dev: [],
       ev: [],
       eco: 1.3,
-      ordo: 1,
+      defo: 1,
       culto: 1.3,
     }
   ];
   console.log(ker);
+  function printMoney() {
+    if (money >= 1000000000) return Math.floor(money / 1000000000) + "B $";
+    if (money >= 1000000) return Math.floor(money / 1000000) + "M $";
+    if (money >= 2000) return money.toLocaleString() + " $";
+    if (money < 0) return "CSŐD!";
+    return money + " $";
+  }
   function generateXtra() {
     let xtraStr = "";
     return xtraStr;
   }
+  {/* 
+  <span class="navPair" title=${money.toLocaleString()}>
+    <span class="navNr" style="color: ${bascol[Number(money > 0)]};">${printMoney()}</span>
+    <img class="navPic" src="./img/gold.jpg">
+  </span>
+  <span class="navPair">
+    <img class="navPic" src="./img/sun.jpg">
+    <span class="navNr">${day}</span>
+  </span>
+   <button class="navBtn" id="saveBtn">SAVE</button>
+    <button class="navBtn" id="loadBtn">LOAD</button>
+  */}
   function pageUpdate(foldal) {
     if (foldal) {
       let xtraStr = generateXtra();
       let pageStr = `
       <div id="header">
         <div id="topMenu">
-          <span class="navPair">
-            <img class="navPic" src="./img/sun.jpg">
-            <span class="navNr">${day}</span>
-          </span>
-          <span class="navPair">
-            <img class="navPic" src="./img/alien.jpg">
-            <span class="navNr">${alien}%</span>
-          </span>
-          <button class="navBtn" id="saveBtn">SAVE</button>
-          <button class="navBtn" id="loadBtn">LOAD</button>
+          <span class="navNr" title=${money.toLocaleString()} style="color: ${bascol[Number(money > 0)]};">${printMoney()}</span>
+          <img class="navBtn" id="saveBtn" src="./img/save.jpg">
+          <img class="navBtn" id="loadBtn" src="./img/load.JPG">
           <img id='soundBtn' src=${musIcon} alt="music">
-          <img class="navBtn" id="endBtn" src="./img/moon.jpg">
+          <span class="navPair">
+            <span class="navNr">${day}</span>
+            <img class="navBtn" id="endBtn" src="./img/moon.jpg">
+          </span>
         </div>
         <div id="selectBar">
         `;
@@ -326,12 +358,15 @@ function _load() {
 
     }
   }
-  document.getElementById("start").addEventListener("click", function () {
+  function startGame() {
     //music.play();
     main.innerHTML = "";
     page.style.display = "grid";
     pageUpdate(true);
-  })
+  }
+
+  document.getElementById("start").addEventListener("click", startGame)
+  document.getElementById("start2").addEventListener("click", startGame)
 
 }
 

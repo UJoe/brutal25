@@ -136,8 +136,8 @@ h1 {
 }
 
 .navBtn {
-	background-color: blue;
-	color: lime;
+	/* background-color: blue;
+	color: lime; */
 	outline: none;
 	transition: transform 1s;
 }
