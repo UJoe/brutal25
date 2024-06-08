@@ -14,7 +14,7 @@ function _load() {
   window.musicOn = true;
   window.soundOn = true;
   window.musIcon = "./img/soundOn.png";
-  window.tax = 40;
+  window.tax = 50;
   window.money = 10000;
   window.day = 1;
   window.bascol = ["#f00", "#fff", "#0f0"];
@@ -69,7 +69,7 @@ function _load() {
       niv: Math.floor(30 + Math.random() * 30),
       joy: Math.floor(70 + Math.random() * 30),
       def: Math.floor(40 + Math.random() * 30),
-      ufo: 0,
+      ufo: 10,
       pro: 0,
       popC: 0,
       mtnC: 0,
@@ -95,7 +95,7 @@ function _load() {
       niv: Math.floor(5 + Math.random() * 25),
       joy: Math.floor(25 + Math.random() * 50),
       def: Math.floor(35 + Math.random() * 30),
-      ufo: 0,
+      ufo: 5,
       pro: 0,
       popC: 0,
       mtnC: 0,
@@ -172,7 +172,7 @@ function _load() {
       niv: Math.floor(55 + Math.random() * 45),
       joy: Math.floor(30 + Math.random() * 40),
       def: Math.floor(60 + Math.random() * 40),
-      ufo: 0,
+      ufo: 3,
       pro: 0,
       popC: 0,
       mtnC: 0,
@@ -293,6 +293,13 @@ function _load() {
     }
   ];
   console.log(ker);
+
+  //NEW DAY
+  function newDay() {
+    day++;
+    pageUpdate(true);
+  }
+
   function printMoney() {
     if (money >= 1000000000) return Math.floor(money / 1000000000) + "B $";
     if (money >= 1000000) return Math.floor(money / 1000000) + "M $";
@@ -300,25 +307,48 @@ function _load() {
     if (money < 0) return "CSŐD!";
     return money + " $";
   }
-  function generateXtra() {
-    let xtraStr = "";
+
+  function generateXtra(so) {
+    switch (so.val) {
+      case "tax":
+        let cc = tax < 20 ? 2 : tax > 50 ? 0 : 1;
+        let xtraStr = `
+        <button class="navBtn" id="tMinus">-</button>
+        <span id="tVal" style="color: ${bascol[cc]};">${tax} %</span>
+        <button class="navBtn" id="tPlus">+</button>
+        `;
+        document.getElementById("extraInfo").innerHTML = xtraStr;
+        let tm = document.getElementById("tMinus");
+        let tp = document.getElementById("tPlus");
+        if (tax < 1) tm.disabled = true;
+        if (tax > 99) tp.disabled = true;
+
+        tm.addEventListener("click", function () {
+          if (tax > 0) {
+            tax--;
+            newDay();
+          }
+        });
+
+        tp.addEventListener("click", function () {
+          if (tax < 100) {
+            tax++;
+            newDay();
+          }
+        });
+
+        break;
+
+      default:
+        break;
+    }
     return xtraStr;
   }
-  {/* 
-  <span class="navPair" title=${money.toLocaleString()}>
-    <span class="navNr" style="color: ${bascol[Number(money > 0)]};">${printMoney()}</span>
-    <img class="navPic" src="./img/gold.jpg">
-  </span>
-  <span class="navPair">
-    <img class="navPic" src="./img/sun.jpg">
-    <span class="navNr">${day}</span>
-  </span>
-   <button class="navBtn" id="saveBtn">SAVE</button>
-    <button class="navBtn" id="loadBtn">LOAD</button>
-  */}
+
   function pageUpdate(foldal) {
     if (foldal) {
-      let xtraStr = generateXtra();
+      let selInd = selector.findIndex(s => s.val === selVal);
+      let selObj = selector[selInd];
       let pageStr = `
       <div id="header">
         <div id="topMenu">
@@ -339,7 +369,7 @@ function _load() {
         pageStr += selStr;
       }
       pageStr += `</div>
-        <div id="extraInfo">${xtraStr}</div>
+        <div id="extraInfo"></div>
       </div>
       `
       for (let k = 0; k < 9; k++) {
@@ -347,6 +377,9 @@ function _load() {
         pageStr += kerStr;
       }
       page.innerHTML = pageStr;
+      generateXtra(selObj);
+
+
 
 
 
