@@ -163,7 +163,6 @@ h1 {
 
 .navBtn {
 	outline: none;
-	transition: transform 1s;
 }
 
 .navBtn:disabled {
@@ -184,13 +183,11 @@ h1 {
 }
 
 .selected {
-	transform: scale(1.2);
 	background-color: red;
 	color: ghostwhite;
 }
 
 .unselected {
-	transform: scale(1);
 	background-color: darkgrey;
 	color: black;
 }
