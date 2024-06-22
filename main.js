@@ -18,6 +18,7 @@ function _load() {
   window.money = 10000;
   window.day = 1;
   window.bascol = ["#f00", "#fff", "#0f0"];
+  window.allEvents = [];
   window.selector = [
     {
       name: "Adó",
@@ -329,9 +330,6 @@ function _load() {
     selo.cur = sum;
   }
 
-  console.log(ker);
-  console.log(selector);
-
   //NEW DAY
   function newDay() {
     day++;
@@ -359,106 +357,102 @@ function _load() {
 
   function generateXtra(so) {
     let xtraStr = "";
-    switch (so.val) {
-      case "tax":
-        let cc = tax < 20 ? 2 : tax > 50 ? 0 : 1;
-        xtraStr = `
+    if (so.val === "tax") {
+      let cc = tax < 20 ? 2 : tax > 50 ? 0 : 1;
+      xtraStr = `
         <button class="navBtn" id="tMinus10">-10</button>
         <button class="navBtn" id="tMinus">-1</button>
         <span id="tVal" style="color: ${bascol[cc]};">${tax} %</span>
         <button class="navBtn" id="tPlus">+1</button>
         <button class="navBtn" id="tPlus10">+10</button>
         `;
-        document.getElementById("extraInfo").innerHTML = xtraStr;
+      document.getElementById("extraInfo").innerHTML = xtraStr;
 
-        let tm = document.getElementById("tMinus");
-        let tp = document.getElementById("tPlus");
-        let tm10 = document.getElementById("tMinus10");
-        let tp10 = document.getElementById("tPlus10");
-        if (tax < 1) tm.disabled = true;
-        if (tax > 99) tp.disabled = true;
-        if (tax < 10) tm10.disabled = true;
-        if (tax > 90) tp10.disabled = true;
+      let tm = document.getElementById("tMinus");
+      let tp = document.getElementById("tPlus");
+      let tm10 = document.getElementById("tMinus10");
+      let tp10 = document.getElementById("tPlus10");
+      if (tax < 1) tm.disabled = true;
+      if (tax > 99) tp.disabled = true;
+      if (tax < 10) tm10.disabled = true;
+      if (tax > 90) tp10.disabled = true;
 
-        tm.addEventListener("click", function () {
-          if (tax > 0) {
-            tax--;
-            newDay();
-          }
-        });
-        tm10.addEventListener("click", function () {
-          if (tax > 9) {
-            tax -= 10;
-            newDay();
-          }
-        });
-
-        tp.addEventListener("click", function () {
-          if (tax < 100) {
-            tax++;
-            newDay();
-          }
-        });
-        tp10.addEventListener("click", function () {
-          if (tax < 91) {
-            tax += 10;
-            newDay();
-          }
-        });
-
-        for (let k = 0; k < 9; k++) {
-          let ei = ker[k].evs[0];
-          if (ei > -1) {
-            document.getElementById("ki1-" + k).innerHTML = `${ev[ei].name}`;
-          }
-          ei = ker[k].evs[1];
-          if (ei > -1) {
-            document.getElementById("ki2-" + k).innerHTML = `${ev[ei].name}`;
-          }
+      tm.addEventListener("click", function () {
+        if (tax > 0) {
+          tax--;
+          newDay();
         }
-
-        break;
-
-      default:
-        let chVal = so.cur - so.prev;
-        let chPer = Math.round((chVal / so.prev) * 100);
-        let chCol = chVal < 0 ? 0 : chVal > 0 ? 2 : 1;
-        let intro = "";
-        let chTxt = "";
-        if (so.sum) {
-          intro = "Összes";
-          if (chPer < 0) chTxt = chPer + " %";
-          if (chPer > 0) chTxt = "+" + chPer + " %";
-        } else {
-          intro = "Átlag";
-          if (chVal < 0) chTxt = chVal;
-          if (chVal > 0) chTxt = "+" + chVal;
+      });
+      tm10.addEventListener("click", function () {
+        if (tax > 9) {
+          tax -= 10;
+          newDay();
         }
-        xtraStr = `
+      });
+
+      tp.addEventListener("click", function () {
+        if (tax < 100) {
+          tax++;
+          newDay();
+        }
+      });
+      tp10.addEventListener("click", function () {
+        if (tax < 91) {
+          tax += 10;
+          newDay();
+        }
+      });
+
+      for (let k = 0; k < 9; k++) {
+        let ei = ker[k].evs[0];
+        if (ei > -1) {
+          document.getElementById("ki1-" + k).innerHTML = `${ev[ei].name}`;
+        }
+        ei = ker[k].evs[1];
+        if (ei > -1) {
+          document.getElementById("ki2-" + k).innerHTML = `${ev[ei].name}`;
+        }
+      }
+    } else {
+      let chVal = so.cur - so.prev;
+      let chPer = Math.round((chVal / so.prev) * 100);
+      let chCol = chVal < 0 ? 0 : chVal > 0 ? 2 : 1;
+      let intro = "";
+      let chTxt = "";
+      if (so.sum) {
+        intro = "Összes";
+        if (chPer < 0) chTxt = chPer + " %";
+        if (chPer > 0) chTxt = "+" + chPer + " %";
+      } else {
+        intro = "Átlag";
+        if (chVal < 0) chTxt = chVal;
+        if (chVal > 0) chTxt = "+" + chVal;
+      }
+      xtraStr = `
           <span class="infoVal">${intro}: ${bigNumber(so.cur, so.mer)}</span>
           <span class="infoCh" style="color: ${bascol[chCol]}">${chTxt}</span>
         `;
-        document.getElementById("extraInfo").innerHTML = xtraStr;
+      document.getElementById("extraInfo").innerHTML = xtraStr;
 
-        for (let k = 0; k < 9; k++) {
-          let val = ker[k][so.val];
-          let chV = ker[k][so.val + "C"];
-          let chT = "";
-          let chC = chV < 0 ? 0 : chV > 0 ? 2 : 1;
-          if (so.sum) {
-            if (chV < 0) chT = chV + " %";
-            if (chV > 0) chT = "+" + chV + " %";
-          } else {
-            if (chV < 0) chT = chV;
-            if (chV > 0) chT = "+" + chV;
-          }
-
-          document.getElementById("ki1-" + k).innerHTML = `${bigNumber(val, so.mer)}`;
-          document.getElementById("ki2-" + k).innerHTML = `${chT}`;
-          document.getElementById("ki2-" + k).style.color = bascol[chC];
+      for (let k = 0; k < 9; k++) {
+        let val = ker[k][so.val];
+        let chV = ker[k][so.val + "C"];
+        let chT = "";
+        let chC = chV < 0 ? 0 : chV > 0 ? 2 : 1;
+        if (so.sum) {
+          if (chV < 0) chT = chV + " %";
+          if (chV > 0) chT = "+" + chV + " %";
+        } else {
+          if (chV < 0) chT = chV;
+          if (chV > 0) chT = "+" + chV;
         }
 
-        break;
+        document.getElementById("ki1-" + k).innerHTML = `${bigNumber(val, so.mer)}`;
+        document.getElementById("ki2-" + k).innerHTML = `${chT}`;
+        document.getElementById("ki2-" + k).style.color = bascol[chC];
+      }
+
+
     }
   }
 
