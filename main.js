@@ -11,7 +11,7 @@ function _load() {
   modal.style.display = "none";
   window.curMusic = "basicMusic";
   music.src = "./audio/" + curMusic + ".mp3";
-  window.musicOn = true;
+  window.musicOn = false; //true ha éles
   window.soundOn = true;
   window.musIcon = "./img/soundOn.png";
   window.tax = 50;
@@ -58,7 +58,7 @@ function _load() {
       cur: 0
     },
     {
-      name: "Erő",
+      name: "Rend",
       val: "had",
       mer: " &#9876;",
       sum: true,
@@ -363,16 +363,22 @@ function _load() {
       case "tax":
         let cc = tax < 20 ? 2 : tax > 50 ? 0 : 1;
         xtraStr = `
-        <button class="navBtn" id="tMinus">-</button>
+        <button class="navBtn" id="tMinus10">-10</button>
+        <button class="navBtn" id="tMinus">-1</button>
         <span id="tVal" style="color: ${bascol[cc]};">${tax} %</span>
-        <button class="navBtn" id="tPlus">+</button>
+        <button class="navBtn" id="tPlus">+1</button>
+        <button class="navBtn" id="tPlus10">+10</button>
         `;
         document.getElementById("extraInfo").innerHTML = xtraStr;
 
         let tm = document.getElementById("tMinus");
         let tp = document.getElementById("tPlus");
+        let tm10 = document.getElementById("tMinus10");
+        let tp10 = document.getElementById("tPlus10");
         if (tax < 1) tm.disabled = true;
         if (tax > 99) tp.disabled = true;
+        if (tax < 10) tm10.disabled = true;
+        if (tax > 90) tp10.disabled = true;
 
         tm.addEventListener("click", function () {
           if (tax > 0) {
@@ -380,10 +386,22 @@ function _load() {
             newDay();
           }
         });
+        tm10.addEventListener("click", function () {
+          if (tax > 9) {
+            tax -= 10;
+            newDay();
+          }
+        });
 
         tp.addEventListener("click", function () {
           if (tax < 100) {
             tax++;
+            newDay();
+          }
+        });
+        tp10.addEventListener("click", function () {
+          if (tax < 91) {
+            tax += 10;
             newDay();
           }
         });
@@ -451,6 +469,19 @@ function _load() {
     pageUpdate(true);
   }
 
+  function changeMusic() {
+    let sBtn = document.getElementById("soundBtn");
+    if (musicOn) {
+      music.pause();
+      sBtn.src = "./img/soundOff.png";
+      musicOn = false;
+    } else {
+      music.play();
+      sBtn.src = "./img/soundOn.png";
+      musicOn = true;
+    }
+  }
+
   function pageUpdate(foldal) {
     if (foldal) {
       let selInd = selector.findIndex(s => s.val === selVal);
@@ -491,14 +522,10 @@ function _load() {
 
       document.getElementById("endBtn").addEventListener("click", newDay);
       document.querySelectorAll(".selBtn").forEach((s) => s.addEventListener("click", changeSel));
+      document.getElementById("soundBtn").addEventListener("click", changeMusic);
 
 
-
-
-
-
-      /* document.getElementById("soundBtn").addEventListener("click", changeMusic);
-      document.getElementById("saveBtn").addEventListener("click", saveGame);
+      /* document.getElementById("saveBtn").addEventListener("click", saveGame);
       document.getElementById("loadBtn").addEventListener("click", loadGame);
       document.getElementById("loadBtn").disabled = localStorage.getItem("charName") == null;
       document.getElementById("saveBtn").disabled = false; */
@@ -506,7 +533,7 @@ function _load() {
     }
   }
   function startGame() {
-    //music.play();
+    if (musicOn) music.play();
     main.innerHTML = "";
     page.style.display = "grid";
     pageUpdate(true);
