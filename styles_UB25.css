@@ -152,7 +152,7 @@ h1 {
 
 
 .ker {
-	font-size: max(2vw, 1em);
+	font-size: max(1.5vw, 1.2em);
 	background-image: radial-gradient(royalblue 75%, darkblue);
 	text-align: center;
 	align-content: center;
@@ -216,6 +216,19 @@ h1 {
 	color: black;
 }
 
-/* .navNr {
-	display: inline-block;
-} */
+.bad {
+	color: #f00 !important;
+}
+
+.neutral {
+	color: #fff !important;
+}
+
+.good {
+	color: #0f0 !important;
+}
+
+.navNr {
+	font-size: max(1vw, 1.1em);
+
+}

@@ -2,8 +2,9 @@ function _load() {
   window.music = document.getElementById("music");
   window.sound = document.getElementById("sound");
   music.volume = 1;
-  sound.volume = 1;
+  sound.volume = .5;
   music.loop = true;
+  sound.loop = false;
   let main = document.getElementById("main");
   let page = document.getElementById("page");
   let modal = document.getElementById("modal");
@@ -11,20 +12,21 @@ function _load() {
   modal.style.display = "none";
   window.curMusic = "basicMusic";
   music.src = "./audio/" + curMusic + ".mp3";
+  sound.src = "./audio/done.mp3";
   window.musicOn = false; //true ha éles
-  window.soundOn = true;
   window.musIcon = "./img/soundOn.png";
   window.tax = 50;
   window.money = 10000;
   window.day = 1;
-  window.bascol = ["#f00", "#fff", "#0f0"];
   window.allEvents = [];
   window.selector = [
     {
       name: "Adó",
       val: "tax",
       mer: "%",
-      sum: false
+      sum: false,
+      good: 20,
+      bad: 50
     },
     {
       name: "Profit",
@@ -32,7 +34,9 @@ function _load() {
       mer: " $",
       sum: true,
       prev: 0,
-      cur: 0
+      cur: 0,
+      good: 5000,
+      bad: 1000
     },
     {
       name: "Polgár",
@@ -40,7 +44,9 @@ function _load() {
       mer: " fő",
       sum: true,
       prev: 0,
-      cur: 0
+      cur: 0,
+      good: 5000,
+      bad: 1000
     },
     {
       name: "Nívó",
@@ -48,7 +54,9 @@ function _load() {
       mer: "%",
       sum: false,
       prev: 0,
-      cur: 0
+      cur: 0,
+      good: 70,
+      bad: 30
     },
     {
       name: "Öröm",
@@ -56,7 +64,9 @@ function _load() {
       mer: "%",
       sum: false,
       prev: 0,
-      cur: 0
+      cur: 0,
+      good: 70,
+      bad: 30
     },
     {
       name: "Rend",
@@ -64,7 +74,9 @@ function _load() {
       mer: " &#9876;",
       sum: true,
       prev: 0,
-      cur: 0
+      cur: 0,
+      good: 100,
+      bad: 1
     },
   ];
   window.selVal = "tax";
@@ -212,7 +224,7 @@ function _load() {
       pop: Math.floor(800 + Math.random() * 600),
       mtn: Math.floor(200 + Math.random() * 250),
       niv: Math.floor(70 + Math.random() * 30),
-      joy: Math.floor(30 + Math.random() * 30),
+      joy: Math.floor(35 + Math.random() * 35),
       def: Math.floor(40 + Math.random() * 25),
       ufo: 0,
       had: 0,
@@ -332,6 +344,7 @@ function _load() {
 
   //NEW DAY
   function newDay() {
+    sound.play();
     day++;
     pageUpdate(true);
   }
@@ -358,11 +371,11 @@ function _load() {
   function generateXtra(so) {
     let xtraStr = "";
     if (so.val === "tax") {
-      let cc = tax < 20 ? 2 : tax > 50 ? 0 : 1;
+      let cc = tax < so.good ? "good" : tax > so.bad ? "bad" : "neutral";
       xtraStr = `
         <button class="navBtn" id="tMinus10">-10</button>
         <button class="navBtn" id="tMinus">-1</button>
-        <span id="tVal" style="color: ${bascol[cc]};">${tax} %</span>
+        <span id="tVal" class= ${cc}>${tax} %</span>
         <button class="navBtn" id="tPlus">+1</button>
         <button class="navBtn" id="tPlus10">+10</button>
         `;
@@ -414,23 +427,29 @@ function _load() {
         }
       }
     } else {
+      let cc = "neutral";
       let chVal = so.cur - so.prev;
       let chPer = Math.round((chVal / so.prev) * 100);
-      let chCol = chVal < 0 ? 0 : chVal > 0 ? 2 : 1;
+      let chCol = chVal < -10 ? "bad" : chVal > 10 ? "good" : "neutral";
       let intro = "";
       let chTxt = "";
       if (so.sum) {
         intro = "Összes";
+        if (so.cur < so.bad * 9) cc = "bad";
+        if (so.cur > so.good * 9) cc = "good";
         if (chPer < 0) chTxt = chPer + " %";
         if (chPer > 0) chTxt = "+" + chPer + " %";
       } else {
         intro = "Átlag";
+        if (so.cur < so.bad) cc = "bad";
+        if (so.cur > so.good) cc = "good";
         if (chVal < 0) chTxt = chVal;
         if (chVal > 0) chTxt = "+" + chVal;
       }
       xtraStr = `
-          <span class="infoVal">${intro}: ${bigNumber(so.cur, so.mer)}</span>
-          <span class="infoCh" style="color: ${bascol[chCol]}">${chTxt}</span>
+          <span class="infoVal">${intro}: </span>
+          <span class=${cc}>${bigNumber(so.cur, so.mer)}</span>
+          <span class="infoCh ${chCol}">${chTxt}</span>
         `;
       document.getElementById("extraInfo").innerHTML = xtraStr;
 
@@ -438,7 +457,8 @@ function _load() {
         let val = ker[k][so.val];
         let chV = ker[k][so.val + "C"];
         let chT = "";
-        let chC = chV < 0 ? 0 : chV > 0 ? 2 : 1;
+        let cc = val < so.bad ? "bad" : val > so.good ? "good" : "neutral";
+        let chC = chV < -10 ? "bad" : chV > 10 ? "good" : "neutral";
         if (so.sum) {
           if (chV < 0) chT = chV + " %";
           if (chV > 0) chT = "+" + chV + " %";
@@ -448,8 +468,10 @@ function _load() {
         }
 
         document.getElementById("ki1-" + k).innerHTML = `${bigNumber(val, so.mer)}`;
+        document.getElementById("ki1-" + k).classList.add(cc);
         document.getElementById("ki2-" + k).innerHTML = `${chT}`;
-        document.getElementById("ki2-" + k).style.color = bascol[chC];
+        document.getElementById("ki2-" + k).classList.add(chC);
+
       }
 
 
@@ -480,10 +502,11 @@ function _load() {
     if (foldal) {
       let selInd = selector.findIndex(s => s.val === selVal);
       let selObj = selector[selInd];
+      let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "neutral";
       let pageStr = `
       <div id="header">
         <div id="topMenu">
-          <span class="navNr" title=${money.toLocaleString()} style="color: ${bascol[Number(money > 0)]};">${bigNumber(money, "$")}</span>
+          <span class="navNr ${mc}" title=${money.toLocaleString()}>${bigNumber(money, "$")}</span>
           <img class="navBtn" id="saveBtn" src="./img/save.jpg">
           <img class="navBtn" id="loadBtn" src="./img/load.JPG">
           <img id='soundBtn' src=${musIcon} alt="music">
