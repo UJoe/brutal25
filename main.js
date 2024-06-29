@@ -326,27 +326,75 @@ function _load() {
   ];
 
   for (ko of ker) {
-    ko.pro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - ko.mtn);
+    ko.pro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3));
     ko.had = Math.round((ko.def - ko.ufo * 10) * ko.defo);
   };
-  for (let s = 1; s < selector.length; s++) {
-    let selo = selector[s];
-    let sum = 0;
-    for (k of ker) {
-      sum += k[selo.val];
+
+  function updateTotals(start) {
+    for (let s = 1; s < selector.length; s++) {
+      let selo = selector[s];
+      let sum = 0;
+      for (k of ker) {
+        sum += k[selo.val];
+      }
+      if (!selector[s].sum) {
+        sum = Math.round(sum / 9);
+      }
+      selo.cur = sum;
+      if (start) selo.prev = sum;
     }
-    if (!selector[s].sum) {
-      sum = Math.round(sum / 9);
-    }
-    selo.prev = sum;
-    selo.cur = sum;
   }
+
+  updateTotals(true);
 
   //NEW DAY
   function newDay() {
     sound.play();
     day++;
-    pageUpdate(true);
+
+    /*
+    pop: Math.floor(1 + Math.random() * 100),
+    mtn: Math.floor(1 + Math.random() * 20),
+    niv: Math.floor(30 + Math.random() * 30),
+    joy: Math.floor(70 + Math.random() * 30),
+    def: Math.floor(40 + Math.random() * 30),
+    ufo: 10,
+    had: 0,
+    pro: 0,
+    popC: 0,
+    mtnC: 0,
+    nivC: 0,
+    joyC: 0,
+    defC: 0,
+    hadC: 0,
+    proC: 0,
+    dev: [],
+    evs: [-1, -1],
+    eco: .7,
+    defo: 1,
+    culto: 1,
+    */
+    for (let s = 1; s < selector.length; s++) {
+      selector[s].prev = selector[s].cur;
+    }
+
+    for (ko of ker) {
+      ko.popC = Math.round(((ko.joy - 40) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * day + Math.random() * 20 - Math.random() * 20) / 15);
+      //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
+      //ko.popC = Math.abs(ko.popC) > 50 ? Math.sign(ko.popC) * 50 : ko.popC;
+      ko.pop = Math.round(ko.pop * (1 + ko.popC / 100));
+      ko.mtnC = Math.round(ko.popC * (.1 + ko.niv / 50) - Math.random() * ko.popC / 3);
+      ko.mtn = Math.round(ko.mtn * (1 + ko.mtnC / 100));
+
+      let newPro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3));
+      ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100);
+      ko.pro = newPro;
+
+    };
+
+    updateTotals(false);
+
+    pageUpdate("main");
   }
 
   function bigNumber(x, y) {
@@ -430,7 +478,7 @@ function _load() {
       let cc = "neutral";
       let chVal = so.cur - so.prev;
       let chPer = Math.round((chVal / so.prev) * 100);
-      let chCol = chVal < -10 ? "bad" : chVal > 10 ? "good" : "neutral";
+      let chCol = chVal < 0 ? "bad" : chVal > 0 ? "good" : "neutral";
       let intro = "";
       let chTxt = "";
       if (so.sum) {
@@ -458,7 +506,7 @@ function _load() {
         let chV = ker[k][so.val + "C"];
         let chT = "";
         let cc = val < so.bad ? "bad" : val > so.good ? "good" : "neutral";
-        let chC = chV < -10 ? "bad" : chV > 10 ? "good" : "neutral";
+        let chC = chV < 0 ? "bad" : chV > 0 ? "good" : "neutral";
         if (so.sum) {
           if (chV < 0) chT = chV + " %";
           if (chV > 0) chT = "+" + chV + " %";
@@ -482,7 +530,7 @@ function _load() {
     let sn = Number(e.target.id[1]);
     selVal = selector[sn].val;
     console.log(selVal);
-    pageUpdate(true);
+    pageUpdate("main");
   }
 
   function changeMusic() {
@@ -498,8 +546,8 @@ function _load() {
     }
   }
 
-  function pageUpdate(foldal) {
-    if (foldal) {
+  function pageUpdate(type) {
+    if (type === "main") {
       let selInd = selector.findIndex(s => s.val === selVal);
       let selObj = selector[selInd];
       let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "neutral";
@@ -511,7 +559,7 @@ function _load() {
           <img class="navBtn" id="loadBtn" src="./img/load.JPG">
           <img id='soundBtn' src=${musIcon} alt="music">
           <span class="navPair">
-            <span class="navNr">${day}</span>
+            <span class="navNr">${day.toLocaleString()}</span>
             <img class="navBtn" id="endBtn" src="./img/moon.jpg">
           </span>
         </div>
@@ -553,7 +601,7 @@ function _load() {
     if (musicOn) music.play();
     main.innerHTML = "";
     page.style.display = "grid";
-    pageUpdate(true);
+    pageUpdate("main");
   }
 
   document.getElementById("start").addEventListener("click", startGame)
