@@ -96,12 +96,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: .7,
@@ -123,12 +128,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: .7,
@@ -150,12 +160,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: .7,
@@ -177,12 +192,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: 1,
@@ -203,12 +223,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: 1,
@@ -230,12 +255,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: 1.3,
@@ -257,12 +287,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: 1.3,
@@ -284,12 +319,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: 1,
@@ -311,12 +351,17 @@ function _load() {
       had: 0,
       pro: 0,
       popC: 0,
+      popCD: 0,
       mtnC: 0,
       nivC: 0,
+      nivCD: 0,
       joyC: 0,
+      joyCD: 0,
       defC: 0,
       hadC: 0,
+      hadCD: 0,
       proC: 0,
+      proCD: 0,
       dev: [],
       evs: [-1, -1],
       eco: 1.3,
@@ -341,59 +386,93 @@ function _load() {
         sum = Math.round(sum / 9);
       }
       selo.cur = sum;
-      if (start) selo.prev = sum;
+      if (start) {
+        selo.prev = sum;
+        return;
+      }
+      if (selo.val === "pro") {
+        money += sum;
+        if (money < 0) {
+          //csőd
+          alert("CSŐD!");
+        }
+      }
     }
   }
 
   updateTotals(true);
+
+  function getDevs(darr, val) {
+    if (darr.length < 1) return 0;
+    let sum = 0;
+    for (d of darr) {
+      sum += d[val];
+    }
+    return sum;
+  }
+
+  function change(ko, val, ch) {
+    let org = ko[val];
+    ko[val] += ch;
+    if (ko[val] < 1 && val.charAt(val.length - 1) !== "C") {
+      ko[val + "C"] = Math.round((0 - org) / org * 100);
+      ko[val] = 0;
+    }
+    if (val === "pop" && ko.pop > 10000) {
+      ko.popC = Math.round((10000 - org) / org * 100);
+      ko.pop = 10000;
+    }
+    if ((val === "niv" || val === "joy") && ko[val] > 100) {
+      ko[val + "C"] = Math.round((100 - org) / org * 100);
+      ko[val] = 100;
+    }
+    //Egyéb hatások val-onként
+  }
 
   //NEW DAY
   function newDay() {
     sound.play();
     day++;
 
-    /*
-    pop: Math.floor(1 + Math.random() * 100),
-    mtn: Math.floor(1 + Math.random() * 20),
-    niv: Math.floor(30 + Math.random() * 30),
-    joy: Math.floor(70 + Math.random() * 30),
-    def: Math.floor(40 + Math.random() * 30),
-    ufo: 10,
-    had: 0,
-    pro: 0,
-    popC: 0,
-    mtnC: 0,
-    nivC: 0,
-    joyC: 0,
-    defC: 0,
-    hadC: 0,
-    proC: 0,
-    dev: [],
-    evs: [-1, -1],
-    eco: .7,
-    defo: 1,
-    culto: 1,
-    */
     for (let s = 1; s < selector.length; s++) {
       selector[s].prev = selector[s].cur;
     }
 
     for (ko of ker) {
-      ko.popC = Math.round(((ko.joy - 40) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * day + Math.random() * 20 - Math.random() * 20) / 15);
       //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
       //ko.popC = Math.abs(ko.popC) > 50 ? Math.sign(ko.popC) * 50 : ko.popC;
-      ko.pop = Math.round(ko.pop * (1 + ko.popC / 100));
-      ko.mtnC = Math.round(ko.popC * (.1 + ko.niv / 50) - Math.random() * ko.popC / 3);
-      ko.mtn = Math.round(ko.mtn * (1 + ko.mtnC / 100));
+      ko.popC += Math.round(((ko.joy - 40) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 20 - Math.random() * 20) / 15);
+      change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
+      ko.popCD = ko.popC;
 
-      let newPro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3));
+      ko.mtnC += Math.round(ko.popC * (.1 + ko.niv / 50) - Math.random() * ko.popC / 3);
+      change(ko, "mtn", Math.round(ko.mtn * ko.mtnC / 100));
+
+      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3) - getDevs(ko.dev, "mtn"));
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100);
       ko.pro = newPro;
+      ko.proCD = ko.proCD;
+
+      //ko.nivC += | ko.joyC =
+      console.log("NIVC: ", ko.nivC);
+      change(ko, "niv", ko.nivC);
+      ko.nivCD = ko.nivC;
+
+      console.log("JOYC: ", ko.joyC);
+      change(ko, "joy", ko.joyC);
+      ko.joyCD = ko.joyC;
+
+
+      for (p in ko) {
+        if (p.charAt(p.length - 1) === "C") ko[p] = 0;
+      }
+
+
 
     };
 
-    updateTotals(false);
 
+    updateTotals(false);
     pageUpdate("main");
   }
 
@@ -441,12 +520,20 @@ function _load() {
       tm.addEventListener("click", function () {
         if (tax > 0) {
           tax--;
+          for (ko of ker) {
+            change(ko, "joyC", 1);
+            change(ko, "nivC", 1);
+          }
           newDay();
         }
       });
       tm10.addEventListener("click", function () {
         if (tax > 9) {
           tax -= 10;
+          for (ko of ker) {
+            change(ko, "joyC", Math.round(7 + Math.random() * 8));
+            change(ko, "nivC", Math.round(7 + Math.random() * 8));
+          }
           newDay();
         }
       });
@@ -454,12 +541,20 @@ function _load() {
       tp.addEventListener("click", function () {
         if (tax < 100) {
           tax++;
+          for (ko of ker) {
+            change(ko, "joyC", -1);
+            change(ko, "nivC", -1);
+          }
           newDay();
         }
       });
       tp10.addEventListener("click", function () {
         if (tax < 91) {
           tax += 10;
+          for (ko of ker) {
+            change(ko, "joyC", -Math.round(7 + Math.random() * 8));
+            change(ko, "nivC", -Math.round(7 + Math.random() * 8));
+          }
           newDay();
         }
       });
@@ -503,7 +598,7 @@ function _load() {
 
       for (let k = 0; k < 9; k++) {
         let val = ker[k][so.val];
-        let chV = ker[k][so.val + "C"];
+        let chV = ker[k][so.val + "CD"];
         let chT = "";
         let cc = val < so.bad ? "bad" : val > so.good ? "good" : "neutral";
         let chC = chV < 0 ? "bad" : chV > 0 ? "good" : "neutral";
@@ -529,7 +624,6 @@ function _load() {
   function changeSel(e) {
     let sn = Number(e.target.id[1]);
     selVal = selector[sn].val;
-    console.log(selVal);
     pageUpdate("main");
   }
 
