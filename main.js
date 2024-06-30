@@ -375,7 +375,7 @@ function _load() {
     ko.had = Math.round((ko.def - ko.ufo * 10) * ko.defo);
   };
 
-  function updateTotals(start) {
+  function updateTotals() {
     for (let s = 1; s < selector.length; s++) {
       let selo = selector[s];
       let sum = 0;
@@ -386,11 +386,10 @@ function _load() {
         sum = Math.round(sum / 9);
       }
       selo.cur = sum;
-      if (start) {
+      if (day === 1) {
         selo.prev = sum;
-        return;
       }
-      if (selo.val === "pro") {
+      if (selo.val === "pro" && day > 1) {
         money += sum;
         if (money < 0) {
           //csőd
@@ -400,7 +399,7 @@ function _load() {
     }
   }
 
-  updateTotals(true);
+  updateTotals();
 
   function getDevs(darr, val) {
     if (darr.length < 1) return 0;
@@ -441,7 +440,7 @@ function _load() {
     for (ko of ker) {
       //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
       //ko.popC = Math.abs(ko.popC) > 50 ? Math.sign(ko.popC) * 50 : ko.popC;
-      ko.popC += Math.round(((ko.joy - 40) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 20 - Math.random() * 20) / 15);
+      ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 20 - Math.random() * 20) / 12);
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
@@ -472,7 +471,7 @@ function _load() {
     };
 
 
-    updateTotals(false);
+    updateTotals();
     pageUpdate("main");
   }
 
