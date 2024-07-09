@@ -92,7 +92,7 @@ function _load() {
       niv: Math.floor(30 + Math.random() * 30),
       joy: Math.floor(70 + Math.random() * 30),
       def: Math.floor(40 + Math.random() * 30),
-      ufo: 10,
+      ufo: 100,
       had: 0,
       pro: 0,
       popC: 0,
@@ -103,6 +103,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -124,7 +125,7 @@ function _load() {
       niv: Math.floor(5 + Math.random() * 25),
       joy: Math.floor(25 + Math.random() * 50),
       def: Math.floor(35 + Math.random() * 30),
-      ufo: 5,
+      ufo: 50,
       had: 0,
       pro: 0,
       popC: 0,
@@ -135,6 +136,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -167,6 +169,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -199,6 +202,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -219,7 +223,7 @@ function _load() {
       niv: Math.floor(55 + Math.random() * 45),
       joy: Math.floor(30 + Math.random() * 40),
       def: Math.floor(60 + Math.random() * 40),
-      ufo: 3,
+      ufo: Math.floor(1 + Math.random() * 40),
       had: 0,
       pro: 0,
       popC: 0,
@@ -230,6 +234,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -262,6 +267,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -294,6 +300,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -326,6 +333,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -358,6 +366,7 @@ function _load() {
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      ufoC: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -372,7 +381,7 @@ function _load() {
 
   for (ko of ker) {
     ko.pro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3));
-    ko.had = Math.round((ko.def - ko.ufo * 10) * ko.defo);
+    ko.had = Math.round((ko.def - ko.ufo) * ko.defo);
   };
 
   function updateTotals() {
@@ -439,27 +448,41 @@ function _load() {
 
     for (ko of ker) {
       //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
-      //ko.popC = Math.abs(ko.popC) > 50 ? Math.sign(ko.popC) * 50 : ko.popC;
+      ko.nivC += Math.round((ko.eco - 1) * 10 - (tax - 40) / (20 + Math.random() * 10));
+      change(ko, "niv", ko.nivC);
+      ko.nivCD = ko.nivC;
+
+      let hado = ko.had;
+      ko.defC += Math.round(ko.mtn / 50 * (ko.defo - 1));
+      change(ko, "def", ko.defC);
+      ko.ufoC += Math.round(1 + Math.random() * day / 10 + (ko.ufo - ko.def) / 10);
+      change(ko, "ufo", ko.ufoC);
+      ko.had = Math.round(ko.def - ko.ufo);
+      ko.hadC = ko.had - hado;
+      ko.hadCD = ko.hadC;
+
+      let rendor = 1 + Math.round(Math.random());
+      if (ko.had > 100 + Math.random() * 10 || ko.had < -20 * Math.random()) rendor -= 1 + Math.round(Math.random() * 2);
+      if (ko.had > 500 + Math.random() * 200 || ko.had < -200 - 100 * Math.random()) rendor -= 2 + Math.floor(ko.had / 200 * Math.random());
+      if (Math.abs(rendor) > 20) rendor = Math.sign(rendor) * 20;
+
+      ko.joyC += Math.round(rendor + (ko.culto - 1) * 10 - (tax - 40) / (20 + Math.random() * 10));
+
+      change(ko, "joy", ko.joyC);
+      ko.joyCD = ko.joyC;
+
       ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 20 - Math.random() * 20) / 12);
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
-      ko.mtnC += Math.round(ko.popC * (.1 + ko.niv / 50) - Math.random() * ko.popC / 3);
+      ko.mtnC += Math.round(ko.popC * (.5 + ko.niv / 50) - Math.random() * ko.popC / 10);
       change(ko, "mtn", Math.round(ko.mtn * ko.mtnC / 100));
 
       let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3) - getDevs(ko.dev, "mtn"));
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100);
       ko.pro = newPro;
-      ko.proCD = ko.proCD;
+      ko.proCD = ko.proC;
 
-      //ko.nivC += | ko.joyC =
-      console.log("NIVC: ", ko.nivC);
-      change(ko, "niv", ko.nivC);
-      ko.nivCD = ko.nivC;
-
-      console.log("JOYC: ", ko.joyC);
-      change(ko, "joy", ko.joyC);
-      ko.joyCD = ko.joyC;
 
 
       for (p in ko) {
