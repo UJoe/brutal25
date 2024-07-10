@@ -1,13 +1,13 @@
 function _load() {
-  window.music = document.getElementById("music");
-  window.sound = document.getElementById("sound");
+  var music = document.getElementById("music");
+  var sound = document.getElementById("sound");
   music.volume = 1;
   sound.volume = .5;
   music.loop = true;
   sound.loop = false;
-  let main = document.getElementById("main");
-  let page = document.getElementById("page");
-  let modal = document.getElementById("modal");
+  var main = document.getElementById("main");
+  var page = document.getElementById("page");
+  var modal = document.getElementById("modal");
   page.style.display = "none";
   modal.style.display = "none";
   window.curMusic = "basicMusic";
@@ -467,7 +467,10 @@ function _load() {
 
   //NEW DAY
   function newDay() {
-    sound.play();
+    if (sound.paused) {
+      sound.src = "./audio/done.mp3";
+      sound.play();
+    }
     day++;
 
     for (let s = 1; s < selector.length; s++) {
@@ -528,7 +531,7 @@ function _load() {
 
 
     updateTotals();
-    pageUpdate("main");
+    pageUpdate();
   }
 
   function bigNumber(x, y) {
@@ -548,6 +551,13 @@ function _load() {
       }
     }
     return x + " " + y;
+  }
+
+  function emot(happy) {
+    let soundN = happy ? "happy" : "angry";
+    let dice = 1 + Math.floor(Math.random() * 6);
+    sound.src = "./audio/" + soundN + dice + ".mp3";
+    sound.play();
   }
 
   function generateXtra(so) {
@@ -584,10 +594,11 @@ function _load() {
       });
       tm10.addEventListener("click", function () {
         if (tax > 9) {
+          emot(true);
           tax -= 10;
           for (ko of ker) {
             change(ko, "joyC", Math.round(7 + Math.random() * 8));
-            change(ko, "nivC", Math.round(7 + Math.random() * 8));
+            change(ko, "nivC", Math.round(6 + Math.random() * 8));
           }
           newDay();
         }
@@ -605,10 +616,11 @@ function _load() {
       });
       tp10.addEventListener("click", function () {
         if (tax < 91) {
+          emot(false);
           tax += 10;
           for (ko of ker) {
             change(ko, "joyC", -Math.round(7 + Math.random() * 8));
-            change(ko, "nivC", -Math.round(7 + Math.random() * 8));
+            change(ko, "nivC", -Math.round(6 + Math.random() * 8));
           }
           newDay();
         }
@@ -679,7 +691,7 @@ function _load() {
   function changeSel(e) {
     let sn = Number(e.target.id[1]);
     selVal = selector[sn].val;
-    pageUpdate("main");
+    pageUpdate();
   }
 
   function changeMusic() {
@@ -695,12 +707,38 @@ function _load() {
     }
   }
 
-  function pageUpdate(type) {
-    if (type === "main") {
-      let selInd = selector.findIndex(s => s.val === selVal);
-      let selObj = selector[selInd];
-      let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "neutral";
-      let pageStr = `
+  function openKer(e) {
+    let kn = parseInt(e.target.id.slice(-1));
+    let ko = ker[kn];
+    console.log(ko);
+    page.innerHTML = "";
+    page.style.display = "none";
+    music.src = "./audio/" + ko.name + ".mp3";
+    if (musicOn) music.play();
+    modal.style.display = "flex";
+    modal.innerHTML = `
+    <button id="closeKer">X</button>
+    <div id="kerNev">${ko.name}</div>
+    `;
+
+    document.getElementById("closeKer").addEventListener("click", closeModal);
+  }
+
+  function closeModal() {
+    //késleltesd egy kicsit;
+    music.src = "./audio/" + curMusic + ".mp3";
+    if (musicOn) music.play();
+    pageUpdate();
+  }
+
+  function pageUpdate() {
+    modal.innerHTML = "";
+    modal.style.display = "none";
+    page.style.display = "grid";
+    let selInd = selector.findIndex(s => s.val === selVal);
+    let selObj = selector[selInd];
+    let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "neutral";
+    let pageStr = `
       <div id="header">
         <div id="topMenu">
           <span class="navNr ${mc}" title=${money.toLocaleString()}>${bigNumber(money, "$")}</span>
@@ -714,43 +752,45 @@ function _load() {
         </div>
         <div id="selectBar">
         `;
-      for (let k = 0; k < 6; k++) {
-        let selClass = selector[k].val === selVal ? "selected" : "unselected";
-        let selStr = `<button id="s${k}" class="navBtn selBtn ${selClass}">${selector[k].name}</button>`;
-        pageStr += selStr;
-      }
-      pageStr += `</div>
+    for (let k = 0; k < 6; k++) {
+      let selClass = selector[k].val === selVal ? "selected" : "unselected";
+      let selStr = `<button id="s${k}" class="navBtn selBtn ${selClass}">${selector[k].name}</button>`;
+      pageStr += selStr;
+    }
+    pageStr += `</div>
         <div id="extraInfo"></div>
       </div>
       `
-      for (let k = 0; k < 9; k++) {
-        let kerStr = `<div id = "k${k}" class="ker">
-          <div class="kername">${ker[k].name}</div>
+    for (let k = 0; k < 9; k++) {
+      let kerStr = `<div id = "k${k}" class="ker">
+          <div class="kername" id="kn-${k}">${ker[k].name}</div>
           <div class="kerinfo1" id="ki1-${k}"></div>
           <div class="kerinfo2" id="ki2-${k}"></div>
         </div> `;
-        pageStr += kerStr;
-      }
-      page.innerHTML = pageStr;
-      generateXtra(selObj);
-
-      document.getElementById("endBtn").addEventListener("click", newDay);
-      document.querySelectorAll(".selBtn").forEach((s) => s.addEventListener("click", changeSel));
-      document.getElementById("soundBtn").addEventListener("click", changeMusic);
-
-
-      /* document.getElementById("saveBtn").addEventListener("click", saveGame);
-      document.getElementById("loadBtn").addEventListener("click", loadGame);
-      document.getElementById("loadBtn").disabled = localStorage.getItem("charName") == null;
-      document.getElementById("saveBtn").disabled = false; */
-
+      pageStr += kerStr;
     }
+    page.innerHTML = pageStr;
+    generateXtra(selObj);
+
+    document.getElementById("endBtn").addEventListener("click", newDay);
+    document.querySelectorAll(".selBtn").forEach((s) => s.addEventListener("click", changeSel));
+    document.getElementById("soundBtn").addEventListener("click", changeMusic);
+    document.querySelectorAll(".ker").forEach((s) => s.addEventListener("click", openKer));
+
+
+    /* document.getElementById("saveBtn").addEventListener("click", saveGame);
+    document.getElementById("loadBtn").addEventListener("click", loadGame);
+    document.getElementById("loadBtn").disabled = localStorage.getItem("charName") == null;
+    document.getElementById("saveBtn").disabled = false; */
+
+
   }
+
   function startGame() {
     if (musicOn) music.play();
     main.innerHTML = "";
     page.style.display = "grid";
-    pageUpdate("main");
+    pageUpdate();
   }
 
   document.getElementById("start").addEventListener("click", startGame)
