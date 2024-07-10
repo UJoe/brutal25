@@ -88,22 +88,25 @@ function _load() {
       x: 1,
       y: 1,
       pop: Math.floor(1 + Math.random() * 100),
-      mtn: Math.floor(1 + Math.random() * 20),
+      mtn: 0,
       niv: Math.floor(30 + Math.random() * 30),
       joy: Math.floor(70 + Math.random() * 30),
       def: Math.floor(40 + Math.random() * 30),
-      ufo: 100,
+      ufo: 70,
       had: 0,
       pro: 0,
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -121,7 +124,7 @@ function _load() {
       x: 2,
       y: 1,
       pop: Math.floor(100 + Math.random() * 400),
-      mtn: Math.floor(10 + Math.random() * 40),
+      mtn: 0,
       niv: Math.floor(5 + Math.random() * 25),
       joy: Math.floor(25 + Math.random() * 50),
       def: Math.floor(35 + Math.random() * 30),
@@ -131,12 +134,15 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -144,8 +150,8 @@ function _load() {
       dev: [],
       evs: [-1, -1],
       eco: .7,
-      defo: 1,
-      culto: .7,
+      defo: .7,
+      culto: 1,
     },
     {
       num: 2,
@@ -154,7 +160,7 @@ function _load() {
       x: 3,
       y: 1,
       pop: Math.floor(1500 + Math.random() * 1000),
-      mtn: Math.floor(50 + Math.random() * 100),
+      mtn: 0,
       niv: Math.floor(0 + Math.random() * 20),
       joy: Math.floor(0 + Math.random() * 20),
       def: Math.floor(5 + Math.random() * 20),
@@ -164,21 +170,24 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
       proCD: 0,
       dev: [],
       evs: [-1, -1],
-      eco: .7,
+      eco: 1,
       defo: .7,
-      culto: .7,
+      culto: 1,
     },
     {
       num: 3,
@@ -187,7 +196,7 @@ function _load() {
       x: 1,
       y: 2,
       pop: Math.floor(50 + Math.random() * 300),
-      mtn: Math.floor(100 + Math.random() * 100),
+      mtn: 0,
       niv: Math.floor(40 + Math.random() * 30),
       joy: Math.floor(50 + Math.random() * 30),
       def: Math.floor(40 + Math.random() * 30),
@@ -197,12 +206,15 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -219,7 +231,7 @@ function _load() {
       x: 2,
       y: 2,
       pop: Math.floor(800 + Math.random() * 500),
-      mtn: Math.floor(150 + Math.random() * 200),
+      mtn: 0,
       niv: Math.floor(55 + Math.random() * 45),
       joy: Math.floor(30 + Math.random() * 40),
       def: Math.floor(60 + Math.random() * 40),
@@ -229,12 +241,15 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -252,7 +267,7 @@ function _load() {
       x: 3,
       y: 2,
       pop: Math.floor(800 + Math.random() * 600),
-      mtn: Math.floor(200 + Math.random() * 250),
+      mtn: 0,
       niv: Math.floor(70 + Math.random() * 30),
       joy: Math.floor(35 + Math.random() * 35),
       def: Math.floor(40 + Math.random() * 25),
@@ -262,12 +277,15 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -285,7 +303,7 @@ function _load() {
       x: 1,
       y: 3,
       pop: Math.floor(1000 + Math.random() * 700),
-      mtn: Math.floor(140 + Math.random() * 150),
+      mtn: 0,
       niv: Math.floor(5 + Math.random() * 25),
       joy: Math.floor(0 + Math.random() * 5),
       def: Math.floor(10 + Math.random() * 20),
@@ -295,12 +313,15 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -318,7 +339,7 @@ function _load() {
       x: 2,
       y: 3,
       pop: Math.floor(2000 + Math.random() * 1000),
-      mtn: Math.floor(100 + Math.random() * 75),
+      mtn: 0,
       niv: Math.floor(30 + Math.random() * 40),
       joy: Math.floor(20 + Math.random() * 50),
       def: Math.floor(40 + Math.random() * 30),
@@ -328,12 +349,15 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -351,7 +375,7 @@ function _load() {
       x: 3,
       y: 3,
       pop: Math.floor(700 + Math.random() * 500),
-      mtn: Math.floor(250 + Math.random() * 250),
+      mtn: 0,
       niv: Math.floor(65 + Math.random() * 35),
       joy: Math.floor(75 + Math.random() * 25),
       def: Math.floor(30 + Math.random() * 70),
@@ -361,12 +385,15 @@ function _load() {
       popC: 0,
       popCD: 0,
       mtnC: 0,
+      mtnCD: 0,
       nivC: 0,
       nivCD: 0,
       joyC: 0,
       joyCD: 0,
       defC: 0,
+      defCD: 0,
       ufoC: 0,
+      ufoCD: 0,
       hadC: 0,
       hadCD: 0,
       proC: 0,
@@ -380,6 +407,7 @@ function _load() {
   ];
 
   for (ko of ker) {
+    ko.mtn = Math.round(ko.pop / 5 * (ko.eco + ko.niv / 25 + Math.random() - Math.random()));
     ko.pro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3));
     ko.had = Math.round((ko.def - ko.ufo) * ko.defo);
   };
@@ -448,17 +476,20 @@ function _load() {
 
     for (ko of ker) {
       //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
-      ko.nivC += Math.round((ko.eco - 1) * 10 - (tax - 40) / (20 + Math.random() * 10));
+      ko.nivC += Math.round((ko.eco - 1) * 7 - (tax - 45) / (20 + Math.random() * 10));
       change(ko, "niv", ko.nivC);
       ko.nivCD = ko.nivC;
 
       let hado = ko.had;
-      ko.defC += Math.round(ko.mtn / 50 * (ko.defo - 1));
+      ko.defC += Math.round((12000 - ko.pop) / 300 * (ko.defo - 1));
       change(ko, "def", ko.defC);
       ko.ufoC += Math.round(1 + Math.random() * day / 10 + (ko.ufo - ko.def) / 10);
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       ko.hadC = ko.had - hado;
+      ko.hadCD = ko.hadC;
+      ko.ufoCD = ko.ufoC;
+      ko.defCD = ko.defC;
       ko.hadCD = ko.hadC;
 
       let rendor = 1 + Math.round(Math.random());
@@ -467,7 +498,6 @@ function _load() {
       if (Math.abs(rendor) > 20) rendor = Math.sign(rendor) * 20;
 
       ko.joyC += Math.round(rendor + (ko.culto - 1) * 10 - (tax - 40) / (20 + Math.random() * 10));
-
       change(ko, "joy", ko.joyC);
       ko.joyCD = ko.joyC;
 
@@ -475,8 +505,11 @@ function _load() {
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
-      ko.mtnC += Math.round(ko.popC * (.5 + ko.niv / 50) - Math.random() * ko.popC / 10);
-      change(ko, "mtn", Math.round(ko.mtn * ko.mtnC / 100));
+      let matine = ko.mtn;
+      ko.mtn = Math.round(ko.pop / 5 * (1 + ko.niv / 25 + Math.random() - Math.random()));
+      ko.mtnC = matine - ko.mtn;
+      change(ko, "mtn", ko.mtnC);
+      ko.mtnCD = ko.mtnC;
 
       let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3) - getDevs(ko.dev, "mtn"));
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100);
