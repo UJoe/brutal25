@@ -1,13 +1,14 @@
 function _load() {
   var music = document.getElementById("music");
   var sound = document.getElementById("sound");
-  music.volume = 1;
-  sound.volume = .5;
+  music.volume = .9;
+  sound.volume = .6;
   music.loop = true;
   sound.loop = false;
   var main = document.getElementById("main");
   var page = document.getElementById("page");
   var modal = document.getElementById("modal");
+  var kerAct = false;
   page.style.display = "none";
   modal.style.display = "none";
   window.curMusic = "basicMusic";
@@ -228,13 +229,14 @@ function _load() {
     {
       num: 4,
       name: "Városközpont",
+      desc: "Itt van többek között a Városháza erődszerű épülete.",
       x: 2,
       y: 2,
       pop: Math.floor(800 + Math.random() * 500),
       mtn: 0,
       niv: Math.floor(55 + Math.random() * 45),
       joy: Math.floor(30 + Math.random() * 40),
-      def: Math.floor(60 + Math.random() * 40),
+      def: Math.floor(70 + Math.random() * 50),
       ufo: Math.floor(1 + Math.random() * 40),
       had: 0,
       pro: 0,
@@ -519,16 +521,10 @@ function _load() {
       ko.pro = newPro;
       ko.proCD = ko.proC;
 
-
-
       for (p in ko) {
         if (p.charAt(p.length - 1) === "C") ko[p] = 0;
       }
-
-
-
     };
-
 
     updateTotals();
     pageUpdate();
@@ -707,28 +703,107 @@ function _load() {
     }
   }
 
+  function updateSup(ko) {
+    let supArr = [ko.eco, ko.defo, ko.culto];
+    console.log(supArr);
+    let supMap = [];
+    for (sa of supArr) {
+      if (sa < 1) {
+        supMap.push("selected")
+      } else {
+        supMap.push("unselected")
+      }
+      if (sa === 1) {
+        supMap.push("selected")
+      } else {
+        supMap.push("unselected")
+      }
+      if (sa > 1) {
+        supMap.push("selected")
+      } else {
+        supMap.push("unselected")
+      }
+    }
+
+    let supStr = `
+      <tr>
+        <th class="supLabel">Gazdaság:</th>
+        <th class="supBtn ${supMap[0]}" id="eco-.7">Kevés</th>
+        <th class="supBtn ${supMap[1]}" id="eco-1">Elég</th>
+        <th class="supBtn ${supMap[2]}" id="eco-1.3">Sok</th>
+      </tr>
+      <tr>
+        <th class="supLabel">Védelem:</th>
+        <th class="supBtn ${supMap[3]}" id="defo-.7">Kevés</th>
+        <th class="supBtn ${supMap[4]}" id="defo-1">Elég</th>
+        <th class="supBtn ${supMap[5]}" id="defo-1.3">Sok</th>
+      </tr>
+      <tr>
+        <th class="supLabel">Kultúra:</th>
+        <th class="supBtn ${supMap[6]}" id="culto-.7">Kevés</th>
+        <th class="supBtn ${supMap[7]}" id="culto-1">Elég</th>
+        <th class="supBtn ${supMap[8]}" id="culto-1.3">Sok</th>
+      </tr>
+    `;
+    document.getElementById("supTable").innerHTML = supStr;
+
+  }
+
   function openKer(e) {
     let kn = parseInt(e.target.id.slice(-1));
     let ko = ker[kn];
-    console.log(ko);
     page.innerHTML = "";
     page.style.display = "none";
     music.src = "./audio/" + ko.name + ".mp3";
     if (musicOn) music.play();
     modal.style.display = "flex";
-    modal.innerHTML = `
+    let kerStr = `
     <button id="closeKer">X</button>
     <div id="kerNev">${ko.name}</div>
     `;
+    if (ko.desc) {
+      kerStr += `<div id="kerDesc">${ko.desc}</div>`;
+      ko.desc = false;
+    } else {
+      kerStr += `
+        <button id="kerVisit">Látogatás</button>
+        <div id="visit"></div>
+      `;
+    }
+    kerStr += `
+      <fieldset>
+        <legend>Támogatások:</legend>
+        <table id="supTable"></table>
+      </fieldset>
+    `
+
+    modal.innerHTML = kerStr;
+
+    updateSup(ko);
+
+    function changeSup(e) {
+      let sid = e.target.id.split('-');
+      let svar = sid[0];
+      let sval = Number(sid[1]);
+      console.log(svar, sval);
+      ko[svar] = sval;
+      updateSup(ko);
+      kerAct = true;
+    }
 
     document.getElementById("closeKer").addEventListener("click", closeModal);
+    document.querySelectorAll(".supBtn").forEach((s) => s.addEventListener("click", changeSup));
   }
 
   function closeModal() {
-    //késleltesd egy kicsit;
+    //késleltesd egy kicsit vagy mit tudom én
     music.src = "./audio/" + curMusic + ".mp3";
     if (musicOn) music.play();
-    pageUpdate();
+    if (kerAct) {
+      newDay();
+    } else {
+      pageUpdate();
+    }
   }
 
   function pageUpdate() {
