@@ -240,25 +240,56 @@ h1 {
 #modal {
 	display: flex;
 	flex-direction: column;
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
+	min-height: 100vh;
 	background-color: beige;
 	color: black;
+	padding: 3vw;
 }
 
 #closeKer {
-	border: 2px solid lightcyan;
+	border: 2px solid darkolivegreen;
 	border-radius: 5px;
 	margin: 5px 5px 5px auto;
 	color: black;
-	background-color: lightskyblue;
+	background-color: ghostwhite;
 	font-size: max(1.4vw, 1.1em);
 }
 
 #kerNev {
-	margin: 10px auto;
+	margin: 10px auto 20px;
 	font-size: max(1.5vw, 1.2em);
 	font-weight: 600;
 	color: blue;
+	margin-bottom: 2opx;
+}
+
+#kerDesc {
+	margin-bottom: 20px;
+}
+
+#supField {
+	border: 4px ridge aqua;
+	background-color: lightcyan;
+	width: fit-content;
+}
+
+#supTitle {
+	color: lightseagreen;
+}
+
+#supTable {
+	border-spacing: 8px;
+}
+
+.supLabel {
+	text-align: left;
+	padding: 4px;
+	color: brown;
+}
+
+.supBtn {
+	width: 10vw;
+	border-radius: 5px;
+	border: 2px solid darkolivegreen;
+	font-weight: 200;
 }

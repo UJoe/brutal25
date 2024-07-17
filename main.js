@@ -486,9 +486,9 @@ function _load() {
       ko.nivCD = ko.nivC;
 
       let hado = ko.had;
-      ko.defC += Math.round((12000 - ko.pop) / 300 * (ko.defo - 1));
+      ko.defC += Math.round(ko.mtn * (ko.defo - 1) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(1 + Math.random() * day / 10 + (ko.ufo - ko.def) / 10);
+      ko.ufoC += Math.round(1 + Math.random() * day / 14 + (ko.ufo - ko.def) / 12);
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       ko.hadC = ko.had - hado;
@@ -498,11 +498,11 @@ function _load() {
       ko.hadCD = ko.hadC;
 
       let rendor = 1 + Math.round(Math.random());
-      if (ko.had > 100 + Math.random() * 10 || ko.had < -20 * Math.random()) rendor -= 1 + Math.round(Math.random() * 2);
-      if (ko.had > 500 + Math.random() * 200 || ko.had < -200 - 100 * Math.random()) rendor -= 2 + Math.floor(ko.had / 200 * Math.random());
+      if (ko.had > 100 + Math.random() * 50 || ko.had < -50 * Math.random()) rendor -= 1 + Math.round(Math.random() * 3);
+      if (ko.had > 700 + Math.random() * 500 || ko.had < -150 - 100 * Math.random()) rendor -= 2 + Math.floor(ko.had / 200 * Math.random());
       if (Math.abs(rendor) > 20) rendor = Math.sign(rendor) * 20;
 
-      ko.joyC += Math.round(rendor + (ko.culto - 1) * 10 - (tax - 40) / (20 + Math.random() * 10));
+      ko.joyC += Math.round(rendor + (ko.culto - 1) * 15 - (tax - 40) / (20 + Math.random() * 10) + (ko.niv - 50) / 15);
       change(ko, "joy", ko.joyC);
       ko.joyCD = ko.joyC;
 
@@ -705,7 +705,6 @@ function _load() {
 
   function updateSup(ko) {
     let supArr = [ko.eco, ko.defo, ko.culto];
-    console.log(supArr);
     let supMap = [];
     for (sa of supArr) {
       if (sa < 1) {
@@ -746,7 +745,6 @@ function _load() {
       </tr>
     `;
     document.getElementById("supTable").innerHTML = supStr;
-
   }
 
   function openKer(e) {
@@ -758,7 +756,7 @@ function _load() {
     if (musicOn) music.play();
     modal.style.display = "flex";
     let kerStr = `
-    <button id="closeKer">X</button>
+    <button id="closeKer">x</button>
     <div id="kerNev">${ko.name}</div>
     `;
     if (ko.desc) {
@@ -771,8 +769,8 @@ function _load() {
       `;
     }
     kerStr += `
-      <fieldset>
-        <legend>Támogatások:</legend>
+      <fieldset id="supField">
+        <legend id="supTitle">Támogatások</legend>
         <table id="supTable"></table>
       </fieldset>
     `
@@ -785,10 +783,15 @@ function _load() {
       let sid = e.target.id.split('-');
       let svar = sid[0];
       let sval = Number(sid[1]);
-      console.log(svar, sval);
+      if (ko[svar] === sval) return;
       ko[svar] = sval;
       updateSup(ko);
       kerAct = true;
+      document.getElementById("closeKer").addEventListener("click", closeModal);
+      document.querySelectorAll(".supBtn").forEach((s) => s.addEventListener("click", changeSup));
+      if (svar === "defo") return;
+      if (sval < 1) emot(false);
+      if (sval > 1) emot(true);
     }
 
     document.getElementById("closeKer").addEventListener("click", closeModal);
@@ -800,6 +803,7 @@ function _load() {
     music.src = "./audio/" + curMusic + ".mp3";
     if (musicOn) music.play();
     if (kerAct) {
+      kerAct = false;
       newDay();
     } else {
       pageUpdate();
