@@ -440,7 +440,7 @@ function _load() {
 
   for (ko of ker) {
     ko.mtn = Math.round(ko.pop / 5 * (ko.eco + ko.niv / 25 + Math.random() - Math.random()));
-    ko.pro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto)));
+    ko.pro = Math.round(ko.pop * (tax / 10) * (0.5 + ko.niv / 300) - (ko.mtn * (ko.eco + ko.defo + ko.culto)));
     ko.had = Math.round((ko.def - ko.ufo));
   };
 
@@ -555,7 +555,7 @@ function _load() {
       ko.mtnC = Math.round((ko.mtn - matine) / matine * 100 * sign);
       ko.mtnCD = ko.mtnC;
 
-      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.1 + ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3) - getDevs(ko.dev, "mtn"));
+      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.5 + ko.niv / 300) - (ko.mtn * (ko.eco + ko.defo + ko.culto)) - getDevs(ko.dev, "mtn"));
       sign = ko.pro === 0 ? 1 : Math.sign(ko.pro);
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100 * sign);
       ko.pro = newPro;
