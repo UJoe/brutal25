@@ -293,3 +293,23 @@ h1 {
 	border: 2px solid darkolivegreen;
 	font-weight: 200;
 }
+
+#statField {
+	border: 4px ridge aqua;
+	background-color: grey;
+	width: fit-content;
+}
+
+#statTitle {
+	color: lime;
+}
+
+#statTable {
+	border-spacing: 8px;
+}
+
+.statLabel {
+	text-align: left;
+	padding: 4px;
+	color: brown;
+}

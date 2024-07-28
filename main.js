@@ -79,6 +79,36 @@ function _load() {
       good: 100,
       bad: 1
     },
+    {
+      name: "Fenntartás",
+      val: "mtn",
+      mer: " $",
+      sum: true,
+      prev: 0,
+      cur: 0,
+      reverse: true,
+      good: 300,
+      bad: 1000
+    },
+    {
+      name: "Idegenek",
+      val: "ufo",
+      mer: " &#128369;",
+      sum: true,
+      prev: 0,
+      cur: 0,
+      reverse: true,
+      good: 50,
+      bad: 300
+    },
+    {
+      name: "Védelem",
+      val: "def",
+      mer: " &#9930;",
+      sum: true,
+      prev: 0,
+      cur: 0,
+    },
   ];
   window.selVal = "tax";
   window.ker = [
@@ -410,8 +440,8 @@ function _load() {
 
   for (ko of ker) {
     ko.mtn = Math.round(ko.pop / 5 * (ko.eco + ko.niv / 25 + Math.random() - Math.random()));
-    ko.pro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3));
-    ko.had = Math.round((ko.def - ko.ufo) * ko.defo);
+    ko.pro = Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto)));
+    ko.had = Math.round((ko.def - ko.ufo));
   };
 
   function updateTotals() {
@@ -481,21 +511,28 @@ function _load() {
 
     for (ko of ker) {
       //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
+      let sign = 1;
       ko.nivC += Math.round((ko.eco - 1) * 7 - (tax - 45) / (20 + Math.random() * 10));
       change(ko, "niv", ko.nivC);
       ko.nivCD = ko.nivC;
 
       let hado = ko.had;
+      let ufoo = ko.ufo;
+      let defo = ko.def;
       ko.defC += Math.round(ko.mtn * (ko.defo - 1) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
       ko.ufoC += Math.round(1 + Math.random() * day / 14 + (ko.ufo - ko.def) / 12);
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
-      ko.hadC = ko.had - hado;
+      sign = hado === 0 ? 1 : Math.sign(hado);
+      ko.hadC = Math.round((ko.had - hado) / hado * 100 * sign);
+      sign = ufoo === 0 ? 1 : Math.sign(ufoo);
+      ko.ufoC = Math.round((ko.ufo - ufoo) / ufoo * 100 * sign);
+      sign = defo === 0 ? 1 : Math.sign(defo);
+      ko.defC = Math.round((ko.def - defo) / defo * 100 * sign);
       ko.hadCD = ko.hadC;
       ko.ufoCD = ko.ufoC;
       ko.defCD = ko.defC;
-      ko.hadCD = ko.hadC;
 
       let rendor = 1 + Math.round(Math.random());
       if (ko.had > 100 + Math.random() * 50 || ko.had < -50 * Math.random()) rendor -= 1 + Math.round(Math.random() * 3);
@@ -514,10 +551,13 @@ function _load() {
       ko.mtn = Math.round(ko.pop / 5 * (1 + ko.niv / 25 + Math.random() - Math.random()));
       ko.mtnC = matine - ko.mtn;
       change(ko, "mtn", ko.mtnC);
+      sign = matine === 0 ? 1 : Math.sign(matine);
+      ko.mtnC = Math.round((ko.mtn - matine) / matine * 100 * sign);
       ko.mtnCD = ko.mtnC;
 
-      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3) - getDevs(ko.dev, "mtn"));
-      ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100);
+      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.1 + ko.niv / 100) - (ko.mtn * (ko.eco + ko.defo + ko.culto) / 3) - getDevs(ko.dev, "mtn"));
+      sign = ko.pro === 0 ? 1 : Math.sign(ko.pro);
+      ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100 * sign);
       ko.pro = newPro;
       ko.proCD = ko.proC;
 
@@ -635,7 +675,8 @@ function _load() {
     } else {
       let cc = "neutral";
       let chVal = so.cur - so.prev;
-      let chPer = Math.round((chVal / so.prev) * 100);
+      let sign = so.prev === 0 ? 1 : Math.sign(so.prev);
+      let chPer = Math.round((chVal / so.prev) * 100 * sign);
       let chCol = chVal < 0 ? "bad" : chVal > 0 ? "good" : "neutral";
       let intro = "";
       let chTxt = "";
@@ -747,6 +788,78 @@ function _load() {
     document.getElementById("supTable").innerHTML = supStr;
   }
 
+  function updateStat(ko) {
+    let statArr = ["pop", "pro", "mtn", "niv", "joy", "ufo", "def", "had"];
+    let statStr = `
+      <tr id="statHead">
+        <th >Tétel</th>
+        <th >Érték</th>
+        <th >Változás</th>
+      </tr>
+    `;
+    for (s of statArr) {
+      let si = selector.findIndex(x => x.val === s);
+      let so = selector[si];
+      let vd = ko[s];
+      let cd = ko[s + "CD"];
+      let qvc = "neutral";
+      let qcc = cd < 0 ? "bad" : cd > 0 ? "good" : "neutral";
+      let vt = "";
+      let ct = "";
+      if (s === "def") {
+        if (vd < ko.ufo - 50 || vd > ko.ufo + 700) {
+          qvc = "bad";
+        }
+        if (vd > ko.ufo && vd < ko.ufo + 100) {
+          qvc = "good";
+        }
+        vt = vd + so.mer;
+        if (cd > 0) { ct = "+" + cd + " %"; }
+        if (cd < 0) { ct = cd + " %"; }
+      } else {
+        if (so.sum) {
+          if (so.reverse) {
+            if (vd < so.good) {
+              qvc = "good";
+            }
+            if (vd > so.bad) {
+              qvc = "bad";
+            }
+          } else {
+            if (vd > so.good) {
+              qvc = "good";
+            }
+            if (vd < so.bad) {
+              qvc = "bad";
+            }
+          }
+          vt = vd + so.mer;
+          if (cd > 0) { ct = "+" + cd + " %"; }
+          if (cd < 0) { ct = cd + " %"; }
+        } else {
+          if (vd > so.good) {
+            qvc = "good";
+          }
+          if (vd < so.bad) {
+            qvc = "bad";
+          }
+          vt = vd + " %";
+          if (cd > 0) { ct = "+" + cd; }
+          if (cd < 0) { ct = cd; }
+        }
+      }
+      statStr += `
+      <tr>
+        <th class="statLabel">${so.name}</th>
+        <th class=${qvc}>${vt}</th>
+        <th class=${qcc}>${ct}</th>
+      </tr>
+    `;
+    }
+    document.getElementById("statTable").innerHTML = statStr;
+  }
+
+
   function openKer(e) {
     let kn = parseInt(e.target.id.slice(-1));
     let ko = ker[kn];
@@ -764,7 +877,7 @@ function _load() {
       ko.desc = false;
     } else {
       kerStr += `
-        <button id="kerVisit">Látogatás</button>
+        <button class="btn" id="kerVisit">Látogatás</button>
         <div id="visit"></div>
       `;
     }
@@ -773,11 +886,18 @@ function _load() {
         <legend id="supTitle">Támogatások</legend>
         <table id="supTable"></table>
       </fieldset>
+      <br>
+      <fieldset id="statField">
+        <legend id="statTitle">Statisztikák</legend>
+        <table id="statTable">
+        </table>
+      </fieldset>
     `
 
     modal.innerHTML = kerStr;
 
     updateSup(ko);
+    updateStat(ko);
 
     function changeSup(e) {
       let sid = e.target.id.split('-');
