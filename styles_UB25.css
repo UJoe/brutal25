@@ -149,8 +149,6 @@ h1 {
 	background-color: darkred;
 }
 
-
-
 .ker {
 	font-size: max(1.5vw, 1.2em);
 	background-image: radial-gradient(royalblue 75%, darkblue);
@@ -164,6 +162,11 @@ h1 {
 	font-style: italic;
 	font-weight: 500;
 }
+
+#kerVisit {
+	margin-left: 0;
+}
+
 
 .navBtn,
 .navPic {
@@ -233,6 +236,10 @@ h1 {
 	color: #0f0 !important;
 }
 
+.gold {
+	color: gold;
+}
+
 .navNr {
 	font-size: max(1vw, 1.1em);
 }
@@ -273,10 +280,6 @@ h1 {
 	width: fit-content;
 }
 
-#supTitle {
-	color: lightseagreen;
-}
-
 #supTable {
 	border-spacing: 8px;
 }
@@ -290,26 +293,59 @@ h1 {
 .supBtn {
 	width: 10vw;
 	border-radius: 5px;
-	border: 2px solid darkolivegreen;
+	border: 2px outset darkolivegreen;
 	font-weight: 200;
 }
 
 #statField {
 	border: 4px ridge aqua;
-	background-color: grey;
+	background-color: teal;
+	color: black;
 	width: fit-content;
 }
 
-#statTitle {
-	color: lime;
+#statTitle,
+#supTitle {
+	color: lightseagreen;
+	background-color: whitesmoke;
 }
 
 #statTable {
 	border-spacing: 8px;
 }
 
+#statHead {
+	color: yellow;
+	font-style: italic;
+}
+
 .statLabel {
 	text-align: left;
 	padding: 4px;
-	color: brown;
+	color: aqua;
+}
+
+#kerBtns {
+	display: flex;
+	justify-content: space-between;
+	width: 80vw;
+	margin: 1vh 10vw;
+}
+
+.kerBtn {
+	flex-grow: 1;
+	margin: 0 5vw;
+	height: 40px;
+	color: orangered;
+	background-color: darkblue;
+	border: outset 2px turquoise;
+	border-radius: 10px;
+	opacity: 1;
+	outline: none;
+	font-size: 1.1em;
+}
+
+.kerBtn:disabled {
+	opacity: 0.5;
+	background-color: darkslategray;
 }

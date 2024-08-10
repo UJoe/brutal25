@@ -20,6 +20,7 @@ function _load() {
   window.money = 10000;
   window.day = 1;
   window.allEvents = [];
+  window.rnd = (arr) => arr[Math.floor(Math.random() * arr.length)];
   window.selector = [
     {
       name: "Adó",
@@ -111,332 +112,6 @@ function _load() {
     },
   ];
   window.selVal = "tax";
-  window.ker = [
-    {
-      num: 0,
-      name: "Erdőszél",
-      desc: "Egészséges, pihentető túrák, hőssegédek és bűvös lények otthona.",
-      x: 1,
-      y: 1,
-      pop: Math.floor(1 + Math.random() * 100),
-      mtn: 0,
-      niv: Math.floor(30 + Math.random() * 30),
-      joy: Math.floor(70 + Math.random() * 30),
-      def: Math.floor(40 + Math.random() * 30),
-      ufo: 70,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: .7,
-      defo: 1,
-      culto: 1,
-    },
-    {
-      num: 1,
-      name: "Farmok",
-      desc: "Szorgos, egyszerű gazdálkodók földjei.",
-      x: 2,
-      y: 1,
-      pop: Math.floor(100 + Math.random() * 400),
-      mtn: 0,
-      niv: Math.floor(5 + Math.random() * 25),
-      joy: Math.floor(25 + Math.random() * 50),
-      def: Math.floor(35 + Math.random() * 30),
-      ufo: 50,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: .7,
-      defo: .7,
-      culto: 1,
-    },
-    {
-      num: 2,
-      name: "Ázsiai negyed",
-      desc: "Kismillió fura ember, akikről azt sem tudod, valójában mit csinálnak.",
-      x: 3,
-      y: 1,
-      pop: Math.floor(1500 + Math.random() * 1000),
-      mtn: 0,
-      niv: Math.floor(0 + Math.random() * 20),
-      joy: Math.floor(0 + Math.random() * 20),
-      def: Math.floor(5 + Math.random() * 20),
-      ufo: 0,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: 1,
-      defo: .7,
-      culto: 1,
-    },
-    {
-      num: 3,
-      name: "Városliget",
-      desc: "Sportpályák, játszóterek, csónakázótó a kikapcsolódni vágyóknak.",
-      x: 1,
-      y: 2,
-      pop: Math.floor(50 + Math.random() * 300),
-      mtn: 0,
-      niv: Math.floor(40 + Math.random() * 30),
-      joy: Math.floor(50 + Math.random() * 30),
-      def: Math.floor(40 + Math.random() * 30),
-      ufo: 0,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: 1,
-      defo: 1,
-      culto: 1,
-    },
-    {
-      num: 4,
-      name: "Városközpont",
-      desc: "Itt van többek között a Városháza erődszerű épülete.",
-      x: 2,
-      y: 2,
-      pop: Math.floor(800 + Math.random() * 500),
-      mtn: 0,
-      niv: Math.floor(55 + Math.random() * 45),
-      joy: Math.floor(30 + Math.random() * 40),
-      def: Math.floor(70 + Math.random() * 50),
-      ufo: Math.floor(1 + Math.random() * 40),
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: 1,
-      defo: 1.3,
-      culto: 1,
-    },
-    {
-      num: 5,
-      name: "Üzleti negyed",
-      desc: "A legnagyobb pénzintézetek és cégek központjainak felhőkarcolói magasodnak itt.",
-      x: 3,
-      y: 2,
-      pop: Math.floor(800 + Math.random() * 600),
-      mtn: 0,
-      niv: Math.floor(70 + Math.random() * 30),
-      joy: Math.floor(35 + Math.random() * 35),
-      def: Math.floor(40 + Math.random() * 25),
-      ufo: 0,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: 1.3,
-      defo: 1.3,
-      culto: 1,
-    },
-    {
-      num: 6,
-      name: "Ipartelep",
-      desc: "Működő és bezárt gyárak, munkásszállók nyomasztó rengetege.",
-      x: 1,
-      y: 3,
-      pop: Math.floor(1000 + Math.random() * 700),
-      mtn: 0,
-      niv: Math.floor(5 + Math.random() * 25),
-      joy: Math.floor(0 + Math.random() * 5),
-      def: Math.floor(10 + Math.random() * 20),
-      ufo: 0,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: 1.3,
-      defo: .7,
-      culto: .7,
-    },
-    {
-      num: 7,
-      name: "Lakónegyed",
-      desc: "Sok polgár lakhelye sok lehetőséggel. Itt van a Branyiszkó-tér is.",
-      x: 2,
-      y: 3,
-      pop: Math.floor(2000 + Math.random() * 1000),
-      mtn: 0,
-      niv: Math.floor(30 + Math.random() * 40),
-      joy: Math.floor(20 + Math.random() * 50),
-      def: Math.floor(40 + Math.random() * 30),
-      ufo: 0,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: 1,
-      defo: 1,
-      culto: .7,
-    },
-    {
-      num: 8,
-      name: "Kultúrnegyed",
-      desc: "Színvonalas kultúrintézmények pezsgő éjszakai élettel.",
-      x: 3,
-      y: 3,
-      pop: Math.floor(700 + Math.random() * 500),
-      mtn: 0,
-      niv: Math.floor(65 + Math.random() * 35),
-      joy: Math.floor(75 + Math.random() * 25),
-      def: Math.floor(30 + Math.random() * 70),
-      ufo: 0,
-      had: 0,
-      pro: 0,
-      popC: 0,
-      popCD: 0,
-      mtnC: 0,
-      mtnCD: 0,
-      nivC: 0,
-      nivCD: 0,
-      joyC: 0,
-      joyCD: 0,
-      defC: 0,
-      defCD: 0,
-      ufoC: 0,
-      ufoCD: 0,
-      hadC: 0,
-      hadCD: 0,
-      proC: 0,
-      proCD: 0,
-      dev: [],
-      evs: [-1, -1],
-      eco: 1.3,
-      defo: 1,
-      culto: 1.3,
-    }
-  ];
 
   for (ko of ker) {
     ko.mtn = Math.round(ko.pop / 5 * (ko.eco + ko.niv / 25 + Math.random() - Math.random()));
@@ -788,78 +463,6 @@ function _load() {
     document.getElementById("supTable").innerHTML = supStr;
   }
 
-  function updateStat(ko) {
-    let statArr = ["pop", "pro", "mtn", "niv", "joy", "ufo", "def", "had"];
-    let statStr = `
-      <tr id="statHead">
-        <th >Tétel</th>
-        <th >Érték</th>
-        <th >Változás</th>
-      </tr>
-    `;
-    for (s of statArr) {
-      let si = selector.findIndex(x => x.val === s);
-      let so = selector[si];
-      let vd = ko[s];
-      let cd = ko[s + "CD"];
-      let qvc = "neutral";
-      let qcc = cd < 0 ? "bad" : cd > 0 ? "good" : "neutral";
-      let vt = "";
-      let ct = "";
-      if (s === "def") {
-        if (vd < ko.ufo - 50 || vd > ko.ufo + 700) {
-          qvc = "bad";
-        }
-        if (vd > ko.ufo && vd < ko.ufo + 100) {
-          qvc = "good";
-        }
-        vt = vd + so.mer;
-        if (cd > 0) { ct = "+" + cd + " %"; }
-        if (cd < 0) { ct = cd + " %"; }
-      } else {
-        if (so.sum) {
-          if (so.reverse) {
-            if (vd < so.good) {
-              qvc = "good";
-            }
-            if (vd > so.bad) {
-              qvc = "bad";
-            }
-          } else {
-            if (vd > so.good) {
-              qvc = "good";
-            }
-            if (vd < so.bad) {
-              qvc = "bad";
-            }
-          }
-          vt = vd + so.mer;
-          if (cd > 0) { ct = "+" + cd + " %"; }
-          if (cd < 0) { ct = cd + " %"; }
-        } else {
-          if (vd > so.good) {
-            qvc = "good";
-          }
-          if (vd < so.bad) {
-            qvc = "bad";
-          }
-          vt = vd + " %";
-          if (cd > 0) { ct = "+" + cd; }
-          if (cd < 0) { ct = cd; }
-        }
-      }
-      statStr += `
-      <tr>
-        <th class="statLabel">${so.name}</th>
-        <th class=${qvc}>${vt}</th>
-        <th class=${qcc}>${ct}</th>
-      </tr>
-    `;
-    }
-    document.getElementById("statTable").innerHTML = statStr;
-  }
-
-
   function openKer(e) {
     let kn = parseInt(e.target.id.slice(-1));
     let ko = ker[kn];
@@ -867,6 +470,7 @@ function _load() {
     page.style.display = "none";
     music.src = "./audio/" + ko.name + ".mp3";
     if (musicOn) music.play();
+
     modal.style.display = "flex";
     let kerStr = `
     <button id="closeKer">x</button>
@@ -875,11 +479,6 @@ function _load() {
     if (ko.desc) {
       kerStr += `<div id="kerDesc">${ko.desc}</div>`;
       ko.desc = false;
-    } else {
-      kerStr += `
-        <button class="btn" id="kerVisit">Látogatás</button>
-        <div id="visit"></div>
-      `;
     }
     kerStr += `
       <fieldset id="supField">
@@ -887,17 +486,20 @@ function _load() {
         <table id="supTable"></table>
       </fieldset>
       <br>
-      <fieldset id="statField">
-        <legend id="statTitle">Statisztikák</legend>
-        <table id="statTable">
-        </table>
-      </fieldset>
     `
+    kerStr += `
+      <div id="kerInfo">
+        <div id="kerBtns">
+          <button class="kerBtn" id="kerVisit">Látogatás</button>
+          <button class="kerBtn" id="kerStats">Elemzés <span class="gold">(100$)</span></button>
+        </div>
+      </div>
+    `;
 
     modal.innerHTML = kerStr;
 
+    document.getElementById("kerStats").disabled = money < 100;
     updateSup(ko);
-    updateStat(ko);
 
     function changeSup(e) {
       let sid = e.target.id.split('-');
@@ -914,7 +516,109 @@ function _load() {
       if (sval > 1) emot(true);
     }
 
+    function visit() {
+      //lincs!
+      let dumarr = [];
+      for (v of ko.vélemény) {
+        let vs = v.cond.split('_');
+        let [vvar, vop, vval] = [vs[0], vs[1], vs[2]];
+        if (vop === ">") {
+          if (ko[vvar] > vval) {
+            dumarr.push(rnd(v.duma));
+          }
+        } else {
+          if (ko[vvar] < vval) {
+            dumarr.push(rnd(v.duma));
+          }
+        }
+      }
+
+      let szám = 5 - dumarr.length;
+
+
+      console.log("D: ", dumarr);
+    }
+
+    function openStat() {
+      money -= 100;
+      let statArr = ["pop", "pro", "mtn", "niv", "joy", "ufo", "def", "had"];
+      let statStr = `
+      <fieldset id="statField">
+        <legend id="statTitle">Statisztikák</legend>
+        <table id="statTable">
+          <tr id="statHead">
+            <th >TÉTEL</th>
+            <th >ÉRTÉK</th>
+            <th >VÁLTOZÁS</th>
+          </tr>
+      `;
+      for (s of statArr) {
+        let si = selector.findIndex(x => x.val === s);
+        let so = selector[si];
+        let vd = ko[s];
+        let cd = ko[s + "CD"];
+        let qvc = "neutral";
+        let qcc = cd < 0 ? "bad" : cd > 0 ? "good" : "neutral";
+        let vt = "";
+        let ct = "";
+        if (s === "def") {
+          if (vd < ko.ufo - 50 || vd > ko.ufo + 700) {
+            qvc = "bad";
+          }
+          if (vd > ko.ufo && vd < ko.ufo + 100) {
+            qvc = "good";
+          }
+          vt = vd + so.mer;
+          if (cd > 0) { ct = "+" + cd + " %"; }
+          if (cd < 0) { ct = cd + " %"; }
+        } else {
+          if (so.sum) {
+            if (so.reverse) {
+              if (vd < so.good) {
+                qvc = "good";
+              }
+              if (vd > so.bad) {
+                qvc = "bad";
+              }
+            } else {
+              if (vd > so.good) {
+                qvc = "good";
+              }
+              if (vd < so.bad) {
+                qvc = "bad";
+              }
+            }
+            vt = vd + so.mer;
+            if (cd > 0) { ct = "+" + cd + " %"; }
+            if (cd < 0) { ct = cd + " %"; }
+          } else {
+            if (vd > so.good) {
+              qvc = "good";
+            }
+            if (vd < so.bad) {
+              qvc = "bad";
+            }
+            vt = vd + " %";
+            if (cd > 0) { ct = "+" + cd; }
+            if (cd < 0) { ct = cd; }
+          }
+        }
+        statStr += `
+        <tr>
+          <th class="statLabel">${so.name}</th>
+          <th class=${qvc}>${vt}</th>
+          <th class=${qcc}>${ct}</th>
+        </tr>`
+      }
+
+      statStr += `</table></fieldset>`
+
+      document.getElementById("kerInfo").innerHTML = statStr;
+    }
+
     document.getElementById("closeKer").addEventListener("click", closeModal);
+    document.getElementById("kerVisit").addEventListener("click", visit);
+    document.getElementById("kerStats").addEventListener("click", openStat);
     document.querySelectorAll(".supBtn").forEach((s) => s.addEventListener("click", changeSup));
   }
 
@@ -936,7 +640,7 @@ function _load() {
     page.style.display = "grid";
     let selInd = selector.findIndex(s => s.val === selVal);
     let selObj = selector[selInd];
-    let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "neutral";
+    let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "gold";
     let pageStr = `
       <div id="header">
         <div id="topMenu">
