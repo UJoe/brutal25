@@ -518,6 +518,7 @@ function _load() {
 
     function visit() {
       //lincs!
+      kerAct = true;
       let dumarr = [];
       for (v of ko.vélemény) {
         let vs = v.cond.split('_');
@@ -541,6 +542,7 @@ function _load() {
 
     function openStat() {
       money -= 100;
+      kerAct = true;
       let statArr = ["pop", "pro", "mtn", "niv", "joy", "ufo", "def", "had"];
       let statStr = `
       <fieldset id="statField">
