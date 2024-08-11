@@ -522,7 +522,7 @@ function _load() {
       let dumarr = [];
       for (v of ko.vélemény) {
         let vs = v.cond.split('_');
-        let [vvar, vop, vval] = [vs[0], vs[1], vs[2]];
+        let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
         if (vop === ">") {
           if (ko[vvar] > vval) {
             dumarr.push(rnd(v.duma));
@@ -536,8 +536,27 @@ function _load() {
 
       let szám = 5 - dumarr.length;
 
+      if (szám > 2) {
+        let d1 = rnd(ko.semmi);
+        let d2 = rnd(ko.semmi);
+        dumarr.push(d1);
+        if (d2 !== d1) {
+          dumarr.push(d2);
+        }
+      } else if (szám > 0) {
+        dumarr.push(rnd(ko.semmi));
+      } else if (szám < 0) {
+        dumarr = dumarr.slice(0, 5);
+      }
 
-      console.log("D: ", dumarr);
+      let dumaStr = `<ul>`;
+      for (d of dumarr) {
+        dumaStr += `
+          <li>${d}</li>
+        `
+      }
+      dumaStr += `</ul>`;
+      document.getElementById("kerInfo").innerHTML = dumaStr;
     }
 
     function openStat() {
@@ -549,9 +568,9 @@ function _load() {
         <legend id="statTitle">Statisztikák</legend>
         <table id="statTable">
           <tr id="statHead">
-            <th >TÉTEL</th>
-            <th >ÉRTÉK</th>
-            <th >VÁLTOZÁS</th>
+            <th>TÉTEL</th>
+            <th>ÉRTÉK</th>
+            <th>VÁLTOZÁS</th>
           </tr>
       `;
       for (s of statArr) {

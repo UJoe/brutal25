@@ -36,10 +36,37 @@ window.ker = [
     culto: 1,
     vélemény: [
       {
-        cond: "pop_>_2500",
-        duma: ["Sosem volt ilyen tömegnyomor itt!",
-          "Nem lehet már nyugodtan szarni a bokorban, annyian vannak!",
-          "Elveszett a régi csend és nyugalom!"]
+        cond: "ufo_>_500",
+        duma: ["Kicsit furák ezek az erdei lények. Neked nem?",
+          "kjh[ÄfsdfđĐ[đĐ... Én... vagyok... ihbdifurigk... Nem.",
+          "Éjjelente olyan, mintha mozognának a fák! Hátborzongató!",
+          "Bzzzzzzz... Mezonscanelésem szerint most már agytumorod van!",
+          "Bübü! Bübü! Gurgurgul. Etejóka, pípíííí!",
+          "Egyre több itt az új faj. Vajon mutánsok vagy földönkívüliek?"]
+      },
+      {
+        cond: "had_<_-50",
+        duma: ["Félek tőlük! Rettegek! Ott vannak mindenhol!",
+          "Eleinte még aranyosak voltak ezek a lények, de most már egyre agresszívebbek!",
+          "Itt van például ez a mosolygós kis fa... Ááááá! Letépte a karom!!! A barom!!!",
+          "Üdvözöllek, földlakó! Mi vagyunk szadisták. Elpusztítunk titeket!",
+          "Csináljon valamit, polgi! Ezek az erdei lények kinyírnak minket!!!",
+          "Meghackelik a gondolatainkat és olyan büdöseket finganak, hogy el lehet tőle kárhozni!"]
+      },
+      {
+        cond: "joy_<_20",
+        duma: ["Ez egy bűnös hely. Egy bűnös város.",
+          "Én már csak egy megfelelő fát meg kötelet keresek...",
+          "Utállak téged! Bíztunk benned, de csalódtunk! Takarodj!",
+          "Szerinted miért élek itt? Lehet abban a rothadó városban élni??!!",
+          "Ez korábban egy üde, kellemes hely volt, de tönkretetted!"]
+      },
+      {
+        cond: "niv_<_20",
+        duma: ["No money, no problem!",
+          "A romlott társadalom anyagilag tönkretett. Most itt próbálok békére találni.",
+          "Éppenséggel élhetnénk itt is egy kicsit magasabb színvonalon. Ez még nem a mélydzsungel!",
+          "Ennyi pénzből nem lehet utánpótlást nevelni! Mi lesz így a sporttal?"]
       },
       {
         cond: "pop_<_100",
@@ -48,16 +75,40 @@ window.ker = [
           "Jé, egy ember!"]
       },
       {
-        cond: "ufo_>_500",
-        duma: ["Kicsit furák ezek az erdei lények. Neked nem?",
-          "kjh[ÄfsdfđĐ[đĐ... Én... vagyok... ihbdifurigk... Nem.",
-          "Üdvözöllek, földlakó! Mi vagyunk szadisták. Elpusztítunk titeket!",
-          "Bzzzzzzz... Mezonscanelésem szerint most már agytumorod van!",
-          "Bübü! Bübü! Gurgurgul. Etejóka, pípíííí!",
-          "Egyre több itt az új faj. Vajon mutánsok vagy földönkívüliek?"]
-      }
+        cond: "def_>_100",
+        duma: ["Minek ide ennyi rendőr? Itt mi békében élünk az erdei lényekkel!",
+          "A sok egyenruhás fickó már veszélyezteti az erdő szabad világát!"]
+      },
+      {
+        cond: "pop_>_2500",
+        duma: ["Sosem volt ilyen tömegnyomor itt!",
+          "Nem lehet már nyugodtan szarni a bokorban, annyian vannak!",
+          "Elveszett a régi csend és nyugalom!"]
+      },
+      {
+        cond: "joy_>_75",
+        duma: ["Itt végre megtaláltam a belső békém.",
+          "Sej-haj, oly vidám a vándor élet!",
+          "Jöjjön, mutatok egy gyönyörű tájat!",
+          "Ez a legjobb hely az egész városban!",
+          "A boldogság titka: az Erdőszél!"]
+      },
     ],
-    semmi: []
+    semmi: [
+      "Ha ön a polgármester, igazán fejleszthetné ezt az elvadult környéket!",
+      "Éppen hugyoznék... Nem tudsz másvalakit kérdezni?",
+      "Fütyfürüty! Szép az élet, csicseregnek a madarak! Madarak?",
+      "A legfontosabb a tiszta sport és a minőségi utánpótlás-nevelés!",
+      "Üdv! Ügyes Frigyes vagyok, az ezermester! Mit kell elintézni?",
+      "Az ember kijön ide békésen meditálni... Erre a pofájába nyomnak egy mikrofont!",
+      "Mi van? Nem voltál még erdőben? Hát milyen lenne?",
+      "Érdekes itt az élővilág. Szerinted ez növény vagy állat?",
+      "A legfontosabb a szeretet. Akit szeretsz, az sosem hal meg!",
+      "Ha Isten nem Szentháromság, akkor nincs értelme a teremtésnek.",
+      "Cssssss! Hallgasd a természet hangjait...",
+      "Megmutatom, hogy lehet természetes módszerekkel, köveket verve igazi ökölvívóvá válni!",
+      "Itt születnek a valódi legendák és a... favágók!"
+    ]
   },
   {
     num: 1,
@@ -94,6 +145,47 @@ window.ker = [
     eco: .7,
     defo: .7,
     culto: 1,
+    vélemény: [
+      {
+        cond: "ufo_>_100",
+        duma: ["Jól vagyunk. Csak néha jönnek óriások le a hegyről."
+        ]
+      },
+      {
+        cond: "had_<_-50",
+        duma: []
+      },
+      {
+        cond: "joy_<_20",
+        duma: []
+      },
+      {
+        cond: "niv_<_20",
+        duma: []
+      },
+      {
+        cond: "pop_<_100",
+        duma: []
+      },
+      {
+        cond: "def_>_100",
+        duma: []
+      },
+      {
+        cond: "pop_>_2500",
+        duma: []
+      },
+      {
+        cond: "joy_>_75",
+        duma: []
+      },
+    ],
+    semmi: [
+      "Kicsit büdös van, de azért... hát, csak büdös van, na!",
+      "Pillanat, még megetetem a tyúkokat...",
+      "Osztán minek köszönhetjük a látogatást?",
+      "Hogy szolgál az egészség?"
+    ]
   },
   {
     num: 2,
