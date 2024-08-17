@@ -25,6 +25,7 @@ function _load() {
     {
       name: "Adó",
       val: "tax",
+      desc: "Egységes&nbsp;városi&nbsp;adó",
       mer: "%",
       sum: false,
       good: 20,
@@ -33,6 +34,7 @@ function _load() {
     {
       name: "Profit",
       val: "pro",
+      desc: "Adóbevétel&nbsp;-&nbsp;Kiadások",
       mer: " $",
       sum: true,
       prev: 0,
@@ -43,6 +45,7 @@ function _load() {
     {
       name: "Polgár",
       val: "pop",
+      desc: "Lakosság",
       mer: " fő",
       sum: true,
       prev: 0,
@@ -53,6 +56,7 @@ function _load() {
     {
       name: "Nívó",
       val: "niv",
+      desc: "Életszínvonal",
       mer: "%",
       sum: false,
       prev: 0,
@@ -63,6 +67,7 @@ function _load() {
     {
       name: "Öröm",
       val: "joy",
+      desc: "Hangulat",
       mer: "%",
       sum: false,
       prev: 0,
@@ -73,6 +78,7 @@ function _load() {
     {
       name: "Rend",
       val: "had",
+      desc: "Védelem&nbsp;-&nbsp;Idegenek",
       mer: " &#9876;",
       sum: true,
       prev: 0,
@@ -81,23 +87,31 @@ function _load() {
       bad: 1
     },
     {
-      name: "Fenntartás",
+      name: "Alapellátás",
       val: "mtn",
+      desc: "A&nbsp;lakosság&nbsp;alapellátása",
       mer: " $",
       sum: true,
-      prev: 0,
-      cur: 0,
       reverse: true,
       good: 300,
       bad: 1000
     },
     {
+      name: "Kiadások",
+      val: "exp",
+      desc: "Alapellátás&nbsp;x&nbsp;Támogatások&nbsp;+&nbsp;Fejlesztésfenntartás",
+      mer: " $",
+      sum: true,
+      reverse: true,
+      good: 600,
+      bad: 2000
+    },
+    {
       name: "Idegenek",
       val: "ufo",
+      desc: "Idegen bűnözés",
       mer: " &#128369;",
       sum: true,
-      prev: 0,
-      cur: 0,
       reverse: true,
       good: 50,
       bad: 300
@@ -105,17 +119,17 @@ function _load() {
     {
       name: "Védelem",
       val: "def",
+      desc: "Rendfenntartás",
       mer: " &#9930;",
       sum: true,
-      prev: 0,
-      cur: 0,
     },
   ];
   window.selVal = "tax";
 
   for (ko of ker) {
-    ko.mtn = Math.round(ko.pop / 5 * (ko.eco + ko.niv / 25 + Math.random() - Math.random()));
-    ko.pro = Math.round(ko.pop * (tax / 10) * (0.5 + ko.niv / 300) - (ko.mtn * (ko.eco + ko.defo + ko.culto)));
+    ko.mtn = Math.round(ko.pop / 10 * (1 + ko.niv / 30 + Math.random() / 3 - Math.random() / 3));
+    ko.exp = Math.round(ko.mtn * (ko.eco + ko.defo + ko.culto));
+    ko.pro = Math.round(ko.pop * (tax / 10) * (0.5 + ko.niv / 300) - ko.exp);
     ko.had = Math.round((ko.def - ko.ufo));
   };
 
@@ -222,15 +236,20 @@ function _load() {
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
-      let matine = ko.mtn;
-      ko.mtn = Math.round(ko.pop / 5 * (1 + ko.niv / 25 + Math.random() - Math.random()));
-      ko.mtnC = matine - ko.mtn;
-      change(ko, "mtn", ko.mtnC);
-      sign = matine === 0 ? 1 : Math.sign(matine);
-      ko.mtnC = Math.round((ko.mtn - matine) / matine * 100 * sign);
+
+      let newMtn = Math.round(ko.pop / 10 * (1 + ko.niv / 30 + Math.random() / 3 - Math.random() / 3));
+      sign = ko.mtn === 0 ? 1 : Math.sign(ko.mtn);
+      ko.mtnC = Math.round((newMtn - ko.mtn) / ko.mtn * 100 * sign);
+      ko.mtn = newMtn;
       ko.mtnCD = ko.mtnC;
 
-      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.5 + ko.niv / 300) - (ko.mtn * (ko.eco + ko.defo + ko.culto)) - getDevs(ko.dev, "mtn"));
+      let newExp = Math.round(ko.mtn * (ko.eco + ko.defo + ko.culto) + getDevs(ko.dev, "mtn"));
+      sign = ko.exp === 0 ? 1 : Math.sign(ko.exp);
+      ko.expC = Math.round(((newExp - ko.exp) / ko.exp) * 100 * sign);
+      ko.exp = newExp;
+      ko.expCD = ko.expC;
+
+      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.5 + ko.niv / 300) - newExp);
       sign = ko.pro === 0 ? 1 : Math.sign(ko.pro);
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100 * sign);
       ko.pro = newPro;
@@ -562,7 +581,7 @@ function _load() {
     function openStat() {
       money -= 100;
       kerAct = true;
-      let statArr = ["pop", "pro", "mtn", "niv", "joy", "ufo", "def", "had"];
+      let statArr = ["pop", "pro", "mtn", "exp", "niv", "joy", "ufo", "def", "had"];
       let statStr = `
       <fieldset id="statField">
         <legend id="statTitle">Statisztikák</legend>
@@ -580,6 +599,9 @@ function _load() {
         let cd = ko[s + "CD"];
         let qvc = "neutral";
         let qcc = cd < 0 ? "bad" : cd > 0 ? "good" : "neutral";
+        if (so.reverse) {
+          qcc = cd < 0 ? "good" : cd > 0 ? "bad" : "neutral";
+        };
         let vt = "";
         let ct = "";
         if (s === "def") {
@@ -626,7 +648,7 @@ function _load() {
         }
         statStr += `
         <tr>
-          <th class="statLabel">${so.name}</th>
+          <th class="statLabel" title="${so.desc}">${so.name}</th>
           <th class=${qvc}>${vt}</th>
           <th class=${qcc}>${ct}</th>
         </tr>`
@@ -677,8 +699,9 @@ function _load() {
         <div id="selectBar">
         `;
     for (let k = 0; k < 6; k++) {
-      let selClass = selector[k].val === selVal ? "selected" : "unselected";
-      let selStr = `<button id="s${k}" class="navBtn selBtn ${selClass}">${selector[k].name}</button>`;
+      let sel = selector[k];
+      let selClass = sel.val === selVal ? "selected" : "unselected";
+      let selStr = `<button id="s${k}" title=${sel.desc} class="navBtn selBtn ${selClass}">${sel.name}</button>`;
       pageStr += selStr;
     }
     pageStr += `</div>
