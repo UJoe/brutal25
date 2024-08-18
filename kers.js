@@ -37,6 +37,7 @@ window.ker = [
     eco: .7,
     defo: 1,
     culto: 1,
+    szar: "pop_>_3000",
     vélemény: [
       {
         cond: "ufo_>_500",
@@ -83,7 +84,7 @@ window.ker = [
           "A sok egyenruhás fickó már veszélyezteti az erdő szabad világát!"]
       },
       {
-        cond: "pop_>_2500",
+        cond: "pop_>_3000",
         duma: ["Sosem volt ilyen tömegnyomor itt!",
           "Nem lehet már nyugodtan szarni a bokorban, annyian vannak!",
           "Elveszett a régi csend és nyugalom!"]
@@ -119,7 +120,7 @@ window.ker = [
     desc: "Szorgos, egyszerű gazdálkodók földjei.",
     x: 2,
     y: 1,
-    pop: Math.floor(100 + Math.random() * 400),
+    pop: Math.floor(150 + Math.random() * 400),
     mtn: 0,
     exp: 0,
     niv: Math.floor(5 + Math.random() * 25),
@@ -151,46 +152,67 @@ window.ker = [
     eco: .7,
     defo: .7,
     culto: 1,
+    szar: "niv_>_75",
     vélemény: [
       {
-        cond: "ufo_>_100",
-        duma: ["Jól vagyunk. Csak néha jönnek óriások le a hegyről."
+        cond: "had_<_-5",
+        duma: ["Jól vagyunk. Csak néha jönnek óriások le a hegyről.",
+          "Pitymallatkor fura hangok gyünnek az erdőbű...",
+          "Agyon kéne vágni ezeket az óriásokat! Én mondom, ezek nem hoznak semmi jót!",
+          "Valami ludvércek viszik a birkáinkat éjjel, hogy ütné agyon őket az Isten nyila!",
+          "A minap egy markoláb elvitte a disznómat! Csinálni kell valamit!"
         ]
       },
       {
-        cond: "had_<_-50",
-        duma: []
+        cond: "had_>_60",
+        duma: [
+          "Hát, most már jó. Nem nagyon gyünnek már azok a fene nagy óriások!",
+          "Amikor az a pandúr jól nyakoncsípte azt a pomogácsot, az betyáros volt ám!",
+          "Igaz, hogy kevesebb a tolvaj lidérc, de már túl sok a pandúr itt, kérem alásan!"
+        ]
       },
       {
-        cond: "joy_<_20",
-        duma: []
+        cond: "pop_<_300",
+        duma: [
+          "Fogyunk, kérem, egyre csak fogyunk!",
+          "Nem bírunk ilyen kevesen szántani! Megdöglött a Riska is! Mi lesz igy vélünk?",
+          "Nem tudjuk bétakarítani a termést! Nincs elíg ámbör!"
+        ]
       },
       {
         cond: "niv_<_20",
-        duma: []
+        duma: [
+          "Vagyogatunk. Szegínyesön, de böcsülettöl!",
+          "Megkínálnám szívesen, de nincs mibűl!",
+          "Hát, kérem, itt nálunk mindig nenéz az élet!",
+          "A fene akart paraszt lenni! Inkább lennék iparos!"
+        ]
       },
       {
-        cond: "pop_<_100",
-        duma: []
-      },
-      {
-        cond: "def_>_100",
-        duma: []
-      },
-      {
-        cond: "pop_>_2500",
-        duma: []
+        cond: "niv_>_75",
+        duma: [
+          "Mióta bejöttek ezek a kütymük, a gyerekek folyton csak azokat nyomkodják, a tyúkok meg éheznek!",
+          "Egyszerű élethez vagyunk mi hozzászokva, nem ehhez a sok... csilivilihez!",
+          "Megmondom én kerek-perec: nem kell nékünk ez a sok fejlődés! Jó volt apáink útja?",
+          "Akinek sok a pénze, az csak elissza a kocsmában! Ahelyett, hogy dógozna!"
+        ]
       },
       {
         cond: "joy_>_75",
-        duma: []
+        duma: [
+          "Jól vagyunk, az anyja keservit, jól!",
+          "Ihaj-csuhaj, sallárom! Lett már nékem talárom!",
+          "Jöjjön, iszunk magára! Isten-Isten!",
+          "Húzzad, cigány, eliszom az utolsó garasom is!",
+        ]
       },
     ],
     semmi: [
       "Kicsit büdös van, de azért... hát, csak büdös van, na!",
       "Pillanat, még megetetem a tyúkokat...",
       "Osztán minek köszönhetjük a látogatást?",
-      "Hogy szolgál az egészség?"
+      "Hogy szolgál az egészség?",
+      "Dolgozunk mi mindég! De a lurkóknak mindig van pár pofonunk! Érzik is a törődést!",
     ]
   },
   {
@@ -205,7 +227,7 @@ window.ker = [
     niv: Math.floor(0 + Math.random() * 20),
     joy: Math.floor(0 + Math.random() * 20),
     def: Math.floor(5 + Math.random() * 20),
-    ufo: 0,
+    ufo: 10,
     had: 0,
     pro: 0,
     popC: 0,
@@ -231,6 +253,7 @@ window.ker = [
     eco: 1,
     defo: .7,
     culto: 1,
+    szar: "def_>_300",
   },
   {
     num: 3,
@@ -243,8 +266,8 @@ window.ker = [
     exp: 0,
     niv: Math.floor(40 + Math.random() * 30),
     joy: Math.floor(50 + Math.random() * 30),
-    def: Math.floor(40 + Math.random() * 30),
-    ufo: 0,
+    def: Math.floor(30 + Math.random() * 30),
+    ufo: 20,
     had: 0,
     pro: 0,
     popC: 0,
@@ -270,6 +293,7 @@ window.ker = [
     eco: 1,
     defo: 1,
     culto: 1,
+    szar: "had_>_70",
   },
   {
     num: 4,
@@ -283,7 +307,7 @@ window.ker = [
     niv: Math.floor(55 + Math.random() * 45),
     joy: Math.floor(30 + Math.random() * 40),
     def: Math.floor(70 + Math.random() * 50),
-    ufo: Math.floor(1 + Math.random() * 40),
+    ufo: Math.floor(1 + Math.random() * 30),
     had: 0,
     pro: 0,
     popC: 0,
@@ -309,6 +333,7 @@ window.ker = [
     eco: 1,
     defo: 1.3,
     culto: 1,
+    szar: "had_<_40",
   },
   {
     num: 5,
@@ -322,7 +347,7 @@ window.ker = [
     niv: Math.floor(70 + Math.random() * 30),
     joy: Math.floor(35 + Math.random() * 35),
     def: Math.floor(40 + Math.random() * 25),
-    ufo: 0,
+    ufo: 1,
     had: 0,
     pro: 0,
     popC: 0,
@@ -348,6 +373,7 @@ window.ker = [
     eco: 1.3,
     defo: 1.3,
     culto: 1,
+    szar: "niv_<_50",
   },
   {
     num: 6,
@@ -361,7 +387,7 @@ window.ker = [
     niv: Math.floor(5 + Math.random() * 25),
     joy: Math.floor(0 + Math.random() * 5),
     def: Math.floor(10 + Math.random() * 20),
-    ufo: 0,
+    ufo: 5,
     had: 0,
     pro: 0,
     popC: 0,
@@ -387,6 +413,7 @@ window.ker = [
     eco: 1.3,
     defo: .7,
     culto: .7,
+    szar: "pro_<_1500",
   },
   {
     num: 7,
@@ -394,13 +421,13 @@ window.ker = [
     desc: "Sok polgár lakhelye sok lehetőséggel. Itt van a Branyiszkó-tér is.",
     x: 2,
     y: 3,
-    pop: Math.floor(2000 + Math.random() * 1000),
+    pop: Math.floor(2000 + Math.random() * 1234),
     mtn: 0,
     exp: 0,
     niv: Math.floor(30 + Math.random() * 40),
     joy: Math.floor(20 + Math.random() * 50),
     def: Math.floor(40 + Math.random() * 30),
-    ufo: 0,
+    ufo: Math.floor(Math.random() * 10),
     had: 0,
     pro: 0,
     popC: 0,
@@ -426,6 +453,7 @@ window.ker = [
     eco: 1,
     defo: 1,
     culto: .7,
+    szar: "pop_<_1500",
   },
   {
     num: 8,
@@ -465,5 +493,6 @@ window.ker = [
     eco: 1.3,
     defo: 1,
     culto: 1.3,
+    szar: "joy_<_50",
   }
 ];

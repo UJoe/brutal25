@@ -228,7 +228,10 @@ function _load() {
       if (ko.had > 700 + Math.random() * 500 || ko.had < -150 - 100 * Math.random()) rendor -= 2 + Math.floor(ko.had / 200 * Math.random());
       if (Math.abs(rendor) > 20) rendor = Math.sign(rendor) * 20;
 
-      ko.joyC += Math.round(rendor + (ko.culto - 1) * 15 - (tax - 40) / (20 + Math.random() * 10) + (ko.niv - 50) / 15);
+      let szar = Number(checkCond(ko, ko.szar)) * (150 - day) / 15 - Math.random();
+      if (szar < 0) { szar = 0 };
+
+      ko.joyC += Math.round(rendor + (ko.culto - 1) * 15 - (tax - 40) / (20 + Math.random() * 10) + (ko.niv - 50) / 15 - szar);
       change(ko, "joy", ko.joyC);
       ko.joyCD = ko.joyC;
 
@@ -438,6 +441,21 @@ function _load() {
     }
   }
 
+  function checkCond(ko, cond) {
+    let vs = cond.split('_');
+    let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
+    if (vop === ">") {
+      if (ko[vvar] > vval) {
+        return true;
+      }
+    } else {
+      if (ko[vvar] < vval) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function updateSup(ko) {
     let supArr = [ko.eco, ko.defo, ko.culto];
     let supMap = [];
@@ -540,22 +558,14 @@ function _load() {
       kerAct = true;
       let dumarr = [];
       for (v of ko.vélemény) {
-        let vs = v.cond.split('_');
-        let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
-        if (vop === ">") {
-          if (ko[vvar] > vval) {
-            dumarr.push(rnd(v.duma));
-          }
-        } else {
-          if (ko[vvar] < vval) {
-            dumarr.push(rnd(v.duma));
-          }
+        if (checkCond(ko, v.cond)) {
+          dumarr.push(rnd(v.duma));
         }
       }
 
-      let szám = 5 - dumarr.length;
+      let szám = 6 - dumarr.length;
 
-      if (szám > 2) {
+      if (szám > 3) {
         let d1 = rnd(ko.semmi);
         let d2 = rnd(ko.semmi);
         dumarr.push(d1);
@@ -565,7 +575,7 @@ function _load() {
       } else if (szám > 0) {
         dumarr.push(rnd(ko.semmi));
       } else if (szám < 0) {
-        dumarr = dumarr.slice(0, 5);
+        dumarr = dumarr.slice(0, 6);
       }
 
       let dumaStr = `<ul>`;
