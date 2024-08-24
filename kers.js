@@ -253,7 +253,53 @@ window.ker = [
     eco: 1,
     defo: .7,
     culto: 1,
-    szar: "def_>_300",
+    szar: "def_>_500",
+    vélemény: [
+      {
+        cond: "had_<_-100",
+        duma: ["Csen Jüt elvitték ufók.",
+          "Vannak zöld ember ott kert. Kici, mint mi, cak zöld.",
+          "Mi kérdez zöld ember új recept. Te kóstol? Kicit édes, kicit szavanyú, de már miénk.",
+          "Baba Jaga jár mindig mi kert. Visz kutya, galamb, articóka, minden!",
+        ]
+      },
+      {
+        cond: "def_>_500",
+        duma: [
+          "Sok rendőr és katona! Nem jó üzlet. Nem jó.",
+          "Inkább zöld ember, mint nagy rendőr! Mi fél.",
+          "Nem tudjuk ápolni jakuza hagyományainkat. Mindenbe beleütik az orrukat a fakabátok!",
+          "Nem kell rendőr! Tong vigyáz magára. Mindig megold."
+        ]
+      },
+      {
+        cond: "pop_<_500",
+        duma: [
+          "Egyre kevesebb ázsiai itt. Mi lesz, ha mi elfogy?",
+          "Régen sokkal több ember itt! Akkor ment üzlet jól!",
+          "Nagy családok vannak a kihalás szélén! Szégyent hozunk apáinkra!"
+        ]
+      },
+      {
+        cond: "pro_<_1000",
+        duma: [
+          "Egyre kevesebb pénz! Senki vesz gumi dugó! Nem kell gumi dugó? Óccó.",
+          "Nézd, van nekem szög. Nem rozda az, feszték! Színes szög. Cak száz! Jó szög!",
+          "Finom husit adok óccón! Nem macka. Kisseb.",
+          "Te elront üzlet! Régen üzlet virágzó, most semmi! Te inkább megdöglik!"
+        ]
+      },
+    ],
+    semmi: [
+      "Szia, uram! Turbó csiga érdekel? Ezeöccá! Nem drága.",
+      "Van jó zokni! Original Zara! Ezerér tiéd!",
+      "Jöjjön! Van nálunk friss vízi hal! Nem drága.",
+      "Masszázs? Van itt szép lányok. Te leszesz boldog!",
+      "Van finom kaca! Háp-háp! Gyere be!",
+      "Nézd! Villogó gyík! Gyerek szeret! Vegyél gyerek villogó gyík!",
+      "A megvilágosodás útja olyan, mint ahogy a csiga kúszik a cseresznyefán.",
+      "Készüljetek! Megrázta a hóoroszlán a bajszát. Elkezdődött..."
+    ]
   },
   {
     num: 3,

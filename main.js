@@ -202,6 +202,9 @@ function _load() {
       //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
       let sign = 1;
       ko.nivC += Math.round((ko.eco - 1) * 7 - (tax - 45) / (20 + Math.random() * 10));
+      if (Math.abs(ko.nivC) > 5) {
+        ko.nivC = Math.sign(ko.nivC) * 5;
+      }
       change(ko, "niv", ko.nivC);
       ko.nivCD = ko.nivC;
 
@@ -210,7 +213,7 @@ function _load() {
       let defo = ko.def;
       ko.defC += Math.round(ko.mtn * (ko.defo - 1) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(1 + Math.random() * day / 14 + (ko.ufo - ko.def) / 12);
+      ko.ufoC += Math.round(1 + Math.random() * day / 12 + (ko.ufo - ko.def) / 11);
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       sign = hado === 0 ? 1 : Math.sign(hado);
@@ -224,18 +227,27 @@ function _load() {
       ko.defCD = ko.defC;
 
       let rendor = 1 + Math.round(Math.random());
-      if (ko.had > 100 + Math.random() * 50 || ko.had < -50 * Math.random()) rendor -= 1 + Math.round(Math.random() * 3);
-      if (ko.had > 700 + Math.random() * 500 || ko.had < -150 - 100 * Math.random()) rendor -= 2 + Math.floor(ko.had / 200 * Math.random());
-      if (Math.abs(rendor) > 20) rendor = Math.sign(rendor) * 20;
+      if (ko.had > 300 + Math.random() * 50 || ko.had < -100 * Math.random()) {
+        rendor -= 1 + Math.round(Math.random() * 3);
+      }
+      if (ko.had > 1500 + Math.random() * 500 || ko.had < -200 - 100 * Math.random()) {
+        rendor -= 2 + Math.floor(ko.had / 400 * Math.random());
+      }
+      if (Math.abs(rendor) > 8) {
+        rendor = Math.sign(rendor) * 8;
+      }
 
       let szar = Number(checkCond(ko, ko.szar)) * (150 - day) / 15 - Math.random();
       if (szar < 0) { szar = 0 };
 
       ko.joyC += Math.round(rendor + (ko.culto - 1) * 15 - (tax - 40) / (20 + Math.random() * 10) + (ko.niv - 50) / 15 - szar);
+      if (Math.abs(ko.joyC) > 10) {
+        ko.joyC = Math.sign(ko.joyC) * 10;
+      }
       change(ko, "joy", ko.joyC);
       ko.joyCD = ko.joyC;
 
-      ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 20 - Math.random() * 20) / 12);
+      ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 10 - Math.random() * 10) / 12);
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
