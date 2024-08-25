@@ -160,11 +160,12 @@ window.ker = [
           "Pitymallatkor fura hangok gyünnek az erdőbű...",
           "Agyon kéne vágni ezeket az óriásokat! Én mondom, ezek nem hoznak semmi jót!",
           "Valami ludvércek viszik a birkáinkat éjjel, hogy ütné agyon őket az Isten nyila!",
-          "A minap egy markoláb elvitte a disznómat! Csinálni kell valamit!"
+          "A minap egy markoláb elvitte a disznómat! Csinálni kell valamit!",
+          "Jönnek az óriások megint! Fodg a kecskét! Miklós, engedj be!"
         ]
       },
       {
-        cond: "had_>_60",
+        cond: "had_>_100",
         duma: [
           "Hát, most már jó. Nem nagyon gyünnek már azok a fene nagy óriások!",
           "Amikor az a pandúr jól nyakoncsípte azt a pomogácsot, az betyáros volt ám!",
@@ -184,7 +185,7 @@ window.ker = [
         duma: [
           "Vagyogatunk. Szegínyesön, de böcsülettöl!",
           "Megkínálnám szívesen, de nincs mibűl!",
-          "Hát, kérem, itt nálunk mindig nenéz az élet!",
+          "Hát, kérem, itt nálunk mindég nehéz az élet!",
           "A fene akart paraszt lenni! Inkább lennék iparos!"
         ]
       },
@@ -213,6 +214,7 @@ window.ker = [
       "Osztán minek köszönhetjük a látogatást?",
       "Hogy szolgál az egészség?",
       "Dolgozunk mi mindég! De a lurkóknak mindig van pár pofonunk! Érzik is a törődést!",
+      "Érik a szőlő, hajlik a vessző, bodor a levele..."
     ]
   },
   {
@@ -339,7 +341,68 @@ window.ker = [
     eco: 1,
     defo: 1,
     culto: 1,
-    szar: "had_>_70",
+    szar: "def_>_300",
+    vélemény: [
+      {
+        cond: "had_<_-10",
+        duma: ["Nem merem a gyereket elengedni, mert mindenféle bizarr lények jelennek meg a játszótéren!",
+          "Szerintem nem normális, hogy egy faszerű lény gyökeret ver a hinta alatt, bármennyire is cuki!",
+          "Jaj, megyek! Jönnek ezek a debella lények, akik mindenkit lealáznak húzódzkodásban! Hogy csajozzon így az ember?!",
+          "Pistike, ne játsz azzal a fával, mert megharap, mint múltkor!",
+          "A csónakházban találtunk egy összetört fejű hullát!",
+          "Azt mondják, a tóba belefulladt egy gyerek! Minden héten!"
+        ]
+      },
+      {
+        cond: "def_>_300",
+        duma: [
+          "Ide az ember azért jönne, hogy szórakozzon, de tele vagyunk már katonákkal!",
+          "Minek ide ennyi rendőr? Ez egy békés park, kérem!",
+          "Tisztára katonaállam lettünk! Mintha diktatúra lenne!",
+          "Beverném a zsaruk orrát, ha nem lenne náluk fegyver!",
+          "Minek ez a nagy rendvédelem? Nézd ezt a bicepszet! Ki merne velem szívózni?"
+        ]
+      },
+      {
+        cond: "niv_<_30",
+        duma: [
+          "Nézd ezt a düledező csúszdát! Nem merem már a gyereket felengedni, mert még összeseik alatta!",
+          "Jó kis játszótér volt ez, de hagyták tönkremenni! Miért nem tesz valamit, polgármester?",
+          "Egyre több a hajléktalan! Ezek itt élnek, döglenek, vizelnek, finganak! Undorító!",
+          "Mindent benőtt a gaz már! A csövesek meg életvitelszerűen elfoglalják a padokat!",
+          "Hagyjál békén! Nincs hová mennem. Nem érdekel, hogy ez egy mászóka! Akkor meg bemászok alá!",
+          "A favonatot hálókocsiként használják... És iszonyatosan büdösek! Fúááááj!",
+          "A hinta lánca elszakadva, a csúszda eltörve, a padok telefirkálva! Ki törödik ezzel?"
+        ]
+      },
+      {
+        cond: "joy_<_35",
+        duma: [
+          "Tököm kivan ettől a géptől! Életveszélyes!",
+          "Sok itt a vandál! Nézze meg ezt a padot is! Tele vagdosták sátánista jelképekkel!",
+          "Régen ez egy vidám hely volt! Most meg mindenkin érződik a feszültség...",
+          "Húzz innen, nem látod, hogy futok?!",
+        ]
+      },
+      {
+        cond: "joy_>_60",
+        duma: [
+          "Mindig ide jövünk ki a haverokkal suli helyett! Hozzuk a csajokat is!",
+          "Jó ide kijönni! Sok a sportolási lehetőség.",
+          "Ó, meseszép ez a csónakázó-tó! Azt mondják, feneketlen, de állítólag kincset rejt a mélye!",
+          "Minden nap járok ide kocogni. Tiszta levegő, vidám gyerekzsivaj! Ez mindig motivál a gyorsabb tempóra! Haha!",
+          "A zöld a kedvenc színem."
+        ]
+      },
+    ],
+    semmi: [
+      "Éééés... jobb láb! Gyerünk, húzd meg! Még három, kettő, és egy!",
+      "Kell is egy ilyen park a város forgatagában. Jó itt a levegő is!",
+      "Én csak itt üldögélek a padon és nézem a pillangókat. Úgy öregecskén.",
+      "Van vanília, tutti-frutti, karamell, rumos dió és kávé.",
+      "Délutánonként mindig szundítok egyet itt a pázsiton. Most is azt tettem volna éppenséggel...",
+      "Légyszi ne álld el a napot! Köszike!"
+    ]
   },
   {
     num: 4,
