@@ -585,7 +585,9 @@ function _load() {
           dumarr.push(d2);
         }
       } else if (szám > 0) {
-        dumarr.push(rnd(ko.semmi));
+        if (Math.random() > .35) {
+          dumarr.push(rnd(ko.semmi));
+        }
       } else if (szám < 0) {
         dumarr = dumarr.slice(0, 6);
       }

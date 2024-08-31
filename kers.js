@@ -58,7 +58,7 @@ window.ker = [
           "Meghackelik a gondolatainkat és olyan büdöseket finganak, hogy el lehet tőle kárhozni!"]
       },
       {
-        cond: "joy_<_20",
+        cond: "joy_<_25",
         duma: ["Ez egy bűnös hely. Egy bűnös város.",
           "Én már csak egy megfelelő fát meg kötelet keresek...",
           "Utállak téged! Bíztunk benned, de csalódtunk! Takarodj!",
@@ -190,11 +190,23 @@ window.ker = [
         ]
       },
       {
+        cond: "culto_>_1",
+        duma: [
+          "Jobb az oktatás, mióta ön a polgármester! A gyerekek szépen tanulnak! Talán már nem kell kapálniok!",
+          "Felpezsdült itt az élet, mióta ön a polgármester. Köszönjük!",
+          "A Sári a minap aszongya, hogy ügyvéd akar lenni. Ügyvéd, a mi Sárink! Még mindig nem fogtam fel...",
+          "A gyerekeinknek talán már könnyebb lesz, mint nekünk volt.",
+          "Szépen fejlődik ez a környék. Mozi, ringlispíl, céllövölde!",
+          "Azok a vándorkomédiások gyönnek majd jövőre is? Jópofák voltak!",
+          "Jó ez az új tanítónő! Bencikénk azóta csak a Háry Pétert bújja, hogy ő jött."
+        ]
+      },
+      {
         cond: "niv_>_75",
         duma: [
           "Mióta bejöttek ezek a kütymük, a gyerekek folyton csak azokat nyomkodják, a tyúkok meg éheznek!",
           "Egyszerű élethez vagyunk mi hozzászokva, nem ehhez a sok... csilivilihez!",
-          "Megmondom én kerek-perec: nem kell nékünk ez a sok fejlődés! Jó volt apáink útja?",
+          "Megmondom én kerek-perec: nem kell nékünk ez a sok fejlődés! Jó vót apáink útja!",
           "Akinek sok a pénze, az csak elissza a kocsmában! Ahelyett, hogy dógozna!"
         ]
       },
@@ -378,7 +390,7 @@ window.ker = [
       {
         cond: "joy_<_35",
         duma: [
-          "Tököm kivan ettől a géptől! Életveszélyes!",
+          "Tököm kivan ettől a géptől! Na... nem azért... De ez életveszélyes!",
           "Sok itt a vandál! Nézze meg ezt a padot is! Tele vagdosták sátánista jelképekkel!",
           "Régen ez egy vidám hely volt! Most meg mindenkin érződik a feszültség...",
           "Húzz innen, nem látod, hogy futok?!",
@@ -443,6 +455,95 @@ window.ker = [
     defo: 1.3,
     culto: 1,
     szar: "had_<_40",
+    vélemény: [
+      {
+        cond: "had_<_40",
+        duma: ["Bitang Botond idejében ez a kerület volt a legbiztonságosabb. Most meg alig merek kimenni már az utcára!",
+          "Hihetetlenül szemtelenek ezek a lények! Már ide is bemerészkednek!",
+          "Korábban minden sarkon állt egy rendőr, most meg alig látni őket! Hova lesz így a közbiztonság?",
+          "Nézzétek, itt van a hülye polgi! Nem megy ez neked, maradtál volna inkább a csatornában!",
+          "Battle Beatle barátai bosszút fognak rajtad állni! Jobb, ha nézed, hova lépsz!",
+        ]
+      },
+      {
+        cond: "niv_>_85",
+        duma: [
+          "Jól csinálod, polgi! Tényleg jobban élünk, mint Boti alatt!",
+          "Köszönjük, amit a városért tesz!",
+        ]
+      },
+      {
+        cond: "niv_<_40",
+        duma: [
+          "Boti idejében jobban éltünk...",
+          "Monnyonle!",
+          "Te is csak szétloptad ezt a várost! Lógni fogtok!",
+          "Kilopod a pénzt a becsületes munkások zsebéből!",
+          "Ilyen még Boti idejében sem volt, hogy hajléktalanoktól bűzlenek az aluljárók...",
+          "Nem szatír vagyok, csak nincs pénzem ruhára! Nem önszántamból lógatom a fa... orrom!",
+          "Feltörték a garázsom, ellopták a biciklim meg a fregolim. Ki fogja megtalálni, he?!",
+          "Mi itt éhezünk, te meg csak járkálsz a városban, ahelyett, hogy dolgoznál!"
+        ]
+      },
+      {
+        cond: "pop_>_9000",
+        duma: [
+          "Nagyon zsúfolt lett a belváros! Aki tud, vidékre menekül.",
+          "Ekkora tömegben még fingani sem tud az ember kényelmesen!",
+          "Túl nagy a tömeg! Lélegezni sem lehet a buszon!",
+        ]
+      },
+      {
+        cond: "pop_<_1000",
+        duma: [
+          "Nem gondolod, hogy ciki, hogy ilyen kevesen maradtak a belvárosban?",
+          "Nincs még egy olyan város, aminek ennyire kihalt lenne a központja! Nincs itt már semmi!",
+          "Kísértetváros lett ez... Egy bűnös és rémísztő kisértetváros...",
+        ]
+      },
+      {
+        cond: "joy_<_35",
+        duma: [
+          "Monnyonle!",
+          "Csináljon már valamit, ne csak itt lófráljon az utcákon! Nincs dolga?",
+          "Marhára nem jól csinálod te ezt. Hősnek talán jó voltál, de várost vezetni nem tudsz!",
+          "Battle Beatle, Bitang Botond, most meg ön! Úgy látszik, rajtunk már senki nem tud segíteni.",
+          "Sokan azt hittük, jobb lesz, ha átveszed a hatalmat attól a zsarnok Botitól, de nem lett jobb! Egyáltalán!",
+          "Csalódtunk magában... Jobb, ha távozik."
+        ]
+      },
+      {
+        cond: "joy_>_70",
+        duma: [
+          "Nézd már, ez tényleg a polgi! De jó!",
+          "Mi örülünk, hogy ön lett a polgármester! Éljen, éljen, éljen!",
+          "Nagyon jól csinálod, csak így tovább! Felvirágzik így a város!",
+          "Gyere, polgi, meghívunk egy italra!",
+          "Végre már élhetőbb ez a város. Ezt önnek köszönhetjük!"
+        ]
+      },
+      {
+        cond: "defo_<_1",
+        duma: [
+          "Végre már eltűntek Boti bérencei!",
+          "Örülök, hogy nem nézik már minden mozdulatomat a rendőrök! Gengszter volt mindegyik!",
+          "Nem kellene szerintem ennyire lazán venni a közbiztonságot! Fegyelem kell ide!",
+          "Több őr kellene! Mégis csak ez a városközpont! Egyre több a gyanús alak...",
+          "Múltkor ufók rongálták meg a Kossuth-szobrot! Levágták az orrát és Leöntötték lávával! Vagy lárváváal... mittomén...",
+          "Nézze mit írtak ide! Ráadásul vérrel! 'Battle Beatle will return!' Ez vajon mit jelent?",
+          "Hozzák vissza Botit! Botival volt az erő!"
+        ]
+      },
+    ],
+    semmi: [
+      "Aaaa jövő havi koncertműsor!",
+      "Szép jó reggelt, polgármester!",
+      "Jegyeket, bérleteket ellenőrzésre kérjük felmutatni!",
+      "City Tour! See the city at discount price! No tourist? Sorry!",
+      "Azt szeretem, hogy itt sok hírességgel találkozhat az ember. Banana Joe, Dundi Bandi, Dick Duck, Büdös Berci... most meg ön is!",
+      "Füvet? Őőőőőő, úgy értem a kecskének...",
+      "Ez egy büdös hely... egy büdös város!"
+    ]
   },
   {
     num: 5,
