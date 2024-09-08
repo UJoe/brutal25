@@ -538,8 +538,8 @@ window.ker = [
     semmi: [
       "Aaaa jövő havi koncertműsor!",
       "Szép jó reggelt, polgármester!",
-      "Jegyeket, bérleteket ellenőrzésre kérjük felmutatni!",
-      "City Tour! See the city at discount price! No tourist? Sorry!",
+      "Jegyeket, bérleteket ellenőrzésre szíveskedjenek felmutatni!",
+      "City Tour! See the city at a discount price! Not tourist? Sorry!",
       "Azt szeretem, hogy itt sok hírességgel találkozhat az ember. Banana Joe, Dundi Bandi, Dick Duck, Büdös Berci... most meg ön is!",
       "Füvet? Őőőőőő, úgy értem a kecskének...",
       "Ez egy büdös hely... egy büdös város!"
@@ -584,6 +584,81 @@ window.ker = [
     defo: 1.3,
     culto: 1,
     szar: "niv_<_50",
+    vélemény: [
+      {
+        cond: "niv_<_50",
+        duma: [
+          "Kezd teljesen lezülleni ez a kerület...",
+          "Már a shortolás sem ment meg minket! Mi van ebben a kerületben?!",
+          "Azt mondta a főnök, önköltségesek lesznek a céges bulik! Ki hallott már ilyet?",
+          "Nem ehhez az életszínvonalhoz voltunk szokva. Valamit nagyon elkúrt az önkormányzat!",
+          "Korábban elmehettem simán egy hónapra a családdal Hawaii-ra, most meg örülönk, ha 2 hét Bali belefér!",
+          "Ennyi adót nem lehet befizetni, csak elkerülni! Tessék adót csökkenteni, akkor majd fizetjük!",
+          "A csőd szélére jutott a családi vállalkozásunk. Egyre nő a vállalkozói réteg haragja...",
+          "Nem lehet ilyen alacsony haszonkulccsal semmilyen hosszútávú üzleti tervet készíteni!",
+          "Elfogyott minden megtakarításunk. Mi lesz most velünk?"
+        ]
+      },
+      {
+        cond: "had_<_45",
+        duma: ["Elég lazán veszik itt a biztonságot...",
+          "Hova tűntek a biztonsági őrök? Ez üzleti kockázat!!",
+          "Képtelen az önkormányzat megvédeni a jogos tulajdont?!",
+          "Ezek az idegen lények ügyesebb hackerek, mint közülük bárki! Nem tudom, hogy csinálják...",
+          "A hónapban már a hermadik káresetet jelentettük! Nincs közbiztonság!"
+        ]
+      },
+      {
+        cond: "pro_<_2500",
+        duma: [
+          "Újabb recesszió van most. Sötét a helyzet, de próbálunk valamit kitalálni.",
+          "A teljes árbevételünk 20%-kal csökkent a tavalyi év azonos időszakához képest.",
+          "Itt behalt a piac! Más városba tesszük át a székhelyünket.",
+          "Ha nem élénkül újra a piac, lehúzhatjuk a rolót!",
+          "Egyre kevesebb a kisvállalkozó. Már csak a nagyok maradnak versenyben, de azok is nemsokára elköltöznek innen, ha van egy csepp eszük!",
+          "A béka segge alatt van az EBITDA-nk, a BUBOR meg elszállt..."
+        ]
+      },
+      {
+        cond: "joy_<_40",
+        duma: [
+          "Mi értelme van annak, amit csinálunk? Nem csinálunk semmit!",
+          "Már a bulik sem dobnak fel. Csupa képmutató vigyorgó alak!",
+          "Bizonytalan a jövő. Senki nem tudja, mi lesz...",
+          "Nincs erre most időm!",
+          "Meg mondom őszintén: már csak a drog az egyetlen örömöm. Nem kérsz?"
+        ]
+      },
+      {
+        cond: "pop_<_1000",
+        duma: [
+          "Innen mindenki csak menekül!",
+          "Tökretettük a konkurenciát, hehe!",
+          "Nem sokan maradtunk. Nem jók itt a piaci körülmények.",
+          "Ha az a cél, hogy mindenki elköltözzön innen, azt nagyol jól csinálod!",
+          "Haldoklik a munkaerőpiac! 28 betöltetlen pozíciónk van február óta!",
+          "Fontolgatjuk, hogy humán erőforrás helyett áttérünk AI megoldásokra."
+        ]
+      },
+      {
+        cond: "pro_>_5000",
+        duma: [
+          "Virágzik az üzlet, a mutatóink az eget verdesik!",
+          "Felvirágoztattam apám vállalkozását. Lassan mindenki tőlünk vásárol mungóbabot!",
+          "15%-os bővülést értünk el csak ebben az évben! És ez még csak a kezdet!",
+          "Dübörög a gazdaság! Húzó ágazat lett a terépcsecső-gyártás! Kígyók kígyóznak a rakodóudvarban!",
+          "Tavaly még csak egy garázsban árultam foszforeszkáló WC-papírt. Ma már 1200 hektárnyi foszforfarmom van és uraljuk az egész WC-ipart!"
+        ]
+      },
+    ],
+    semmi: [
+      "Tényleg ennyi volt az ELÁBÉ-nk múlt hónapban? Hívjunk össze egy meetinget!",
+      "Elnézést, sietek! Le kell adnom egy jelentést.",
+      "Hogy hogy élünk itt? A tavalyi év azonos időszakához vagy az előző negyedévhez képest? És milyen KPI-ok alapján?",
+      "A friss adatok alapján valószínűleg módosítanunk kell a tervszámokat.",
+      "Elnézést, hívnak... Mennyi? Add el mindet és vegyél belőle pézsma illatú gyurmát! Tutti tippet kaptam!",
+      "Te mit keresel itt? Tegnap kirúgtalak! Mi az, hogy polgármester? Itt én vagyok az Area Supervisor!"
+    ]
   },
   {
     num: 6,
