@@ -539,8 +539,8 @@ function _load() {
     kerStr += `
       <div id="kerInfo">
         <div id="kerBtns">
-          <button class="kerBtn" id="kerVisit">Látogatás</button>
-          <button class="kerBtn" id="kerStats">Elemzés <span class="gold">(100$)</span></button>
+          <button class="kerBtn" id="kerVisit">Látogatás <span class="good">(+1 Öröm)</span></button>
+          <button class="kerBtn" id="kerStats">Elemzés <span class="gold">(-100$)</span></button>
         </div>
       </div>
     `;
@@ -568,6 +568,7 @@ function _load() {
     function visit() {
       //lincs!
       kerAct = true;
+      change(ko, "joy", 1);
       let dumarr = [];
       for (v of ko.vélemény) {
         if (checkCond(ko, v.cond)) {

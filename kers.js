@@ -108,7 +108,7 @@ window.ker = [
       "Mi van? Nem voltál még erdőben? Hát milyen lenne?",
       "Érdekes itt az élővilág. Szerinted ez növény vagy állat?",
       "A legfontosabb a szeretet. Akit szeretsz, az sosem hal meg!",
-      "Ha Isten nem Szentháromság, akkor nincs értelme a teremtésnek.",
+      "Ha Isten nem Szentháromság, akkor nincs értelme a teremtésnek, mert az egyedüllét a tökéletesség.",
       "Cssssss! Hallgasd a természet hangjait...",
       "Megmutatom, hogy lehet természetes módszerekkel, köveket verve igazi ökölvívóvá válni!",
       "Itt születnek a valódi legendák és a... favágók!"
@@ -740,7 +740,7 @@ window.ker = [
         duma: [
           "Nagyon fogy a munkaerő! Már mindenki három műszakban dolgozik egyszerre! Nem állhatunk le!",
           "Ilyen kevés emberrel nem tudunk gazdaságosn üzemelni. A gépeket is kezelni kell valakinek!",
-          "Én a műszakvezető vagyok, de kénytelen voltam én is beállni lapátolni mióta a Lacit elvitte a köszvány!",
+          "Én a műszakvezető vagyok, de kénytelen voltam én is beállni lapátolni mióta a Lacit elvitte a köszvény!",
           "Azért van ekkora kupleráj, mert kénytelenek voltunk a személyügyes Icukát a targoncához ültetni. Volt 1 perce megtanulni a kezelést... Nincs ember!",
           "Fogd meg inkább ezt a rohadt kart ahelyett, hogy itt traccsolsz, és ha szólok, húzd meg! Nincs más ember! Nem azt...! ÁÁÁÁÁÁÁÁÁÁÁ!",
           "Már mindenki bezárt, csak mi vagyunk. Annyira nincs ember! Még szerencse, hogy búgócsiga mindig kell az embereknek..."
