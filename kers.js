@@ -605,7 +605,7 @@ window.ker = [
           "Hova tűntek a biztonsági őrök? Ez üzleti kockázat!!",
           "Képtelen az önkormányzat megvédeni a jogos tulajdont?!",
           "Ezek az idegen lények ügyesebb hackerek, mint közülük bárki! Nem tudom, hogy csinálják...",
-          "A hónapban már a hermadik káresetet jelentettük! Nincs közbiztonság!"
+          "A hónapban már a harmadik káresetet jelentettük! Nincs közbiztonság!"
         ]
       },
       {
@@ -699,6 +699,79 @@ window.ker = [
     defo: .7,
     culto: .7,
     szar: "pro_<_1500",
+    vélemény: [
+      {
+        cond: "niv_<_15",
+        duma: [
+          "Elég nehéz itt az élet, remélem a gyerekeim el tudnak költözni egy jobb helyre!",
+          "Itt csak megdögleni lehet...",
+          "Az ember dolgozik, ameddig bírja, aztán megy a kemencébe a fémhulladékkal együtt!",
+          "Egy munkatábor az egész lepra hely. Ha elvégeztem volna a 8 általánost, elhúznék innét a valagba!",
+          "Az üzemi büfé bezárt, de nincs egy rendes bolt sem a környéken! Nem tudunk enni!",
+          "Ha valaki beteg lesz, nincs pénze orvosra sem! Megdöglik, azt ennyi vót.",
+          "Azt mondják, lehet, hogy bezár az gyár. Akkor mit fogunk csinálni? Maga fogja etetni a gyerekeket?",
+          "Alig tudjuk már eladni, amit gyártunk, a felére kellett visszavennünk a termelést!",
+        ]
+      },
+      {
+        cond: "had_<_10",
+        duma: ["Aszongyák, az éjjelesek közül hármat fura lények raboltak el az utcán! Nagyobb biztonság kellene!",
+          "Lopják az alkatrészeket! Nem tudom, kik, de ezek nem a mieink, az biztos!",
+          "Múltkor eltűnt egy egész marógép. Nem az ajtón vitték ki, a plafonon volt egy luk! Hallott már ilyet?",
+          "Valaki folyamatosan lop a készletekből! Azt mondta a Józsi, hogy ufók viszik el. Mire kellhet nekik hat tonna acéllemez?",
+          "Látja ezt a hatalmas lyukat a falon? Maga szerint mivel lehet ilyet csinálni? Nem vagyunk biztonságban!",
+          "Mityu szerint beépültek közénk az idegenek. Mármint ufók. Mindig is gyanús volt nekem a Mari, szemüveg nélkül heggeszt...",
+          "Rendszeresek az üsszetűzések a kohászok meg a bányászok között! Rendet kellene tenni! Kevesek ehhez a gépészek!"
+        ]
+      },
+      {
+        cond: "pro_<_1500",
+        duma: [
+          "Múlt héten újabb üzem zárt be! Nem lesz ez így jó...",
+          "Kezd teljesen tönkremenni ez a kerület! Miért hagyja, ha maga a polgármester? Csináljon valamit!",
+          "Megmondom őszintén: elfogyott a pénz. Ha nincs beruházás, nem tudunk termelni.",
+          "Nemcsak a beszállítók kifizetését, hanem már a működési költségeket sem tudjukkigazdálkosni! Tönkre fogunk menni...",
+          "Muszáj zsebre dolgoznunk! Nem a mi hibánk...",
+          "Nézzed meg ezt a rengeteg számlát! Nem az adó itt a gond, azt leszarjuk, anélkül még jobban is működünk. De ezeket ki kell fizetni, hogy ne húzzuk le a rolót!"
+        ]
+      },
+      {
+        cond: "pop_<_1200",
+        duma: [
+          "Nagyon fogy a munkaerő! Már mindenki három műszakban dolgozik egyszerre! Nem állhatunk le!",
+          "Ilyen kevés emberrel nem tudunk gazdaságosn üzemelni. A gépeket is kezelni kell valakinek!",
+          "Én a műszakvezető vagyok, de kénytelen voltam én is beállni lapátolni mióta a Lacit elvitte a köszvány!",
+          "Azért van ekkora kupleráj, mert kénytelenek voltunk a személyügyes Icukát a targoncához ültetni. Volt 1 perce megtanulni a kezelést... Nincs ember!",
+          "Fogd meg inkább ezt a rohadt kart ahelyett, hogy itt traccsolsz, és ha szólok, húzd meg! Nincs más ember! Nem azt...! ÁÁÁÁÁÁÁÁÁÁÁ!",
+          "Már mindenki bezárt, csak mi vagyunk. Annyira nincs ember! Még szerencse, hogy búgócsiga mindig kell az embereknek..."
+        ]
+      },
+      {
+        cond: "pro_>_3000",
+        duma: [
+          "Fantasztikusan megy az üzlet! E hónapban újabb termékekkel bővült a kínálatunk!",
+          "Már nemcsak vasrugókat gyártunk, hanem vasmacskákat is! Apám, ha még élne, büszke lenne rám!",
+          "Fontolgatjuk, hogy újra beindítjuk a régi fagyigyárat. Kipofozzuk egy kicsit és újra lesz itt minden!",
+          "Újabb gyártósort tudtunk venni! Megduplázzuk a termelést!",
+          "Le tudunk mi mindent gyártani, ami kell. Csak mondja, hogy mi kell, és megoldjuk!",
+          "Ki hitte volna, hogy ennyi ember fog volfrámpörölyt venni? Már külföldre is szállítunk!"
+        ]
+      },
+    ],
+    semmi: [
+      "Mi itt dolgozunk, kérem. Nem érünk rá beszélgetni!",
+      "Nem értem... Már harmadszor vágok le belőle, oszt még mindig rövid!",
+      "Állj hátrébb, ha nem akarsz szénné égni!",
+      "BRRRRRRRRRR, KSSSSSSSSSSSSSSSS, Nyihunyihunyihu... Mi van?! BRRRRRRRRRRRRRR! Nem értem!",
+      "Hozni kell a tervet, különben ordítani fog a főnök! Nem tudunk leállni!",
+      "Hogy miért nincs védőfelszerelése Gazsinak? Ő csak feketézik, valakinek a haverja. Bejelenteni? Azt se tudjuk, Gazsi-e az igazi neve.",
+      "Tudjuk, hogy koszos a munkásszálló, de ez kinek a hibája, he?",
+      "Milyen bűz? Azóta van más szag, hogy te bejöttél!",
+      "Bekötjük mi a villanyórát a városházán úgy, hogy nem lesz gond vele. Megcsináljuk olcsón okosba!",
+      "Nem kell a városházának vashokedli? Rajtunk maradt 600 hokedli, mert túl korán csődbe ment a megrendelő.",
+      "A raklap meg a járólap között annyi a különbség, mint a... Teszed le azt a döngölő békát, amikor hozzád beszélek! Na, itt a vége a gyárlátogatásnak!",
+      "Gyere ki onnan, héééé...! Már megint egy beszorult hulla miatt kell leállítani az egész gyártósort, hogy dolgozzon így az ember?!"
+    ]
   },
   {
     num: 7,
