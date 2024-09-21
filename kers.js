@@ -3,7 +3,7 @@ window.ker = [
     num: 0,
     name: "Erdőszél",
     hely: "az Erdőszélen",
-    desc: "Egészséges, pihentető túrák, hőssegédek és bűvös lények otthona.",
+    desc: "Egészséges, pihentető túrák, hőssegédek, bölcsek és bűvös lények otthona.",
     x: 1,
     y: 1,
     pop: Math.floor(1 + Math.random() * 100),
@@ -112,7 +112,9 @@ window.ker = [
       "Ha Isten nem Szentháromság, akkor nincs értelme a teremtésnek, mert az egyedüllét a tökéletesség.",
       "Cssssss! Hallgasd a természet hangjait...",
       "Megmutatom, hogy lehet természetes módszerekkel, köveket verve igazi ökölvívóvá válni!",
-      "Itt születnek a valódi legendák és a... favágók!"
+      "Itt születnek a valódi legendák és a... favágók!",
+      "Az Eucharisztia tulajdonképpen a bűnbeesés megfordítása. Gondoltál már erre?",
+      "Olyan volt Ádám Éva megteremtése előtt, mint Isten az ember megteremtése előtt."
     ]
   },
   {
@@ -290,7 +292,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_<_500",
+        cond: "pop_<_1000",
         duma: [
           "Egyre kevesebb ázsiai itt. Mi lesz, ha mi elfogy?",
           "Régen sokkal több ember itt! Akkor ment üzlet jól!",
@@ -361,11 +363,12 @@ window.ker = [
     vélemény: [
       {
         cond: "had_<_-10",
-        duma: ["Nem merem a gyereket elengedni, mert mindenféle bizarr lények jelennek meg a játszótéren!",
-          "Szerintem nem normális, hogy egy faszerű lény gyökeret ver a hinta alatt, bármennyire is cuki!",
+        duma: [
+          "Mindenféle bizarr lények akarnak itt focizni! A három lábúak kicseleznek mindenkit, ha meg azok hatcsápúak beállnak a kapuba, senki nem tud nekik gólt lőni!",
+          "Szerintem nem normális, hogy egy faszerű lény gyökeret ver a hinta alatt, bármennyire is cukinak tartja Sacika!",
           "Jaj, megyek! Jönnek ezek a debella lények, akik mindenkit lealáznak húzódzkodásban! Hogy csajozzon így az ember?!",
           "Pistike, ne játsz azzal a fával, mert megharap, mint múltkor!",
-          "A csónakházban találtunk egy összetört fejű hullát!",
+          "A csónakházban találtunk egy összetört fejű hullát! Az egész raktárt magára rántotta!",
           "Azt mondják, a tóba belefulladt egy gyerek! Minden héten!"
         ]
       },
@@ -407,7 +410,8 @@ window.ker = [
           "Jó ide kijönni! Sok a sportolási lehetőség.",
           "Ó, meseszép ez a csónakázó-tó! Azt mondják, feneketlen, de állítólag kincset rejt a mélye!",
           "Minden nap járok ide kocogni. Tiszta levegő, vidám gyerekzsivaj! Ez mindig motivál a gyorsabb tempóra! Haha!",
-          "A zöld a kedvenc színem."
+          "A zöld a kedvenc színem.",
+          "Nincs kedve egyet csónakázni? Nyitva szokott lenni a csónakház."
         ]
       },
     ],
@@ -468,6 +472,7 @@ window.ker = [
           "Korábban minden sarkon állt egy rendőr, most meg alig látni őket! Hova lesz így a közbiztonság?",
           "Nézzétek, itt van a hülye polgi! Nem megy ez neked, maradtál volna inkább a csatornában!",
           "Battle Beatle barátai bosszút fognak rajtad állni! Jobb, ha nézed, hova lépsz!",
+          "Meg kell erősíteni a Városháza őrségét!"
         ]
       },
       {
@@ -826,72 +831,76 @@ window.ker = [
         duma: [
           "Nem lehet megélni itt ennyi nyugdíjból, kérem!",
           "Ágyámá egy kis pízt! Há visszáádom hónap! Ne csináld mán!",
-          "",
-          "Egy munkatábor az egész lepra hely. Ha elvégeztem volna a 8 általánost, elhúznék innét a valagba!",
-          "Az üzemi büfé bezárt, de nincs egy rendes bolt sem a környéken! Nem tudunk enni!",
-          "Ha valaki beteg lesz, nincs pénze orvosra sem! Megdöglik, azt ennyi vót.",
-          "Azt mondják, lehet, hogy bezár az gyár. Akkor mit fogunk csinálni? Maga fogja etetni a gyerekeket?",
-          "Alig tudjuk már eladni, amit gyártunk, a felére kellett visszavennünk a termelést!",
+          "Nagyon sokba kerül a gyerek! Az edzés, a zongora, a cipő, minden!",
+          "Mindennek csak megy fel az ára! Csak a fizetésünk van a béka segge alatt!",
+          "Csöpög a csap, lötyög a WC-ülőke, kilóg a sezlonyrugó, nem működik a gázrezsó... Nincs pénz megjavítani semmit."
         ]
       },
       {
-        cond: "had_<_10",
-        duma: ["Aszongyák, az éjjelesek közül hármat fura lények raboltak el az utcán! Nagyobb biztonság kellene!",
-          "Lopják az alkatrészeket! Nem tudom, kik, de ezek nem a mieink, az biztos!",
-          "Múltkor eltűnt egy egész marógép. Nem az ajtón vitték ki, a plafonon volt egy luk! Hallott már ilyet?",
-          "Valaki folyamatosan lop a készletekből! Azt mondta a Józsi, hogy ufók viszik el. Mire kellhet nekik hat tonna acéllemez?",
-          "Látja ezt a hatalmas lyukat a falon? Maga szerint mivel lehet ilyet csinálni? Nem vagyunk biztonságban!",
-          "Mityu szerint beépültek közénk az idegenek. Mármint ufók. Mindig is gyanús volt nekem a Mari, szemüveg nélkül heggeszt...",
-          "Rendszeresek az üsszetűzések a kohászok meg a bányászok között! Rendet kellene tenni! Kevesek ehhez a gépészek!"
-        ]
-      },
-      {
-        cond: "pro_<_1500",
+        cond: "ufo_>_50",
         duma: [
-          "Múlt héten újabb üzem zárt be! Nem lesz ez így jó...",
-          "Kezd teljesen tönkremenni ez a kerület! Miért hagyja, ha maga a polgármester? Csináljon valamit!",
-          "Megmondom őszintén: elfogyott a pénz. Ha nincs beruházás, nem tudunk termelni.",
-          "Nemcsak a beszállítók kifizetését, hanem már a működési költségeket sem tudjukkigazdálkosni! Tönkre fogunk menni...",
-          "Muszáj zsebre dolgoznunk! Nem a mi hibánk...",
-          "Nézzed meg ezt a rengeteg számlát! Nem az adó itt a gond, azt leszarjuk, anélkül még jobban is működünk. De ezeket ki kell fizetni, hogy ne húzzuk le a rolót!"
+          "Nem merem már Pistikét egyedül leküldeni a játszótérre. Mindenféle fura alak molesztálja a gyerekeket a csápjaikkal!",
+          "Biziclop! Én barátságos ufó. Nyüzemüze főzelékekék...",
+          "Nézzed! Ott egy hidrokocsonyusz variens! Ott meg egy interkozmikus űrcappcapp. Ő általában Csepere Fánival lóg.",
+          "Már a piacon árulják a zöld nyálukat ezek az úgynevezett... lények! Szörnyű világban élünk!",
+          "A Branyiszkó-teret az idegenek át akarják nevezni Böszörny-térre!",
+          "Elvitték a villanyoszlopot és helyette felállították ezt a foszforoló... foszfor... fost!"
         ]
       },
       {
-        cond: "pop_<_1200",
+        cond: "pop_<_1500",
         duma: [
-          "Nagyon fogy a munkaerő! Már mindenki három műszakban dolgozik egyszerre! Nem állhatunk le!",
-          "Ilyen kevés emberrel nem tudunk gazdaságosn üzemelni. A gépeket is kezelni kell valakinek!",
-          "Én a műszakvezető vagyok, de kénytelen voltam én is beállni lapátolni mióta a Lacit elvitte a köszvény!",
-          "Azért van ekkora kupleráj, mert kénytelenek voltunk a személyügyes Icukát a targoncához ültetni. Volt 1 perce megtanulni a kezelést... Nincs ember!",
-          "Fogd meg inkább ezt a rohadt kart ahelyett, hogy itt traccsolsz, és ha szólok, húzd meg! Nincs más ember! Nem azt...! ÁÁÁÁÁÁÁÁÁÁÁ!",
-          "Már mindenki bezárt, csak mi vagyunk. Annyira nincs ember! Még szerencse, hogy búgócsiga mindig kell az embereknek..."
+          "Nem tudom, mi van, de egyre fogynak az emberek. Vagy meghalnak, vagy elköltöznek a más... más világra... nem tudom.",
+          "Én csak azt tudom, hogy régen sokan voltunk, most meg mint az ujjam! Nem jó ez, akárhogy is.",
+          "Szegény Fecókámnak már barátai sincsenek, akivel játszhatna. Mind elköltöztek innen.",
+          "Elment a Julcsi... Nincs már miért élni... Julcsi...",
+          "Tiszta lepra ez az egész lakótelep! Mindenhol romok, grafitik, szar... mindenhol!",
+          "Régen volt még élet a kocsmákban! Össze tudtunk jönni snapszerezni. De már csak magamban iszok. Mint a mormota."
         ]
       },
       {
-        cond: "pro_>_3000",
+        cond: "pop_>_8000",
         duma: [
-          "Fantasztikusan megy az üzlet! E hónapban újabb termékekkel bővült a kínálatunk!",
-          "Már nemcsak vasrugókat gyártunk, hanem vasmacskákat is! Apám, ha még élne, büszke lenne rám!",
-          "Fontolgatjuk, hogy újra beindítjuk a régi fagyigyárat. Kipofozzuk egy kicsit és újra lesz itt minden!",
-          "Újabb gyártósort tudtunk venni! Megduplázzuk a termelést!",
-          "Le tudunk mi mindent gyártani, ami kell. Csak mondja, hogy mi kell, és megoldjuk!",
-          "Ki hitte volna, hogy ennyi ember fog volfrámpörölyt venni? Már külföldre is szállítunk!"
+          "Kicsi zsúfolt lett már ez a lakótelep! Mintha hangyák élnének itt.",
+          "Annyi gyerek van már a játszótéren, hogy azt se tudom, melyik az enyém!",
+          "30 négyzetméteren vagyunk hatan összezsúfolva! Ki fogja ezt megoldani?",
+          "Ha azt akarom, hogy mindegyik gyerekem hazajöjjön, a vazetéknevükön szólítom őket! Ha fel akarom sorolni őket, mindig belezavarodom! Hahaha!",
+          "Akkor már itt a tömeg, hogy én mondom: ki fog törni a kannibalizmus!",
+          "Több fa kellene ide, meg virág! Kezd egy betonrengeteg lenni ez a hely!"
+        ]
+      },
+      {
+        cond: "joy_>_80",
+        duma: [
+          "Nagyon szeretjük mi a polgármestert! Egy aranyember!",
+          "Sokkal boldogabbak vagyunk, mióta te vezeted a várost! Köszönjük!",
+          "Hadd csináljunk egy selfiet veled! Csíz!",
+          "YOLO!",
+          "Nézzétek már, itt a polgi! Ez tényleg ő, a város hőse! Azta!",
+          "Te vagy a megmentőnk! Szobrot kellene emelni rólad a téren!"
+        ]
+      },
+      {
+        cond: "joy_<_20",
+        duma: [
+          "Mi van, köcsög? Te nekem ne dumálj, mert kitépem a gigád!",
+          "Hogy mi a problémánk? Soroljam?! Egyébként se érdekli...",
+          "Neked köszönhetjük ezt a sok szart? Na húzzál vissza a pöcegödrödbe és húzd le magad!!",
+          "Hazudsz! Mondom, hazudsz! Nem érdekel! Dögöljetek meg!",
+          "Ez a legborzalmasabb hely a városban... Hát nem látja, mi van itt?",
+          "Nem tudsz adni egy kis lóvét? Nem piára! Becsszó! Huk... Modomonem!"
         ]
       },
     ],
     semmi: [
-      "Mi itt dolgozunk, kérem. Nem érünk rá beszélgetni!",
-      "Nem értem... Már harmadszor vágok le belőle, oszt még mindig rövid!",
-      "Állj hátrébb, ha nem akarsz szénné égni!",
-      "BRRRRRRRRRR, KSSSSSSSSSSSSSSSS, Nyihunyihunyihu... Mi van?! BRRRRRRRRRRRRRR! Nem értem!",
-      "Hozni kell a tervet, különben ordítani fog a főnök! Nem tudunk leállni!",
-      "Hogy miért nincs védőfelszerelése Gazsinak? Ő csak feketézik, valakinek a haverja. Bejelenteni? Azt se tudjuk, Gazsi-e az igazi neve.",
-      "Tudjuk, hogy koszos a munkásszálló, de ez kinek a hibája, he?",
-      "Milyen bűz? Azóta van más szag, hogy te bejöttél!",
-      "Bekötjük mi a villanyórát a városházán úgy, hogy nem lesz gond vele. Megcsináljuk olcsón okosba!",
-      "Nem kell a városházának vashokedli? Rajtunk maradt 600 hokedli, mert túl korán csődbe ment a megrendelő.",
-      "A raklap meg a járólap között annyi a különbség, mint a... Teszed le azt a döngölő békát, amikor hozzád beszélek! Na, itt a vége a gyárlátogatásnak!",
-      "Gyere ki onnan, héééé...! Már megint egy beszorult hulla miatt kell leállítani az egész gyártósort, hogy dolgozzon így az ember?!"
+      "Csá, polgi! Mi a pálya? Mi van?! A Csáp Olgi a Buri csaja, engem hagyjál vele!",
+      "Gyertek, gyerekek, köszönjetek szépen a polgármesternek! Ő itt a Panka, mutatkozz be szépen!",
+      "Gyurmuska, add vissza szépen a rollert a kislánynak! Ne kelljen többször mondanom! Bocsánat, mit kérdezett?",
+      "Király a szerkód, haver!",
+      "Tűűűűűűűűűű! Nem látod, hogy nekem van elsőbbségem, te vakvarjú?!",
+      "Elnézést, nem tudja merre van a Kutya Veres Kasza? Azt mondják,  van egy különleges italuk, az ászok ásza! Bazibrutál!",
+      "Bocsánat, még mindig nem találom a Branyiszkó-teret. Melyik villamos megy oda?",
+      "Itt a friss, meleg kakaó! Jöjjön, ha megviselte az élet brutalitása!"
     ]
   },
   {
