@@ -943,5 +943,75 @@ window.ker = [
     defo: 1,
     culto: 1.3,
     szar: "joy_<_50",
+    vélemény: [
+      {
+        cond: "culto_<_1.1",
+        duma: [
+          "Kultúra nélkül elvész a nemzet!",
+          "Egyre több a műveletlen tuskó. Még Boti idejében is jobb volt a helyzet!",
+          "Zene nélkül nem lehet élni...",
+          "Ád ide á didit, á didit ádd ide!",
+          "A gyerekek azt hiszik, Antigoné egy béna ember felesége volt!",
+          "Ég a gyertya ég, el ne aludjék. Szeretni valaki valamiért.",
+          "Már az anyanyelvükön sem tudnak beszélni az emberek!",
+          "A Rónay Művelődési Központból bankot akarnak csinálni a káinisták! Ne hagyjuk!",
+          "Zárnak be sorra a műzeumok, koncerttermek, már csak a kocsmákban meg lebujokban van éjszakai élet!",
+          "Múltkor a Galériában volt egy kancsó sárga, büdős folyadékkal tele és mellette egy vers 'Ode on a Grecian Urine' címmel. Ez művészet???!!!"
+        ]
+      },
+      {
+        cond: "culto_<_1",
+        duma: [
+          "Szégyen, hogy ennyire nem támogatják a kultúrát!",
+          "Zene nélkül tényleg nem lehet élni... DURR!",
+          "Önök a Filmhiradót látják. Pártunk hatalmas lépéseket tett a szénbányászok munkakörülményeinek javítása terén...",
+          "Az emberek már azt hiszik, Beethoven egy sütő!",
+          "Egész nap csak a mobilon röhögnek. Olyanokon, hogy szarik a pók, meg mit tudom én. Ide jutottunk!",
+          "Az egyetem idén két szakkal kevesebbel tudott indulni.",
+        ]
+      },
+
+      {
+        cond: "joy_<_50",
+        duma: [
+          "Haldoklik ez a kerület... Még Boti idejében is sokkal pezsgőbb volt az élet!",
+          "Már a fiatalok is csak pusztítják önmagukat. Szipu, Instagram, pálinka... Nincs életcéljuk!",
+          "Tudom, hogy megvetsz, mer' be vagyok lőve, de én szeretlek, tezsvírem!",
+          "A héten már a második költő vagy zenész ugrott le a hídról... Borzasztó világban élünk!",
+        ]
+      },
+      {
+        cond: "niv_<_35",
+        duma: [
+          "No money, no problem!",
+          "Háre Krisna, háre rámmá, Krisna Krisna, háre háre!",
+          "Figyu, mondjak egy viccet egy százasért?",
+          "I'm walkin' on the highway... Yes, walkin' on the highway... Still walking on the highway...",
+          "Mióta így felmentek az árak, kénylelen vagyok magamnak sodorni a jointot! Nem kérsz, barátom?",
+          "Az Operaház prímása aluljáróban hegedül! Ön szerint nem kellene tenni valamit?",
+        ]
+      },
+      {
+        cond: "def_>_100",
+        duma: [
+          "Őrület, hogy mindenhol csak a biztonsági őrök vannak! Megfojtják az embert!",
+          "Már egy múzeumba vagy koncertre se lehet menni anélkül, hogy kipakolnák a táskánkat!",
+          "Ez a túlzott biztonság árt a művészi szabadságnak!",
+          "Szerintem békésen élhetnénk az idegen kultúrával, ha nem lennének ilyen erőszakosok. Meg kell őket szelidíteni!",
+          "Nem erőszakkal kell fellépni az idegenek ellen, hanem kultúránk fölényével!",
+        ]
+      },
+    ],
+    semmi: [
+      "Hadd fesselek le! Nagyon jó karakter vagy!",
+      "Krisztus téged is arra hív, hogy térj meg a bűneidből!",
+      "Komolyzenei koncert lesz ma este a templomunkban. Bach, Beethoven, Mozart és Pachelbel. Önt is szeretettel várjuk!",
+      "Aaaaaa jövő havi koncertműsor!",
+      "Liszt volt a jobb zeneszerző! Ő kapásból el tudta játszani Chopin darabjait, míg fordítva ez nem volt mindig igaz!",
+      "Hi, I'm Kimberly Hope! Music is love.",
+      "Újra együtt a Kalafina! Szombaton fellépnek a Rónayban!",
+      "Bergersen-koncert a Rónayban! Ne hagyja ki korunk legnagyobb zeneszerzőjét!",
+      "Még mindig vannak jegyek az idei Táncház-találkozóra!",
+    ]
   }
 ];
