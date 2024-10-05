@@ -163,9 +163,25 @@ function _load() {
     if (darr.length < 1) return 0;
     let sum = 0;
     for (d of darr) {
-      sum += d[val];
+      let di = dev.findIndex(x => x.id === d);
+      let dio = dev[di];
+      let dif = dio.effect;
+      for (e of dif) {
+        if (e.val === val) { sum += e.ch }
+      }
     }
     return sum;
+  }
+
+  function getAllDevs(ko) {
+    let devs = ko.dev;
+    if (devs.length < 1) return false;
+    let alldevs = [];
+    for (d of devs) {
+      let di = dev.findIndex(x => x.id === d);
+      alldevs.push(dev[di])
+    }
+    return alldevs;
   }
 
   function change(ko, val, ch) {
@@ -185,6 +201,43 @@ function _load() {
     }
     //Egyéb hatások val-onként
   }
+
+  function bigNumber(x, y) {
+    if (x >= 1000000000) return Math.floor(x / 1000000000) + "B " + y;
+    if (x >= 1000000) return Math.floor(x / 1000000) + "M " + y;
+    if (x >= 2000) return x.toLocaleString() + " " + y;
+    if (x < 0) {
+      switch (y) {
+        case "$":
+          return "CSŐD!";
+
+        case "fő":
+          return "0 fő";
+
+        default:
+          break;
+      }
+    }
+    return x + " " + y;
+  }
+
+  var disNumber = (x) => x > 0 ? "+" + x : x < 0 ? x.toString() : "-";
+
+  function emot(happy) {
+    let soundN = happy ? "happy" : "angry";
+    let dice = 1 + Math.floor(Math.random() * 6);
+    sound.src = "./audio/" + soundN + dice + ".mp3";
+    sound.play();
+  }
+
+  //Test
+  /* ker[0].dev.push(0);
+  console.log(ker[0]);
+  console.log("JOY: " + disNumber(getDevs(ker[0].dev, "joy")));
+  console.log(getAllDevs(ker[0]));
+  let dio = dev[0];
+  ker[0].curDev = [dio.short, dio.days];
+  console.log("CUR: ", ker[0].curDev); */
 
   //NEW DAY
   function newDay() {
@@ -279,32 +332,6 @@ function _load() {
     pageUpdate();
   }
 
-  function bigNumber(x, y) {
-    if (x >= 1000000000) return Math.floor(x / 1000000000) + "B " + y;
-    if (x >= 1000000) return Math.floor(x / 1000000) + "M " + y;
-    if (x >= 2000) return x.toLocaleString() + " " + y;
-    if (x < 0) {
-      switch (y) {
-        case "$":
-          return "CSŐD!";
-
-        case "fő":
-          return "0 fő";
-
-        default:
-          break;
-      }
-    }
-    return x + " " + y;
-  }
-
-  function emot(happy) {
-    let soundN = happy ? "happy" : "angry";
-    let dice = 1 + Math.floor(Math.random() * 6);
-    sound.src = "./audio/" + soundN + dice + ".mp3";
-    sound.play();
-  }
-
   function generateXtra(so) {
     let xtraStr = "";
     if (so.val === "tax") {
@@ -372,14 +399,12 @@ function _load() {
       });
 
       for (let k = 0; k < 9; k++) {
-        let ei = ker[k].evs[0];
-        if (ei > -1) {
-          document.getElementById("ki1-" + k).innerHTML = `${ev[ei].name}`;
-        }
-        ei = ker[k].evs[1];
-        if (ei > -1) {
-          document.getElementById("ki2-" + k).innerHTML = `${ev[ei].name}`;
-        }
+        let d = ker[k].curDev;
+        if (d.length < 1) continue;
+        document.getElementById("ki1-" + k).innerHTML = `készül: <span class="good">${d[0]}</span>`;
+        document.getElementById("ki2-" + k).innerHTML = `még <span class="bad">${d[1]}</span> nap`;
+        document.getElementById("ki1-" + k).classList.add("gold");
+        document.getElementById("ki2-" + k).classList.add("gold");
       }
     } else {
       let cc = "neutral";
