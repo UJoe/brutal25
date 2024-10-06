@@ -231,8 +231,10 @@ function _load() {
   }
 
   //Test
-  /* ker[0].dev.push(0);
+  /*ker[0].dev.push(0);
+  ker[0].dev.push(1);
   console.log(ker[0]);
+  console.log("MTN: " + disNumber(getDevs(ker[0].dev, "mtn")));
   console.log("JOY: " + disNumber(getDevs(ker[0].dev, "joy")));
   console.log(getAllDevs(ker[0]));
   let dio = dev[0];
@@ -317,7 +319,7 @@ function _load() {
       ko.exp = newExp;
       ko.expCD = ko.expC;
 
-      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.5 + ko.niv / 300) - newExp);
+      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.4 + ko.niv / 300) - newExp);
       sign = ko.pro === 0 ? 1 : Math.sign(ko.pro);
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100 * sign);
       ko.pro = newPro;
@@ -420,6 +422,7 @@ function _load() {
         if (so.cur > so.good * 9) cc = "good";
         if (chPer < 0) chTxt = chPer + " %";
         if (chPer > 0) chTxt = "+" + chPer + " %";
+        if (Math.abs(chPer) == Infinity) { chTxt = "<i>[0-ról]</i>" }
       } else {
         intro = "Átlag";
         if (so.cur < so.bad) cc = "bad";
@@ -443,6 +446,7 @@ function _load() {
         if (so.sum) {
           if (chV < 0) chT = chV + " %";
           if (chV > 0) chT = "+" + chV + " %";
+          if (Math.abs(chV) == Infinity) { chT = "<i>[0-ról]</i>" };
         } else {
           if (chV < 0) chT = chV;
           if (chV > 0) chT = "+" + chV;
@@ -696,6 +700,7 @@ function _load() {
             if (cd < 0) { ct = cd; }
           }
         }
+        if (Math.abs(cd) == Infinity) { ct = "<i>[0-ról]</i>" }
         statStr += `
         <tr>
           <th class="statLabel" title="${so.desc}">${so.name}</th>
