@@ -18,6 +18,7 @@ function _load() {
   window.musIcon = "./img/soundOn.png";
   window.tax = 50;
   window.money = 10000;
+  window.trophy = [];
   window.day = 1;
   window.allEvents = [];
   window.rnd = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -739,10 +740,15 @@ function _load() {
     let selInd = selector.findIndex(s => s.val === selVal);
     let selObj = selector[selInd];
     let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "gold";
+    let trump = trophy.length === 0 ? "" : trophy.length;
     let pageStr = `
       <div id="header">
         <div id="topMenu">
           <span class="navNr ${mc}" title=${money.toLocaleString()}>${bigNumber(money, "$")}</span>
+          <span class="navPair">
+            <span class="navNr">${trump}</span>
+            <img class="navBtn" id="saveBtn" src="./img/trophy.png">
+          </span>
           <img class="navBtn" id="saveBtn" src="./img/save.jpg">
           <img class="navBtn" id="loadBtn" src="./img/load.JPG">
           <img id='soundBtn' src=${musIcon} alt="music">
