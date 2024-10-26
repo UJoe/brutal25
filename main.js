@@ -174,13 +174,12 @@ function _load() {
     return sum;
   }
 
-  function getAllDevs(ko) {
-    let devs = ko.dev;
-    if (devs.length < 1) return false;
+  function getAllDevs(darr) {
     let alldevs = [];
-    for (d of devs) {
+    if (darr.length < 1) return alldevs;
+    for (d of darr) {
       let di = dev.findIndex(x => x.id === d);
-      alldevs.push(dev[di])
+      if (di > -1) alldevs.push(dev[di])
     }
     return alldevs;
   }
@@ -565,15 +564,34 @@ function _load() {
         <table id="supTable"></table>
       </fieldset>
       <br>
-    `
-    kerStr += `
       <div id="kerInfo">
         <div id="kerBtns">
           <button class="kerBtn" id="kerVisit">Látogatás <span class="good">(+1 Öröm)</span></button>
           <button class="kerBtn" id="kerStats">Elemzés <span class="gold">(-100$)</span></button>
         </div>
       </div>
+      <br>
+      <div id="devs"></div>
     `;
+
+    //gendevs
+    let buy = [];
+    let almost = [];
+    for (let d of dev) {
+      if (ko.dev.indexOf(d.id) < 0 && d.price <= money) {
+        buy.push(d.id);
+      } else if (ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.2) {
+        almost.push(d.id);
+      }
+    }
+    let devStr = "";
+
+    if (ko.dev.length > 0 || buy.length > 0 || almost.length > 0) {
+      let hasDO = getAllDevs(ko.dev);
+      let buyDO = getAllDevs(buy);
+      let almostDO = getAllDevs(almost);
+      //folyt. táblázatrajzolás
+    }
 
     modal.innerHTML = kerStr;
 
