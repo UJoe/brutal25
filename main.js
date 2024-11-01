@@ -487,6 +487,20 @@ function _load() {
     }
   }
 
+  function changeVolume(e) {
+    let ch = 0.05 * Math.sign(e.wheelDelta);
+    let mv = music.volume + ch;
+    let sv = sound.volume + ch;
+    mv = mv < 0.1 ? 0.1 : mv > 1 ? 1 : mv;
+    sv = (sv < 0.1 && musicOn) ? 0.1 : sv < 0 ? 0 : sv > 1 ? 1 : sv;
+    sound.volume = sv;
+    if (musicOn) {
+      music.volume = mv;
+    }
+    document.getElementById("soundBtn").title = `Zene: ${Math.round(music.volume * 100)}%, Hang: ${Math.round(sound.volume * 100)}%`;
+  }
+
+
   function checkCond(ko, cond) {
     let vs = cond.split('_');
     let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
@@ -900,7 +914,7 @@ function _load() {
           </span>
           <img class="navBtn" id="saveBtn" src="./img/save.jpg">
           <img class="navBtn" id="loadBtn" src="./img/load.JPG">
-          <img id='soundBtn' src=${musIcon} alt="music">
+          <img id='soundBtn' title="Scrollal váltsd a hangerőt!" src=${musIcon} alt="music">
           <span class="navPair">
             <span class="navNr">${day.toLocaleString()}</span>
             <img class="navBtn" id="endBtn" src="./img/moon.jpg">
@@ -932,6 +946,7 @@ function _load() {
     document.getElementById("endBtn").addEventListener("click", newDay);
     document.querySelectorAll(".selBtn").forEach((s) => s.addEventListener("click", changeSel));
     document.getElementById("soundBtn").addEventListener("click", changeMusic);
+    document.getElementById("soundBtn").addEventListener("wheel", changeVolume);
     document.querySelectorAll(".ker").forEach((s) => s.addEventListener("click", openKer));
 
 
