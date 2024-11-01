@@ -1,8 +1,8 @@
 window.dev = [
   {
     id: 0,
-    name: "Ingyen kakasnyalóka",
-    short: "Nyalóka",
+    name: "Kakasnyalóka",
+    desc: "Ingyen kakasnyalókát mindenkinek!",
     days: "1",
     price: 10000,
     effect: [
@@ -18,8 +18,8 @@ window.dev = [
   },
   {
     id: 1,
-    name: "Szuperképesség-fejlesztő tanfolyam",
-    short: "Szuperképesség",
+    name: "Szuperképességek",
+    desc: "A szuperképesség-fejlesztő tanfolyammal a pogárok nemcsak boldogabbak lesznek, hanem meg is tudják védeni magukat.",
     days: "10",
     price: 5000000,
     effect: [
@@ -43,8 +43,8 @@ window.dev = [
   },
   {
     id: 2,
-    name: "Törpehörcsög, hóbagoly vagy takarító robotnő",
-    short: "Kedvencek",
+    name: "Kedvencek",
+    desc: "Minden háztartás választása szerint igényelhet törpehörcsögöt, hóbaglyot vagy takarító robotnőt.",
     days: "10",
     price: 120000,
     effect: [

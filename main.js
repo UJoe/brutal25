@@ -160,6 +160,11 @@ function _load() {
 
   updateTotals();
 
+  function valToName(txt) {
+    let si = selector.findIndex(x => x.val === txt);
+    return selector[si].name;
+  }
+
   function getDevs(darr, val) {
     if (darr.length < 1) return 0;
     let sum = 0;
@@ -202,7 +207,7 @@ function _load() {
     //Egyéb hatások val-onként
   }
 
-  function bigNumber(x, y) {
+  function bigNumber(x, y = "") {
     if (x >= 1000000000) return Math.floor(x / 1000000000) + "B " + y;
     if (x >= 1000000) return Math.floor(x / 1000000) + "M " + y;
     if (x >= 2000) return x.toLocaleString() + " " + y;
@@ -521,21 +526,21 @@ function _load() {
     let supStr = `
       <tr>
         <th class="supLabel">Gazdaság:</th>
-        <th class="supBtn ${supMap[0]}" id="eco-.7">Kevés</th>
-        <th class="supBtn ${supMap[1]}" id="eco-1">Elég</th>
-        <th class="supBtn ${supMap[2]}" id="eco-1.3">Sok</th>
+        <td class="supBtn ${supMap[0]}" id="eco-.7">Kevés</td>
+        <td class="supBtn ${supMap[1]}" id="eco-1">Elég</td>
+        <td class="supBtn ${supMap[2]}" id="eco-1.3">Sok</td>
       </tr>
       <tr>
         <th class="supLabel">Védelem:</th>
-        <th class="supBtn ${supMap[3]}" id="defo-.7">Kevés</th>
-        <th class="supBtn ${supMap[4]}" id="defo-1">Elég</th>
-        <th class="supBtn ${supMap[5]}" id="defo-1.3">Sok</th>
+        <td class="supBtn ${supMap[3]}" id="defo-.7">Kevés</td>
+        <td class="supBtn ${supMap[4]}" id="defo-1">Elég</td>
+        <td class="supBtn ${supMap[5]}" id="defo-1.3">Sok</td>
       </tr>
       <tr>
         <th class="supLabel">Kultúra:</th>
-        <th class="supBtn ${supMap[6]}" id="culto-.7">Kevés</th>
-        <th class="supBtn ${supMap[7]}" id="culto-1">Elég</th>
-        <th class="supBtn ${supMap[8]}" id="culto-1.3">Sok</th>
+        <td class="supBtn ${supMap[6]}" id="culto-.7">Kevés</td>
+        <td class="supBtn ${supMap[7]}" id="culto-1">Elég</td>
+        <td class="supBtn ${supMap[8]}" id="culto-1.3">Sok</td>
       </tr>
     `;
     document.getElementById("supTable").innerHTML = supStr;
@@ -574,6 +579,10 @@ function _load() {
       <div id="devs"></div>
     `;
 
+    modal.innerHTML = kerStr;
+    document.getElementById("kerStats").disabled = money < 100;
+    updateSup(ko);
+
     //gendevs
     let buy = [];
     let almost = [];
@@ -586,17 +595,139 @@ function _load() {
     }
     let devStr = "";
 
-    if (ko.dev.length > 0 || buy.length > 0 || almost.length > 0) {
+    if (ko.curDev.length > 0 || ko.dev.length > 0 || buy.length > 0 || almost.length > 0) {
       let hasDO = getAllDevs(ko.dev);
       let buyDO = getAllDevs(buy);
       let almostDO = getAllDevs(almost);
-      //folyt. táblázatrajzolás
+      devStr += `<fieldset id="devField">
+        <legend id="devTitle">Fejlesztések</legend>
+        <div class="devSub">Pénz: ${bigNumber(money, "$")}</div>
+        <div class="devSub">Profit: ${disNumber(ko.pro)} $</div>
+        <br>
+        `;
+
+
+      if (ko.curDev.length > 0) {
+        devStr += `<br><div class="devLabel">Folyamatban:</div>
+            <table class="devTable"> 
+              <tr>
+                <th>Név</th>
+                <th>Hátralévő idő</th>
+                <th>Akció</th>
+              </tr>
+              </tr>
+                <td>${ko.curDev[0]}</td>
+                <td>${ko.curDev[1]} nap</td>
+                <td class="devBtn" id="curEnd">Hagyjuk!</td>
+              </tr>
+            </table>
+          `;
+      }
+
+      if (hasDO.length > 0) {
+        devStr += `<br><div class="devLabel">Meglévő:</div>
+            <table class="devTable"> 
+              <tr>
+                <th>Név</th>
+                <th>Leírás</th>
+                <th>Hatások</th>
+                <th>Akció</th>
+              </tr>
+              `;
+        for (o of hasDO) {
+          devStr += `
+            <tr><td>${o.name}</td>
+            <td>${o.desc}</td>
+            <td class="devEffectCont"><table class="devEffects">`;
+          for (e of o.effect) {
+            let bal = valToName(e.val);
+            let jobb = disNumber(e.ch);
+            let mani = e.val === "mtn" ? "bad" : "";
+            devStr += `
+              <tr class=${mani}>
+                <td>${bal}:</td>
+                <td>${jobb}</td>
+              </tr>
+            `;
+          }
+          devStr += `</table></td>
+            <td class="devBtn" id="hasEnd-${o.id}">Nem kell!</td>
+            </tr>`;
+        }
+        devStr += "</table>";
+      }
+
+      if (buyDO.length > 0) {
+        devStr += `<br><div class="devLabel">Indítható:</div>
+            <table class="devTable"> 
+              <tr>
+                <th>Név</th>
+                <th>Leírás</th>
+                <th>Hatások</th>
+                <th>Költség</th>
+                <th>Akció</th>
+              </tr>
+              `;
+        for (o of buyDO) {
+          devStr += `
+            <tr><td>${o.name}</td>
+            <td>${o.desc}</td>
+            <td class="devEffectCont"><table class="devEffects">`;
+          for (e of o.effect) {
+            let bal = valToName(e.val);
+            let jobb = disNumber(e.ch);
+            let mani = e.val === "mtn" ? "bad" : "";
+            devStr += `
+              <tr class=${mani}>
+                <td>${bal}:</td>
+                <td>${jobb}</td>
+              </tr>
+            `;
+          }
+          devStr += `</table></td>
+            <td class="gold">${bigNumber(o.price)}</td>
+            <td class="devBtn" id="hasEnd-${o.id}">Legyen!</td>
+            </tr>`;
+        }
+        devStr += "</table>";
+      }
+
+      if (almostDO.length > 0) {
+        devStr += `<br><div class="devLabel">Érdemes gyűjteni rá:</div>
+            <table class="devTable"> 
+              <tr>
+                <th>Név</th>
+                <th>Leírás</th>
+                <th>Hatások</th>
+                <th>Költség</th>
+              </tr>
+              `;
+        for (o of almostDO) {
+          devStr += `
+            <tr><td>${o.name}</td>
+            <td>${o.desc}</td>
+            <td class="devEffectCont"><table class="devEffects">`;
+          for (e of o.effect) {
+            let bal = valToName(e.val);
+            let jobb = disNumber(e.ch);
+            let mani = e.val === "mtn" ? "bad" : "";
+            devStr += `
+              <tr class=${mani}>
+                <td>${bal}:</td>
+                <td>${jobb}</td>
+              </tr>
+            `;
+          }
+          devStr += `</table></td>
+            <td class="gold">${bigNumber(o.price)}</td>
+            </tr>`;
+        }
+        devStr += "</table>";
+      }
+
+      devStr += "</fieldset>"
+      document.getElementById("devs").innerHTML = devStr;
     }
-
-    modal.innerHTML = kerStr;
-
-    document.getElementById("kerStats").disabled = money < 100;
-    updateSup(ko);
 
     function changeSup(e) {
       let sid = e.target.id.split('-');
