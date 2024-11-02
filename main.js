@@ -615,8 +615,8 @@ function _load() {
       let almostDO = getAllDevs(almost);
       devStr += `<fieldset id="devField">
         <legend id="devTitle">Fejlesztések</legend>
-        <div class="devSub">Pénz: ${bigNumber(money, "$")}</div>
-        <div class="devSub">Profit: ${disNumber(ko.pro)} $</div>
+        <div class="devSub"><i>Pénz:</i> <b>${bigNumber(money, "$")}</b></div>
+        <div class="devSub"><i>Profit:</i> <b>${disNumber(ko.pro)} $</b></div>
         <br>
         `;
 
@@ -675,8 +675,7 @@ function _load() {
         devStr += `<br><div class="devLabel">Indítható:</div>
             <table class="devTable"> 
               <tr>
-                <th>Név</th>
-                <th>Leírás</th>
+                <th>Név + Leírás</th>
                 <th>Hatások</th>
                 <th>Költség</th>
                 <th>Akció</th>
@@ -684,8 +683,7 @@ function _load() {
               `;
         for (o of buyDO) {
           devStr += `
-            <tr><td>${o.name}</td>
-            <td>${o.desc}</td>
+            <tr><td class="center"><b><i>${o.name}</i></b><br><br>${o.desc}</td>
             <td class="devEffectCont"><table class="devEffects">`;
           for (e of o.effect) {
             let bal = valToName(e.val);

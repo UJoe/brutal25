@@ -276,6 +276,7 @@ h1 {
 
 #supField {
 	border: 4px ridge aqua;
+	border-radius: 9px;
 	background-color: lightcyan;
 	width: fit-content;
 }
@@ -298,16 +299,22 @@ h1 {
 }
 
 #statField {
-	border: 4px ridge aqua;
-	background-color: teal;
+	border: 4px ridge deepskyblue;
+	border-radius: 9px;
+	background-image: url(./img/tealback.jpg);
 	color: black;
 	width: fit-content;
 }
 
 #statTitle,
-#supTitle {
-	color: lightseagreen;
-	background-color: whitesmoke;
+#supTitle,
+#devTitle {
+	color: aqua;
+	background-color: midnightblue;
+	font-weight: 600;
+	font-size: 1.4em;
+	padding: 10px;
+	border-radius: 45%;
 }
 
 #statTable {
@@ -356,4 +363,57 @@ ul {
 
 li {
 	margin-bottom: 5px;
+}
+
+#devField {
+	background-image: url(./img/papirusback.jpg);
+	border: 4px ridge gold;
+	border-radius: 9px;
+	width: fit-content;
+}
+
+.devTable {
+	background-image: url(./img/blueback.jpg);
+	color: floralwhite;
+	border-spacing: 2px;
+	border-radius: 10px;
+	max-width: 90vw;
+}
+
+.devSub {
+	font-size: 1.1em;
+	color: oldlace;
+}
+
+.devLabel {
+	font-size: 1.2em;
+	padding: 4px;
+	color: brown;
+	background-color: lightgreen;
+	width: fit-content;
+	border-radius: 5px;
+}
+
+.devTable th {
+	background-color: lightgrey;
+	color: blue;
+}
+
+.devTable td {
+	border: solid 2px lime;
+}
+
+.devEffects td {
+	border: none !important;
+}
+
+.devBtn {
+	width: 10vw;
+	border-radius: 5px;
+	border: 2px outset darkolivegreen;
+	font-weight: 200;
+}
+
+.center {
+	text-align: center;
 }

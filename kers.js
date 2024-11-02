@@ -1,3 +1,67 @@
+/* class Ker {
+  constructor(
+    num,
+    name,
+    hely,
+    desc,
+    x,
+    y,
+    pop,
+    niv,
+    joy,
+    def,
+    ufo,
+    eco,
+    defo,
+    culto,
+    szar,
+    vélemény,
+    semmi
+  ) {
+    this.num = num;
+    this.name = name;
+    this.hely = hely;
+    this.desc = desc;
+    this.x = x;
+    this.y = y;
+    this.pop = pop;
+    this.niv = niv;
+    this.joy = joy;
+    this.def = def;
+    this.ufo = ufo;
+    this.eco = eco;
+    this.defo = defo;
+    this.culto = culto;
+    this.szar = szar;
+    this.vélemény = vélemény;
+    this.semmi = semmi;
+    this.mtn = 0;
+    this.exp = 0;
+    this.had = 0;
+    this.pro = 0;
+    this.popC = 0;
+    this.popCD = 0;
+    this.mtnC = 0;
+    this.mtnCD = 0;
+    this.expC = 0;
+    this.expCD = 0;
+    this.nivC = 0;
+    this.nivCD = 0;
+    this.joyC = 0;
+    this.joyCD = 0;
+    this.defC = 0;
+    this.defCD = 0;
+    this.ufoC = 0;
+    this.ufoCD = 0;
+    this.hadC = 0;
+    this.hadCD = 0;
+    this.proC = 0;
+    this.proCD = 0;
+    this.dev = [];
+    this.curDev = [];
+  }
+} */
+
 window.ker = [
   {
     num: 0,
