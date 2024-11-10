@@ -18,7 +18,7 @@ window.dev = [
   },
   {
     id: 1,
-    name: "Szuperképességek",
+    name: "Szuper-képességek",
     desc: "A szuperképesség-fejlesztő tanfolyammal a pogárok nemcsak boldogabbak lesznek, hanem meg is tudják védeni magukat.",
     days: "10",
     price: 5000000,

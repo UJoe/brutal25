@@ -208,22 +208,22 @@ function _load() {
   }
 
   function bigNumber(x, y = "") {
-    if (x >= 1000000000) return Math.floor(x / 1000000000) + "B " + y;
-    if (x >= 1000000) return Math.floor(x / 1000000) + "M " + y;
-    if (x >= 2000) return x.toLocaleString() + " " + y;
+    if (x >= 1000000000) return Math.floor(x / 1000000000) + "B&nbsp;" + y;
+    if (x >= 1000000) return Math.floor(x / 1000000) + "M&nbsp;" + y;
+    if (x >= 2000) return x.toLocaleString() + "&nbsp;" + y;
     if (x < 0) {
       switch (y) {
         case "$":
           return "CSŐD!";
 
         case "fő":
-          return "0 fő";
+          return "0&nbsp;fő";
 
         default:
           break;
       }
     }
-    return x + " " + y;
+    return x + "&nbsp;" + y;
   }
 
   var disNumber = (x) => x > 0 ? "+" + x : x < 0 ? x.toString() : "-";
@@ -622,7 +622,7 @@ function _load() {
 
 
       if (ko.curDev.length > 0) {
-        devStr += `<br><div class="devLabel">Folyamatban:</div>
+        devStr += `<br><div class="devLabel" id="dlCur">Folyamatban:</div>
             <table class="devTable"> 
               <tr>
                 <th>Név</th>
@@ -632,14 +632,16 @@ function _load() {
               </tr>
                 <td>${ko.curDev[0]}</td>
                 <td>${ko.curDev[1]} nap</td>
-                <td class="devBtn" id="curEnd">Hagyjuk!</td>
+                <td class="centralCont">
+                  <button class="devBtn badB" id="curEnd">Hagyjuk!</button>
+                </td>
               </tr>
             </table>
           `;
       }
 
       if (hasDO.length > 0) {
-        devStr += `<br><div class="devLabel">Meglévő:</div>
+        devStr += `<br><div class="devLabel" id="dlHas">Meglévő:</div>
             <table class="devTable"> 
               <tr>
                 <th>Név</th>
@@ -665,14 +667,16 @@ function _load() {
             `;
           }
           devStr += `</table></td>
-            <td class="devBtn" id="hasEnd-${o.id}">Nem kell!</td>
+            <td class="centralCont">
+              <button class="devBtn badB" id="hasEnd-${o.id}">Nem kell!</button>
+            </td>
             </tr>`;
         }
         devStr += "</table>";
       }
 
       if (buyDO.length > 0) {
-        devStr += `<br><div class="devLabel">Indítható:</div>
+        devStr += `<br><div class="devLabel" id="dlBuy">Indítható:</div>
             <table class="devTable"> 
               <tr>
                 <th>Név + Leírás</th>
@@ -697,15 +701,17 @@ function _load() {
             `;
           }
           devStr += `</table></td>
-            <td class="gold">${bigNumber(o.price)}</td>
-            <td class="devBtn" id="hasEnd-${o.id}">Legyen!</td>
+            <td class="gold">${bigNumber(o.price, "$")}</td>
+            <td class="centralCont">
+              <button class="devBtn goodB" id="hasEnd-${o.id}">Legyen!</button>
+            </td>
             </tr>`;
         }
         devStr += "</table>";
       }
 
       if (almostDO.length > 0) {
-        devStr += `<br><div class="devLabel">Érdemes gyűjteni rá:</div>
+        devStr += `<br><div class="devLabel" id="dlAlmost">Érdemes gyűjteni rá:</div>
             <table class="devTable"> 
               <tr>
                 <th>Név</th>
