@@ -88,7 +88,7 @@ function _load() {
       bad: 1
     },
     {
-      name: "Alapellátás",
+      name: "Ellátás",
       val: "mtn",
       desc: "A&nbsp;lakosság&nbsp;alapellátása",
       mer: " $",
@@ -100,7 +100,7 @@ function _load() {
     {
       name: "Kiadások",
       val: "exp",
-      desc: "Alapellátás&nbsp;x&nbsp;Támogatások&nbsp;+&nbsp;Fejlesztésfenntartás",
+      desc: "Ellátás&nbsp;x&nbsp;Támogatások&nbsp;+&nbsp;Fejlesztésfenntartás",
       mer: " $",
       sum: true,
       reverse: true,
@@ -579,7 +579,7 @@ function _load() {
     }
     kerStr += `
       <fieldset id="supField">
-        <legend id="supTitle">Támogatások</legend>
+        <legend class="kerTitle"">Támogatások</legend>
         <table id="supTable"></table>
       </fieldset>
       <br>
@@ -609,12 +609,36 @@ function _load() {
     }
     let devStr = "";
 
+    function devAct(e) {
+      let teljesSzó = e.target.id.split("-");
+      let szótő = teljesSzó[0];
+      let devNo = -1;
+      if (teljesSzó.length > 1) devNo = teljesSzó[1];
+      //folyt.
+      switch (szótő) {
+        case "curEnd":
+          console.log(teljesSzó);
+          break;
+
+        case "hasEnd":
+          console.log(teljesSzó);
+          break;
+
+        case "newDev":
+          console.log(teljesSzó);
+          break;
+
+        default:
+          break;
+      }
+    }
+
     if (ko.curDev.length > 0 || ko.dev.length > 0 || buy.length > 0 || almost.length > 0) {
       let hasDO = getAllDevs(ko.dev);
       let buyDO = getAllDevs(buy);
       let almostDO = getAllDevs(almost);
       devStr += `<fieldset id="devField">
-        <legend id="devTitle">Fejlesztések</legend>
+        <legend class="kerTitle">Fejlesztések</legend>
         <div class="devSub"><i>Pénz:</i> <b>${bigNumber(money, "$")}</b></div>
         <div class="devSub"><i>Profit:</i> <b>${disNumber(ko.pro)} $</b></div>
         <br>
@@ -703,7 +727,7 @@ function _load() {
           devStr += `</table></td>
             <td class="gold">${bigNumber(o.price, "$")}</td>
             <td class="centralCont">
-              <button class="devBtn goodB" id="hasEnd-${o.id}">Legyen!</button>
+              <button class="devBtn goodB" id="newDev-${o.id}">Legyen!</button>
             </td>
             </tr>`;
         }
@@ -745,6 +769,7 @@ function _load() {
 
       devStr += "</fieldset>"
       document.getElementById("devs").innerHTML = devStr;
+      document.getElementById("devs").addEventListener("click", devAct);
     }
 
     function changeSup(e) {
@@ -790,13 +815,16 @@ function _load() {
         dumarr = dumarr.slice(0, 6);
       }
 
-      let dumaStr = `<ul>`;
+      let dumaStr = `
+      <fieldset id="dumaField">
+        <legend class="kerTitle">A nép hangja</legend>
+        <ul>`;
       for (d of dumarr) {
         dumaStr += `
           <li>${d}</li>
         `
       }
-      dumaStr += `</ul>`;
+      dumaStr += `</ul></fieldset>`;
       document.getElementById("kerInfo").innerHTML = dumaStr;
     }
 
@@ -806,7 +834,7 @@ function _load() {
       let statArr = ["pop", "pro", "mtn", "exp", "niv", "joy", "ufo", "def", "had"];
       let statStr = `
       <fieldset id="statField">
-        <legend id="statTitle">Statisztikák</legend>
+        <legend class="kerTitle">Statisztikák</legend>
         <table id="statTable">
           <tr id="statHead">
             <th>TÉTEL</th>

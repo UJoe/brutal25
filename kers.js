@@ -245,7 +245,8 @@ window.ker = [
         duma: [
           "Fogyunk, kérem, egyre csak fogyunk!",
           "Nem bírunk ilyen kevesen szántani! Megdöglött a Riska is! Mi lesz igy vélünk?",
-          "Nem tudjuk bétakarítani a termést! Nincs elíg ámbör!"
+          "Nem tudjuk bétakarítani a termést! Nincs elíg ámbör!",
+          "Nehéz a fiamnak egy jóravaló, takaros menyecskét találni..."
         ]
       },
       {
