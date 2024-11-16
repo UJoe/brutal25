@@ -10,6 +10,24 @@ function _load() {
   var modal = document.getElementById("modal");
   var happen = document.getElementById("happen");
   var kerAct = false;
+  var okBtn = [
+    {
+      type: "rnd",
+      txt: "OK"
+    }
+  ];
+  var badBtn = [
+    {
+      type: "rnd",
+      txt: "bad"
+    }
+  ];
+  var goodBtn = [
+    {
+      type: "rnd",
+      txt: "good"
+    }
+  ];
   page.style.display = "none";
   modal.style.display = "none";
   window.curMusic = "basicMusic";
@@ -166,12 +184,16 @@ function _load() {
     return selector[si].name;
   }
 
+  function getDev(n) {
+    let di = dev.findIndex(x => x.id === n);
+    return dev[di];
+  }
+
   function getDevs(darr, val) {
     if (darr.length < 1) return 0;
     let sum = 0;
     for (d of darr) {
-      let di = dev.findIndex(x => x.id === d);
-      let dio = dev[di];
+      let dio = getDev(d);
       let dif = dio.effect;
       for (e of dif) {
         if (e.val === val) { sum += e.ch }
@@ -188,6 +210,17 @@ function _load() {
       if (di > -1) alldevs.push(dev[di])
     }
     return alldevs;
+  }
+
+  function newDev(ko, deo) {
+    ko.dev.push(deo.id);
+    for (e of deo.effect) {
+      if (e.val !== "mtn") {
+        change(ko, e.val, e.ch);
+      }
+    }
+    console.log(ko);
+    console.log(getDevs(ko.dev, "mtn"));
   }
 
   function change(ko, val, ch) {
@@ -229,7 +262,7 @@ function _load() {
 
   var disNumber = (x) => x > 0 ? "+" + x : x < 0 ? x.toString() : "-";
 
-  function emot(happy) {
+  function emo(happy) {
     let soundN = happy ? "happy" : "angry";
     let dice = 1 + Math.floor(Math.random() * 6);
     sound.src = "./audio/" + soundN + dice + ".mp3";
@@ -334,6 +367,19 @@ function _load() {
       for (p in ko) {
         if (p.charAt(p.length - 1) === "C") ko[p] = 0;
       }
+
+      if (ko.curDev.length > 0) {
+        ko.curDev[1]--;
+        if (ko.curDev[1] === 0) {
+          console.log(ko.curDev);
+          let devi = dev.findIndex(x => x.name == ko.curDev[0]);
+          let devo = dev[devi];
+          let msg = `Kész lett ${névelős(devo.name)} ${ko.hely}!`;
+          message(msg, goodBtn);
+          ko.curDev = [];
+          newDev(ko, devo);
+        }
+      }
     };
 
     updateTotals();
@@ -374,7 +420,7 @@ function _load() {
       });
       tm10.addEventListener("click", function () {
         if (tax > 9) {
-          emot(true);
+          emo(true);
           tax -= 10;
           for (ko of ker) {
             change(ko, "joyC", Math.round(7 + Math.random() * 8));
@@ -396,7 +442,7 @@ function _load() {
       });
       tp10.addEventListener("click", function () {
         if (tax < 91) {
-          emot(false);
+          emo(false);
           tax += 10;
           for (ko of ker) {
             change(ko, "joyC", -Math.round(7 + Math.random() * 8));
@@ -540,15 +586,40 @@ function _load() {
             bar = ["OK", "Ez van.", "Ilyen az élet!", "Jól van az úgy.", "Helyes!", "Így van!"]
             break;
 
+          case "good":
+            bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!"]
+            emo(true);
+            break;
+
+          case "bad":
+            bar = ["Naba...", "Leszarom.", "Ezt érdemlik!", "Ne már!", "Mi a szösz?", "Ez van.", "Hínye!", "Bakker..."]
+            emo(true);
+            break;
+
           default:
             break;
         }
         b.txt = rnd(bar);
       }
-      msgStr += `<button class="kerBtn" id="mb-${i}">${b.txt}</button>`;
+      msgStr += `<button class="mesBtn" id="mb-${i}">${b.txt}</button>`;
     }
     msgStr += `</div></div>`;
     happen.innerHTML = msgStr;
+
+    function mesEnd(e) {
+      let i = e.target.id.split("-")[1];
+      let bp = btn[i];
+      if (bp.type === "rnd") {
+        happen.innerHTML = "";
+        happen.classList.remove("see");
+        happen.classList.add("nosee");
+        closeModal();
+      }
+    }
+
+    document.querySelectorAll(".mesBtn").forEach((m) => m.addEventListener("click", mesEnd));
+
+
   }
 
   function updateSup(ko) {
@@ -636,7 +707,7 @@ function _load() {
     let buy = [];
     let almost = [];
     for (let d of dev) {
-      if (ko.dev.indexOf(d.id) < 0 && d.price <= money) {
+      if (ko.curDev.length < 1 && ko.dev.indexOf(d.id) < 0 && d.price <= money) {
         buy.push(d.id);
       } else if (ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.2) {
         almost.push(d.id);
@@ -648,20 +719,15 @@ function _load() {
       let teljesSzó = e.target.id.split("-");
       let szótő = teljesSzó[0];
       let devNo = -1;
-      if (teljesSzó.length > 1) devNo = teljesSzó[1];
+      if (teljesSzó.length > 1) devNo = Number(teljesSzó[1]);
       //folyt.
       switch (szótő) {
         case "curEnd":
-          emot(false);
+          emo(false);
           kerAct = true;
           let msg = `Meggondoltam, a francnak se kell ez ${névelős(ko.curDev[0])}!`;
-          let btn = [
-            {
-              type: "rnd",
-              txt: "OK"
-            }
-          ];
-          message(msg, btn);
+          message(msg, okBtn);
+          ko.curDev = [];
           break;
 
         case "hasEnd":
@@ -669,7 +735,13 @@ function _load() {
           break;
 
         case "newDev":
-          console.log(teljesSzó);
+          emo(true);
+          kerAct = true;
+          let ndo = getDev(devNo);
+          money -= ndo.price;
+          ko.curDev = [ndo.name, ndo.days];
+          let msg3 = `Elkezdtetek dolgozni ${névelős(ko.curDev[0])} fejlesztésen, ami ${ko.curDev[1]} nap múlva lesz kész.`;
+          message(msg3, goodBtn);
           break;
 
         default:
@@ -690,15 +762,31 @@ function _load() {
 
 
       if (ko.curDev.length > 0) {
+        let oi = dev.findIndex(x => x.name === ko.curDev[0]);
+        let o = dev[oi];
         devStr += `<br><div class="devLabel" id="dlCur">Folyamatban:</div>
             <table class="devTable"> 
               <tr>
                 <th>Név</th>
+                <th>Hatások</th>
                 <th>Hátralévő idő</th>
                 <th>Akció</th>
               </tr>
               <tr>
                 <td>${ko.curDev[0]}</td>
+                <td class="devEffectCont"><table class="devEffects">`;
+        for (e of o.effect) {
+          let bal = valToName(e.val);
+          let jobb = disNumber(e.ch);
+          let mani = e.val === "mtn" ? "bad" : "";
+          devStr += `
+              <tr class=${mani}>
+                <td>${bal}:</td>
+                <td>${jobb}</td>
+              </tr>
+            `;
+        }
+        devStr += `</table></td>
                 <td>${ko.curDev[1]} nap</td>
                 <td class="centralCont">
                   <button class="devBtn badB" id="curEnd">Hagyjuk!</button>
@@ -827,8 +915,8 @@ function _load() {
       document.getElementById("closeKer").addEventListener("click", closeModal);
       document.querySelectorAll(".supBtn").forEach((s) => s.addEventListener("click", changeSup));
       if (svar === "defo") return;
-      if (sval < 1) emot(false);
-      if (sval > 1) emot(true);
+      if (sval < 1) emo(false);
+      if (sval > 1) emo(true);
     }
 
     function visit() {
