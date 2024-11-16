@@ -219,8 +219,6 @@ function _load() {
         change(ko, e.val, e.ch);
       }
     }
-    console.log(ko);
-    console.log(getDevs(ko.dev, "mtn"));
   }
 
   function change(ko, val, ch) {
@@ -371,7 +369,6 @@ function _load() {
       if (ko.curDev.length > 0) {
         ko.curDev[1]--;
         if (ko.curDev[1] === 0) {
-          console.log(ko.curDev);
           let devi = dev.findIndex(x => x.name == ko.curDev[0]);
           let devo = dev[devi];
           let msg = `Kész lett ${névelős(devo.name)} ${ko.hely}!`;
@@ -605,6 +602,24 @@ function _load() {
     }
     msgStr += `</div></div>`;
     happen.innerHTML = msgStr;
+    okBtn = [
+      {
+        type: "rnd",
+        txt: "OK"
+      }
+    ];
+    badBtn = [
+      {
+        type: "rnd",
+        txt: "bad"
+      }
+    ];
+    goodBtn = [
+      {
+        type: "rnd",
+        txt: "good"
+      }
+    ];
 
     function mesEnd(e) {
       let i = e.target.id.split("-")[1];
