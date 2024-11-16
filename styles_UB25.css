@@ -77,6 +77,46 @@ h1 {
 	overflow: hidden;
 }
 
+.nosee {
+	display: none;
+	height: 0;
+	width: 0;
+	z-index: 0;
+	opacity: 0;
+}
+
+.see {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	z-index: 999;
+	opacity: 0.8;
+	background-color: whitesmoke;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#mescard {
+	width: fit-content;
+	max-width: 70vw;
+	height: fit-content;
+	max-height: 70vh;
+	font-size: max(1.4vw, 1.1em);
+	opacity: 1 !important;
+	background-color: darkslategray;
+	z-index: 9999;
+	border: cyan outset 5px;
+	border-radius: 10px;
+}
+
+#mescard p {
+	color: lightyellow;
+	text-align: justify;
+}
+
 #header {
 	display: flex;
 	flex-direction: column;
@@ -361,6 +401,12 @@ h1 {
 	display: flex;
 	justify-content: space-between;
 	width: 80vw;
+	margin: 1vh 10vw;
+}
+
+#mesBtns {
+	display: flex;
+	justify-content: space-between;
 	margin: 1vh 10vw;
 }
 

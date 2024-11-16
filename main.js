@@ -8,6 +8,7 @@ function _load() {
   var main = document.getElementById("main");
   var page = document.getElementById("page");
   var modal = document.getElementById("modal");
+  var happen = document.getElementById("happen");
   var kerAct = false;
   page.style.display = "none";
   modal.style.display = "none";
@@ -516,6 +517,40 @@ function _load() {
     return false;
   }
 
+  function névelős(str, nagy = false) {
+    let ne = nagy ? "A" : "a";
+    ne += (/[öüóeuioőúaéáűí]/i.test(str.charAt(0))) ? "z " : " ";
+    return ne + str;
+  }
+
+  function message(txt, btn) {
+    happen.classList.remove("nosee");
+    happen.classList.add("see");
+    let msgStr = `
+      <div id="mescard">
+        <p>${txt}</p>
+        <div id="mesBtns">
+      `;
+    for (let i = 0; i < btn.length; i++) {
+      let b = btn[i];
+      if (b.type === "rnd") {
+        let bar = ["OK"];
+        switch (b.txt) {
+          case "OK":
+            bar = ["OK", "Ez van.", "Ilyen az élet!", "Jól van az úgy.", "Helyes!", "Így van!"]
+            break;
+
+          default:
+            break;
+        }
+        b.txt = rnd(bar);
+      }
+      msgStr += `<button class="kerBtn" id="mb-${i}">${b.txt}</button>`;
+    }
+    msgStr += `</div></div>`;
+    happen.innerHTML = msgStr;
+  }
+
   function updateSup(ko) {
     let supArr = [ko.eco, ko.defo, ko.culto];
     let supMap = [];
@@ -617,7 +652,16 @@ function _load() {
       //folyt.
       switch (szótő) {
         case "curEnd":
-          console.log(teljesSzó);
+          emot(false);
+          kerAct = true;
+          let msg = `Meggondoltam, a francnak se kell ez ${névelős(ko.curDev[0])}!`;
+          let btn = [
+            {
+              type: "rnd",
+              txt: "OK"
+            }
+          ];
+          message(msg, btn);
           break;
 
         case "hasEnd":
@@ -653,7 +697,7 @@ function _load() {
                 <th>Hátralévő idő</th>
                 <th>Akció</th>
               </tr>
-              </tr>
+              <tr>
                 <td>${ko.curDev[0]}</td>
                 <td>${ko.curDev[1]} nap</td>
                 <td class="centralCont">
