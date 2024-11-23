@@ -5,10 +5,11 @@ window.dev = [
     desc: "Ingyen kakasnyalókát mindenkinek!",
     days: "1",
     price: 10000,
+    szigor: [],
     effect: [
       {
         val: "joy",
-        ch: 2
+        ch: 3
       },
       {
         val: "mtn",
@@ -18,10 +19,11 @@ window.dev = [
   },
   {
     id: 1,
-    name: "Szuper-képességek",
+    name: "Hősképző",
     desc: "A szuperképesség-fejlesztő tanfolyammal a pogárok nemcsak boldogabbak lesznek, hanem meg is tudják védeni magukat.",
     days: "10",
     price: 5000000,
+    szigor: [],
     effect: [
       {
         val: "def",
@@ -47,6 +49,7 @@ window.dev = [
     desc: "Minden háztartás választása szerint igényelhet törpehörcsögöt, hóbaglyot vagy takarító robotnőt.",
     days: "10",
     price: 120000,
+    szigor: [1, 2, 4, 6, 7],
     effect: [
       {
         val: "joy",

@@ -958,7 +958,7 @@ window.ker = [
       },
     ],
     semmi: [
-      "Csá, polgi! Mi a pálya? Mi van?! A Csáp Olgi a Buri csaja, engem hagyjál vele!",
+      "Csá, polgi! Mi a pálya? Mi van?! Csáp Olgi a Gerzson csaja, engem hagyjál vele!",
       "Gyertek, gyerekek, köszönjetek szépen a polgármesternek! Ő itt a Panka, mutatkozz be szépen!",
       "Gyurmuska, add vissza szépen a rollert a kislánynak! Ne kelljen többször mondanom! Bocsánat, mit kérdezett?",
       "Király a szerkód, haver!",

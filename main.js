@@ -221,6 +221,18 @@ function _load() {
     }
   }
 
+  function delDev(ko, deo) {
+    const index = ko.dev.indexOf(deo.id);
+    if (index > -1) {
+      ko.dev.splice(index, 1);
+    }
+    for (e of deo.effect) {
+      if (e.val !== "mtn") {
+        change(ko, e.val, -e.ch);
+      }
+    }
+  }
+
   function change(ko, val, ch) {
     let org = ko[val];
     ko[val] += ch;
@@ -722,9 +734,9 @@ function _load() {
     let buy = [];
     let almost = [];
     for (let d of dev) {
-      if (ko.curDev.length < 1 && ko.dev.indexOf(d.id) < 0 && d.price <= money) {
+      if (ko.curDev.length < 1 && ko.dev.indexOf(d.id) < 0 && d.price <= money && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
         buy.push(d.id);
-      } else if (ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.2) {
+      } else if (ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.2 && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
         almost.push(d.id);
       }
     }
@@ -746,7 +758,12 @@ function _load() {
           break;
 
         case "hasEnd":
-          console.log(teljesSzó);
+          emo(false);
+          kerAct = true;
+          let ndod = getDev(devNo);
+          delDev(ko, ndod);
+          let msg3 = `${névelős(ndod.name, true)} át lett adva az enyészetnek.`;
+          message(msg3, okBtn);
           break;
 
         case "newDev":
@@ -755,8 +772,8 @@ function _load() {
           let ndo = getDev(devNo);
           money -= ndo.price;
           ko.curDev = [ndo.name, ndo.days];
-          let msg3 = `Elkezdtetek dolgozni ${névelős(ko.curDev[0])} fejlesztésen, ami ${ko.curDev[1]} nap múlva lesz kész.`;
-          message(msg3, goodBtn);
+          let msg4 = `Elkezdtetek dolgozni ${névelős(ko.curDev[0])} fejlesztésen, ami ${ko.curDev[1]} nap múlva lesz kész.`;
+          message(msg4, goodBtn);
           break;
 
         default:
