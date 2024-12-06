@@ -67,6 +67,8 @@ window.dev = [
   }
 ];
 
+//EVENTS
+
 window.ev = [
   {
     title: "Morog a nép",
