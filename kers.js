@@ -111,7 +111,9 @@ window.ker = [
           "Éjjelente olyan, mintha mozognának a fák! Hátborzongató!",
           "Bzzzzzzz... Mezonscanelésem szerint most már agytumorod van!",
           "Bübü! Bübü! Gurgurgul. Etejóka, pípíííí!",
-          "Egyre több itt az új faj. Vajon mutánsok vagy földönkívüliek?"]
+          "Egyre több itt az új faj. Vajon mutánsok vagy földönkívüliek?",
+          "Karácsony tájékán rémszarvasok jönnek ki az erdőből..."
+        ]
       },
       {
         cond: "had_<_-50",

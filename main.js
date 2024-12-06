@@ -19,13 +19,15 @@ function _load() {
   var badBtn = [
     {
       type: "rnd",
-      txt: "bad"
+      txt: "bad",
+      hang: false
     }
   ];
   var goodBtn = [
     {
       type: "rnd",
-      txt: "good"
+      txt: "good",
+      hang: true
     }
   ];
   page.style.display = "none";
@@ -560,12 +562,23 @@ function _load() {
   function checkCond(ko, cond) {
     let vs = cond.split('_');
     let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
+    let varvara = undefined;
+    if (ko === "global") {
+      varvara = window[vvar];
+    } else {
+      varvara = ko[vvar];
+    }
+    console.log("Varvara: ", varvara)
     if (vop === ">") {
-      if (ko[vvar] > vval) {
+      if (varvara > vval) {
+        return true;
+      }
+    } else if (vop === "<") {
+      if (varvara < vval) {
         return true;
       }
     } else {
-      if (ko[vvar] < vval) {
+      if (varvara == vval) {
         return true;
       }
     }
@@ -578,7 +591,7 @@ function _load() {
     return ne + str;
   }
 
-  function message(txt, btn) {
+  function message(txt, btn, hang = "x") {
     happen.classList.remove("nosee");
     happen.classList.add("see");
     let msgStr = `
@@ -597,12 +610,10 @@ function _load() {
 
           case "good":
             bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!"]
-            emo(true);
             break;
 
           case "bad":
             bar = ["Naba...", "Leszarom.", "Ezt érdemlik!", "Ne már!", "Mi a szösz?", "Ez van.", "Hínye!", "Bakker..."]
-            emo(true);
             break;
 
           default:
@@ -614,6 +625,12 @@ function _load() {
     }
     msgStr += `</div></div>`;
     happen.innerHTML = msgStr;
+    if (typeof hang === "boolean") {
+      emo(hang)
+    } else if (hang !== "x") {
+      sound.src = "./audio/" + hang + ".mp3";
+      sound.play();
+    }
     okBtn = [
       {
         type: "rnd",
@@ -623,25 +640,30 @@ function _load() {
     badBtn = [
       {
         type: "rnd",
-        txt: "bad"
+        txt: "bad",
+        hang: false
       }
     ];
     goodBtn = [
       {
         type: "rnd",
-        txt: "good"
+        txt: "good",
+        hang: true
       }
     ];
 
     function mesEnd(e) {
       let i = e.target.id.split("-")[1];
       let bp = btn[i];
-      if (bp.type === "rnd") {
-        happen.innerHTML = "";
-        happen.classList.remove("see");
-        happen.classList.add("nosee");
-        closeModal();
+      //effects
+      if (bp.hang !== undefined) {
+        emo(bp.hang);
       }
+      happen.innerHTML = "";
+      happen.classList.remove("see");
+      happen.classList.add("nosee");
+      closeModal();
+
     }
 
     document.querySelectorAll(".mesBtn").forEach((m) => m.addEventListener("click", mesEnd));
@@ -753,7 +775,7 @@ function _load() {
           emo(false);
           kerAct = true;
           let msg = `Meggondoltam, a francnak se kell ez ${névelős(ko.curDev[0])}!`;
-          message(msg, okBtn);
+          message(msg, okBtn, false);
           ko.curDev = [];
           break;
 
@@ -773,7 +795,7 @@ function _load() {
           money -= ndo.price;
           ko.curDev = [ndo.name, ndo.days];
           let msg4 = `Elkezdtetek dolgozni ${névelős(ko.curDev[0])} fejlesztésen, ami ${ko.curDev[1]} nap múlva lesz kész.`;
-          message(msg4, goodBtn);
+          message(msg4, goodBtn, "hammer");
           break;
 
         default:
