@@ -10,6 +10,7 @@ function _load() {
   var modal = document.getElementById("modal");
   var happen = document.getElementById("happen");
   var kerAct = false;
+  var pushMessage = [];
   var okBtn = [
     {
       type: "rnd",
@@ -235,6 +236,92 @@ function _load() {
     }
   }
 
+  function message(txt, btn, hang = "x") {
+    happen.classList.remove("nosee");
+    happen.classList.add("see");
+    let msgStr = `
+      <div id="mescard">
+        <p>${txt}</p>
+        <div id="mesBtns">
+      `;
+    for (let i = 0; i < btn.length; i++) {
+      let b = btn[i];
+      if (b.type === "rnd") {
+        let bar = ["OK"];
+        switch (b.txt) {
+          case "OK":
+            bar = ["OK", "Ez van.", "Ilyen az élet!", "Jól van az úgy.", "Helyes!", "Így van!"]
+            break;
+
+          case "good":
+            bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!"]
+            break;
+
+          case "bad":
+            bar = ["Naba...", "Leszarom.", "Ezt érdemlik!", "Ne már!", "Mi a szösz?", "Ez van.", "Hínye!", "Bakker..."]
+            break;
+
+          default:
+            break;
+        }
+        b.txt = rnd(bar);
+      }
+      msgStr += `<button class="mesBtn" id="mb-${i}">${b.txt}</button>`;
+    }
+    msgStr += `</div></div>`;
+    happen.innerHTML = msgStr;
+    if (typeof hang === "boolean") {
+      emo(hang)
+    } else if (hang !== "x") {
+      sound.src = "./audio/" + hang + ".mp3";
+      sound.play();
+    }
+    okBtn = [
+      {
+        type: "rnd",
+        txt: "OK"
+      }
+    ];
+    badBtn = [
+      {
+        type: "rnd",
+        txt: "bad",
+        hang: false
+      }
+    ];
+    goodBtn = [
+      {
+        type: "rnd",
+        txt: "good",
+        hang: true
+      }
+    ];
+
+    function mesEnd(e) {
+      let i = e.target.id.split("-")[1];
+      let bp = btn[i];
+      //effects
+      if (bp.hang !== undefined) {
+        emo(bp.hang);
+      }
+      pushMessage.shift();
+      if (pushMessage.length > 0) {
+        let m = pushMessage[0];
+        let h = m.hang ? m.hang : "x";
+        message(m.msg, m.btn, h);
+      } else {
+        happen.innerHTML = "";
+        happen.classList.remove("see");
+        happen.classList.add("nosee");
+        closeModal();
+      }
+    }
+
+    document.querySelectorAll(".mesBtn").forEach((m) => m.addEventListener("click", mesEnd));
+
+
+  }
+
   function change(ko, val, ch) {
     let org = ko[val];
     ko[val] += ch;
@@ -386,12 +473,18 @@ function _load() {
           let devi = dev.findIndex(x => x.name == ko.curDev[0]);
           let devo = dev[devi];
           let msg = `Kész lett ${névelős(devo.name)} ${ko.hely}!`;
-          message(msg, goodBtn);
+          pushMessage.push({ msg: msg, btn: goodBtn });
           ko.curDev = [];
           newDev(ko, devo);
         }
       }
     };
+
+    if (pushMessage.length > 0) {
+      let m = pushMessage[0];
+      let h = m.hang ? m.hang : "x";
+      message(m.msg, m.btn, h);
+    }
 
     updateTotals();
     pageUpdate();
@@ -589,86 +682,6 @@ function _load() {
     let ne = nagy ? "A" : "a";
     ne += (/[öüóeuioőúaéáűí]/i.test(str.charAt(0))) ? "z " : " ";
     return ne + str;
-  }
-
-  function message(txt, btn, hang = "x") {
-    happen.classList.remove("nosee");
-    happen.classList.add("see");
-    let msgStr = `
-      <div id="mescard">
-        <p>${txt}</p>
-        <div id="mesBtns">
-      `;
-    for (let i = 0; i < btn.length; i++) {
-      let b = btn[i];
-      if (b.type === "rnd") {
-        let bar = ["OK"];
-        switch (b.txt) {
-          case "OK":
-            bar = ["OK", "Ez van.", "Ilyen az élet!", "Jól van az úgy.", "Helyes!", "Így van!"]
-            break;
-
-          case "good":
-            bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!"]
-            break;
-
-          case "bad":
-            bar = ["Naba...", "Leszarom.", "Ezt érdemlik!", "Ne már!", "Mi a szösz?", "Ez van.", "Hínye!", "Bakker..."]
-            break;
-
-          default:
-            break;
-        }
-        b.txt = rnd(bar);
-      }
-      msgStr += `<button class="mesBtn" id="mb-${i}">${b.txt}</button>`;
-    }
-    msgStr += `</div></div>`;
-    happen.innerHTML = msgStr;
-    if (typeof hang === "boolean") {
-      emo(hang)
-    } else if (hang !== "x") {
-      sound.src = "./audio/" + hang + ".mp3";
-      sound.play();
-    }
-    okBtn = [
-      {
-        type: "rnd",
-        txt: "OK"
-      }
-    ];
-    badBtn = [
-      {
-        type: "rnd",
-        txt: "bad",
-        hang: false
-      }
-    ];
-    goodBtn = [
-      {
-        type: "rnd",
-        txt: "good",
-        hang: true
-      }
-    ];
-
-    function mesEnd(e) {
-      let i = e.target.id.split("-")[1];
-      let bp = btn[i];
-      //effects
-      if (bp.hang !== undefined) {
-        emo(bp.hang);
-      }
-      happen.innerHTML = "";
-      happen.classList.remove("see");
-      happen.classList.add("nosee");
-      closeModal();
-
-    }
-
-    document.querySelectorAll(".mesBtn").forEach((m) => m.addEventListener("click", mesEnd));
-
-
   }
 
   function updateSup(ko) {
