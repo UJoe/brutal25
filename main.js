@@ -1014,6 +1014,17 @@ function _load() {
         dumarr = dumarr.slice(0, 6);
       }
 
+      if (ko.dev.length > Math.random() * 5) {
+        let q = (ko.joy < 30 + Math.random() * 15 || ko.niv < 25 + Math.random() * 10) ? 0 : (ko.joy > 70 + Math.random() * 10 || ko.niv > 75 + Math.random() * 5) ? 1 : -1;
+        if (q > -1) {
+          let ds = rnd(ko.dev);
+          let dd = getDev(ds);
+          let ddStr = ko.devdum[q] + névelős(dd.name) + "!";
+          dumarr.push(ddStr);
+        }
+
+      }
+
       let dumaStr = `
       <fieldset id="dumaField">
         <legend class="kerTitle">A nép hangja</legend>

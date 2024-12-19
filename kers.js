@@ -181,7 +181,8 @@ window.ker = [
       "Itt születnek a valódi legendák és a... favágók!",
       "Az Eucharisztia tulajdonképpen a bűnbeesés megfordítása. Gondoltál már erre?",
       "Olyan volt Ádám Éva megteremtése előtt, mint Isten az ember megteremtése előtt."
-    ]
+    ],
+    devdum: ["Szerintem nem volt túl jó ötlet ", "Igazán pompás fejlesztés ez "]
   },
   {
     num: 1,
@@ -298,7 +299,8 @@ window.ker = [
       "Hogy szolgál az egészség?",
       "Dolgozunk mi mindég! De a lurkóknak mindig van pár pofonunk! Érzik is a törődést!",
       "Érik a szőlő, hajlik a vessző, bodor a levele..."
-    ]
+    ],
+    devdum: ["Egy rakás gané ez ", "Csuda jó dolog ez "]
   },
   {
     num: 2,
@@ -385,7 +387,8 @@ window.ker = [
       "Nézd! Villogó gyík! Gyerek szeret! Vegyél gyerek villogó gyík!",
       "A megvilágosodás útja olyan, mint ahogy a csiga kúszik a cseresznyefán.",
       "Készüljetek! Megrázta a hóoroszlán a bajszát. Elkezdődött..."
-    ]
+    ],
+    devdum: ["Nem jó, hanem rossz ", "Neekem tecik ez "]
   },
   {
     num: 3,
@@ -489,7 +492,8 @@ window.ker = [
       "Van vanília, tutti-frutti, karamell, rumos dió és kávé.",
       "Délutánonként mindig szundítok egyet itt a pázsiton. Most is azt tettem volna éppenséggel...",
       "Légyszi ne álld el a napot! Köszike!"
-    ]
+    ],
+    devdum: ["Semmi értelme nincs ennek ", "Hasznos dolog ez "]
   },
   {
     num: 4,
@@ -620,7 +624,8 @@ window.ker = [
       "Azt szeretem, hogy itt sok hírességgel találkozhat az ember. Banana Joe, Dundi Bandi, Dick Duck, Büdös Berci... most meg ön is!",
       "Füvet? Őőőőőő, úgy értem a kecskének...",
       "Ez egy büdös hely... egy büdös város!"
-    ]
+    ],
+    devdum: ["Elég szar ötlet volt ez ", "Király dolog ez "]
   },
   {
     num: 5,
@@ -736,7 +741,8 @@ window.ker = [
       "A friss adatok alapján valószínűleg módosítanunk kell a tervszámokat.",
       "Elnézést, hívnak... Mennyi? Add el mindet és vegyél belőle pézsma illatú gyurmát! Tutti tippet kaptam!",
       "Te mit keresel itt? Tegnap kirúgtalak! Mi az, hogy polgármester? Itt én vagyok az Area Supervisor!"
-    ]
+    ],
+    devdum: ["Alig termel üzleti értéket ", "Szignifikáns hasznot termel "]
   },
   {
     num: 6,
@@ -809,7 +815,7 @@ window.ker = [
           "Múlt héten újabb üzem zárt be! Nem lesz ez így jó...",
           "Kezd teljesen tönkremenni ez a kerület! Miért hagyja, ha maga a polgármester? Csináljon valamit!",
           "Megmondom őszintén: elfogyott a pénz. Ha nincs beruházás, nem tudunk termelni.",
-          "Nemcsak a beszállítók kifizetését, hanem már a működési költségeket sem tudjukkigazdálkosni! Tönkre fogunk menni...",
+          "Nemcsak a beszállítók kifizetését, hanem már a működési költségeket sem tudjuk kigazdálkodni! Tönkre fogunk menni...",
           "Muszáj zsebre dolgoznunk! Nem a mi hibánk...",
           "Nézzed meg ezt a rengeteg számlát! Nem az adó itt a gond, azt leszarjuk, anélkül még jobban is működünk. De ezeket ki kell fizetni, hogy ne húzzuk le a rolót!"
         ]
@@ -850,7 +856,8 @@ window.ker = [
       "Nem kell a városházának vashokedli? Rajtunk maradt 600 hokedli, mert túl korán csődbe ment a megrendelő.",
       "A raklap meg a járólap között annyi a különbség, mint a... Teszed le azt a döngölő békát, amikor hozzád beszélek! Na, itt a vége a gyárlátogatásnak!",
       "Gyere ki onnan, héééé...! Már megint egy beszorult hulla miatt kell leállítani az egész gyártósort, hogy dolgozzon így az ember?!"
-    ]
+    ],
+    devdum: ["Nem tudom, mi a fenének kellett nekünk ez ", "Frankó cucc ez "]
   },
   {
     num: 7,
@@ -968,7 +975,8 @@ window.ker = [
       "Elnézést, nem tudja merre van a Kutya Veres Kasza? Azt mondják,  van egy különleges italuk, az ászok ásza! Bazibrutál!",
       "Bocsánat, még mindig nem találom a Branyiszkó-teret. Melyik villamos megy oda?",
       "Itt a friss, meleg kakaó! Jöjjön, ha megviselte az élet brutalitása!"
-    ]
+    ],
+    devdum: ["Nem jöttünk még rá, mire jó ez ", "Az eddigi legjobbb fejlesztés "]
   },
   {
     num: 8,
@@ -1079,6 +1087,7 @@ window.ker = [
       "Újra együtt a Kalafina! Szombaton fellépnek a Rónayban!",
       "Bergersen-koncert a Rónayban! Ne hagyja ki korunk legnagyobb zeneszerzőjét!",
       "Még mindig vannak jegyek az idei Táncház-találkozóra!",
-    ]
+    ],
+    devdum: ["Nem az én ízlésemnek való ez ", "Igazán lelket melengető ez "]
   }
 ];
