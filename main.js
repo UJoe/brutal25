@@ -110,7 +110,7 @@ function _load() {
       bad: 1
     },
     {
-      name: "Ellátás",
+      name: "Fenntartás",
       val: "mtn",
       desc: "A&nbsp;lakosság&nbsp;alapellátása",
       mer: " $",
@@ -122,7 +122,7 @@ function _load() {
     {
       name: "Kiadások",
       val: "exp",
-      desc: "Ellátás&nbsp;x&nbsp;Támogatások&nbsp;+&nbsp;Fejlesztésfenntartás",
+      desc: "Fenntartás&nbsp;x&nbsp;Támogatások&nbsp;+&nbsp;Fejlesztésfenntartás",
       mer: " $",
       sum: true,
       reverse: true,
@@ -219,7 +219,9 @@ function _load() {
     ko.dev.push(deo.id);
     for (e of deo.effect) {
       if (e.val !== "mtn") {
-        change(ko, e.val, e.ch);
+        //change(ko, e.val, e.ch);
+        let ec = e.val + "C";
+        ko[ec] += e.ch;
       }
     }
   }
@@ -231,7 +233,9 @@ function _load() {
     }
     for (e of deo.effect) {
       if (e.val !== "mtn") {
-        change(ko, e.val, -e.ch);
+        //change(ko, e.val, -e.ch);
+        let ec = e.val + "C";
+        ko[ec] -= e.ch;
       }
     }
   }
@@ -324,10 +328,12 @@ function _load() {
 
   function change(ko, val, ch) {
     let org = ko[val];
+    let min = getDevs(ko.dev, val);
+    if (min < 1) min = 0;
     ko[val] += ch;
-    if (ko[val] < 1 && val.charAt(val.length - 1) !== "C") {
-      ko[val + "C"] = Math.round((0 - org) / org * 100);
-      ko[val] = 0;
+    if (ko[val] < min && val.charAt(val.length - 1) !== "C") {
+      ko[val + "C"] = Math.round((min - org) / org * 100);
+      ko[val] = min;
     }
     if (val === "pop" && ko.pop > 10000) {
       ko.popC = Math.round((10000 - org) / org * 100);
@@ -393,20 +399,31 @@ function _load() {
 
     for (ko of ker) {
       //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
+      //Épít
+      if (ko.curDev.length > 0) {
+        ko.curDev[1]--;
+        if (ko.curDev[1] === 0) {
+          let devi = dev.findIndex(x => x.name == ko.curDev[0]);
+          let devo = dev[devi];
+          let msg = `Kész lett ${névelős(devo.name)} ${ko.hely}!`;
+          pushMessage.push({ msg: msg, btn: goodBtn });
+          ko.curDev = [];
+          newDev(ko, devo);
+        }
+      }
+
       let sign = 1;
       ko.nivC += Math.round((ko.eco - 1) * 7 - (tax - 45) / (20 + Math.random() * 10));
-      if (Math.abs(ko.nivC) > 5) {
-        ko.nivC = Math.sign(ko.nivC) * 5;
-      }
+      /* if (Math.abs(ko.nivC) > 10) {
+        ko.nivC = Math.sign(ko.nivC) * 10;
+      } */
       change(ko, "niv", ko.nivC);
       ko.nivCD = ko.nivC;
 
-      let hado = ko.had;
-      let ufoo = ko.ufo;
-      let defo = ko.def;
+      let [hado, ufoo, defo] = [ko.had, ko.ufo, ko.def];
       ko.defC += Math.round(ko.mtn * (ko.defo - 1) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(1 + Math.random() * day / 12 + (ko.ufo - ko.def) / 11);
+      ko.ufoC += Math.round(1 + Math.random() * day / 10 + (ko.ufo - ko.def) / 11);
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       sign = hado === 0 ? 1 : Math.sign(hado);
@@ -434,13 +451,13 @@ function _load() {
       if (szar < 0) { szar = 0 };
 
       ko.joyC += Math.round(rendor + (ko.culto - 1) * 15 - (tax - 40) / (20 + Math.random() * 10) + (ko.niv - 50) / 15 - szar);
-      if (Math.abs(ko.joyC) > 10) {
+      /* if (Math.abs(ko.joyC) > 10) {
         ko.joyC = Math.sign(ko.joyC) * 10;
-      }
+      } */
       change(ko, "joy", ko.joyC);
       ko.joyCD = ko.joyC;
 
-      ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 10 - Math.random() * 10) / 12);
+      ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 10 - Math.random() * 10) / 12 + getDevs(ko.dev, "pop"));
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
@@ -457,7 +474,7 @@ function _load() {
       ko.exp = newExp;
       ko.expCD = ko.expC;
 
-      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.4 + ko.niv / 300) - newExp);
+      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.4 + ko.niv / 300) - newExp) + getDevs(ko.dev, "pro");
       sign = ko.pro === 0 ? 1 : Math.sign(ko.pro);
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100 * sign);
       ko.pro = newPro;
@@ -465,18 +482,6 @@ function _load() {
 
       for (p in ko) {
         if (p.charAt(p.length - 1) === "C") ko[p] = 0;
-      }
-
-      if (ko.curDev.length > 0) {
-        ko.curDev[1]--;
-        if (ko.curDev[1] === 0) {
-          let devi = dev.findIndex(x => x.name == ko.curDev[0]);
-          let devo = dev[devi];
-          let msg = `Kész lett ${névelős(devo.name)} ${ko.hely}!`;
-          pushMessage.push({ msg: msg, btn: goodBtn });
-          ko.curDev = [];
-          newDev(ko, devo);
-        }
       }
     };
 
@@ -904,7 +909,7 @@ function _load() {
               <tr>
                 <th>Név + Leírás</th>
                 <th>Hatások</th>
-                <th>Költség</th>
+                <th>Indítás</th>
                 <th>Akció</th>
               </tr>
               `;
@@ -924,7 +929,7 @@ function _load() {
             `;
           }
           devStr += `</table></td>
-            <td class="gold">${bigNumber(o.price, "$")}</td>
+            <td class="gold center">${bigNumber(o.price, "$")}<br><span class="good">${o.days} nap</span></td>
             <td class="centralCont">
               <button class="devBtn goodB" id="newDev-${o.id}">Legyen!</button>
             </td>

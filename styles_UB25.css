@@ -352,6 +352,7 @@ h1 {
 	border: 2px outset darkolivegreen;
 	font-weight: 200;
 	vertical-align: bottom;
+	text-align: center;
 }
 
 #statField {
