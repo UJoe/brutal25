@@ -776,7 +776,7 @@ function _load() {
     for (let d of dev) {
       if (ko.curDev.length < 1 && ko.dev.indexOf(d.id) < 0 && d.price <= money && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
         buy.push(d.id);
-      } else if (ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.2 && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
+      } else if (ko.curDev[0] !== d.name && ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.2 && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
         almost.push(d.id);
       }
     }
@@ -939,7 +939,7 @@ function _load() {
       }
 
       if (almostDO.length > 0) {
-        devStr += `<br><div class="devLabel" id="dlAlmost">Érdemes gyűjteni rá:</div>
+        devStr += `<br><div class="devLabel" id="dlAlmost">Fontolgatjátok:</div>
             <table class="devTable"> 
               <tr>
                 <th>Név</th>
