@@ -110,7 +110,7 @@ function _load() {
       bad: 1
     },
     {
-      name: "Fenntartás",
+      name: "Fenntart",
       val: "mtn",
       desc: "A&nbsp;lakosság&nbsp;alapellátása",
       mer: " $",
@@ -120,7 +120,7 @@ function _load() {
       bad: 1000
     },
     {
-      name: "Kiadások",
+      name: "Kiadás",
       val: "exp",
       desc: "Fenntartás&nbsp;x&nbsp;Támogatások&nbsp;+&nbsp;Fejlesztésfenntartás",
       mer: " $",
@@ -130,9 +130,9 @@ function _load() {
       bad: 2000
     },
     {
-      name: "Idegenek",
+      name: "Idegen",
       val: "ufo",
-      desc: "Idegen bűnözés",
+      desc: "Idegenek&nbsp;által&nbsp;okozott&nbsp;károk",
       mer: " &#128369;",
       sum: true,
       reverse: true,
@@ -218,7 +218,7 @@ function _load() {
   function newDev(ko, deo) {
     ko.dev.push(deo.id);
     for (e of deo.effect) {
-      if (e.val !== "mtn") {
+      if (e.val !== "mtn" && e.val !== "pro" && e.val !== "pop") {
         //change(ko, e.val, e.ch);
         let ec = e.val + "C";
         ko[ec] += e.ch;
@@ -232,7 +232,7 @@ function _load() {
       ko.dev.splice(index, 1);
     }
     for (e of deo.effect) {
-      if (e.val !== "mtn") {
+      if (e.val !== "mtn" && e.val !== "pro" && e.val !== "pop") {
         //change(ko, e.val, -e.ch);
         let ec = e.val + "C";
         ko[ec] -= e.ch;
@@ -369,7 +369,7 @@ function _load() {
 
   function emo(happy) {
     let soundN = happy ? "happy" : "angry";
-    let dice = 1 + Math.floor(Math.random() * 6);
+    let dice = 1 + Math.floor(Math.random() * 7);
     sound.src = "./audio/" + soundN + dice + ".mp3";
     sound.play();
   }
@@ -658,7 +658,7 @@ function _load() {
 
 
   function checkCond(ko, cond) {
-    let vs = cond.split('_');
+    let vs = cond.split(' ');
     let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
     let varvara = undefined;
     if (ko === "global") {

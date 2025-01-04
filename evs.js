@@ -1,7 +1,7 @@
 window.ev = [
   {
     title: "Morog a nép",
-    text: "",
+    text: "A nép ",
     cond: "",
     chance: .5,
     hang: "",

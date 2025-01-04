@@ -102,10 +102,10 @@ window.ker = [
     eco: .7,
     defo: 1,
     culto: 1,
-    szar: "pop_>_3000",
+    szar: "pop > 3000",
     vélemény: [
       {
-        cond: "ufo_>_500",
+        cond: "ufo > 500",
         duma: ["Kicsit furák ezek az erdei lények. Neked nem?",
           "kjh[ÄfsdfđĐ[đĐ... Én... vagyok... ihbdifurigk... Nem.",
           "Éjjelente olyan, mintha mozognának a fák! Hátborzongató!",
@@ -116,7 +116,7 @@ window.ker = [
         ]
       },
       {
-        cond: "had_<_-50",
+        cond: "had < -50",
         duma: ["Félek tőlük! Rettegek! Ott vannak mindenhol!",
           "Eleinte még aranyosak voltak ezek a lények, de most már egyre agresszívebbek!",
           "Itt van például ez a mosolygós kis fa... Ááááá! Letépte a karom!!! A barom!!!",
@@ -125,7 +125,7 @@ window.ker = [
           "Meghackelik a gondolatainkat és olyan büdöseket finganak, hogy el lehet tőle kárhozni!"]
       },
       {
-        cond: "joy_<_25",
+        cond: "joy < 25",
         duma: ["Ez egy bűnös hely. Egy bűnös város.",
           "Én már csak egy megfelelő fát meg kötelet keresek...",
           "Utállak téged! Bíztunk benned, de csalódtunk! Takarodj!",
@@ -133,31 +133,31 @@ window.ker = [
           "Ez korábban egy üde, kellemes hely volt, de tönkretetted!"]
       },
       {
-        cond: "niv_<_20",
+        cond: "niv < 20",
         duma: ["No money, no problem!",
           "A romlott társadalom anyagilag tönkretett. Most itt próbálok békére találni.",
           "Éppenséggel élhetnénk itt is egy kicsit magasabb színvonalon. Ez még nem a mélydzsungel!",
           "Ennyi pénzből nem lehet utánpótlást nevelni! Mi lesz így a sporttal?"]
       },
       {
-        cond: "pop_<_100",
+        cond: "pop < 100",
         duma: ["Jó ez a csend és nyugalom, de lassan kihalunk...",
           "Mindig erre a magányra vágytam!",
           "Jé, egy ember!"]
       },
       {
-        cond: "def_>_100",
+        cond: "def > 100",
         duma: ["Minek ide ennyi rendőr? Itt mi békében élünk az erdei lényekkel!",
           "A sok egyenruhás fickó már veszélyezteti az erdő szabad világát!"]
       },
       {
-        cond: "pop_>_3000",
+        cond: "pop > 3000",
         duma: ["Sosem volt ilyen tömegnyomor itt!",
           "Nem lehet már nyugodtan szarni a bokorban, annyian vannak!",
           "Elveszett a régi csend és nyugalom!"]
       },
       {
-        cond: "joy_>_75",
+        cond: "joy > 75",
         duma: ["Itt végre megtaláltam a belső békém.",
           "Sej-haj, oly vidám a vándor élet!",
           "Jöjjön, mutatok egy gyönyörű tájat!",
@@ -223,10 +223,10 @@ window.ker = [
     eco: .7,
     defo: .7,
     culto: 1,
-    szar: "niv_>_75",
+    szar: "niv > 75",
     vélemény: [
       {
-        cond: "had_<_-5",
+        cond: "had < -5",
         duma: ["Jól vagyunk. Csak néha jönnek óriások le a hegyről.",
           "Pitymallatkor fura hangok gyünnek az erdőbű...",
           "Agyon kéne vágni ezeket az óriásokat! Én mondom, ezek nem hoznak semmi jót!",
@@ -236,7 +236,7 @@ window.ker = [
         ]
       },
       {
-        cond: "had_>_100",
+        cond: "had > 100",
         duma: [
           "Hát, most már jó. Nem nagyon gyünnek már azok a fene nagy óriások!",
           "Amikor az a pandúr jól nyakoncsípte azt a pomogácsot, az betyáros volt ám!",
@@ -244,7 +244,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_<_300",
+        cond: "pop < 300",
         duma: [
           "Fogyunk, kérem, egyre csak fogyunk!",
           "Nem bírunk ilyen kevesen szántani! Megdöglött a Riska is! Mi lesz igy vélünk?",
@@ -253,7 +253,7 @@ window.ker = [
         ]
       },
       {
-        cond: "niv_<_20",
+        cond: "niv < 20",
         duma: [
           "Vagyogatunk. Szegínyesön, de böcsülettöl!",
           "Megkínálnám szívesen, de nincs mibűl!",
@@ -262,7 +262,7 @@ window.ker = [
         ]
       },
       {
-        cond: "culto_>_1",
+        cond: "culto > 1",
         duma: [
           "Jobb az oktatás, mióta ön a polgármester! A gyerekek szépen tanulnak! Talán már nem kell kapálniok!",
           "Felpezsdült itt az élet, mióta ön a polgármester. Köszönjük!",
@@ -274,7 +274,7 @@ window.ker = [
         ]
       },
       {
-        cond: "niv_>_75",
+        cond: "niv > 75",
         duma: [
           "Mióta bejöttek ezek a kütymük, a gyerekek folyton csak azokat nyomkodják, a tyúkok meg éheznek!",
           "Egyszerű élethez vagyunk mi hozzászokva, nem ehhez a sok... csilivilihez!",
@@ -283,7 +283,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_>_75",
+        cond: "joy > 75",
         duma: [
           "Jól vagyunk, az anyja keservit, jól!",
           "Ihaj-csuhaj, sallárom! Lett már nékem talárom!",
@@ -341,10 +341,10 @@ window.ker = [
     eco: 1,
     defo: .7,
     culto: 1,
-    szar: "def_>_500",
+    szar: "def > 500",
     vélemény: [
       {
-        cond: "had_<_-100",
+        cond: "had < -100",
         duma: ["Csen Jüt elvitték ufók.",
           "Vannak zöld ember ott kert. Kici, mint mi, cak zöld.",
           "Mi kérdez zöld ember új recept. Te kóstol? Kicit édes, kicit szavanyú, de már miénk.",
@@ -352,7 +352,7 @@ window.ker = [
         ]
       },
       {
-        cond: "def_>_500",
+        cond: "def > 500",
         duma: [
           "Sok rendőr és katona! Nem jó üzlet. Nem jó.",
           "Inkább zöld ember, mint nagy rendőr! Mi fél.",
@@ -361,7 +361,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_<_1000",
+        cond: "pop < 1000",
         duma: [
           "Egyre kevesebb ázsiai itt. Mi lesz, ha mi elfogy?",
           "Régen sokkal több ember itt! Akkor ment üzlet jól!",
@@ -369,7 +369,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pro_<_1000",
+        cond: "pro < 1000",
         duma: [
           "Egyre kevesebb pénz! Senki vesz gumi dugó! Nem kell gumi dugó? Óccó.",
           "Nézd, van nekem szög. Nem rozda az, feszték! Színes szög. Cak száz! Jó szög!",
@@ -429,10 +429,10 @@ window.ker = [
     eco: 1,
     defo: 1,
     culto: 1,
-    szar: "def_>_300",
+    szar: "def > 300",
     vélemény: [
       {
-        cond: "had_<_-10",
+        cond: "had < -10",
         duma: [
           "Mindenféle bizarr lények akarnak itt focizni! A három lábúak kicseleznek mindenkit, ha meg azok hatcsápúak beállnak a kapuba, senki nem tud nekik gólt lőni!",
           "Szerintem nem normális, hogy egy faszerű lény gyökeret ver a hinta alatt, bármennyire is cukinak tartja Sacika!",
@@ -443,7 +443,7 @@ window.ker = [
         ]
       },
       {
-        cond: "def_>_300",
+        cond: "def > 300",
         duma: [
           "Ide az ember azért jönne, hogy szórakozzon, de tele vagyunk már katonákkal!",
           "Minek ide ennyi rendőr? Ez egy békés park, kérem!",
@@ -453,7 +453,7 @@ window.ker = [
         ]
       },
       {
-        cond: "niv_<_30",
+        cond: "niv < 30",
         duma: [
           "Nézd ezt a düledező csúszdát! Nem merem már a gyereket felengedni, mert még összeseik alatta!",
           "Jó kis játszótér volt ez, de hagyták tönkremenni! Miért nem tesz valamit, polgármester?",
@@ -465,7 +465,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_<_35",
+        cond: "joy < 35",
         duma: [
           "Tököm kivan ettől a géptől! Na... nem azért... De ez életveszélyes!",
           "Sok itt a vandál! Nézze meg ezt a padot is! Tele vagdosták sátánista jelképekkel!",
@@ -474,7 +474,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_>_60",
+        cond: "joy > 60",
         duma: [
           "Mindig ide jövünk ki a haverokkal suli helyett! Hozzuk a csajokat is!",
           "Jó ide kijönni! Sok a sportolási lehetőség.",
@@ -534,10 +534,10 @@ window.ker = [
     eco: 1,
     defo: 1.3,
     culto: 1,
-    szar: "had_<_40",
+    szar: "had < 40",
     vélemény: [
       {
-        cond: "had_<_40",
+        cond: "had < 40",
         duma: ["Bitang Botond idejében ez a kerület volt a legbiztonságosabb. Most meg alig merek kimenni már az utcára!",
           "Hihetetlenül szemtelenek ezek a lények! Már ide is bemerészkednek!",
           "Korábban minden sarkon állt egy rendőr, most meg alig látni őket! Hova lesz így a közbiztonság?",
@@ -547,14 +547,14 @@ window.ker = [
         ]
       },
       {
-        cond: "niv_>_85",
+        cond: "niv > 85",
         duma: [
           "Jól csinálod, polgi! Tényleg jobban élünk, mint Boti alatt!",
           "Köszönjük, amit a városért tesz!",
         ]
       },
       {
-        cond: "niv_<_40",
+        cond: "niv < 40",
         duma: [
           "Boti idejében jobban éltünk...",
           "Monnyonle!",
@@ -567,7 +567,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_>_9000",
+        cond: "pop > 9000",
         duma: [
           "Nagyon zsúfolt lett a belváros! Aki tud, vidékre menekül.",
           "Ekkora tömegben még fingani sem tud az ember kényelmesen!",
@@ -575,7 +575,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_<_1000",
+        cond: "pop < 1000",
         duma: [
           "Nem gondolod, hogy ciki, hogy ilyen kevesen maradtak a belvárosban?",
           "Nincs még egy olyan város, aminek ennyire kihalt lenne a központja! Nincs itt már semmi!",
@@ -583,7 +583,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_<_35",
+        cond: "joy < 35",
         duma: [
           "Monnyonle!",
           "Csináljon már valamit, ne csak itt lófráljon az utcákon! Nincs dolga?",
@@ -594,7 +594,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_>_70",
+        cond: "joy > 70",
         duma: [
           "Nézd már, ez tényleg a polgi! De jó!",
           "Mi örülünk, hogy ön lett a polgármester! Éljen, éljen, éljen!",
@@ -604,7 +604,7 @@ window.ker = [
         ]
       },
       {
-        cond: "defo_<_1",
+        cond: "defo < 1",
         duma: [
           "Végre már eltűntek Boti bérencei!",
           "Örülök, hogy nem nézik már minden mozdulatomat a rendőrök! Gengszter volt mindegyik!",
@@ -666,10 +666,10 @@ window.ker = [
     eco: 1.3,
     defo: 1.3,
     culto: 1,
-    szar: "niv_<_50",
+    szar: "niv < 50",
     vélemény: [
       {
-        cond: "niv_<_50",
+        cond: "niv < 50",
         duma: [
           "Kezd teljesen lezülleni ez a kerület...",
           "Már a shortolás sem ment meg minket! Mi van ebben a kerületben?!",
@@ -683,7 +683,7 @@ window.ker = [
         ]
       },
       {
-        cond: "had_<_45",
+        cond: "had < 45",
         duma: ["Elég lazán veszik itt a biztonságot...",
           "Hova tűntek a biztonsági őrök? Ez üzleti kockázat!!",
           "Képtelen az önkormányzat megvédeni a jogos tulajdont?!",
@@ -692,7 +692,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pro_<_2500",
+        cond: "pro < 2500",
         duma: [
           "Újabb recesszió van most. Sötét a helyzet, de próbálunk valamit kitalálni.",
           "A teljes árbevételünk 20%-kal csökkent a tavalyi év azonos időszakához képest.",
@@ -703,7 +703,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_<_40",
+        cond: "joy < 40",
         duma: [
           "Mi értelme van annak, amit csinálunk? Nem csinálunk semmit!",
           "Már a bulik sem dobnak fel. Csupa képmutató vigyorgó alak!",
@@ -713,7 +713,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_<_1000",
+        cond: "pop < 1000",
         duma: [
           "Innen mindenki csak menekül!",
           "Tökretettük a konkurenciát, hehe!",
@@ -724,7 +724,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pro_>_5000",
+        cond: "pro > 5000",
         duma: [
           "Virágzik az üzlet, a mutatóink az eget verdesik!",
           "Felvirágoztattam apám vállalkozását. Lassan mindenki tőlünk vásárol mungóbabot!",
@@ -783,10 +783,10 @@ window.ker = [
     eco: 1.3,
     defo: .7,
     culto: .7,
-    szar: "pro_<_1500",
+    szar: "pro < 1500",
     vélemény: [
       {
-        cond: "niv_<_15",
+        cond: "niv < 15",
         duma: [
           "Elég nehéz itt az élet, remélem a gyerekeim el tudnak költözni egy jobb helyre!",
           "Itt csak megdögleni lehet...",
@@ -799,7 +799,7 @@ window.ker = [
         ]
       },
       {
-        cond: "had_<_10",
+        cond: "had < 10",
         duma: ["Aszongyák, az éjjelesek közül hármat fura lények raboltak el az utcán! Nagyobb biztonság kellene!",
           "Lopják az alkatrészeket! Nem tudom, kik, de ezek nem a mieink, az biztos!",
           "Múltkor eltűnt egy egész marógép. Nem az ajtón vitték ki, a plafonon volt egy luk! Hallott már ilyet?",
@@ -810,7 +810,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pro_<_1500",
+        cond: "pro < 1500",
         duma: [
           "Múlt héten újabb üzem zárt be! Nem lesz ez így jó...",
           "Kezd teljesen tönkremenni ez a kerület! Miért hagyja, ha maga a polgármester? Csináljon valamit!",
@@ -821,7 +821,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_<_1200",
+        cond: "pop < 1200",
         duma: [
           "Nagyon fogy a munkaerő! Már mindenki három műszakban dolgozik egyszerre! Nem állhatunk le!",
           "Ilyen kevés emberrel nem tudunk gazdaságosn üzemelni. A gépeket is kezelni kell valakinek!",
@@ -832,7 +832,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pro_>_3000",
+        cond: "pro > 3000",
         duma: [
           "Fantasztikusan megy az üzlet! E hónapban újabb termékekkel bővült a kínálatunk!",
           "Már nemcsak vasrugókat gyártunk, hanem vasmacskákat is! Apám, ha még élne, büszke lenne rám!",
@@ -898,10 +898,10 @@ window.ker = [
     eco: 1,
     defo: 1,
     culto: .7,
-    szar: "pop_<_1500",
+    szar: "pop < 1500",
     vélemény: [
       {
-        cond: "niv_<_30",
+        cond: "niv < 30",
         duma: [
           "Nem lehet megélni itt ennyi nyugdíjból, kérem!",
           "Ágyámá egy kis pízt! Há visszáádom hónap! Ne csináld mán!",
@@ -911,7 +911,7 @@ window.ker = [
         ]
       },
       {
-        cond: "ufo_>_50",
+        cond: "ufo > 50",
         duma: [
           "Nem merem már Pistikét egyedül leküldeni a játszótérre. Mindenféle fura alak molesztálja a gyerekeket a csápjaikkal!",
           "Biziclop! Én barátságos ufó. Nyüzemüze főzelékekék...",
@@ -922,7 +922,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_<_1500",
+        cond: "pop < 1500",
         duma: [
           "Nem tudom, mi van, de egyre fogynak az emberek. Vagy meghalnak, vagy elköltöznek a más... más világra... nem tudom.",
           "Én csak azt tudom, hogy régen sokan voltunk, most meg mint az ujjam! Nem jó ez, akárhogy is.",
@@ -933,7 +933,7 @@ window.ker = [
         ]
       },
       {
-        cond: "pop_>_8000",
+        cond: "pop > 8000",
         duma: [
           "Kicsi zsúfolt lett már ez a lakótelep! Mintha hangyák élnének itt.",
           "Annyi gyerek van már a játszótéren, hogy azt se tudom, melyik az enyém!",
@@ -944,7 +944,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_>_80",
+        cond: "joy > 80",
         duma: [
           "Nagyon szeretjük mi a polgármestert! Egy aranyember!",
           "Sokkal boldogabbak vagyunk, mióta te vezeted a várost! Köszönjük!",
@@ -955,7 +955,7 @@ window.ker = [
         ]
       },
       {
-        cond: "joy_<_20",
+        cond: "joy < 20",
         duma: [
           "Mi van, köcsög? Te nekem ne dumálj, mert kitépem a gigád!",
           "Hogy mi a problémánk? Soroljam?! Egyébként se érdekli...",
@@ -1017,10 +1017,10 @@ window.ker = [
     eco: 1.3,
     defo: 1,
     culto: 1.3,
-    szar: "joy_<_50",
+    szar: "joy < 50",
     vélemény: [
       {
-        cond: "culto_<_1.1",
+        cond: "culto < 1.1",
         duma: [
           "Kultúra nélkül elvész a nemzet!",
           "Egyre több a műveletlen tuskó. Még Boti idejében is jobb volt a helyzet!",
@@ -1035,7 +1035,7 @@ window.ker = [
         ]
       },
       {
-        cond: "culto_<_1",
+        cond: "culto < 1",
         duma: [
           "Szégyen, hogy ennyire nem támogatják a kultúrát!",
           "Zene nélkül tényleg nem lehet élni... DURR!",
@@ -1047,7 +1047,7 @@ window.ker = [
       },
 
       {
-        cond: "joy_<_50",
+        cond: "joy < 50",
         duma: [
           "Haldoklik ez a kerület... Még Boti idejében is sokkal pezsgőbb volt az élet!",
           "Már a fiatalok is csak pusztítják önmagukat. Szipu, Instagram, pálinka... Nincs életcéljuk!",
@@ -1056,7 +1056,7 @@ window.ker = [
         ]
       },
       {
-        cond: "niv_<_35",
+        cond: "niv < 35",
         duma: [
           "No money, no problem!",
           "Háre Krisna, háre rámmá, Krisna Krisna, háre háre!",
@@ -1067,7 +1067,7 @@ window.ker = [
         ]
       },
       {
-        cond: "def_>_100",
+        cond: "def > 100",
         duma: [
           "Őrület, hogy mindenhol csak a biztonsági őrök vannak! Megfojtják az embert!",
           "Már egy múzeumba vagy koncertre se lehet menni anélkül, hogy kipakolnák a táskánkat!",
