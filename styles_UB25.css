@@ -463,6 +463,7 @@ li {
 .devSub {
 	font-size: 1.1em;
 	color: oldlace;
+	text-shadow: black 2px 1px;
 }
 
 .devLabel {

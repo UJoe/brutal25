@@ -825,10 +825,11 @@ function _load() {
       let hasDO = getAllDevs(ko.dev);
       let buyDO = getAllDevs(buy);
       let almostDO = getAllDevs(almost);
+      let proci = ko.pro > 0 ? "good" : ko.pro < 0 ? "bad" : "neutral";
       devStr += `<fieldset id="devField">
         <legend class="kerTitle">Fejlesztések</legend>
-        <div class="devSub"><i>Pénz:</i> <b>${bigNumber(money, "$")}</b></div>
-        <div class="devSub"><i>Profit:</i> <b>${disNumber(ko.pro)} $</b></div>
+        <div class="devSub"><i>Pénz:</i> <b class="gold">${bigNumber(money, "$")}</b></div>
+        <div class="devSub"><i>Profit:</i> <b class=${proci}>${disNumber(ko.pro)} $</b></div>
         <br>
         `;
 
