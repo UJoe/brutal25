@@ -42,7 +42,6 @@ function _load() {
   window.money = 10000;
   window.trophy = [];
   window.day = 1;
-  window.allEvents = [];
   window.rnd = (arr) => arr[Math.floor(Math.random() * arr.length)];
   window.selector = [
     {
@@ -304,10 +303,19 @@ function _load() {
     function mesEnd(e) {
       let i = e.target.id.split("-")[1];
       let bp = btn[i];
-      //effects
+      sound.pause();
       if (bp.hang !== undefined) {
         emo(bp.hang);
       }
+      if (bp.txt === "bad") {
+        ko.joyC -= Math.round(1.25 + Math.random())
+      }
+      if (bp.type === "change") {
+        for (c of bp.change) {
+          console.log(c);
+        }
+      }
+
       pushMessage.shift();
       if (pushMessage.length > 0) {
         let m = pushMessage[0];
@@ -483,7 +491,21 @@ function _load() {
       for (p in ko) {
         if (p.charAt(p.length - 1) === "C") ko[p] = 0;
       }
+
+      //EVENTS
+      for (e of evs) {
+        if (checkCond(ko, e.cond) && e.chance >= Math.random()) {
+          pushMessage.push({
+            msg: e.title + " " + ko.hely + "!",
+            btn: e.btns,
+            hang: e.hang
+          });
+        }
+      }
     };
+
+
+
 
     if (pushMessage.length > 0) {
       let m = pushMessage[0];
@@ -666,7 +688,6 @@ function _load() {
     } else {
       varvara = ko[vvar];
     }
-    console.log("Varvara: ", varvara)
     if (vop === ">") {
       if (varvara > vval) {
         return true;
@@ -995,7 +1016,8 @@ function _load() {
     function visit() {
       //lincs!
       kerAct = true;
-      change(ko, "joy", 1);
+      //change(ko, "joy", 1);
+      ko.joyC++;
       let dumarr = [];
       for (v of ko.vélemény) {
         if (checkCond(ko, v.cond)) {

@@ -1,10 +1,9 @@
-window.ev = [
+window.evs = [
   {
-    title: "Morog a nép",
-    text: "A nép ",
-    cond: "",
-    chance: .5,
-    hang: "",
+    title: "Tüntet ellened és lázong a nép",
+    cond: "joy < 25",
+    chance: .4,
+    hang: "angryCity",
     btns: [
       {
         type: "rnd",
@@ -14,6 +13,7 @@ window.ev = [
       {
         type: "change",
         txt: "Pénzt szórsz közéjük",
+        hang: true,
         change: [
           {
             global: true,
