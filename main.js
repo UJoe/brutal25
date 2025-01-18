@@ -5,10 +5,13 @@ function _load() {
   sound.volume = .6;
   music.loop = true;
   sound.loop = false;
+  var timo;
+  var timo2;
   var main = document.getElementById("main");
   var page = document.getElementById("page");
   var modal = document.getElementById("modal");
   var happen = document.getElementById("happen");
+  var eftable = document.getElementById("fly");
   var kerAct = false;
   var pushMessage = [];
   var okBtn = [
@@ -44,6 +47,10 @@ function _load() {
   window.day = 1;
   window.rnd = (arr) => arr[Math.floor(Math.random() * arr.length)];
   window.selector = [
+    {
+      name: "Pénz",
+      val: "money",
+    },
     {
       name: "Adó",
       val: "tax",
@@ -191,6 +198,11 @@ function _load() {
     return dev[di];
   }
 
+  function getKob(n) {
+    let ki = ker.findIndex(x => x.num === n);
+    return ker[ki];
+  }
+
   function getDevs(darr, val) {
     if (darr.length < 1) return 0;
     let sum = 0;
@@ -239,7 +251,8 @@ function _load() {
     }
   }
 
-  function message(txt, btn, hang = "x") {
+  function message(txt, kid, btn, hang = "x") {
+    let kob = getKob(kid);
     happen.classList.remove("nosee");
     happen.classList.add("see");
     let msgStr = `
@@ -249,6 +262,7 @@ function _load() {
       `;
     for (let i = 0; i < btn.length; i++) {
       let b = btn[i];
+      let bt = "";
       if (b.type === "rnd") {
         let bar = ["OK"];
         switch (b.txt) {
@@ -261,15 +275,17 @@ function _load() {
             break;
 
           case "bad":
-            bar = ["Naba...", "Leszarom.", "Ezt érdemlik!", "Ne már!", "Mi a szösz?", "Ez van.", "Hínye!", "Bakker..."]
+            bar = ["Naba...", "Leszarom.", "Megérdemlik.", "Ne már!", "Mi a szösz?", "Ez van.", "Hínye!", "Bakker...", "Na és?"]
             break;
 
           default:
             break;
         }
-        b.txt = rnd(bar);
+        bt = rnd(bar);
+      } else {
+        bt = b.txt;
       }
-      msgStr += `<button class="mesBtn" id="mb-${i}">${b.txt}</button>`;
+      msgStr += `<button class="mesBtn" id="mb-${i}">${bt}</button>`;
     }
     msgStr += `</div></div>`;
     happen.innerHTML = msgStr;
@@ -279,26 +295,6 @@ function _load() {
       sound.src = "./audio/" + hang + ".mp3";
       sound.play();
     }
-    okBtn = [
-      {
-        type: "rnd",
-        txt: "OK"
-      }
-    ];
-    badBtn = [
-      {
-        type: "rnd",
-        txt: "bad",
-        hang: false
-      }
-    ];
-    goodBtn = [
-      {
-        type: "rnd",
-        txt: "good",
-        hang: true
-      }
-    ];
 
     function mesEnd(e) {
       let i = e.target.id.split("-")[1];
@@ -308,19 +304,57 @@ function _load() {
         emo(bp.hang);
       }
       if (bp.txt === "bad") {
-        ko.joyC -= Math.round(1.25 + Math.random())
+        kob.joyC -= Math.round(1.25 + Math.random())
       }
       if (bp.type === "change") {
+        let efStr = `<tr class="neutral">
+          <th colspan="2">${kob.name}</th>
+        </tr>`;
         for (c of bp.change) {
-          console.log(c);
+          let ccc = eval(c.ch);
+          let cc = ccc < 0 ? "bad" : ccc > 0 ? "good" : "neutral";
+          let [cval, bal] = "";
+          let jobb = disNumber(ccc);
+          if (c.val === "money" || c.val === "tax") {
+            cval = c.val;
+            bal = valToName(cval);
+            window[cval] += ccc;
+          } else {
+            bal = valToName(c.val);
+            cval = c.val + "C";
+            kob[cval] += ccc;
+          }
+          efStr += `
+              <tr>
+                <td>${bal}:</td>
+                <td class=${cc}>${jobb}</td>
+              </tr>
+            `;
         }
+        eftable.style.left = Math.round(40 + Math.random() * 20) + "vw";
+        eftable.style.top = Math.round(40 + Math.random() * 20) + "vh";
+        eftable.innerHTML = efStr;
+        eftable.classList.remove("effKi");
+        eftable.classList.add("effBe");
+        clearTimeout(timo);
+        clearTimeout(timo2);
+        eftable.style.display = "table";
+        timo = setTimeout(() => {
+          eftable.classList.remove("effBe");
+          eftable.classList.add("effKi");
+          eftable.style.left = Math.round(40 + Math.random() * 20) + "vw";
+          eftable.style.top = Math.round(40 + Math.random() * 20) + "vh";
+        }, 2000);
+        timo2 = setTimeout(() => {
+          eftable.style.display = "none";
+        }, 3000);
       }
 
       pushMessage.shift();
       if (pushMessage.length > 0) {
         let m = pushMessage[0];
         let h = m.hang ? m.hang : "x";
-        message(m.msg, m.btn, h);
+        message(m.msg, m.id, m.btn, h);
       } else {
         happen.innerHTML = "";
         happen.classList.remove("see");
@@ -355,9 +389,10 @@ function _load() {
   }
 
   function bigNumber(x, y = "") {
-    if (x >= 1000000000) return Math.floor(x / 1000000000) + "B&nbsp;" + y;
-    if (x >= 1000000) return Math.floor(x / 1000000) + "M&nbsp;" + y;
-    if (x >= 2000) return x.toLocaleString() + "&nbsp;" + y;
+    let ax = Math.abs(x);
+    if (ax >= 1000000000) return Math.floor(x / 1000000000) + "B&nbsp;" + y;
+    if (ax >= 1000000) return Math.floor(x / 1000000) + "M&nbsp;" + y;
+    if (ax >= 2000) return x.toLocaleString() + "&nbsp;" + y;
     if (x < 0) {
       switch (y) {
         case "$":
@@ -373,7 +408,8 @@ function _load() {
     return x + "&nbsp;" + y;
   }
 
-  var disNumber = (x) => x > 0 ? "+" + x : x < 0 ? x.toString() : "-";
+  var disNumber = (x) =>
+    x > 0 ? "+" + bigNumber(x) : x < 0 ? bigNumber(x) : "-";
 
   function emo(happy) {
     let soundN = happy ? "happy" : "angry";
@@ -414,7 +450,11 @@ function _load() {
           let devi = dev.findIndex(x => x.name == ko.curDev[0]);
           let devo = dev[devi];
           let msg = `Kész lett ${névelős(devo.name)} ${ko.hely}!`;
-          pushMessage.push({ msg: msg, btn: goodBtn });
+          pushMessage.push({
+            msg: msg,
+            id: ko.num,
+            btn: goodBtn
+          });
           ko.curDev = [];
           newDev(ko, devo);
         }
@@ -497,6 +537,7 @@ function _load() {
         if (checkCond(ko, e.cond) && e.chance >= Math.random()) {
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
+            id: ko.num,
             btn: e.btns,
             hang: e.hang
           });
@@ -510,7 +551,7 @@ function _load() {
     if (pushMessage.length > 0) {
       let m = pushMessage[0];
       let h = m.hang ? m.hang : "x";
-      message(m.msg, m.btn, h);
+      message(m.msg, m.id, m.btn, h);
     }
 
     updateTotals();
@@ -814,7 +855,7 @@ function _load() {
           emo(false);
           kerAct = true;
           let msg = `Meggondoltam, a francnak se kell ez ${névelős(ko.curDev[0])}!`;
-          message(msg, okBtn, false);
+          message(msg, ko.num, okBtn, false);
           ko.curDev = [];
           break;
 
@@ -824,7 +865,7 @@ function _load() {
           let ndod = getDev(devNo);
           delDev(ko, ndod);
           let msg3 = `${névelős(ndod.name, true)} át lett adva az enyészetnek.`;
-          message(msg3, okBtn);
+          message(msg3, ko.num, okBtn);
           break;
 
         case "newDev":
@@ -834,7 +875,7 @@ function _load() {
           money -= ndo.price;
           ko.curDev = [ndo.name, ndo.days];
           let msg4 = `Elkezdtetek dolgozni ${névelős(ko.curDev[0])} fejlesztésen, ami ${ko.curDev[1]} nap múlva lesz kész.`;
-          message(msg4, goodBtn, "hammer");
+          message(msg4, ko.num, goodBtn, "hammer");
           break;
 
         default:
@@ -849,8 +890,8 @@ function _load() {
       let proci = ko.pro > 0 ? "good" : ko.pro < 0 ? "bad" : "neutral";
       devStr += `<fieldset id="devField">
         <legend class="kerTitle">Fejlesztések</legend>
-        <div class="devSub"><i>Pénz:</i> <b class="gold">${bigNumber(money, "$")}</b></div>
-        <div class="devSub"><i>Profit:</i> <b class=${proci}>${disNumber(ko.pro)} $</b></div>
+        <div class="devSub"><i>A város pénze:</i> <b class="aqua">${bigNumber(money, "$")}</b></div>
+        <div class="devSub"><i>Kerületi profit:</i> <b class=${proci}>${disNumber(ko.pro)} $</b></div>
         <br>
         `;
 
@@ -1192,7 +1233,7 @@ function _load() {
         </div>
         <div id="selectBar">
         `;
-    for (let k = 0; k < 6; k++) {
+    for (let k = 1; k < 7; k++) {
       let sel = selector[k];
       let selClass = sel.val === selVal ? "selected" : "unselected";
       let selStr = `<button id="s${k}" title=${sel.desc} class="navBtn selBtn ${selClass}">${sel.name}</button>`;

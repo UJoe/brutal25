@@ -16,14 +16,12 @@ window.evs = [
         hang: true,
         change: [
           {
-            global: true,
             val: "money",
-            ch: "-Math.round(ko.pop*1.5)"
+            ch: "-kob.pop*5"
           },
           {
-            global: false,
             val: "joy",
-            ch: "+10"
+            ch: "10+Math.round(Math.random()*(50-kob.niv)/10)"
           },
         ]
       }

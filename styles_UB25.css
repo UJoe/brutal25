@@ -107,7 +107,7 @@ h1 {
 	font-size: max(1.4vw, 1.1em);
 	opacity: 1 !important;
 	background-color: darkslategray;
-	z-index: 9999;
+	z-index: 9998;
 	border: cyan outset 5px;
 	border-radius: 10px;
 }
@@ -292,6 +292,10 @@ h1 {
 
 .gold {
 	color: gold;
+}
+
+.aqua {
+	color: aqua;
 }
 
 .navNr {
@@ -536,4 +540,36 @@ li {
 
 .center {
 	text-align: center;
+}
+
+#fly {
+	position: fixed;
+	top: 0;
+	left: 0;
+	font-size: 1.1em;
+	color: aquamarine;
+	background-color: rgba(73, 76, 248, 0.7);
+	border-radius: 5px;
+	text-shadow: black 2px 1px;
+}
+
+.effBe {
+	display: table;
+	width: fit-content;
+	z-index: 9999;
+	transition: filter 1s, top .1s, left .2s;
+	filter: brightness(1) opacity(1) blur(0);
+}
+
+.effKi {
+	width: fit-content;
+	z-index: 0;
+	transition: filter 1s, top 1s, left 1s;
+	filter: brightness(.7) opacity(0) blur(5px);
+}
+
+.fly td {
+	border: none !important;
+	max-width: 10vw;
+	padding: 1px;
 }
