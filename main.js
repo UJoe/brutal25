@@ -330,7 +330,7 @@ function _load() {
           efStr += `
               <tr>
                 <td>${bal}:</td>
-                <td class=${cc}>${jobb}</td>
+                <td title=${ccc.toLocaleString()} class=${cc}>${jobb}</td>
               </tr>
             `;
         }
@@ -663,7 +663,7 @@ function _load() {
       }
       xtraStr = `
           <span class="infoVal">${intro}: </span>
-          <span class=${cc}>${bigNumber(so.cur, so.mer)}</span>
+          <span title=${so.cur.toLocaleString()} class=${cc}>${bigNumber(so.cur, so.mer)}</span>
           <span class="infoCh ${chCol}">${chTxt}</span>
         `;
       el("extraInfo").innerHTML = xtraStr;
@@ -684,6 +684,7 @@ function _load() {
         }
 
         el("ki1-" + k).innerHTML = `${bigNumber(val, so.mer)}`;
+        el("ki1-" + k).title = `${val}`;
         el("ki1-" + k).classList.add(cc);
         el("ki2-" + k).innerHTML = `${chT}`;
         el("ki2-" + k).classList.add(chC);
@@ -897,8 +898,8 @@ function _load() {
       let proci = ko.pro > 0 ? "good" : ko.pro < 0 ? "bad" : "neutral";
       devStr += `<fieldset id="devField">
         <legend class="kerTitle">Fejlesztések</legend>
-        <div class="devSub"><i>A város pénze:</i> <b class="aqua">${bigNumber(money, "$")}</b></div>
-        <div class="devSub"><i>Kerületi profit:</i> <b class=${proci}>${disNumber(ko.pro)} $</b></div>
+        <div class="devSub"><i>A város pénze:</i> <b title=${money.toLocaleString()} class="aqua">${bigNumber(money, "$")}</b></div>
+        <div class="devSub"><i>Kerületi profit:</i> <b title=${ko.pro.toLocaleString()} class=${proci}>${disNumber(ko.pro)} $</b></div>
         <br>
         `;
 
@@ -924,7 +925,7 @@ function _load() {
           devStr += `
               <tr class=${mani}>
                 <td>${bal}:</td>
-                <td>${jobb}</td>
+                <td title=${e.ch.toLocaleString()}>${jobb}</td>
               </tr>
             `;
         }
@@ -960,7 +961,7 @@ function _load() {
             devStr += `
               <tr class=${mani}>
                 <td>${bal}:</td>
-                <td>${jobb}</td>
+                <td title=${e.ch.toLocaleString()}>${jobb}</td>
               </tr>
             `;
           }
@@ -994,12 +995,12 @@ function _load() {
             devStr += `
               <tr class=${mani}>
                 <td>${bal}:</td>
-                <td>${jobb}</td>
+                <td title=${e.ch.toLocaleString()}>${jobb}</td>
               </tr>
             `;
           }
           devStr += `</table></td>
-            <td class="gold center">${bigNumber(o.price, "$")}<br><span class="good">${o.days} nap</span></td>
+            <td title=${o.price.toLocaleString()} class="gold center">${bigNumber(o.price, "$")}<br><span class="good">${o.days} nap</span></td>
             <td class="centralCont">
               <button class="devBtn goodB" id="newDev-${o.id}">Legyen!</button>
             </td>
@@ -1030,12 +1031,12 @@ function _load() {
             devStr += `
               <tr class=${mani}>
                 <td>${bal}:</td>
-                <td>${jobb}</td>
+                <td title=${e.ch.toLocaleString()}>${jobb}</td>
               </tr>
             `;
           }
           devStr += `</table></td>
-            <td class="gold">${bigNumber(o.price)}</td>
+            <td title=${o.price.toLocaleString()} class="gold">${bigNumber(o.price)}</td>
             </tr>`;
         }
         devStr += "</table>";
