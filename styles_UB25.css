@@ -201,6 +201,7 @@ h1 {
 .kername {
 	font-style: italic;
 	font-weight: 500;
+	color: blanchedalmond;
 }
 
 #kerVisit {
@@ -548,9 +549,8 @@ li {
 	left: 0;
 	font-size: 1.1em;
 	color: aquamarine;
-	background-color: rgba(73, 76, 248, 0.7);
 	border-radius: 5px;
-	text-shadow: black 2px 1px;
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 .effBe {

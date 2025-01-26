@@ -1,17 +1,20 @@
 function _load() {
-  var music = document.getElementById("music");
-  var sound = document.getElementById("sound");
+  function el(id) {
+    return document.getElementById(id);
+  }
+  var music = el("music");
+  var sound = el("sound");
   music.volume = .9;
   sound.volume = .6;
   music.loop = true;
   sound.loop = false;
   var timo;
   var timo2;
-  var main = document.getElementById("main");
-  var page = document.getElementById("page");
-  var modal = document.getElementById("modal");
-  var happen = document.getElementById("happen");
-  var eftable = document.getElementById("fly");
+  var main = el("main");
+  var page = el("page");
+  var modal = el("modal");
+  var happen = el("happen");
+  var fly = el("fly");
   var kerAct = false;
   var pushMessage = [];
   var okBtn = [
@@ -307,7 +310,7 @@ function _load() {
         kob.joyC -= Math.round(1.25 + Math.random())
       }
       if (bp.type === "change") {
-        let efStr = `<tr class="neutral">
+        let efStr = `<tr class="gold">
           <th colspan="2">${kob.name}</th>
         </tr>`;
         for (c of bp.change) {
@@ -331,23 +334,7 @@ function _load() {
               </tr>
             `;
         }
-        eftable.style.left = Math.round(40 + Math.random() * 20) + "vw";
-        eftable.style.top = Math.round(40 + Math.random() * 20) + "vh";
-        eftable.innerHTML = efStr;
-        eftable.classList.remove("effKi");
-        eftable.classList.add("effBe");
-        clearTimeout(timo);
-        clearTimeout(timo2);
-        eftable.style.display = "table";
-        timo = setTimeout(() => {
-          eftable.classList.remove("effBe");
-          eftable.classList.add("effKi");
-          eftable.style.left = Math.round(40 + Math.random() * 20) + "vw";
-          eftable.style.top = Math.round(40 + Math.random() * 20) + "vh";
-        }, 2000);
-        timo2 = setTimeout(() => {
-          eftable.style.display = "none";
-        }, 3000);
+        flier(efStr);
       }
 
       pushMessage.shift();
@@ -365,8 +352,28 @@ function _load() {
 
     document.querySelectorAll(".mesBtn").forEach((m) => m.addEventListener("click", mesEnd));
 
-
   }
+
+  function flier(str) {
+    fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
+    fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
+    fly.innerHTML = str;
+    fly.classList.remove("effKi");
+    fly.classList.add("effBe");
+    clearTimeout(timo);
+    clearTimeout(timo2);
+    fly.style.display = "table";
+    timo = setTimeout(() => {
+      fly.classList.remove("effBe");
+      fly.classList.add("effKi");
+      fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
+      fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
+    }, 2000);
+    timo2 = setTimeout(() => {
+      fly.style.display = "none";
+    }, 3000);
+  }
+
 
   function change(ko, val, ch) {
     let org = ko[val];
@@ -392,7 +399,7 @@ function _load() {
     let ax = Math.abs(x);
     if (ax >= 1000000000) return Math.floor(x / 1000000000) + "B&nbsp;" + y;
     if (ax >= 1000000) return Math.floor(x / 1000000) + "M&nbsp;" + y;
-    if (ax >= 2000) return x.toLocaleString() + "&nbsp;" + y;
+    if (ax >= 1000) return x.toLocaleString() + "&nbsp;" + y;
     if (x < 0) {
       switch (y) {
         case "$":
@@ -569,12 +576,12 @@ function _load() {
         <button class="navBtn" id="tPlus">+1</button>
         <button class="navBtn" id="tPlus10">+10</button>
         `;
-      document.getElementById("extraInfo").innerHTML = xtraStr;
+      el("extraInfo").innerHTML = xtraStr;
 
-      let tm = document.getElementById("tMinus");
-      let tp = document.getElementById("tPlus");
-      let tm10 = document.getElementById("tMinus10");
-      let tp10 = document.getElementById("tPlus10");
+      let tm = el("tMinus");
+      let tp = el("tPlus");
+      let tm10 = el("tMinus10");
+      let tp10 = el("tPlus10");
       if (tax < 1) tm.disabled = true;
       if (tax > 99) tp.disabled = true;
       if (tax < 10) tm10.disabled = true;
@@ -627,10 +634,10 @@ function _load() {
       for (let k = 0; k < 9; k++) {
         let d = ker[k].curDev;
         if (d.length < 1) continue;
-        document.getElementById("ki1-" + k).innerHTML = `készül: <span class="good">${d[0]}</span>`;
-        document.getElementById("ki2-" + k).innerHTML = `még <span class="bad">${d[1]}</span> nap`;
-        document.getElementById("ki1-" + k).classList.add("gold");
-        document.getElementById("ki2-" + k).classList.add("gold");
+        el("ki1-" + k).innerHTML = `készül: <span class="good">${d[0]}</span>`;
+        el("ki2-" + k).innerHTML = `még <span class="bad">${d[1]}</span> nap`;
+        el("ki1-" + k).classList.add("gold");
+        el("ki2-" + k).classList.add("gold");
       }
     } else {
       let cc = "neutral";
@@ -659,7 +666,7 @@ function _load() {
           <span class=${cc}>${bigNumber(so.cur, so.mer)}</span>
           <span class="infoCh ${chCol}">${chTxt}</span>
         `;
-      document.getElementById("extraInfo").innerHTML = xtraStr;
+      el("extraInfo").innerHTML = xtraStr;
 
       for (let k = 0; k < 9; k++) {
         let val = ker[k][so.val];
@@ -676,10 +683,10 @@ function _load() {
           if (chV > 0) chT = "+" + chV;
         }
 
-        document.getElementById("ki1-" + k).innerHTML = `${bigNumber(val, so.mer)}`;
-        document.getElementById("ki1-" + k).classList.add(cc);
-        document.getElementById("ki2-" + k).innerHTML = `${chT}`;
-        document.getElementById("ki2-" + k).classList.add(chC);
+        el("ki1-" + k).innerHTML = `${bigNumber(val, so.mer)}`;
+        el("ki1-" + k).classList.add(cc);
+        el("ki2-" + k).innerHTML = `${chT}`;
+        el("ki2-" + k).classList.add(chC);
 
       }
 
@@ -694,7 +701,7 @@ function _load() {
   }
 
   function changeMusic() {
-    let sBtn = document.getElementById("soundBtn");
+    let sBtn = el("soundBtn");
     if (musicOn) {
       music.pause();
       sBtn.src = "./img/soundOff.png";
@@ -716,7 +723,7 @@ function _load() {
     if (musicOn) {
       music.volume = mv;
     }
-    document.getElementById("soundBtn").title = `Zene: ${Math.round(music.volume * 100)}%, Hang: ${Math.round(sound.volume * 100)}%`;
+    el("soundBtn").title = `Zene: ${Math.round(music.volume * 100)}%, Hang: ${Math.round(sound.volume * 100)}%`;
   }
 
 
@@ -792,7 +799,7 @@ function _load() {
         <td class="supBtn ${supMap[8]}" id="culto-1.3">Sok</td>
       </tr>
     `;
-    document.getElementById("supTable").innerHTML = supStr;
+    el("supTable").innerHTML = supStr;
   }
 
   function openKer(e) {
@@ -829,7 +836,7 @@ function _load() {
     `;
 
     modal.innerHTML = kerStr;
-    document.getElementById("kerStats").disabled = money < 100;
+    el("kerStats").disabled = money < 100;
     updateSup(ko);
 
     //gendevs
@@ -1035,8 +1042,8 @@ function _load() {
       }
 
       devStr += "</fieldset>"
-      document.getElementById("devs").innerHTML = devStr;
-      document.getElementById("devs").addEventListener("click", devAct);
+      el("devs").innerHTML = devStr;
+      el("devs").addEventListener("click", devAct);
     }
 
     function changeSup(e) {
@@ -1047,7 +1054,7 @@ function _load() {
       ko[svar] = sval;
       updateSup(ko);
       kerAct = true;
-      document.getElementById("closeKer").addEventListener("click", closeModal);
+      el("closeKer").addEventListener("click", closeModal);
       document.querySelectorAll(".supBtn").forEach((s) => s.addEventListener("click", changeSup));
       if (svar === "defo") return;
       if (sval < 1) emo(false);
@@ -1104,7 +1111,7 @@ function _load() {
         `
       }
       dumaStr += `</ul></fieldset>`;
-      document.getElementById("kerInfo").innerHTML = dumaStr;
+      el("kerInfo").innerHTML = dumaStr;
     }
 
     function openStat() {
@@ -1186,12 +1193,12 @@ function _load() {
 
       statStr += `</table></fieldset>`
 
-      document.getElementById("kerInfo").innerHTML = statStr;
+      el("kerInfo").innerHTML = statStr;
     }
 
-    document.getElementById("closeKer").addEventListener("click", closeModal);
-    document.getElementById("kerVisit").addEventListener("click", visit);
-    document.getElementById("kerStats").addEventListener("click", openStat);
+    el("closeKer").addEventListener("click", closeModal);
+    el("kerVisit").addEventListener("click", visit);
+    el("kerStats").addEventListener("click", openStat);
     document.querySelectorAll(".supBtn").forEach((s) => s.addEventListener("click", changeSup));
   }
 
@@ -1254,17 +1261,17 @@ function _load() {
     page.innerHTML = pageStr;
     generateXtra(selObj);
 
-    document.getElementById("endBtn").addEventListener("click", newDay);
+    el("endBtn").addEventListener("click", newDay);
     document.querySelectorAll(".selBtn").forEach((s) => s.addEventListener("click", changeSel));
-    document.getElementById("soundBtn").addEventListener("click", changeMusic);
-    document.getElementById("soundBtn").addEventListener("wheel", changeVolume);
+    el("soundBtn").addEventListener("click", changeMusic);
+    el("soundBtn").addEventListener("wheel", changeVolume);
     document.querySelectorAll(".ker").forEach((s) => s.addEventListener("click", openKer));
 
 
-    /* document.getElementById("saveBtn").addEventListener("click", saveGame);
-    document.getElementById("loadBtn").addEventListener("click", loadGame);
-    document.getElementById("loadBtn").disabled = localStorage.getItem("charName") == null;
-    document.getElementById("saveBtn").disabled = false; */
+    /* el("saveBtn").addEventListener("click", saveGame);
+    el("loadBtn").addEventListener("click", loadGame);
+    el("loadBtn").disabled = localStorage.getItem("charName") == null;
+    el("saveBtn").disabled = false; */
 
 
   }
@@ -1276,8 +1283,8 @@ function _load() {
     pageUpdate();
   }
 
-  document.getElementById("start").addEventListener("click", startGame)
-  document.getElementById("start2").addEventListener("click", startGame)
+  el("start").addEventListener("click", startGame)
+  el("start2").addEventListener("click", startGame)
 
 }
 

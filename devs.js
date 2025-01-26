@@ -79,7 +79,7 @@ window.dev = [
     desc: "Ingyen bort, búzát, békességet!",
     days: 15,
     price: 5000000,
-    szigor: [1],
+    szigor: [6],
     effect: [
       {
         val: "joy",
@@ -239,7 +239,7 @@ window.dev = [
     desc: "A halottakra való örök emlékezés.",
     days: 6,
     price: 20000,
-    szigor: [0, 1, 2, 7, 8],
+    szigor: [0, 2, 6, 7, 8],
     effect: [
       {
         val: "joy",
