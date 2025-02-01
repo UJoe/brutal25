@@ -15,28 +15,28 @@ function _load() {
   var modal = el("modal");
   var happen = el("happen");
   var fly = el("fly");
-  var kerAct = false;
-  var pushMessage = [];
-  var okBtn = [
+  let okBtn = [
     {
       type: "rnd",
       txt: "OK"
     }
   ];
-  var badBtn = [
+  let badBtn = [
     {
       type: "rnd",
       txt: "bad",
       hang: false
     }
   ];
-  var goodBtn = [
+  let goodBtn = [
     {
       type: "rnd",
       txt: "good",
       hang: true
     }
   ];
+  var kerAct = false;
+  var pushMessage = [];
   page.style.display = "none";
   modal.style.display = "none";
   window.curMusic = "basicMusic";
@@ -306,35 +306,18 @@ function _load() {
       if (bp.hang !== undefined) {
         emo(bp.hang);
       }
+
       if (bp.txt === "bad") {
-        kob.joyC -= Math.round(1.25 + Math.random())
+        let c = -Math.round(1.25 + Math.random() * 2);
+        flier(kob, [
+          {
+            val: "joy",
+            ch: c
+          }
+        ])
       }
       if (bp.type === "change") {
-        let efStr = `<tr class="gold">
-          <th colspan="2">${kob.name}</th>
-        </tr>`;
-        for (c of bp.change) {
-          let ccc = eval(c.ch);
-          let cc = ccc < 0 ? "bad" : ccc > 0 ? "good" : "neutral";
-          let [cval, bal] = "";
-          let jobb = disNumber(ccc);
-          if (c.val === "money" || c.val === "tax") {
-            cval = c.val;
-            bal = valToName(cval);
-            window[cval] += ccc;
-          } else {
-            bal = valToName(c.val);
-            cval = c.val + "C";
-            kob[cval] += ccc;
-          }
-          efStr += `
-              <tr>
-                <td>${bal}:</td>
-                <td title=${ccc.toLocaleString()} class=${cc}>${jobb}</td>
-              </tr>
-            `;
-        }
-        flier(efStr);
+        flier(kob, bp.change)
       }
 
       pushMessage.shift();
@@ -354,10 +337,34 @@ function _load() {
 
   }
 
-  function flier(str) {
+  function flier(kob, chs) {
+    let efStr = `<tr class="gold">
+          <th colspan="2">${kob.name}</th>
+        </tr>`;
+    for (c of chs) {
+      let ccc = eval(c.ch);
+      let cc = ccc < 0 ? "bad" : ccc > 0 ? "good" : "neutral";
+      let [cval, bal] = "";
+      let jobb = disNumber(ccc);
+      if (c.val === "money" || c.val === "tax") {
+        cval = c.val;
+        bal = valToName(cval);
+        window[cval] += ccc;
+      } else {
+        bal = valToName(c.val);
+        cval = c.val + "C";
+        kob[cval] += ccc;
+      }
+      efStr += `
+              <tr>
+                <td>${bal}:</td>
+                <td title=${ccc.toLocaleString()} class=${cc}>${jobb}</td>
+              </tr>
+            `;
+    }
     fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
     fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
-    fly.innerHTML = str;
+    fly.innerHTML = efStr;
     fly.classList.remove("effKi");
     fly.classList.add("effBe");
     clearTimeout(timo);
@@ -542,6 +549,7 @@ function _load() {
       //EVENTS
       for (e of evs) {
         if (checkCond(ko, e.cond) && e.chance >= Math.random()) {
+          console.log("BTNS: ", e.btns);
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
             id: ko.num,

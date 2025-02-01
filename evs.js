@@ -1,3 +1,20 @@
+let okBtn =
+{
+  type: "rnd",
+  txt: "OK"
+};
+let badBtn =
+{
+  type: "rnd",
+  txt: "bad",
+  hang: false
+};
+let goodBtn =
+{
+  type: "rnd",
+  txt: "good",
+  hang: true
+};
 window.evs = [
   {
     title: "Tüntet ellened és lázong a nép",
@@ -5,11 +22,7 @@ window.evs = [
     chance: .4,
     hang: "angryCity",
     btns: [
-      {
-        type: "rnd",
-        txt: "bad",
-        hang: false
-      },
+      badBtn,
       {
         type: "change",
         txt: "Pénzt szórsz közéjük",
