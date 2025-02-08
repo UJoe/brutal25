@@ -17,7 +17,7 @@ let goodBtn =
 };
 window.evs = [
   {
-    title: "Tüntet ellened és lázong a nép",
+    title: "Zúgolódik ellened a nép",
     cond: "joy < 25",
     chance: .4,
     hang: "angryCity",
@@ -41,3 +41,22 @@ window.evs = [
     ],
   }
 ];
+
+window.trophy = [
+  {
+    num: 0,
+    name: "Aranyváros",
+    good: true,
+    desc: "A város életszínvonala az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
+    type: "total",
+    cond: "niv > 90"
+  },
+  {
+    num: 1,
+    name: "Csőd",
+    good: false,
+    desc: "Kiürült a kassza, csődbe vitted a várost! Az emberek fellázadnak és meglincselnek.",
+    type: "global",
+    cond: "money < 1"
+  }
+]

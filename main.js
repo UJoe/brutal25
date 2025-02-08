@@ -270,15 +270,15 @@ function _load() {
         let bar = ["OK"];
         switch (b.txt) {
           case "OK":
-            bar = ["OK", "Ez van.", "Ilyen az élet!", "Jól van az úgy.", "Helyes!", "Így van!"]
+            bar = ["OK", "Ez van.", "Ilyen az élet.", "Jól van az úgy.", "Helyes!", "Így van!"]
             break;
 
           case "good":
-            bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!"]
+            bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!", "Juhéjj!", "Azta!"]
             break;
 
           case "bad":
-            bar = ["Naba...", "Leszarom.", "Megérdemlik.", "Ne már!", "Mi a szösz?", "Ez van.", "Hínye!", "Bakker...", "Na és?"]
+            bar = ["Naba...", "Leszarom.", "Megérdemlik.", "Ne már!", "Mi a szösz?", "Ez van!", "Hínye!", "Bakker!", "Na és?", "A szajha életbe!", "Szar ügy.", "Anyátokat!"]
             break;
 
           default:
@@ -742,6 +742,11 @@ function _load() {
     let varvara = undefined;
     if (ko === "global") {
       varvara = window[vvar];
+    } else if (ko === "total") {
+      let picki = selector.findIndex((s) => s.val === vvar);
+      let picko = selector[picki];
+      varvara = picko.cur;
+      console.log("Picktotal: ", picko, varvara);
     } else {
       varvara = ko[vvar];
     }
