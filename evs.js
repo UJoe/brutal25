@@ -42,21 +42,45 @@ window.evs = [
   }
 ];
 
-window.trophy = [
+window.trophies = [
   {
     num: 0,
     name: "Aranyváros",
     good: true,
-    desc: "A város életszínvonala az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
+    desc: "A város életszínvonala mindenhol az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
     type: "total",
-    cond: "niv > 90"
+    cond: "niv > 95"
   },
   {
     num: 1,
+    name: "Eufória",
+    good: true,
+    desc: "A városodban minden ember tökéletesen boldog, vidáman dolgoznak és szórakoznak, mindenki téged ünnepel.",
+    type: "total",
+    cond: "joy > 95"
+  },
+  {
+    num: 2,
     name: "Csőd",
     good: false,
     desc: "Kiürült a kassza, csődbe vitted a várost! Az emberek fellázadnak és meglincselnek.",
     type: "global",
     cond: "money < 1"
+  },
+  {
+    num: 3,
+    name: "Nyomor a köbön",
+    good: false,
+    desc: "Teljesen megnyomorítottad a városod, az emberek nincstelenek lettek, elkeseredésükben meglincselnek.",
+    type: "total",
+    cond: "niv < 5"
+  },
+  {
+    num: 4,
+    name: "Elkeseredettség",
+    good: false,
+    desc: "A városon úrrá lett a totális depresszió és kilátástalanság. Végső elkeseredésükben meglincselnek téged.",
+    type: "total",
+    cond: "joy < 5"
   }
 ]

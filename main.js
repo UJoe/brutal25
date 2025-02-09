@@ -181,10 +181,6 @@ function _load() {
       }
       if (selo.val === "pro" && day > 1) {
         money += sum;
-        if (money < 0) {
-          //csőd
-          alert("CSŐD!");
-        }
       }
     }
   }
@@ -255,7 +251,8 @@ function _load() {
   }
 
   function message(txt, kid, btn, hang = "x") {
-    let kob = getKob(kid);
+    let kob = false;
+    if (kid > -1) { kob = getKob(kid) };
     happen.classList.remove("nosee");
     happen.classList.add("see");
     let msgStr = `
@@ -307,7 +304,7 @@ function _load() {
         emo(bp.hang);
       }
 
-      if (bp.txt === "bad") {
+      if (bp.txt === "bad" && kob) {
         let c = -Math.round(1.25 + Math.random() * 2);
         flier(kob, [
           {
@@ -316,7 +313,7 @@ function _load() {
           }
         ])
       }
-      if (bp.type === "change") {
+      if (bp.type === "change" && kob) {
         flier(kob, bp.change)
       }
 
@@ -399,7 +396,7 @@ function _load() {
       ko[val + "C"] = Math.round((100 - org) / org * 100);
       ko[val] = 100;
     }
-    //Egyéb hatások val-onként
+    TODO: { }//Egyéb hatások val-onként
   }
 
   function bigNumber(x, y = "") {
@@ -456,8 +453,6 @@ function _load() {
     }
 
     for (ko of ker) {
-      //Evs? Kell korlát? 10 alatti lakosok elvándorolnak (event: kihal)
-      //Épít
       if (ko.curDev.length > 0) {
         ko.curDev[1]--;
         if (ko.curDev[1] === 0) {
@@ -549,7 +544,6 @@ function _load() {
       //EVENTS
       for (e of evs) {
         if (checkCond(ko, e.cond) && e.chance >= Math.random()) {
-          console.log("BTNS: ", e.btns);
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
             id: ko.num,
@@ -560,8 +554,28 @@ function _load() {
       }
     };
 
+    updateTotals();
 
-
+    for (t of trophies) {
+      if (checkCond(t.type, t.cond) && trophy.indexOf(t.num) < 0) {
+        let mStr = `Egy jelentős esemény történt a városban: 
+          <span class="gold">${t.name}</span>!</p>
+          <p>${t.desc}`;
+        let tb = t.good ? goodBtn : badBtn;
+        pushMessage.push({
+          msg: mStr,
+          id: ko.num,
+          btn: tb,
+          hang: t.good
+        });
+        if (t.good) {
+          trophy.push(t.num);
+        } else {
+          alert("HALÁL!");
+          TODO: { }//dolgozd ki még jobban a halált
+        }
+      }
+    }
 
     if (pushMessage.length > 0) {
       let m = pushMessage[0];
@@ -569,7 +583,6 @@ function _load() {
       message(m.msg, m.id, m.btn, h);
     }
 
-    updateTotals();
     pageUpdate();
   }
 
@@ -870,7 +883,6 @@ function _load() {
       let szótő = teljesSzó[0];
       let devNo = -1;
       if (teljesSzó.length > 1) devNo = Number(teljesSzó[1]);
-      //folyt.
       switch (szótő) {
         case "curEnd":
           emo(false);
@@ -1076,7 +1088,7 @@ function _load() {
     }
 
     function visit() {
-      //lincs!
+      TODO: { }//lincs!
       kerAct = true;
       //change(ko, "joy", 1);
       ko.joyC++;
@@ -1217,7 +1229,7 @@ function _load() {
   }
 
   function closeModal() {
-    //késleltesd egy kicsit vagy mit tudom én
+    TODO: { }//késleltesd egy kicsit vagy mit tudom én
     music.src = "./audio/" + curMusic + ".mp3";
     if (musicOn) music.play();
     if (kerAct) {
