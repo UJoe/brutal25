@@ -426,14 +426,18 @@ h1 {
 .mesBtn {
 	flex-grow: 1;
 	margin: 0 5vw;
-	height: 40px;
+	height: fit-content;
+	min-height: 35px;
+	padding: 5px;
 	color: orangered;
 	background-color: darkblue;
 	border: outset 2px turquoise;
 	border-radius: 10px;
 	opacity: 1;
 	outline: none;
-	font-size: 1.1em;
+	font-size: 1em;
+	width: fit-content;
+	max-width: 20vw;
 }
 
 .kerBtn:disabled {

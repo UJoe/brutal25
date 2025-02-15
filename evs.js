@@ -39,6 +39,49 @@ window.evs = [
         ]
       }
     ],
+  },
+  {
+    title: "Lázadás tört ki",
+    cond: "joy < 10",
+    chance: .8,
+    hang: "angryCity",
+    btns: [
+      {
+        type: "change",
+        txt: "Közéjük lövetsz",
+        hang: "machinegun",
+        change: [
+          {
+            val: "pop",
+            ch: "-Math.round(5+Math.random()*10)"
+          },
+          {
+            val: "joy",
+            ch: "-Math.round(2+Math.random()*8)"
+          },
+        ]
+      },
+      {
+        type: "change",
+        txt: "Pénzt szórsz közéjük",
+        hang: true,
+        change: [
+          {
+            val: "money",
+            ch: "-kob.pop*10"
+          },
+          {
+            val: "joy",
+            ch: "10+Math.round(Math.random()*(50-kob.niv)/10)"
+          },
+        ]
+      },
+      {
+        type: "rombolás",
+        txt: "Majd leállnak.",
+        hang: "angryCity",
+      }
+    ],
   }
 ];
 

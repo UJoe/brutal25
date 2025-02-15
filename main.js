@@ -301,7 +301,12 @@ function _load() {
       let bp = btn[i];
       sound.pause();
       if (bp.hang !== undefined) {
-        emo(bp.hang);
+        if (typeof bp.hang === "boolean") {
+          emo(bp.hang)
+        } else if (hang !== "x") {
+          sound.src = "./audio/" + bp.hang + ".mp3";
+          sound.play();
+        }
       }
 
       if (bp.txt === "bad" && kob) {
@@ -315,6 +320,12 @@ function _load() {
       }
       if (bp.type === "change" && kob) {
         flier(kob, bp.change)
+      }
+
+      if (bp.type === "rombolás" && kob) {
+        TODO: {
+          //random dev X
+        }
       }
 
       pushMessage.shift();
