@@ -323,9 +323,39 @@ function _load() {
       }
 
       if (bp.type === "rombolás" && kob) {
-        TODO: {
-          //random dev X
+        let xs = "";
+        let chalap = [
+          {
+            val: "joy",
+            ch: "-Math.round(1+Math.random()*4)"
+          },
+          {
+            val: "niv",
+            ch: "-Math.round(1+Math.random()*4)"
+          },
+          {
+            val: "pro",
+            ch: "-Math.abs(Math.round(kob.pro*Math.random()))"
+          },
+          {
+            val: "had",
+            ch: "-Math.round(100+Math.random()*150)"
+          }
+        ];
+        if (kob.dev.length > 0) {
+          let devNo = rnd(kob.dev);
+          let ndod = getDev(devNo);
+          delDev(kob, ndod);
+          xs = `
+          <tr>
+            <td colspan="2">A nép lerombolta:</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="bad center">${ndod.name}</td>
+          </tr>
+          `;
         }
+        flier(kob, chalap, xs);
       }
 
       pushMessage.shift();
@@ -345,10 +375,13 @@ function _load() {
 
   }
 
-  function flier(kob, chs) {
+  function flier(kob, chs, xStr = "") {
     let efStr = `<tr class="gold">
           <th colspan="2">${kob.name}</th>
         </tr>`;
+    if (xStr.length > 0) {
+      efStr += xStr;
+    };
     for (c of chs) {
       let ccc = eval(c.ch);
       let cc = ccc < 0 ? "bad" : ccc > 0 ? "good" : "neutral";
@@ -554,7 +587,7 @@ function _load() {
 
       //EVENTS
       for (e of evs) {
-        if (checkCond(ko, e.cond) && e.chance >= Math.random()) {
+        if (checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
             id: ko.num,
@@ -770,7 +803,6 @@ function _load() {
       let picki = selector.findIndex((s) => s.val === vvar);
       let picko = selector[picki];
       varvara = picko.cur;
-      console.log("Picktotal: ", picko, varvara);
     } else {
       varvara = ko[vvar];
     }
