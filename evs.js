@@ -269,12 +269,12 @@ window.gevs = [
   },
   {
     num: 5,
-    name: "Idegen agresszorok",
+    name: "Idegen aktivitás",
     type: "global",
     cond: "day = 10",
     trophy: false,
     end: false,
-    desc: "Az eddig békésnek tűnő furcsa lények egyre agresszívabbá kezdenek válni. Valami megváltozhatott...",
+    desc: "Egyre több furcsa lény jelenik meg az emberek között. Ismeretlen intelligens fajok, akik gyakran agresszíven viselkednek.",
     hang: "alienEvent"
   },
 ]

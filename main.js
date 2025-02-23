@@ -608,7 +608,7 @@ function _load() {
         let tb = g.trophy ? goodBtn : badBtn;
         pushMessage.push({
           msg: mStr,
-          id: ko.num,
+          id: -1,
           btn: tb,
           hang: g.hang
         });
