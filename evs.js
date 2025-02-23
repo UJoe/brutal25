@@ -216,45 +216,65 @@ window.evs = [
   },
 ];
 
-window.trophies = [
+window.gevs = [
   {
     num: 0,
     name: "Aranyváros",
-    good: true,
-    desc: "A város életszínvonala mindenhol az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
     type: "total",
-    cond: "niv > 95"
+    cond: "niv > 95",
+    trophy: true,
+    end: false,
+    desc: "A város életszínvonala mindenhol az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
+    hang: "happyCity"
   },
   {
     num: 1,
     name: "Eufória",
-    good: true,
-    desc: "A városodban minden ember tökéletesen boldog, vidáman dolgoznak és szórakoznak, mindenki téged ünnepel.",
     type: "total",
-    cond: "joy > 95"
+    cond: "joy > 95",
+    trophy: true,
+    end: false,
+    desc: "A városodban minden ember tökéletesen boldog, vidáman dolgoznak és szórakoznak, mindenki téged ünnepel.",
+    hang: "happyCity"
   },
   {
     num: 2,
     name: "Csőd",
-    good: false,
-    desc: "Kiürült a kassza, csődbe vitted a várost! Az emberek fellázadnak és meglincselnek.",
     type: "global",
-    cond: "money < 1"
+    cond: "money < 1",
+    trophy: false,
+    end: true,
+    desc: "Kiürült a kassza, csődbe vitted a várost! Az emberek fellázadnak és meglincselnek.",
+    hang: "angryCity"
   },
   {
     num: 3,
     name: "Nyomor a köbön",
-    good: false,
-    desc: "Teljesen megnyomorítottad a városod, az emberek nincstelenek lettek, elkeseredésükben meglincselnek.",
     type: "total",
-    cond: "niv < 5"
+    cond: "niv < 5",
+    trophy: false,
+    end: true,
+    desc: "Teljesen megnyomorítottad a városod, az emberek nincstelenek lettek, elkeseredésükben meglincselnek.",
+    hang: "sadCity"
   },
   {
     num: 4,
     name: "Elkeseredettség",
-    good: false,
-    desc: "A városon úrrá lett a totális depresszió és kilátástalanság. Végső elkeseredésükben meglincselnek téged.",
     type: "total",
-    cond: "joy < 5"
+    cond: "joy < 5",
+    trophy: false,
+    end: true,
+    desc: "A városon úrrá lett a totális depresszió és kilátástalanság. Végső elkeseredésükben meglincselnek téged.",
+    hang: "sadCity"
+  },
+  {
+    num: 5,
+    name: "Idegen agresszorok",
+    type: "global",
+    cond: "day = 10",
+    trophy: false,
+    end: false,
+    desc: "Az eddig békésnek tűnő furcsa lények egyre agresszívabbá kezdenek válni. Valami megváltozhatott...",
+    hang: "alienEvent"
   },
 ]

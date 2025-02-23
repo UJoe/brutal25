@@ -600,23 +600,34 @@ function _load() {
 
     updateTotals();
 
-    for (t of trophies) {
-      if (checkCond(t.type, t.cond) && trophy.indexOf(t.num) < 0) {
+    for (g of gevs) {
+      if (checkCond(g.type, g.cond) && trophy.indexOf(g.num) < 0) {
         let mStr = `Egy jelentős esemény történt a városban: 
-          <span class="gold">${t.name}</span>!</p>
-          <p>${t.desc}`;
-        let tb = t.good ? goodBtn : badBtn;
+          <span class="gold">${g.name}</span>!</p>
+          <p>${g.desc}`;
+        let tb = g.trophy ? goodBtn : badBtn;
         pushMessage.push({
           msg: mStr,
           id: ko.num,
           btn: tb,
-          hang: t.good
+          hang: g.hang
         });
-        if (t.good) {
-          trophy.push(t.num);
-        } else {
+        if (g.trophy) {
+          trophy.push(g.num);
+        } else if (g.end) {
           alert("HALÁL!");
           TODO: { }//dolgozd ki még jobban a halált
+        } else {
+          switch (g.num) {
+            case 5:
+              for (k of ker) {
+                k.ufoC += Math.round(20 + Math.random() * (50 - k.defo * 20));
+              }
+              break;
+
+            default:
+              break;
+          }
         }
       }
     }
@@ -1167,7 +1178,10 @@ function _load() {
           let ddStr = ko.devdum[q] + névelős(dd.name) + "!";
           dumarr.push(ddStr);
         }
+      }
 
+      if (ko.had > 3000 + Math.random() * 3000) {
+        dumarr.push("Kezdesz olyan zsarnok lenni, mint Bitang Botond...");
       }
 
       let dumaStr = `
