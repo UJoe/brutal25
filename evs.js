@@ -19,7 +19,7 @@ let goodBtn =
 window.evs = [
   {
     title: "Zúgolódik ellened a nép",
-    cond: "joy < 25",
+    cond: "joy < 21 & joy > 9",
     chance: .4,
     hang: "angryCity",
     btns: [

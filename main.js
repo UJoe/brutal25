@@ -805,32 +805,36 @@ function _load() {
 
 
   function checkCond(ko, cond) {
-    let vs = cond.split(' ');
-    let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
-    let varvara = undefined;
-    if (ko === "global") {
-      varvara = window[vvar];
-    } else if (ko === "total") {
-      let picki = selector.findIndex((s) => s.val === vvar);
-      let picko = selector[picki];
-      varvara = picko.cur;
-    } else {
-      varvara = ko[vvar];
+    let result = true;
+    let conds = cond.split(" & ");
+    for (let c of conds) {
+      let vs = c.split(' ');
+      let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
+      let varvara = undefined;
+      if (ko === "global") {
+        varvara = window[vvar];
+      } else if (ko === "total") {
+        let picki = selector.findIndex((s) => s.val === vvar);
+        let picko = selector[picki];
+        varvara = picko.cur;
+      } else {
+        varvara = ko[vvar];
+      }
+      if (vop === ">") {
+        if (varvara <= vval) {
+          result = false;
+        }
+      } else if (vop === "<") {
+        if (varvara >= vval) {
+          result = false;
+        }
+      } else {
+        if (varvara != vval) {
+          result = false;
+        }
+      }
     }
-    if (vop === ">") {
-      if (varvara > vval) {
-        return true;
-      }
-    } else if (vop === "<") {
-      if (varvara < vval) {
-        return true;
-      }
-    } else {
-      if (varvara == vval) {
-        return true;
-      }
-    }
-    return false;
+    return result;
   }
 
   function névelős(str, nagy = false) {
