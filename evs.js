@@ -239,6 +239,16 @@ window.gevs = [
   },
   {
     num: 2,
+    name: "Csődközeli helyzet",
+    type: "global",
+    cond: "money < 9000 & money > 0",
+    trophy: false,
+    end: false,
+    desc: "Az önkormányzat gazdálkodása veszteséges. Rendezd el a bevételek és kiadások arányát, hogy elkerüld a csődöt!",
+    hang: "angryCity"
+  },
+  {
+    num: 3,
     name: "Csőd",
     type: "global",
     cond: "money < 1",
@@ -248,7 +258,7 @@ window.gevs = [
     hang: "angryCity"
   },
   {
-    num: 3,
+    num: 4,
     name: "Nyomor a köbön",
     type: "total",
     cond: "niv < 5",
@@ -258,7 +268,7 @@ window.gevs = [
     hang: "sadCity"
   },
   {
-    num: 4,
+    num: 5,
     name: "Elkeseredettség",
     type: "total",
     cond: "joy < 5",
@@ -268,7 +278,7 @@ window.gevs = [
     hang: "sadCity"
   },
   {
-    num: 5,
+    num: 6,
     name: "Idegen aktivitás",
     type: "global",
     cond: "day = 10",

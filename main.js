@@ -275,7 +275,7 @@ function _load() {
             break;
 
           case "bad":
-            bar = ["Naba...", "Leszarom.", "Megérdemlik.", "Ne már!", "Mi a szösz?", "Ez van!", "Hínye!", "Bakker!", "Na és?", "A szajha életbe!", "Szar ügy.", "Anyátokat!"]
+            bar = ["Naba...", "Leszarom.", "Megérdemlik.", "Ne már!", "Mi a szösz?", "Ez van!", "Hínye!", "Bakker!", "Na és?", "A szajha életbe!", "Szar ügy.", "Anyátokat!", "Kellemetlen."]
             break;
 
           default:
@@ -318,8 +318,14 @@ function _load() {
           }
         ])
       }
+
       if (bp.type === "change" && kob) {
         flier(kob, bp.change)
+      }
+
+      if (bp.type === "restart") {
+        window.location.reload(true);
+        return;
       }
 
       if (bp.type === "rombolás" && kob) {
@@ -448,17 +454,8 @@ function _load() {
     if (ax >= 1000000000) return Math.floor(x / 1000000000) + "B&nbsp;" + y;
     if (ax >= 1000000) return Math.floor(x / 1000000) + "M&nbsp;" + y;
     if (ax >= 1000) return x.toLocaleString() + "&nbsp;" + y;
-    if (x < 0) {
-      switch (y) {
-        case "$":
-          return "CSŐD!";
-
-        case "fő":
-          return "0&nbsp;fő";
-
-        default:
-          break;
-      }
+    if (x < 0 && y == "fő") {
+      x = 0;
     }
     return x + "&nbsp;" + y;
   }
@@ -605,28 +602,44 @@ function _load() {
         let mStr = `Egy jelentős esemény történt a városban: 
           <span class="gold">${g.name}</span>!</p>
           <p>${g.desc}`;
-        let tb = g.trophy ? goodBtn : badBtn;
-        pushMessage.push({
-          msg: mStr,
-          id: -1,
-          btn: tb,
-          hang: g.hang
-        });
-        if (g.trophy) {
-          trophy.push(g.num);
-        } else if (g.end) {
-          alert("HALÁL!");
-          TODO: { }//dolgozd ki még jobban a halált
-        } else {
-          switch (g.num) {
-            case 5:
-              for (k of ker) {
-                k.ufoC += Math.round(20 + Math.random() * (50 - k.defo * 20));
+        if (g.end) {
+          //halál
+          message(
+            mStr,
+            -1,
+            [
+              {
+                type: "restart",
+                txt: "Újrakezdés",
               }
-              break;
+            ],
+            "sadCity"
+          );
+          document.body.classList.add("dark");
+          return;
+        } else {
+          let tb = g.trophy ? goodBtn : badBtn;
+          pushMessage.push({
+            msg: mStr,
+            id: -1,
+            btn: tb,
+            hang: g.hang
+          });
+          if (g.trophy) {
+            trophy.push(g.num);
+          } else {
+            //Storyline
+            switch (g.num) {
+              case 5:
+                for (k of ker) {
+                  k.ufoC += Math.round(20 + Math.random() * (50 - k.defo * 20));
+                }
+                break;
 
-            default:
-              break;
+              default:
+                break;
+
+            }
           }
         }
       }
@@ -894,7 +907,6 @@ function _load() {
     page.style.display = "none";
     music.src = "./audio/" + ko.name + ".mp3";
     if (musicOn) music.play();
-
     modal.style.display = "flex";
     let kerStr = `
     <button id="closeKer">x</button>
