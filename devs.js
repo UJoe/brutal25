@@ -122,7 +122,7 @@ window.dev = [
     name: "Reklámstop",
     desc: "Reklámmentes internet.",
     days: 7,
-    price: 10000000,
+    price: 7500000,
     szigor: [2, 4, 5, 7, 8],
     effect: [
       {
@@ -131,11 +131,11 @@ window.dev = [
       },
       {
         val: "pro",
-        ch: -400
+        ch: -300
       },
       {
         val: "mtn",
-        ch: 3000
+        ch: 2500
       }
     ]
   },
@@ -157,7 +157,7 @@ window.dev = [
       },
       {
         val: "pop",
-        ch: 5
+        ch: 10
       },
       {
         val: "mtn",
@@ -204,7 +204,7 @@ window.dev = [
     name: "Világbéke",
     desc: "Nincs több háború az egész világon!",
     days: 77,
-    price: 50000000000,
+    price: 40000000000,
     szigor: [4, 5, 8],
     effect: [
       {
@@ -221,15 +221,19 @@ window.dev = [
       },
       {
         val: "pro",
-        ch: 888
+        ch: 444
       },
       {
         val: "def",
-        ch: -999
+        ch: -888
+      },
+      {
+        val: "ufo",
+        ch: -555
       },
       {
         val: "mtn",
-        ch: 777
+        ch: 999
       }
     ]
   },
@@ -261,7 +265,7 @@ window.dev = [
   },
   {
     id: 10,
-    name: "Szoc. otthon",
+    name: "Szocotthon",
     desc: "A Városháza átalakítása szociális otthonná.",
     days: 30,
     price: 2400000,
@@ -281,7 +285,7 @@ window.dev = [
       },
       {
         val: "pop",
-        ch: 1
+        ch: 3
       },
       {
         val: "mtn",
@@ -304,6 +308,128 @@ window.dev = [
       {
         val: "mtn",
         ch: 1
+      }
+    ]
+  },
+  {
+    id: 12,
+    name: "Polgárőrök",
+    desc: "Önkéntes civil rendfenntartó-szervezet a lakosság védelmére.",
+    days: 5,
+    price: 150000,
+    szigor: [],
+    effect: [
+      {
+        val: "def",
+        ch: 100
+      },
+      {
+        val: "mtn",
+        ch: 50
+      }
+    ]
+  },
+  {
+    id: 13,
+    name: "MIB",
+    desc: "Gyanús fekete öltönyös ügynökök, akik állítólag idegen lényekre vadásznak.",
+    days: 12,
+    price: 9000000,
+    szigor: [],
+    effect: [
+      {
+        val: "def",
+        ch: 300
+      },
+      {
+        val: "ufo",
+        ch: -50
+      },
+      {
+        val: "joy",
+        ch: -5
+      },
+      {
+        val: "mtn",
+        ch: 555
+      }
+    ]
+  },
+  {
+    id: 14,
+    name: "Zsoltosok",
+    desc: "Barátságos, de rettenthetetlen harcosok, akik hatákonyan védik a lakosokat a gonosz idegentől",
+    days: 5,
+    price: 15000000,
+    szigor: [],
+    effect: [
+      {
+        val: "def",
+        ch: 200
+      },
+      {
+        val: "ufo",
+        ch: -300
+      },
+      {
+        val: "joy",
+        ch: 15
+      },
+      {
+        val: "mtn",
+        ch: 250
+      }
+    ]
+  },
+  {
+    id: 15,
+    name: "Átnevelő",
+    desc: "Az idegenek átnevelése hatékony földi életformára.",
+    days: 15,
+    price: 25000000,
+    szigor: [],
+    effect: [
+      {
+        val: "ufo",
+        ch: -300
+      },
+      {
+        val: "pop",
+        ch: 20
+      },
+      {
+        val: "niv",
+        ch: 10
+      },
+      {
+        val: "mtn",
+        ch: 1000
+      }
+    ]
+  },
+  {
+    id: 16,
+    name: "Sportközpont",
+    desc: "Játszóterek és sportcsarnok a kikapcsolódni és erősödni vágyóknak.",
+    days: 14,
+    price: 800000,
+    szigor: [3, 5, 6, 7],
+    effect: [
+      {
+        val: "joy",
+        ch: 10
+      },
+      {
+        val: "pop",
+        ch: 5
+      },
+      {
+        val: "pro",
+        ch: 500
+      },
+      {
+        val: "mtn",
+        ch: 100
       }
     ]
   },

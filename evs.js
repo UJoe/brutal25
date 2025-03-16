@@ -128,7 +128,7 @@ window.evs = [
   },
   {
     title: "A túl sok profit miatt sokan adócsalók lettek",
-    cond: "pro > 7500",
+    cond: "pro > 7500 & def < 1000",
     chance: .25,
     hang: "hardCity",
     btns: [
