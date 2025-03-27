@@ -585,8 +585,8 @@ function _load() {
       }
 
       //EVENTS
+      let balhé = false;
       for (e of evs) {
-        let balhé = false;
         if (balhé == false && checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
           balhé = true;
           pushMessage.push({
