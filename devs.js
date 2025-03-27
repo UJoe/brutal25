@@ -13,7 +13,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 100
+        ch: 50
       }
     ]
   },
@@ -22,7 +22,7 @@ window.dev = [
     name: "Hősképző",
     desc: "Szuperképesség-fejlesztő tanfolyam, amivel a polgárok boldogabbak és erősebbek lesznek.",
     days: 10,
-    price: 5000000,
+    price: 3000000,
     szigor: [],
     effect: [
       {
@@ -48,7 +48,7 @@ window.dev = [
     name: "Kedvencek",
     desc: "Minden háztartás igényelhet törpehörcsögöt, hóbaglyot vagy takarító robotnőt.",
     days: 10,
-    price: 30000,
+    price: 25000,
     szigor: [1, 2, 4, 6, 7],
     effect: [
       {
@@ -69,7 +69,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 500
+        ch: 300
       }
     ]
   },
@@ -78,7 +78,7 @@ window.dev = [
     name: "Ingyen BBB",
     desc: "Ingyen bort, búzát, békességet!",
     days: 15,
-    price: 5000000,
+    price: 1500000,
     szigor: [6],
     effect: [
       {
@@ -91,7 +91,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 4000
+        ch: 2500
       }
     ]
   },
@@ -113,7 +113,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 10
+        ch: 5
       }
     ]
   },
@@ -122,7 +122,7 @@ window.dev = [
     name: "Reklámstop",
     desc: "Reklámmentes internet.",
     days: 7,
-    price: 7500000,
+    price: 5000000,
     szigor: [2, 4, 5, 7, 8],
     effect: [
       {
@@ -135,7 +135,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 2500
+        ch: 1500
       }
     ]
   },
@@ -144,7 +144,7 @@ window.dev = [
     name: "Járványirtás",
     desc: "Az összes járvány kiirtása.",
     days: 50,
-    price: 50000000,
+    price: 10000000,
     szigor: [],
     effect: [
       {
@@ -161,7 +161,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 1500
+        ch: 2500
       }
     ]
   },
@@ -170,7 +170,7 @@ window.dev = [
     name: "Agymosás-stop",
     desc: "Leszámolunk az agymosással!",
     days: 25,
-    price: 1257098,
+    price: 1234567,
     szigor: [0, 1, 2, 3, 5, 6, 7, 8],
     effect: [
       {
@@ -195,7 +195,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 1463
+        ch: 1234
       }
     ]
   },
@@ -204,7 +204,7 @@ window.dev = [
     name: "Világbéke",
     desc: "Nincs több háború az egész világon!",
     days: 77,
-    price: 40000000000,
+    price: 10000000,
     szigor: [4, 5, 8],
     effect: [
       {
@@ -268,7 +268,7 @@ window.dev = [
     name: "Szocotthon",
     desc: "A Városháza átalakítása szociális otthonná.",
     days: 30,
-    price: 2400000,
+    price: 1400000,
     szigor: [4],
     effect: [
       {
@@ -334,7 +334,7 @@ window.dev = [
     name: "MIB",
     desc: "Gyanús fekete öltönyös ügynökök, akik állítólag idegen lényekre vadásznak.",
     days: 12,
-    price: 9000000,
+    price: 6000000,
     szigor: [],
     effect: [
       {
@@ -351,7 +351,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 555
+        ch: 888
       }
     ]
   },
@@ -360,7 +360,7 @@ window.dev = [
     name: "Zsoltosok",
     desc: "Barátságos, de rettenthetetlen harcosok, akik hatákonyan védik a lakosokat a gonosz idegentől",
     days: 5,
-    price: 15000000,
+    price: 10000000,
     szigor: [],
     effect: [
       {
@@ -377,7 +377,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 250
+        ch: 555
       }
     ]
   },
@@ -386,7 +386,7 @@ window.dev = [
     name: "Átnevelő",
     desc: "Az idegenek átnevelése hatékony földi életformára.",
     days: 15,
-    price: 25000000,
+    price: 15000000,
     szigor: [],
     effect: [
       {
@@ -412,8 +412,34 @@ window.dev = [
     name: "Sportközpont",
     desc: "Játszóterek és sportcsarnok a kikapcsolódni és erősödni vágyóknak.",
     days: 14,
-    price: 800000,
+    price: 600000,
     szigor: [3, 5, 6, 7],
+    effect: [
+      {
+        val: "joy",
+        ch: 10
+      },
+      {
+        val: "pop",
+        ch: 4
+      },
+      {
+        val: "pro",
+        ch: 500
+      },
+      {
+        val: "mtn",
+        ch: 100
+      }
+    ]
+  },
+  {
+    id: 17,
+    name: "Afrodiziákum",
+    desc: "Serkenti a lakosság szaporodó kedvét.",
+    days: 3,
+    price: 100000,
+    szigor: [],
     effect: [
       {
         val: "joy",
@@ -424,12 +450,8 @@ window.dev = [
         ch: 5
       },
       {
-        val: "pro",
-        ch: 500
-      },
-      {
         val: "mtn",
-        ch: 100
+        ch: 333
       }
     ]
   },

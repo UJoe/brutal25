@@ -282,6 +282,8 @@ function _load() {
             break;
         }
         bt = rnd(bar);
+      } else if (typeof b.txt == "object") {
+        bt = rnd(b.txt);
       } else {
         bt = b.txt;
       }
@@ -344,7 +346,7 @@ function _load() {
             ch: "-Math.abs(Math.round(kob.pro*Math.random()))"
           },
           {
-            val: "had",
+            val: "def",
             ch: "-Math.round(100+Math.random()*150)"
           }
         ];
@@ -584,7 +586,9 @@ function _load() {
 
       //EVENTS
       for (e of evs) {
-        if (checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
+        let balhé = false;
+        if (balhé == false && checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
+          balhé = true;
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
             id: ko.num,
@@ -630,7 +634,7 @@ function _load() {
           } else {
             //Storyline
             switch (g.num) {
-              case 5:
+              case 6:
                 for (k of ker) {
                   k.ufoC += Math.round(20 + Math.random() * (50 - k.defo * 20));
                 }

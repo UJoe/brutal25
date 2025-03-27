@@ -19,7 +19,7 @@ let goodBtn =
 window.evs = [
   {
     title: "Zúgolódik ellened a nép",
-    cond: "joy < 21 & joy > 9",
+    cond: "joy < 21 & joy > 5",
     chance: .4,
     hang: "angryCity",
     btns: [
@@ -65,7 +65,7 @@ window.evs = [
             ch: "-Math.abs(Math.round(300+kob.pro*Math.random()))"
           },
           {
-            val: "had",
+            val: "def",
             ch: "Math.round(50+Math.random()*50)"
           }
         ]
@@ -91,7 +91,7 @@ window.evs = [
       },
       {
         type: "rombolás",
-        txt: "Majd leállnak.",
+        txt: ["Majd leállnak.", "Leszarom."],
         hang: "angryCity",
       }
     ],
@@ -104,7 +104,7 @@ window.evs = [
     btns: [
       {
         type: "change",
-        txt: "Ezek hülyék?!",
+        txt: ["Ezek hülyék?!", "Nem normálisak!", "Ez komoly?!"],
         change: [
           {
             val: "pop",
@@ -119,7 +119,7 @@ window.evs = [
             ch: "-Math.round(1+Math.random()*4)"
           },
           {
-            val: "had",
+            val: "def",
             ch: "-Math.round(200+Math.random()*150)"
           }
         ]
@@ -128,34 +128,34 @@ window.evs = [
   },
   {
     title: "A túl sok profit miatt sokan adócsalók lettek",
-    cond: "pro > 7500 & def < 1000",
+    cond: "pro > 9000 & def < 900",
     chance: .25,
     hang: "hardCity",
     btns: [
       {
         type: "change",
-        txt: "Kellemetlen.",
+        txt: ["Kellemetlen.", "Pech!", "Kis huncutok!"],
         change: [
           {
             val: "pro",
             ch: "-Math.round(3000+Math.random()*5000)"
           },
           {
-            val: "had",
+            val: "def",
             ch: "-Math.round(100+Math.random()*150)"
           }
         ]
       },
       {
         type: "change",
-        txt: "Tömlöcbe velük!",
+        txt: ["Tömlöcbe velük!", "Elkapom őket!"],
         change: [
           {
             val: "money",
-            ch: "-Math.round(1000+Math.random()*1500)"
+            ch: "-Math.round(1000+Math.random()*1000)"
           },
           {
-            val: "had",
+            val: "def",
             ch: "Math.round(100+Math.random()*150)"
           },
           {
@@ -178,7 +178,7 @@ window.evs = [
     btns: [
       {
         type: "change",
-        txt: "Csúnya dolog.",
+        txt: ["Csúnya dolog.", "Ejnye-bejnye!"],
         change: [
           {
             val: "pop",
@@ -189,14 +189,14 @@ window.evs = [
             ch: "-Math.round(20+Math.random()*50)"
           },
           {
-            val: "had",
+            val: "def",
             ch: "-Math.round(250+Math.random()*kob.pop/20)"
           },
         ]
       },
       {
         type: "change",
-        txt: "Rendőrt közéjük!",
+        txt: ["Rendőrt közéjük!", "Adok én nekik!"],
         change: [
           {
             val: "money",
@@ -207,7 +207,7 @@ window.evs = [
             ch: "-Math.round(5+Math.random()*10)"
           },
           {
-            val: "had",
+            val: "def",
             ch: "Math.round(150+Math.random()*250)"
           },
         ]
@@ -241,10 +241,10 @@ window.gevs = [
     num: 2,
     name: "Csődközeli helyzet",
     type: "global",
-    cond: "money < 9000 & money > 0",
+    cond: "money < 10000 & money > 0",
     trophy: false,
     end: false,
-    desc: "Az önkormányzat gazdálkodása veszteséges. Rendezd el a bevételek és kiadások arányát, hogy elkerüld a csődöt!",
+    desc: "Az önkormányzat kasszája mindjárt kiürül! Rendezd el a bevételek és kiadások arányát, hogy elkerüld a csődöt!",
     hang: "angryCity"
   },
   {
@@ -286,5 +286,15 @@ window.gevs = [
     end: false,
     desc: "Egyre több furcsa lény jelenik meg az emberek között. Ismeretlen intelligens fajok, akik gyakran agresszíven viselkednek.",
     hang: "alienEvent"
+  },
+  {
+    num: 7,
+    name: "Vészesen fogy a pénz",
+    type: "total",
+    cond: "pro < -100000",
+    trophy: false,
+    end: false,
+    desc: "Az önkormányzat gazdálkodása eléggé veszteséges! Rendezd a bevételek és kiadások arányát!",
+    hang: "angryCity"
   },
 ]
