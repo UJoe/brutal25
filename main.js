@@ -491,13 +491,26 @@ function _load() {
 
   function bigNumber(x, y = "") {
     let ax = Math.abs(x);
-    if (ax >= 1000000000) return Math.floor(x / 1000000000) + "B&nbsp;" + y;
-    if (ax >= 1000000) return Math.floor(x / 1000000) + "M&nbsp;" + y;
+    if (ax >= 1000000000) {
+      {
+        let l = Math.floor(x / 1000000000).toLocaleString();
+        let r = String(ax).slice(-9, -8);
+        r = r == "0" ? "" : "," + r;
+        return l + r + "B&nbsp;" + y;
+      }
+    }
+    if (ax >= 1000000) {
+      let l = Math.floor(x / 1000000);
+      let r = String(ax).slice(-6, -5);
+      r = r == "0" ? "" : "," + r;
+      return l + r + "M&nbsp;" + y;
+    }
     if (ax >= 1000) return x.toLocaleString() + "&nbsp;" + y;
     if (x < 0 && y == "fő") {
       x = 0;
     }
     return x + "&nbsp;" + y;
+
   }
 
   var disNumber = (x) =>
@@ -561,7 +574,7 @@ function _load() {
       let [hado, ufoo, defo] = [ko.had, ko.ufo, ko.def];
       ko.defC += Math.round(ko.mtn * (ko.defo - 1) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(1 + Math.random() * day / 10 + (ko.ufo - ko.def) / 11);
+      ko.ufoC += Math.round(day / 10 + Math.random() * day + (ko.ufo - ko.def) / (10 + Math.random() * 5));
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       sign = hado === 0 ? 1 : Math.sign(hado);

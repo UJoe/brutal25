@@ -334,20 +334,20 @@ window.dev = [
     name: "MIB",
     desc: "Gyanús fekete öltönyös ügynökök, akik állítólag idegen lényekre vadásznak.",
     days: 12,
-    price: 6000000,
+    price: 4000000,
     szigor: [],
     effect: [
       {
         val: "def",
-        ch: 300
+        ch: 500
       },
       {
         val: "ufo",
-        ch: -50
+        ch: -500
       },
       {
         val: "joy",
-        ch: -5
+        ch: -10
       },
       {
         val: "mtn",
@@ -358,14 +358,14 @@ window.dev = [
   {
     id: 14,
     name: "Zsoltosok",
-    desc: "Erdei Ysolt barátságos, de rettenthetetlen tanítványai, akik hatákonyan védik a lakosokat a gonosz idegentől",
+    desc: "Erdei Zsolt barátságos, de rettenthetetlen tanítványai, akik hatákonyan védik a lakosokat a gonosz idegentől",
     days: 5,
-    price: 7000000,
+    price: 2000000,
     szigor: [],
     effect: [
       {
         val: "def",
-        ch: 200
+        ch: 300
       },
       {
         val: "ufo",
@@ -386,12 +386,12 @@ window.dev = [
     name: "Átnevelő",
     desc: "Az idegenek átnevelése hatékony földi életformára.",
     days: 15,
-    price: 10000000,
+    price: 5000000,
     szigor: [],
     effect: [
       {
         val: "ufo",
-        ch: -300
+        ch: -1000
       },
       {
         val: "pop",
