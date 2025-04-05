@@ -358,9 +358,9 @@ window.dev = [
   {
     id: 14,
     name: "Zsoltosok",
-    desc: "Barátságos, de rettenthetetlen harcosok, akik hatákonyan védik a lakosokat a gonosz idegentől",
+    desc: "Erdei Ysolt barátságos, de rettenthetetlen tanítványai, akik hatákonyan védik a lakosokat a gonosz idegentől",
     days: 5,
-    price: 10000000,
+    price: 7000000,
     szigor: [],
     effect: [
       {
@@ -386,7 +386,7 @@ window.dev = [
     name: "Átnevelő",
     desc: "Az idegenek átnevelése hatékony földi életformára.",
     days: 15,
-    price: 15000000,
+    price: 10000000,
     szigor: [],
     effect: [
       {
@@ -452,6 +452,28 @@ window.dev = [
       {
         val: "mtn",
         ch: 333
+      }
+    ]
+  },
+  {
+    id: 18,
+    name: "Trafikok",
+    desc: "Különböző üzletek, amik bevételt hoznak az Önkormányzatnak.",
+    days: 10,
+    price: 500000,
+    szigor: [],
+    effect: [
+      {
+        val: "niv",
+        ch: 1
+      },
+      {
+        val: "pro",
+        ch: 3000
+      },
+      {
+        val: "mtn",
+        ch: 500
       }
     ]
   },

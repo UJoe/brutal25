@@ -98,8 +98,8 @@ window.evs = [
   },
   {
     title: "A túl kényelmes élet miatt a nép átment önpusztításba",
-    cond: "niv > 90",
-    chance: .12,
+    cond: "niv > 95",
+    chance: .1,
     hang: "hardCity",
     btns: [
       {
@@ -128,7 +128,7 @@ window.evs = [
   },
   {
     title: "A túl sok profit miatt sokan adócsalók lettek",
-    cond: "pro > 9000 & def < 900",
+    cond: "pro > 10000 & def < 750",
     chance: .25,
     hang: "hardCity",
     btns: [
@@ -172,7 +172,7 @@ window.evs = [
   },
   {
     title: "A túl nagy népsűrűség agresszívvá teszi az embereket",
-    cond: "pop > 9000",
+    cond: "pop > 18000 & def < 1000",
     chance: .4,
     hang: "hardCity",
     btns: [
@@ -186,7 +186,7 @@ window.evs = [
           },
           {
             val: "joy",
-            ch: "-Math.round(20+Math.random()*50)"
+            ch: "-Math.round(15+Math.random()*45)"
           },
           {
             val: "def",
@@ -200,7 +200,7 @@ window.evs = [
         change: [
           {
             val: "money",
-            ch: "-Math.round(kob.pop*(2-kob.defo)*(1000-Math.random()*200))"
+            ch: "-Math.round(kob.pop*(1.6-kob.defo)*(5+Math.random()*5))"
           },
           {
             val: "joy",
@@ -208,9 +208,32 @@ window.evs = [
           },
           {
             val: "def",
-            ch: "Math.round(150+Math.random()*250)"
+            ch: "Math.round(150+Math.random()*250*(2-kob.defo))"
           },
         ]
+      }
+    ],
+  },
+  {
+    title: "Mindjárt kihal a nép",
+    cond: "pop < 250",
+    chance: .9,
+    hang: "sadCity",
+    btns: [
+      {
+        type: "change",
+        txt: ["Ez a sorsuk", "Legalább nyugtom lesz", "Szegények", "Végre már!"],
+        change: [
+          {
+            val: "joy",
+            ch: "-Math.round(20+Math.random()*30)"
+          },
+        ]
+      },
+      {
+        type: "betelepítés",
+        txt: "Betelepítési programot indítok",
+        hang: true,
       }
     ],
   },
@@ -259,7 +282,7 @@ window.gevs = [
   },
   {
     num: 4,
-    name: "Nyomor a köbön",
+    name: "Nyomor",
     type: "total",
     cond: "niv < 5",
     trophy: false,
@@ -296,5 +319,65 @@ window.gevs = [
     end: false,
     desc: "Az önkormányzat gazdálkodása eléggé veszteséges! Rendezd a bevételek és kiadások arányát!",
     hang: "angryCity"
+  },
+  {
+    num: 8,
+    name: "Gazdasági fellendülés",
+    type: "global",
+    cond: "day = 40",
+    trophy: false,
+    end: false,
+    desc: "Javult az ország gazdasági helyzete, az általános jólét a városodra is kihat.",
+    hang: "happyCity"
+  },
+  {
+    num: 9,
+    name: "Gazdasági válság",
+    type: "global",
+    cond: "day = 60",
+    trophy: false,
+    end: false,
+    desc: "Kipukkadt a gazdasági növekedés lufija. Recesszió, elszegényedés, megszorítások, káosz üti fel a fejét az egész országban.",
+    hang: "hardCity"
+  },
+  {
+    num: 10,
+    name: "Idegen támadások",
+    type: "global",
+    cond: "day = 70",
+    trophy: false,
+    end: false,
+    desc: "A válságot kihasználva egyre több idegen lény kezd randalírozni a városodban. Át akarják venni a hatalmat? Közben az állam próbálja helyreállítani a gazdaságot.",
+    hang: "alienEvent"
+  },
+  {
+    num: 11,
+    name: "Stabilizálódott a gazdaság",
+    type: "global",
+    cond: "day = 100",
+    trophy: false,
+    end: false,
+    desc: "Az államnak végre sikerült stabilizálni a gazdaságot, helyreállt a rend, a városod pedig kapott 1 millió $ támogatást.",
+    hang: "happyCity"
+  },
+  {
+    num: 12,
+    name: "Kulturális felvirágzás",
+    type: "global",
+    cond: "day = 150",
+    trophy: false,
+    end: false,
+    desc: "Az állam átfogó támogatási programot indított a kultúra, oktatás és szabadidős tevékenységek fejlesztésére.",
+    hang: "happyCity"
+  },
+  {
+    num: 13,
+    name: "Hackertámadás",
+    type: "global",
+    cond: "day = Math.floor(120+Math.random()*11)",
+    trophy: false,
+    end: false,
+    desc: "Hackeretámadás érte az Önkormányzat egyik bankszámláját! A pénzed felét elvesztetted!",
+    hang: false
   },
 ]

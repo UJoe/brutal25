@@ -46,6 +46,7 @@ function _load() {
   window.musIcon = "./img/soundOn.png";
   window.tax = 50;
   window.money = 10000;
+  window.pros = 1;
   window.trophy = [];
   window.day = 1;
   window.rnd = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -82,7 +83,7 @@ function _load() {
       sum: true,
       prev: 0,
       cur: 0,
-      good: 5000,
+      good: 7000,
       bad: 1000
     },
     {
@@ -366,6 +367,43 @@ function _load() {
         flier(kob, chalap, xs);
       }
 
+      if (bp.type === "betelepítés" && kob) {
+        let migráncs = 0;
+        for (let i = 0; i < ker.length; i++) {
+          if (i === kob.num) continue;
+          ker[i].popC -= 1;
+          migráncs += Math.floor(ker[i].pop / 100);
+        }
+        let pc = Math.round(migráncs / kob.pop * 100);
+        let chalap = [
+          {
+            val: "joy",
+            ch: "Math.round(5+Math.random()*5)"
+          },
+          {
+            val: "niv",
+            ch: "Math.round(5+Math.random()*5)"
+          },
+          {
+            val: "pop",
+            ch: pc
+          },
+          {
+            val: "money",
+            ch: -pc * 200
+          },
+        ];
+        let xs = `
+        <tr>
+          <td colspan="2">Betelepülők száma:</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="neutral center">${pc}</td>
+        </tr>
+        `;
+        flier(kob, chalap, xs);
+      }
+
       pushMessage.shift();
       if (pushMessage.length > 0) {
         let m = pushMessage[0];
@@ -424,10 +462,10 @@ function _load() {
       fly.classList.add("effKi");
       fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
       fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
-    }, 2000);
+    }, 3000);
     timo2 = setTimeout(() => {
       fly.style.display = "none";
-    }, 3000);
+    }, 4000);
   }
 
 
@@ -440,9 +478,9 @@ function _load() {
       ko[val + "C"] = Math.round((min - org) / org * 100);
       ko[val] = min;
     }
-    if (val === "pop" && ko.pop > 10000) {
-      ko.popC = Math.round((10000 - org) / org * 100);
-      ko.pop = 10000;
+    if (val === "pop" && ko.pop > 20000) {
+      ko.popC = Math.round((20000 - org) / org * 100);
+      ko.pop = 20000;
     }
     if ((val === "niv" || val === "joy") && ko[val] > 100) {
       ko[val + "C"] = Math.round((100 - org) / org * 100);
@@ -537,7 +575,7 @@ function _load() {
       ko.defCD = ko.defC;
 
       let rendor = 1 + Math.round(Math.random());
-      if (ko.had > 300 + Math.random() * 50 || ko.had < -100 * Math.random()) {
+      if (ko.had > 300 + Math.random() * 200 || ko.had < -100 * Math.random()) {
         rendor -= 1 + Math.round(Math.random() * 3);
       }
       if (ko.had > 1500 + Math.random() * 500 || ko.had < -200 - 100 * Math.random()) {
@@ -574,7 +612,7 @@ function _load() {
       ko.exp = newExp;
       ko.expCD = ko.expC;
 
-      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * (0.4 + ko.niv / 300) - newExp) + getDevs(ko.dev, "pro");
+      let newPro = ko.proC + Math.round(ko.pop * (tax / 10) * pros ** (0.4 + ko.niv / 300) - newExp) + getDevs(ko.dev, "pro");
       sign = ko.pro === 0 ? 1 : Math.sign(ko.pro);
       ko.proC = Math.round(((newPro - ko.pro) / ko.pro) * 100 * sign);
       ko.pro = newPro;
@@ -622,7 +660,7 @@ function _load() {
           document.body.classList.add("dark");
           return;
         } else {
-          let tb = g.trophy ? goodBtn : badBtn;
+          let tb = g.trophy ? goodBtn : g.end ? badBtn : okBtn;
           pushMessage.push({
             msg: mStr,
             id: -1,
@@ -636,8 +674,60 @@ function _load() {
             switch (g.num) {
               case 6:
                 for (k of ker) {
-                  k.ufoC += Math.round(20 + Math.random() * (50 - k.defo * 20));
+                  k.ufoC += Math.round(50 + Math.random() * (100 - k.defo * 50));
                 }
+                break;
+
+              case 8:
+                for (k of ker) {
+                  k.nivC += Math.round(4 + Math.random() * 4 + k.eco);
+                  k.joyC += Math.round(3 + Math.random() * 3);
+                }
+                pros = 1.2
+                break;
+
+              case 9:
+                for (k of ker) {
+                  k.joyC -= Math.round(10 + Math.random() * 10);
+                  k.nivC -= Math.round(15 + Math.random() * (15 - k.eco * 10));
+                  k.ufoC += Math.round(50 + Math.random() * 50);
+                  k.defC -= Math.round(200 + Math.random() * (1.5 - k.defo) * 150);
+                  k.popC -= Math.round(7 + Math.random() * 5);
+                }
+                pros = 0.5
+                break;
+
+              case 10:
+                for (k of ker) {
+                  k.nivC += 1 + Math.round(Math.random() * k.eco * 3);
+                  k.ufoC += Math.round(300 + Math.random() * (500 - k.defo * 100));
+                  k.popC -= Math.round(8 + Math.random() * (12 - k.defo * 5));
+                }
+                pros = 0.7
+                break;
+
+              case 11:
+                for (k of ker) {
+                  k.nivC += Math.round(10 + Math.random() * k.eco * 10);
+                  k.joyC += Math.round(5 + Math.random() * k.nivC / 2);
+                  k.popC += 1;
+                  k.defC += Math.round(100 + Math.random() * k.defo * 100);
+                }
+                pros = 1;
+                money += 1000000;
+                break;
+
+              case 12:
+                for (k of ker) {
+                  money += Math.round((1.5 - k.culto) * 20000);
+                  k.culto = 1.3;
+                  k.joyC += Math.round(5 + Math.random() * 5);
+                  k.nivC += Math.round(1 + Math.random() * (k.eco - k.defo) * 5);
+                }
+                break;
+
+              case 13:
+                money = Math.round(money / 2);
                 break;
 
               default:
@@ -946,7 +1036,7 @@ function _load() {
     for (let d of dev) {
       if (ko.curDev.length < 1 && ko.dev.indexOf(d.id) < 0 && d.price <= money && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
         buy.push(d.id);
-      } else if (ko.curDev[0] !== d.name && ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.2 && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
+      } else if (ko.curDev[0] !== d.name && ko.dev.indexOf(d.id) < 0 && d.price <= money * 1.5 && (d.szigor.length === 0 || d.szigor.indexOf(ko.num) > -1)) {
         almost.push(d.id);
       }
     }
