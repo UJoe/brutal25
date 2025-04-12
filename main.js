@@ -697,7 +697,7 @@ function _load() {
                 for (k of ker) {
                   k.nivC += Math.round(4 + Math.random() * 4 + k.eco);
                   k.joyC += Math.round(3 + Math.random() * 3);
-                  k.popC += 1;
+                  k.popC += Math.round(10 + Math.random() * 10);
                 }
                 pros = 1.2
                 break;
@@ -764,8 +764,9 @@ function _load() {
               case 15:
                 let xs = "";
                 for (k of ker) {
-                  k.joyC -= Math.round(10 + Math.random() * 5);
+                  k.joyC -= Math.round(k.num * 2 + Math.random() * 10);
                   k.nivC -= Math.round(15 + Math.random() * 10);
+                  k.popC -= Math.round(5 + Math.random() * k.num);
                   k.proC -= parseInt(k.pro / 2);
                   k.ufoC += Math.round((1 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
                   k.defo = 1.3;
@@ -787,7 +788,19 @@ function _load() {
                 tax = tax <= 40 ? tax + 20 : tax <= 60 ? tax + 10 : 90;
                 money -= Math.round(1000000 + money / 6 + Math.random() * 1000000);
                 pros = 0.75;
-                pros = 1.5;
+                break;
+
+              case 19:
+                for (k of ker) {
+                  k.joyC += Math.round(5 + Math.random() * 5);
+                  k.nivC += Math.round(5 + Math.random() * 5);
+                  k.popC += Math.round(1 + Math.random() * k.num);
+                  k.proC += parseInt(k.pro / 3);
+                  k.ufoC -= Math.round((1 + k.defo) * 300 + Math.random() * 200);
+                  k.defC += Math.round((1 + k.defo) * 200 + Math.random() * 300);
+                }
+                money -= 2000000;
+                pros = 1;
                 break;
 
               default:

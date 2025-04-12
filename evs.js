@@ -326,12 +326,12 @@ window.gevs = [
   },
   {
     num: 8,
-    name: "Gazdasági fellendülés",
+    name: "Jólét",
     type: "global",
     cond: "day = 30",
     trophy: false,
     end: false,
-    desc: "Javult az ország gazdasági helyzete, az általános jólét a városodra is kihat.",
+    desc: "Javult az ország gazdasági helyzete, az általános jólét a városodra is kihat. Nő a lakosság életszínvonala, boldogabbak és szaporodnak, mint a nyulak.",
     hang: "happyCity"
   },
   {
@@ -424,4 +424,27 @@ window.gevs = [
     desc: "Hatalmas méretűvé nőtt a városod, a lakosság elérte a 150 ezer főt. Egyre jelentősebb település a régióban.",
     hang: "happyCity"
   },
+  {
+    num: 18,
+    name: "Vesszen a zsarnok!",
+    type: "total",
+    cond: "had > 10000+Math.floor(Math.random()*1000) ",
+    trophy: false,
+    end: true,
+    desc: "Hiába győzted le Bitang Botondot, ha magad is olyan zsarnokká váltál mint ő! A népnek elege lesz a túlzott rendőri zaklatásokból. A lázadók egy ügyes csoportja csapdába csal téged és végez veled.",
+    hang: "angryCity"
+  },
+  {
+    num: 19,
+    name: "Végzel a GyFSzNy vezérkarával",
+    type: "global",
+    cond: "day > 125 & money > 3000000",
+    trophy: true,
+    end: false,
+    desc: "Sikerül egy olyan dróncsapatot legyártanod, ami megkeresi a Gyehenna Fertelmes Szagú Nyájának vezéreit, és halálos csapást mér rájuk. A vezetők nélkül a banda többi tagja abbahagyja a fosztogatást és vagy elhagyja a várost, vagy elrejtőzik. A levegő is tisztul.",
+    hang: "happyCity"
+  },
+  //20:tág random napon egy támogató ad pénzt és felhúz ingyen egy random épületet a központban és egy másikat egy random kerületben.
+  //21:végső idegen invázió, a megmaradt motorosok összefognak az ufókkal
+  //22:játék vége mindenképpen
 ]
