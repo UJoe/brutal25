@@ -92,7 +92,7 @@ window.evs = [
       {
         type: "rombolás",
         txt: ["Majd leállnak.", "Leszarom."],
-        hang: "angryCity",
+        hang: "rombol",
       }
     ],
   },
@@ -105,6 +105,7 @@ window.evs = [
       {
         type: "change",
         txt: ["Ezek hülyék?!", "Nem normálisak!", "Ez komoly?!"],
+        hang: "uhoh",
         change: [
           {
             val: "pop",
@@ -149,6 +150,7 @@ window.evs = [
       {
         type: "change",
         txt: ["Tömlöcbe velük!", "Elkapom őket!"],
+        hang: "machinegun",
         change: [
           {
             val: "money",
@@ -179,6 +181,7 @@ window.evs = [
       {
         type: "change",
         txt: ["Csúnya dolog.", "Ejnye-bejnye!"],
+        hang: false,
         change: [
           {
             val: "pop",
@@ -197,6 +200,7 @@ window.evs = [
       {
         type: "change",
         txt: ["Rendőrt közéjük!", "Adok én nekik!"],
+        hang: "machinegun",
         change: [
           {
             val: "money",
@@ -314,7 +318,7 @@ window.gevs = [
     num: 7,
     name: "Vészesen fogy a pénz",
     type: "total",
-    cond: "pro < -100000",
+    cond: "pro < -50000",
     trophy: false,
     end: false,
     desc: "Az önkormányzat gazdálkodása eléggé veszteséges! Rendezd a bevételek és kiadások arányát!",
@@ -324,7 +328,7 @@ window.gevs = [
     num: 8,
     name: "Gazdasági fellendülés",
     type: "global",
-    cond: "day = 40",
+    cond: "day = 30",
     trophy: false,
     end: false,
     desc: "Javult az ország gazdasági helyzete, az általános jólét a városodra is kihat.",
@@ -334,7 +338,7 @@ window.gevs = [
     num: 9,
     name: "Gazdasági válság",
     type: "global",
-    cond: "day = 60",
+    cond: "day = 45",
     trophy: false,
     end: false,
     desc: "Kipukkadt a gazdasági növekedés lufija. Recesszió, elszegényedés, megszorítások, káosz üti fel a fejét az egész országban.",
@@ -344,7 +348,7 @@ window.gevs = [
     num: 10,
     name: "Idegen támadások",
     type: "global",
-    cond: "day = 70",
+    cond: "day = 55",
     trophy: false,
     end: false,
     desc: "A válságot kihasználva egyre több idegen lény kezd randalírozni a városodban. Át akarják venni a hatalmat? Közben az állam próbálja helyreállítani a gazdaságot.",
@@ -354,7 +358,7 @@ window.gevs = [
     num: 11,
     name: "Stabilizálódott a gazdaság",
     type: "global",
-    cond: "day = 100",
+    cond: "day = 70",
     trophy: false,
     end: false,
     desc: "Az államnak végre sikerült stabilizálni a gazdaságot, helyreállt a rend, a városod pedig kapott 1 millió $ támogatást.",
@@ -364,20 +368,60 @@ window.gevs = [
     num: 12,
     name: "Kulturális felvirágzás",
     type: "global",
-    cond: "day = 150",
+    cond: "day = 80",
     trophy: false,
     end: false,
     desc: "Az állam átfogó támogatási programot indított a kultúra, oktatás és szabadidős tevékenységek fejlesztésére.",
-    hang: "happyCity"
+    hang: "Kultúrnegyed"
   },
   {
     num: 13,
     name: "Hackertámadás",
     type: "global",
-    cond: "day = Math.floor(120+Math.random()*11)",
+    cond: "day = Math.floor(85+Math.random()*6)",
     trophy: false,
     end: false,
     desc: "Hackeretámadás érte az Önkormányzat egyik bankszámláját! A pénzed felét elvesztetted!",
     hang: false
+  },
+  {
+    num: 14,
+    name: "Olajat találtatok",
+    type: "global",
+    cond: "day = 100",
+    trophy: false,
+    end: false,
+    desc: "Hatalmas kőolajlelőhelyre bukkantatok. Özönlik be a pénz, minden kerületben fellendül a gazdaság, a nép önfeledten ünnepel, a terheiket csökkented!",
+    hang: "happyCity"
+  },
+  {
+    num: 15,
+    name: "Motoros támadás",
+    type: "global",
+    cond: "day = 120",
+    trophy: false,
+    end: false,
+    desc: "A Gyehenna Fertelmes Szagú Nyája (GyFSzNy) névre hallgató, hírhedt motoros banda támadt rá a városra Dél-Keletről! Törnek-zúznak, rontják a levegőt és ki akarják rabolni az olajkészletetetet. Drasztikus intézkedéseket kell bevezetned, hogy megvédd a várost!",
+    hang: "motorgang"
+  },
+  {
+    num: 16,
+    name: "Kísértetváros",
+    type: "total",
+    cond: "pop < 1000",
+    trophy: false,
+    end: true,
+    desc: "A város szinte teljesen elnéptelenedett. Aki még maradt az vagy útnak indult más városba, vagy itt maradt fosztogatni az üzleteket. Az egyik ilyen csavargó hátulról leszúr és mérgesen közli, hogy ezt csak magadnak köszönhetted.",
+    hang: "sadCity"
+  },
+  {
+    num: 17,
+    name: "Metropolisz",
+    type: "total",
+    cond: "pop > 150000",
+    trophy: true,
+    end: false,
+    desc: "Hatalmas méretűvé nőtt a városod, a lakosság elérte a 150 ezer főt. Egyre jelentősebb település a régióban.",
+    hang: "happyCity"
   },
 ]

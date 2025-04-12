@@ -268,7 +268,7 @@ function _load() {
         let bar = ["OK"];
         switch (b.txt) {
           case "OK":
-            bar = ["OK", "Ez van.", "Ilyen az élet.", "Jól van az úgy.", "Helyes!", "Így van!"]
+            bar = ["OK", "Ez van.", "Ilyen az élet.", "Jól van az úgy.", "Helyes!", "Így van!", "Nocsak!", "Micsoda hír!", "Értem.", "Nem mondod!", "Vettem.", "Jó."]
             break;
 
           case "good":
@@ -276,7 +276,7 @@ function _load() {
             break;
 
           case "bad":
-            bar = ["Naba...", "Leszarom.", "Megérdemlik.", "Ne már!", "Mi a szösz?", "Ez van!", "Hínye!", "Bakker!", "Na és?", "A szajha életbe!", "Szar ügy.", "Anyátokat!", "Kellemetlen."]
+            bar = ["Naba...", "Leszarom.", "Megérdemlik.", "Ne már!", "Mi a szösz?", "Ez van!", "Hínye!", "Bakker!", "Na és?", "A szajha életbe!", "Szar ügy.", "Anyátokat!", "Kellemetlen.", "Ó, jaj!", "Hűha!"]
             break;
 
           default:
@@ -428,26 +428,28 @@ function _load() {
     if (xStr.length > 0) {
       efStr += xStr;
     };
-    for (c of chs) {
-      let ccc = eval(c.ch);
-      let cc = ccc < 0 ? "bad" : ccc > 0 ? "good" : "neutral";
-      let [cval, bal] = "";
-      let jobb = disNumber(ccc);
-      if (c.val === "money" || c.val === "tax") {
-        cval = c.val;
-        bal = valToName(cval);
-        window[cval] += ccc;
-      } else {
-        bal = valToName(c.val);
-        cval = c.val + "C";
-        kob[cval] += ccc;
+    if (chs.length > 0) {
+      for (c of chs) {
+        let ccc = eval(c.ch);
+        let cc = ccc < 0 ? "bad" : ccc > 0 ? "good" : "neutral";
+        let [cval, bal] = "";
+        let jobb = disNumber(ccc);
+        if (c.val === "money" || c.val === "tax") {
+          cval = c.val;
+          bal = valToName(cval);
+          window[cval] += ccc;
+        } else {
+          bal = valToName(c.val);
+          cval = c.val + "C";
+          kob[cval] += ccc;
+        }
+        efStr += `
+                <tr>
+                  <td>${bal}:</td>
+                  <td title=${ccc.toLocaleString()} class=${cc}>${jobb}</td>
+                </tr>
+              `;
       }
-      efStr += `
-              <tr>
-                <td>${bal}:</td>
-                <td title=${ccc.toLocaleString()} class=${cc}>${jobb}</td>
-              </tr>
-            `;
     }
     fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
     fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
@@ -493,14 +495,14 @@ function _load() {
     let ax = Math.abs(x);
     if (ax >= 1000000000) {
       {
-        let l = Math.floor(x / 1000000000).toLocaleString();
+        let l = parseInt(x / 1000000000).toLocaleString();
         let r = String(ax).slice(-9, -8);
         r = r == "0" ? "" : "," + r;
         return l + r + "B&nbsp;" + y;
       }
     }
     if (ax >= 1000000) {
-      let l = Math.floor(x / 1000000);
+      let l = parseInt(x / 1000000);
       let r = String(ax).slice(-6, -5);
       r = r == "0" ? "" : "," + r;
       return l + r + "M&nbsp;" + y;
@@ -592,7 +594,7 @@ function _load() {
         rendor -= 1 + Math.round(Math.random() * 3);
       }
       if (ko.had > 1500 + Math.random() * 500 || ko.had < -200 - 100 * Math.random()) {
-        rendor -= 2 + Math.floor(ko.had / 400 * Math.random());
+        rendor -= 2 + parseInt(ko.had / 400 * Math.random());
       }
       if (Math.abs(rendor) > 8) {
         rendor = Math.sign(rendor) * 8;
@@ -695,6 +697,7 @@ function _load() {
                 for (k of ker) {
                   k.nivC += Math.round(4 + Math.random() * 4 + k.eco);
                   k.joyC += Math.round(3 + Math.random() * 3);
+                  k.popC += 1;
                 }
                 pros = 1.2
                 break;
@@ -724,7 +727,7 @@ function _load() {
                   k.nivC += Math.round(10 + Math.random() * k.eco * 10);
                   k.joyC += Math.round(5 + Math.random() * k.nivC / 2);
                   k.popC += 1;
-                  k.defC += Math.round(100 + Math.random() * k.defo * 100);
+                  k.defC += Math.round(50 + Math.random() * k.defo * 50);
                 }
                 pros = 1;
                 money += 1000000;
@@ -736,11 +739,55 @@ function _load() {
                   k.culto = 1.3;
                   k.joyC += Math.round(5 + Math.random() * 5);
                   k.nivC += Math.round(1 + Math.random() * (k.eco - k.defo) * 5);
+                  k.popC += 3;
                 }
                 break;
 
               case 13:
                 money = Math.round(money / 2);
+                break;
+
+              case 14:
+                for (k of ker) {
+                  if (k.eco < 1.1) { k.eco += .3; }
+                  k.joyC += Math.round(5 + Math.random() * 5);
+                  k.nivC += Math.round(15 + Math.random() * 10);
+                  k.proC += k.pro;
+                  k.defC -= parseInt((Math.random() / 3 + (1.5 - k.defo) / 2) * k.def)
+                  if (k.defo > 0.8) { k.defo -= .3; }
+                }
+                tax = tax >= 40 ? tax - 20 : tax >= 20 ? tax - 10 : 10;
+                money += Math.round(10000000 + money / 5 + Math.random() * 5000000);
+                pros = 1.5;
+                break;
+
+              case 15:
+                let xs = "";
+                for (k of ker) {
+                  k.joyC -= Math.round(10 + Math.random() * 5);
+                  k.nivC -= Math.round(15 + Math.random() * 10);
+                  k.proC -= parseInt(k.pro / 2);
+                  k.ufoC += Math.round((1 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
+                  k.defo = 1.3;
+                  if (k.dev.length > 0 && k.had < 300 + Math.random() * 300) {
+                    let devNo = rnd(k.dev);
+                    let ndod = getDev(devNo);
+                    delDev(k, ndod);
+                    xs += `
+                    <tr>
+                      <td>A GyFSzNy lerombolta <span class="gold">${k.hely}</span>$:</td>
+                    </tr>
+                    <tr>
+                      <td class="bad center">${ndod.name}</td>
+                    </tr>
+                    `;
+                  }
+                }
+                flier(k, [], xs);
+                tax = tax <= 40 ? tax + 20 : tax <= 60 ? tax + 10 : 90;
+                money -= Math.round(1000000 + money / 6 + Math.random() * 1000000);
+                pros = 0.75;
+                pros = 1.5;
                 break;
 
               default:
@@ -929,7 +976,7 @@ function _load() {
     let conds = cond.split(" & ");
     for (let c of conds) {
       let vs = c.split(' ');
-      let [vvar, vop, vval] = [vs[0], vs[1], Number(vs[2])];
+      let [vvar, vop, vval] = [vs[0], vs[1], eval(vs[2])];
       let varvara = undefined;
       if (ko === "global") {
         varvara = window[vvar];

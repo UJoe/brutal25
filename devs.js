@@ -22,12 +22,16 @@ window.dev = [
     name: "Hősképző",
     desc: "Szuperképesség-fejlesztő tanfolyam, amivel a polgárok boldogabbak és erősebbek lesznek.",
     days: 10,
-    price: 3000000,
+    price: 3500000,
     szigor: [],
     effect: [
       {
         val: "def",
-        ch: 100
+        ch: 500
+      },
+      {
+        val: "ufo",
+        ch: -2000
       },
       {
         val: "joy",
@@ -78,12 +82,16 @@ window.dev = [
     name: "Ingyen BBB",
     desc: "Ingyen bort, búzát, békességet!",
     days: 15,
-    price: 1500000,
+    price: 1100000,
     szigor: [6],
     effect: [
       {
         val: "joy",
         ch: 20
+      },
+      {
+        val: "pop",
+        ch: 15
       },
       {
         val: "niv",
@@ -122,7 +130,7 @@ window.dev = [
     name: "Reklámstop",
     desc: "Reklámmentes internet.",
     days: 7,
-    price: 5000000,
+    price: 1500000,
     szigor: [2, 4, 5, 7, 8],
     effect: [
       {
@@ -157,7 +165,7 @@ window.dev = [
       },
       {
         val: "pop",
-        ch: 10
+        ch: 20
       },
       {
         val: "mtn",
@@ -204,7 +212,7 @@ window.dev = [
     name: "Világbéke",
     desc: "Nincs több háború az egész világon!",
     days: 77,
-    price: 10000000,
+    price: 5000000,
     szigor: [4, 5, 8],
     effect: [
       {
@@ -255,7 +263,7 @@ window.dev = [
       },
       {
         val: "def",
-        ch: 40
+        ch: 50
       },
       {
         val: "mtn",
@@ -268,7 +276,7 @@ window.dev = [
     name: "Szocotthon",
     desc: "A Városháza átalakítása szociális otthonná.",
     days: 30,
-    price: 1400000,
+    price: 13500000,
     szigor: [4],
     effect: [
       {
@@ -297,7 +305,7 @@ window.dev = [
     id: 11,
     name: "Mosómedve",
     desc: "Gizikének mosómedvét! Mert Gizike szereti a mósómedvét. És mindenki szereti Gizikét!",
-    days: 3,
+    days: 2,
     price: 100,
     szigor: [7],
     effect: [
@@ -321,7 +329,7 @@ window.dev = [
     effect: [
       {
         val: "def",
-        ch: 100
+        ch: 300
       },
       {
         val: "mtn",
@@ -334,16 +342,16 @@ window.dev = [
     name: "MIB",
     desc: "Gyanús fekete öltönyös ügynökök, akik állítólag idegen lényekre vadásznak.",
     days: 12,
-    price: 4000000,
+    price: 3000000,
     szigor: [],
     effect: [
       {
         val: "def",
-        ch: 500
+        ch: 1000
       },
       {
         val: "ufo",
-        ch: -500
+        ch: -1000
       },
       {
         val: "joy",
@@ -365,11 +373,11 @@ window.dev = [
     effect: [
       {
         val: "def",
-        ch: 300
+        ch: 500
       },
       {
         val: "ufo",
-        ch: -300
+        ch: -500
       },
       {
         val: "joy",
@@ -377,7 +385,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 555
+        ch: 222
       }
     ]
   },
@@ -386,24 +394,24 @@ window.dev = [
     name: "Átnevelő",
     desc: "Az idegenek átnevelése hatékony földi életformára.",
     days: 15,
-    price: 5000000,
+    price: 4000000,
     szigor: [],
     effect: [
       {
         val: "ufo",
-        ch: -1000
+        ch: -2500
       },
       {
         val: "pop",
-        ch: 20
+        ch: 25
       },
       {
         val: "niv",
-        ch: 10
+        ch: 20
       },
       {
         val: "mtn",
-        ch: 1000
+        ch: 2000
       }
     ]
   },
@@ -412,7 +420,7 @@ window.dev = [
     name: "Sportközpont",
     desc: "Játszóterek és sportcsarnok a kikapcsolódni és erősödni vágyóknak.",
     days: 14,
-    price: 600000,
+    price: 500000,
     szigor: [3, 5, 6, 7],
     effect: [
       {
@@ -422,6 +430,10 @@ window.dev = [
       {
         val: "pop",
         ch: 4
+      },
+      {
+        val: "def",
+        ch: 100
       },
       {
         val: "pro",
@@ -460,7 +472,7 @@ window.dev = [
     name: "Trafikok",
     desc: "Különböző üzletek, amik bevételt hoznak az Önkormányzatnak.",
     days: 10,
-    price: 500000,
+    price: 100000,
     szigor: [],
     effect: [
       {
@@ -469,7 +481,7 @@ window.dev = [
       },
       {
         val: "pro",
-        ch: 3000
+        ch: 5000
       },
       {
         val: "mtn",
