@@ -66,7 +66,7 @@ window.evs = [
           },
           {
             val: "def",
-            ch: "Math.round(50+Math.random()*50)"
+            ch: "Math.round(100+Math.random()*50)"
           }
         ]
       },
@@ -158,7 +158,7 @@ window.evs = [
           },
           {
             val: "def",
-            ch: "Math.round(100+Math.random()*150)"
+            ch: "Math.round(75+Math.random()*150)"
           },
           {
             val: "niv",
@@ -342,7 +342,7 @@ window.gevs = [
     trophy: false,
     end: false,
     desc: "Kipukkadt a gazdasági növekedés lufija. Recesszió, elszegényedés, megszorítások, káosz üti fel a fejét az egész országban.",
-    hang: "hardCity"
+    hang: "sadCity"
   },
   {
     num: 10,
@@ -428,7 +428,7 @@ window.gevs = [
     num: 18,
     name: "Vesszen a zsarnok!",
     type: "total",
-    cond: "had > 10000+Math.floor(Math.random()*1000) ",
+    cond: "had > 10000+Math.floor(Math.random()*3000) ",
     trophy: false,
     end: true,
     desc: "Hiába győzted le Bitang Botondot, ha magad is olyan zsarnokká váltál mint ő! A népnek elege lesz a túlzott rendőri zaklatásokból. A lázadók egy ügyes csoportja csapdába csal téged és végez veled.",
@@ -438,13 +438,51 @@ window.gevs = [
     num: 19,
     name: "Végzel a GyFSzNy vezérkarával",
     type: "global",
-    cond: "day > 125 & money > 3000000",
+    cond: "day > 125 & money > 5000000",
     trophy: true,
     end: false,
     desc: "Sikerül egy olyan dróncsapatot legyártanod, ami megkeresi a Gyehenna Fertelmes Szagú Nyájának vezéreit, és halálos csapást mér rájuk. A vezetők nélkül a banda többi tagja abbahagyja a fosztogatást és vagy elhagyja a várost, vagy elrejtőzik. A levegő is tisztul.",
     hang: "happyCity"
   },
-  //20:tág random napon egy támogató ad pénzt és felhúz ingyen egy random épületet a központban és egy másikat egy random kerületben.
-  //21:végső idegen invázió, a megmaradt motorosok összefognak az ufókkal
-  //22:játék vége mindenképpen
+  {
+    num: 20,
+    name: "Váratlan támogatás",
+    type: "global",
+    cond: "day = Math.floor(57+Math.random()*12)",
+    trophy: false,
+    end: false,
+    desc: "Egy gazdag üzletembernek megtetszik nagyon a városod és saját költségén ad nektek egy fejlesztést.",
+    hang: "happyCity"
+  },
+  {
+    num: 21,
+    name: "Idegen invázió",
+    type: "global",
+    cond: "day = 150",
+    trophy: false,
+    end: false,
+    desc: "A városod felett idegen űrhajók jelennek meg. Miközben felülről lövik a lakosságot, a városodba korábban beszivárgott idegenek és a GyFSzNy maradék bandatagjai folyamatosan pusztítják a lakosságot és az épületeket. Úgy tűnik, ez a végső intenzív támadás a városod ellen!",
+    hang: "alienEvent"
+  },
+  {
+    num: 22,
+    name: "Idegen szabotázs",
+    type: "global",
+    cond: "day > Math.floor(153+Math.random()*25) & day < 179",
+    trophy: false,
+    end: false,
+    desc: "Az idegenek szabotázst hajtottak végre a városod fejlesztései és gazdasága ellen.",
+    hang: "alienEvent"
+  },
+  {
+    num: 23,
+    name: "Elrabolnak az idegenek",
+    type: "global",
+    cond: "day = 180",
+    trophy: false,
+    end: true,
+    desc: "Álmodban hirtelen egy vakító villanást látsz. Megpróbálod kinyitni a szemed, de túl erős a fény. Émelygés jön rád és úgy érzed, forog körülötted a világ. Magatehetlenül sodródsz egy bizonytalan térben... Az idegenek elteleportáltak egy másik világba. Itt van a Bazibrutál II,V. részének vége!",
+    hang: "alienEvent"
+  },
+  
 ]

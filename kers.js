@@ -490,7 +490,7 @@ window.ker = [
       "Délutánonként mindig szundítok egyet itt a pázsiton. Most is azt tettem volna éppenséggel...",
       "Légyszi ne álld el a napot! Köszike!"
     ],
-    devdum: ["Semmi értelme nincs ennek ", "Hasznos dolog ez "]
+    devdum: ["Semmit sem ér ez a ", "Hasznos dolog ez "]
   },
   {
     num: 4,
@@ -857,7 +857,7 @@ window.ker = [
       "Dolgozunk mi mindég! De a lurkóknak mindig van pár pofonunk! Érzik is a törődést!",
       "Érik a szőlő, hajlik a vessző, bodor a levele..."
     ],
-    devdum: ["Egy rakás gané ez ", "Csuda jó dolog ez "]
+    devdum: ["Egy kalap szart sem ér ez ", "Csuda jó dolog ez "]
   },
   {
     num: 7,

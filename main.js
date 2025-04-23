@@ -390,7 +390,7 @@ function _load() {
           },
           {
             val: "money",
-            ch: -pc * 200
+            ch: -pc * 100
           },
         ];
         let xs = `
@@ -614,7 +614,6 @@ function _load() {
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
-
       let newMtn = Math.round(ko.pop / 10 * (1 + ko.niv / 30 + Math.random() / 3 - Math.random() / 3));
       sign = ko.mtn === 0 ? 1 : Math.sign(ko.mtn);
       ko.mtnC = Math.round((newMtn - ko.mtn) / ko.mtn * 100 * sign);
@@ -801,6 +800,81 @@ function _load() {
                 }
                 money -= 2000000;
                 pros = 1;
+                break;
+              
+              case 20:
+                let hit = false;
+                do {
+                  let hker = Math.floor(Math.random()*10)
+                  let hdev = Math.floor(Math.random()*dev.length);
+                  let hk = ker[hker];
+                  let hd = getDev(hdev);
+                  if (hk.dev.indexOf(hdev) < 0) {
+                    let xxs = `
+                      <tr>
+                        <td>Új fejlesztés:</td>
+                        <td class="good">${hd.name}</td>
+                      </tr>
+                      `;
+                    flier(hk, [], xxs);
+                    hit = true;
+                    newDev(hk, hd);
+                  }
+                } while (hit === false);
+                break;
+              
+              case 21:
+                for (k of ker) {
+                  k.nivC -= 3 + Math.round(Math.random() * (2-k.eco) * 5);
+                  k.ufoC += Math.round(1000 + Math.random() * (1000 - k.defo * 250));
+                  k.popC -= Math.round(15 + Math.random() * (20 - k.defo * 5));
+                  k.joyC -= Math.round(10 + Math.random() * (15 - k.defo * 5));
+                }
+                break;
+
+              case 22:
+                let xys = "";
+                let chlp = [
+                  {
+                    val: "joy",
+                    ch: "-Math.round(1+Math.random()*4)"
+                  },
+                  {
+                    val: "niv",
+                    ch: "-Math.round(1+Math.random()*4)"
+                  },
+                  {
+                    val: "pro",
+                    ch: "-Math.round(Math.random()*1000)"
+                  },
+                  {
+                    val: "def",
+                    ch: "-Math.round(250+Math.random()*150)"
+                  },
+                  {
+                    val: "ufo",
+                    ch: "Math.round(250+Math.random()*150)"
+                  }
+                ];
+                let xhker = Math.floor(Math.random()*10)
+                let xhk = ker[xhker];
+                if (xhk.dev.length > 0) {
+                  let dNo = rnd(xhk.dev);
+                  let dod = getDev(dNo);
+                  delDev(xhk, dod);
+                  xys = `
+                  <tr>
+                    <td colspan="2">Az idegenek lerombolták:</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" class="bad center">${dod.name}</td>
+                  </tr>
+                  `;
+                }
+                flier(xhk, chlp, xys);
+                if (pros > .1) {
+                  pros -= Math.random()/15;
+                }
                 break;
 
               default:

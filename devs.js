@@ -21,7 +21,7 @@ window.dev = [
     id: 1,
     name: "Hősképző",
     desc: "Szuperképesség-fejlesztő tanfolyam, amivel a polgárok boldogabbak és erősebbek lesznek.",
-    days: 10,
+    days: 9,
     price: 3500000,
     szigor: [],
     effect: [
@@ -51,7 +51,7 @@ window.dev = [
     id: 2,
     name: "Kedvencek",
     desc: "Minden háztartás igényelhet törpehörcsögöt, hóbaglyot vagy takarító robotnőt.",
-    days: 10,
+    days: 8,
     price: 25000,
     szigor: [1, 2, 4, 6, 7],
     effect: [
@@ -81,7 +81,7 @@ window.dev = [
     id: 3,
     name: "Ingyen BBB",
     desc: "Ingyen bort, búzát, békességet!",
-    days: 15,
+    days: 12,
     price: 1100000,
     szigor: [6],
     effect: [
@@ -151,7 +151,7 @@ window.dev = [
     id: 6,
     name: "Járványirtás",
     desc: "Az összes járvány kiirtása.",
-    days: 50,
+    days: 15,
     price: 10000000,
     szigor: [],
     effect: [
@@ -177,7 +177,7 @@ window.dev = [
     id: 7,
     name: "Agymosás-stop",
     desc: "Leszámolunk az agymosással!",
-    days: 25,
+    days: 13,
     price: 1234567,
     szigor: [0, 1, 2, 3, 5, 6, 7, 8],
     effect: [
@@ -211,7 +211,7 @@ window.dev = [
     id: 8,
     name: "Világbéke",
     desc: "Nincs több háború az egész világon!",
-    days: 77,
+    days: 20,
     price: 5000000,
     szigor: [4, 5, 8],
     effect: [
@@ -275,7 +275,7 @@ window.dev = [
     id: 10,
     name: "Szocotthon",
     desc: "A Városháza átalakítása szociális otthonná.",
-    days: 30,
+    days: 10,
     price: 13500000,
     szigor: [4],
     effect: [
@@ -305,7 +305,7 @@ window.dev = [
     id: 11,
     name: "Mosómedve",
     desc: "Gizikének mosómedvét! Mert Gizike szereti a mósómedvét. És mindenki szereti Gizikét!",
-    days: 2,
+    days: 1,
     price: 100,
     szigor: [7],
     effect: [
@@ -341,7 +341,7 @@ window.dev = [
     id: 13,
     name: "MIB",
     desc: "Gyanús fekete öltönyös ügynökök, akik állítólag idegen lényekre vadásznak.",
-    days: 12,
+    days: 11,
     price: 3000000,
     szigor: [],
     effect: [
@@ -367,8 +367,8 @@ window.dev = [
     id: 14,
     name: "Zsoltosok",
     desc: "Erdei Zsolt barátságos, de rettenthetetlen tanítványai, akik hatákonyan védik a lakosokat a gonosz idegentől",
-    days: 5,
-    price: 2000000,
+    days: 4,
+    price: 1800000,
     szigor: [],
     effect: [
       {
@@ -393,7 +393,7 @@ window.dev = [
     id: 15,
     name: "Átnevelő",
     desc: "Az idegenek átnevelése hatékony földi életformára.",
-    days: 15,
+    days: 16,
     price: 4000000,
     szigor: [],
     effect: [
@@ -419,7 +419,7 @@ window.dev = [
     id: 16,
     name: "Sportközpont",
     desc: "Játszóterek és sportcsarnok a kikapcsolódni és erősödni vágyóknak.",
-    days: 14,
+    days: 7,
     price: 500000,
     szigor: [3, 5, 6, 7],
     effect: [
@@ -471,7 +471,7 @@ window.dev = [
     id: 18,
     name: "Trafikok",
     desc: "Különböző üzletek, amik bevételt hoznak az Önkormányzatnak.",
-    days: 10,
+    days: 6,
     price: 100000,
     szigor: [],
     effect: [
