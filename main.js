@@ -520,7 +520,7 @@ function _load() {
 
   function emo(happy) {
     let soundN = happy ? "happy" : "angry";
-    let dice = 1 + Math.floor(Math.random() * 7);
+    let dice = 1 + Math.floor(Math.random() * 8);
     sound.src = "./audio/" + soundN + dice + ".mp3";
     sound.play();
   }
