@@ -801,12 +801,12 @@ function _load() {
                 money -= 2000000;
                 pros = 1;
                 break;
-              
+
               case 20:
                 let hit = false;
                 do {
-                  let hker = Math.floor(Math.random()*10)
-                  let hdev = Math.floor(Math.random()*dev.length);
+                  let hker = Math.floor(Math.random() * 10)
+                  let hdev = Math.floor(Math.random() * dev.length);
                   let hk = ker[hker];
                   let hd = getDev(hdev);
                   if (hk.dev.indexOf(hdev) < 0) {
@@ -822,10 +822,10 @@ function _load() {
                   }
                 } while (hit === false);
                 break;
-              
+
               case 21:
                 for (k of ker) {
-                  k.nivC -= 3 + Math.round(Math.random() * (2-k.eco) * 5);
+                  k.nivC -= 3 + Math.round(Math.random() * (2 - k.eco) * 5);
                   k.ufoC += Math.round(1000 + Math.random() * (1000 - k.defo * 250));
                   k.popC -= Math.round(15 + Math.random() * (20 - k.defo * 5));
                   k.joyC -= Math.round(10 + Math.random() * (15 - k.defo * 5));
@@ -856,7 +856,7 @@ function _load() {
                     ch: "Math.round(250+Math.random()*150)"
                   }
                 ];
-                let xhker = Math.floor(Math.random()*10)
+                let xhker = Math.floor(Math.random() * 10)
                 let xhk = ker[xhker];
                 if (xhk.dev.length > 0) {
                   let dNo = rnd(xhk.dev);
@@ -873,7 +873,7 @@ function _load() {
                 }
                 flier(xhk, chlp, xys);
                 if (pros > .1) {
-                  pros -= Math.random()/15;
+                  pros -= Math.random() / 15;
                 }
                 break;
 

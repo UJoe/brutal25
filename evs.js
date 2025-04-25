@@ -428,7 +428,7 @@ window.gevs = [
     num: 18,
     name: "Vesszen a zsarnok!",
     type: "total",
-    cond: "had > 10000+Math.floor(Math.random()*3000) ",
+    cond: "had > 12000+Math.floor(Math.random()*3000) ",
     trophy: false,
     end: true,
     desc: "Hiába győzted le Bitang Botondot, ha magad is olyan zsarnokká váltál mint ő! A népnek elege lesz a túlzott rendőri zaklatásokból. A lázadók egy ügyes csoportja csapdába csal téged és végez veled.",
@@ -484,5 +484,14 @@ window.gevs = [
     desc: "Álmodban hirtelen egy vakító villanást látsz. Megpróbálod kinyitni a szemed, de túl erős a fény. Émelygés jön rád és úgy érzed, forog körülötted a világ. Magatehetlenül sodródsz egy bizonytalan térben... Az idegenek elteleportáltak egy másik világba. Itt van a Bazibrutál II,V. részének vége!",
     hang: "alienEvent"
   },
-  
+  {
+    num: 24,
+    name: "Anarchia",
+    type: "total",
+    cond: "had < -3000-Math.floor(Math.random()*2000) ",
+    trophy: false,
+    end: true,
+    desc: "Képtelen vagy fenntartani a rendet a városodban. Az utcákat elözönlik a vandál bandák. Törnek-zúznak, rabolnak, gyilkolnak. Még téged is.",
+    hang: "angryCity"
+  }
 ]
