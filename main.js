@@ -369,12 +369,18 @@ function _load() {
 
       if (bp.type === "betelepítés" && kob) {
         let migráncs = 0;
+        if (kob.pop < 1) {
+          kob.pop = 1;
+        }
         for (let i = 0; i < ker.length; i++) {
           if (i === kob.num) continue;
           ker[i].popC -= 1;
           migráncs += Math.floor(ker[i].pop / 100);
         }
         let pc = Math.round(migráncs / kob.pop * 100);
+        if (pc > 10000) {
+          pc = 10000;
+        }
         let chalap = [
           {
             val: "joy",
