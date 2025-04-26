@@ -1408,9 +1408,7 @@ function _load() {
     }
 
     function visit() {
-      TODO: { }//lincs!
       kerAct = true;
-      //change(ko, "joy", 1);
       ko.joyC++;
       let dumarr = [];
       for (v of ko.vélemény) {
