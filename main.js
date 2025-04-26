@@ -413,6 +413,9 @@ function _load() {
         happen.innerHTML = "";
         happen.classList.remove("see");
         happen.classList.add("nosee");
+        if (musicOn) {
+          music.volume = 0.9;
+        }
         closeModal();
       }
     }
@@ -576,7 +579,7 @@ function _load() {
       let [hado, ufoo, defo] = [ko.had, ko.ufo, ko.def];
       ko.defC += Math.round(ko.mtn * (ko.defo - 1) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(day / 10 + Math.random() * day + (ko.ufo - ko.def) / (10 + Math.random() * 5));
+      ko.ufoC += Math.round(day / 9 + Math.random() * day / 1.2 + (ko.ufo - ko.def) / (10 + Math.random() * 3));
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       sign = hado === 0 ? 1 : Math.sign(hado);
@@ -610,7 +613,7 @@ function _load() {
       change(ko, "joy", ko.joyC);
       ko.joyCD = ko.joyC;
 
-      ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had) + Math.random() * 10 - Math.random() * 10) / 12 + getDevs(ko.dev, "pop"));
+      ko.popC += Math.round(((ko.joy - 30) + (ko.niv - Math.abs(ko.niv - 50) * 2 - 20) - Number(ko.had < 0) * Math.random() * Math.abs(ko.had / 4) + Math.random() * 10 - Math.random() * 10) / 12 + getDevs(ko.dev, "pop"));
       change(ko, "pop", Math.round(ko.pop * ko.popC / 100));
       ko.popCD = ko.popC;
 
@@ -641,6 +644,9 @@ function _load() {
       for (e of evs) {
         if (balhé == false && checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
           balhé = true;
+          if (musicOn) {
+            music.volume = .05;
+          }
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
             id: ko.num,
@@ -694,19 +700,19 @@ function _load() {
 
               case 8:
                 for (k of ker) {
-                  k.nivC += Math.round(4 + Math.random() * 4 + k.eco);
-                  k.joyC += Math.round(3 + Math.random() * 3);
+                  k.nivC += Math.round(5 + Math.random() * 4 + k.eco);
+                  k.joyC += Math.round(4 + Math.random() * 3);
                   k.popC += Math.round(10 + Math.random() * 10);
                 }
-                pros = 1.2
+                pros = 1.25
                 break;
 
               case 9:
                 for (k of ker) {
-                  k.joyC -= Math.round(10 + Math.random() * 10);
+                  k.joyC -= Math.round(10 + Math.random() * (10 - k.culto * 5));
                   k.nivC -= Math.round(15 + Math.random() * (15 - k.eco * 10));
-                  k.ufoC += Math.round(50 + Math.random() * 50);
-                  k.defC -= Math.round(200 + Math.random() * (1.5 - k.defo) * 150);
+                  k.ufoC += Math.round(50 + Math.random() * (50 - k.defo * 20));
+                  k.defC -= Math.round(100 + Math.random() * (1.5 - k.defo) * 150);
                   k.popC -= Math.round(7 + Math.random() * 5);
                 }
                 pros = 0.5
@@ -714,8 +720,8 @@ function _load() {
 
               case 10:
                 for (k of ker) {
-                  k.nivC += 1 + Math.round(Math.random() * k.eco * 3);
-                  k.ufoC += Math.round(300 + Math.random() * (500 - k.defo * 100));
+                  k.nivC += 1 + Math.round(k.eco + Math.random() * k.eco * 4);
+                  k.ufoC += Math.round(250 + Math.random() * (500 - k.defo * 100));
                   k.popC -= Math.round(8 + Math.random() * (12 - k.defo * 5));
                 }
                 pros = 0.7
@@ -723,10 +729,10 @@ function _load() {
 
               case 11:
                 for (k of ker) {
-                  k.nivC += Math.round(10 + Math.random() * k.eco * 10);
+                  k.nivC += Math.round(12 + Math.random() * k.eco * 10);
                   k.joyC += Math.round(5 + Math.random() * k.nivC / 2);
                   k.popC += 1;
-                  k.defC += Math.round(50 + Math.random() * k.defo * 50);
+                  k.defC += Math.round(50 + Math.random() * k.defo * 100);
                 }
                 pros = 1;
                 money += 1000000;
@@ -734,7 +740,7 @@ function _load() {
 
               case 12:
                 for (k of ker) {
-                  money += Math.round((1.5 - k.culto) * 20000);
+                  money += Math.round((2 - k.culto) * 50000);
                   k.culto = 1.3;
                   k.joyC += Math.round(5 + Math.random() * 5);
                   k.nivC += Math.round(1 + Math.random() * (k.eco - k.defo) * 5);
@@ -751,9 +757,9 @@ function _load() {
                   if (k.eco < 1.1) { k.eco += .3; }
                   k.joyC += Math.round(5 + Math.random() * 5);
                   k.nivC += Math.round(15 + Math.random() * 10);
-                  k.proC += k.pro;
-                  k.defC -= parseInt((Math.random() / 3 + (1.5 - k.defo) / 2) * k.def)
-                  if (k.defo > 0.8) { k.defo -= .3; }
+                  k.proC += Math.abs(k.pro);
+                  k.defC -= parseInt((Math.random() / 4 + (1.5 - k.defo) / 4) * k.def)
+                  if (k.defo > 1.1) { k.defo -= .3; }
                 }
                 tax = tax >= 40 ? tax - 20 : tax >= 20 ? tax - 10 : 10;
                 money += Math.round(10000000 + money / 5 + Math.random() * 5000000);
@@ -764,11 +770,14 @@ function _load() {
                 let xs = "";
                 for (k of ker) {
                   k.joyC -= Math.round(k.num * 2 + Math.random() * 10);
-                  k.nivC -= Math.round(15 + Math.random() * 10);
-                  k.popC -= Math.round(5 + Math.random() * k.num);
+                  k.nivC -= Math.round(k.num + 10 + Math.random() * 10);
+                  k.popC -= Math.round(10 + Math.random() * k.num);
                   k.proC -= parseInt(k.pro / 2);
-                  k.ufoC += Math.round((1 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
-                  k.defo = 1.3;
+                  k.ufoC += Math.round((10 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
+                  k.defC -= Math.round((1 + k.num) * 75 + (2 - k.defo) * Math.random() * 300)
+                  if (k.defo < 1.2) {
+                    k.defo += .3;
+                  };
                   if (k.dev.length > 0 && k.had < 300 + Math.random() * 300) {
                     let devNo = rnd(k.dev);
                     let ndod = getDev(devNo);
@@ -812,7 +821,7 @@ function _load() {
                   if (hk.dev.indexOf(hdev) < 0) {
                     let xxs = `
                       <tr>
-                        <td>Új fejlesztés:</td>
+                        <td>AJÁNDÉK FEJLESZTÉS:</td>
                         <td class="good">${hd.name}</td>
                       </tr>
                       `;

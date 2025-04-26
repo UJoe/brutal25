@@ -213,7 +213,7 @@ window.dev = [
     desc: "Nincs több háború az egész világon!",
     days: 20,
     price: 5000000,
-    szigor: [4, 5, 8],
+    szigor: [4],
     effect: [
       {
         val: "joy",
@@ -233,11 +233,11 @@ window.dev = [
       },
       {
         val: "def",
-        ch: -888
+        ch: -555
       },
       {
         val: "ufo",
-        ch: -555
+        ch: -888
       },
       {
         val: "mtn",
