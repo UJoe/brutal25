@@ -414,7 +414,8 @@ function _load() {
         happen.classList.remove("see");
         happen.classList.add("nosee");
         if (musicOn) {
-          music.volume = 0.9;
+          music.volume = .9;
+          sound.volume = .6;
         }
         closeModal();
       }
@@ -645,7 +646,8 @@ function _load() {
         if (balhé == false && checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
           balhé = true;
           if (musicOn) {
-            music.volume = .05;
+            music.volume = .01;
+            sound.volume = .9;
           }
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
