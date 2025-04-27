@@ -378,17 +378,18 @@ function _load() {
           migráncs += Math.floor(ker[i].pop / 100);
         }
         let pc = Math.round(migráncs / kob.pop * 100);
-        if (pc > 10000) {
-          pc = 10000;
-        }
         let chalap = [
           {
             val: "joy",
-            ch: "Math.round(5+Math.random()*5)"
+            ch: Math.round(5 + Math.random() * 5)
           },
           {
             val: "niv",
-            ch: "Math.round(5+Math.random()*5)"
+            ch: Math.round(5 + Math.random() * 5)
+          },
+          {
+            val: "def",
+            ch: -Math.round(1 + Math.random() * pc / 15)
           },
           {
             val: "pop",
@@ -396,7 +397,7 @@ function _load() {
           },
           {
             val: "money",
-            ch: -pc * 100
+            ch: -Math.round(pc * (250 + Math.random() * 100))
           },
         ];
         let xs = `
@@ -669,6 +670,10 @@ function _load() {
 
     for (g of gevs) {
       if (checkCond(g.type, g.cond) && trophy.indexOf(g.num) < 0) {
+        if (musicOn) {
+          music.volume = .01;
+          sound.volume = .9;
+        }
         let mStr = `Egy jelentős esemény történt a városban: 
           <span class="gold">${g.name}</span>!</p>
           <p>${g.desc}`;
@@ -740,7 +745,9 @@ function _load() {
                   k.nivC += Math.round(12 + Math.random() * k.eco * 10);
                   k.joyC += Math.round(5 + Math.random() * k.nivC / 2);
                   k.popC += 1;
-                  k.defC += Math.round(50 + Math.random() * k.defo * 100);
+                  if (k.had < 300) {
+                    k.defC += Math.round(50 + Math.random() * k.defo * 100);
+                  }
                 }
                 pros = 1;
                 money += 1000000;
@@ -822,9 +829,8 @@ function _load() {
               case 20:
                 let hit = false;
                 do {
-                  let hker = Math.floor(Math.random() * 10)
                   let hdev = Math.floor(Math.random() * dev.length);
-                  let hk = ker[hker];
+                  let hk = rnd(ker);
                   let hd = getDev(hdev);
                   if (hk.dev.indexOf(hdev) < 0) {
                     let xxs = `

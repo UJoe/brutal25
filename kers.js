@@ -70,7 +70,7 @@ window.ker = [
     desc: "Egészséges, pihentető túrák, hőssegédek, bölcsek és bűvös lények otthona.",
     x: 1,
     y: 1,
-    pop: Math.floor(30 + Math.random() * 120),
+    pop: Math.floor(50 + Math.random() * 200),
     mtn: 0,
     exp: 0,
     niv: Math.floor(30 + Math.random() * 30),
@@ -938,7 +938,7 @@ window.ker = [
           "Kicsi zsúfolt lett már ez a lakótelep! Mintha hangyák élnének itt.",
           "Annyi gyerek van már a játszótéren, hogy azt se tudom, melyik az enyém!",
           "30 négyzetméteren vagyunk hatan összezsúfolva! Ki fogja ezt megoldani?",
-          "Ha azt akarom, hogy mindegyik gyerekem hazajöjjön, a vazetéknevükön szólítom őket! Ha fel akarom sorolni őket, mindig belezavarodom! Hahaha!",
+          "Ha azt akarom, hogy mindegyik gyerekem hazajöjjön, a vezetéknevükön szólítom őket! Ha fel akarom sorolni őket, mindig belezavarodom! Hahaha!",
           "Akkora már itt a tömeg, hogy én mondom: ki fog törni a kannibalizmus!",
           "Több fa kellene ide, meg virág! Kezd egy betonrengeteg lenni ez a hely!"
         ]

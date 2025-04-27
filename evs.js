@@ -135,7 +135,7 @@ window.evs = [
     btns: [
       {
         type: "change",
-        txt: ["Kellemetlen.", "Pech!", "Kis huncutok!"],
+        txt: ["Kellemetlen.", "Pech!", "Kis huncutok!", "Megértem."],
         change: [
           {
             val: "pro",
@@ -428,7 +428,7 @@ window.gevs = [
     num: 18,
     name: "Vesszen a zsarnok!",
     type: "total",
-    cond: "had > 15000+Math.floor(Math.random()*5000)",
+    cond: "had > 18000+Math.floor(Math.random()*4500)",
     trophy: false,
     end: true,
     desc: "Hiába győzted le Bitang Botondot, ha magad is olyan zsarnokká váltál mint ő! A népnek elege lesz a túlzott rendőri zaklatásokból. A lázadók egy ügyes csoportja csapdába csal téged és végez veled.",
