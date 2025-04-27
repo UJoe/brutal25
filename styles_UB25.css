@@ -592,3 +592,10 @@ li {
 	transition: filter 1s;
 	filter: brightness(1) opacity(1) blur(0);
 }
+
+#hf {
+	height: 100vh;
+	width: 100vw;
+	color: white;
+	overflow: hidden;
+}
