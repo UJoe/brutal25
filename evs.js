@@ -241,6 +241,34 @@ window.evs = [
       }
     ],
   },
+  {
+    title: "Zsarnokként kezd emlegetni a nép",
+    cond: "had > 1500 & defo > 0.8",
+    chance: .4,
+    hang: "angryCity",
+    btns: [
+      badBtn,
+      {
+        type: "change",
+        txt: "Visszafogom a rendőröket",
+        hang: true,
+        change: [
+          {
+            val: "defo",
+            ch: -.3
+          },
+          {
+            val: "def",
+            ch: "-Math.round(200+Math.random()*300)"
+          },
+          {
+            val: "joy",
+            ch: 2
+          },
+        ]
+      }
+    ],
+  }
 ];
 
 window.gevs = [
@@ -251,6 +279,7 @@ window.gevs = [
     cond: "niv > 95",
     trophy: true,
     end: false,
+    btn: goodBtn,
     desc: "A város életszínvonala mindenhol az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
     hang: "happyCity"
   },
@@ -261,6 +290,7 @@ window.gevs = [
     cond: "joy > 95",
     trophy: true,
     end: false,
+    btn: goodBtn,
     desc: "A városodban minden ember tökéletesen boldog, vidáman dolgoznak és szórakoznak, mindenki téged ünnepel.",
     hang: "happyCity"
   },
@@ -271,6 +301,7 @@ window.gevs = [
     cond: "money < 10000 & money > 0",
     trophy: false,
     end: false,
+    btn: badBtn,
     desc: "Az önkormányzat kasszája mindjárt kiürül! Rendezd el a bevételek és kiadások arányát, hogy elkerüld a csődöt!",
     hang: "angryCity"
   },
@@ -311,6 +342,10 @@ window.gevs = [
     cond: "day = 10",
     trophy: false,
     end: false,
+    btn: {
+      type: 6,
+      txt: ["Fene a pofájukat!", "Nana!"]
+    },
     desc: "Egyre több furcsa lény jelenik meg az emberek között. Ismeretlen intelligens fajok, akik gyakran agresszíven viselkednek.",
     hang: "alienEvent"
   },
@@ -321,16 +356,22 @@ window.gevs = [
     cond: "pro < -50000",
     trophy: false,
     end: false,
+    btn: badBtn,
     desc: "Az önkormányzat gazdálkodása eléggé veszteséges! Rendezd a bevételek és kiadások arányát!",
     hang: "angryCity"
   },
   {
     num: 8,
-    name: "Jólét",
+    name: "Gazdasági növekedés",
     type: "global",
     cond: "day = 30",
     trophy: false,
     end: false,
+    btn: {
+      type: 8,
+      txt: ["De jó!", "Szuper!", "Sirály!"],
+      hang: true
+    },
     desc: "Javult az ország gazdasági helyzete, az általános jólét a városodra is kihat. Nő a lakosság életszínvonala, boldogabbak és szaporodnak, mint a nyulak.",
     hang: "happyCity"
   },
@@ -341,6 +382,11 @@ window.gevs = [
     cond: "day = 45",
     trophy: false,
     end: false,
+    btn: {
+      type: 9,
+      txt: ["Teringettét!", "Mindig ez van.", "Sejtettem, hogy ez lesz.", "Várható volt."],
+      hang: false
+    },
     desc: "Kipukkadt a gazdasági növekedés lufija. Recesszió, elszegényedés, megszorítások, káosz üti fel a fejét az egész országban.",
     hang: "sadCity"
   },
@@ -351,6 +397,10 @@ window.gevs = [
     cond: "day = 50",
     trophy: false,
     end: false,
+    btn: {
+      type: 10,
+      txt: ["Még ez is...", "Már vártam!", "Fogjunk össze!", "Legyőzzük őket!", "Adok én nekik!"]
+    },
     desc: "A válságot kihasználva egyre több idegen lény kezd randalírozni a városodban. Át akarják venni a hatalmat? Közben az állam próbálja helyreállítani a gazdaságot.",
     hang: "alienEvent"
   },
@@ -361,6 +411,11 @@ window.gevs = [
     cond: "day = 60",
     trophy: false,
     end: false,
+    btn: {
+      type: 11,
+      txt: ["Győztünk!", "Végre!", "Köszönjük!", "Hajrá!"],
+      hang: true
+    },
     desc: "Az államnak végre sikerült stabilizálni a gazdaságot, helyreállt a rend, a városod pedig kapott 1 millió $ támogatást.",
     hang: "happyCity"
   },
@@ -371,6 +426,10 @@ window.gevs = [
     cond: "day = 70",
     trophy: false,
     end: false,
+    btn: {
+      type: 12,
+      txt: ["Éljen!", "Felvirágzik a város!", "Legyen!"]
+    },
     desc: "Az állam átfogó támogatási programot indított a kultúra, oktatás és szabadidős tevékenységek fejlesztésére.",
     hang: "Kultúrnegyed"
   },
@@ -381,6 +440,11 @@ window.gevs = [
     cond: "day = Math.floor(62+Math.random()*6)",
     trophy: false,
     end: false,
+    btn: {
+      type: 13,
+      txt: ["Mi a szösz?", "Ne már!", "Nana!", "Mocskos tolvajok!"],
+      hang: false
+    },
     desc: "Hackeretámadás érte az Önkormányzat egyik bankszámláját! A pénzed felét elvesztetted!",
     hang: false
   },
@@ -391,6 +455,11 @@ window.gevs = [
     cond: "day = 80",
     trophy: false,
     end: false,
+    btn: {
+      type: 14,
+      txt: ["Jöhet az ExxonMobil!", "Az OPEC-nek annyi!", "Lenyomjuk Dubajt!", "Dőljön a lé!"],
+      hang: true
+    },
     desc: "Hatalmas kőolajlelőhelyre bukkantatok. Özönlik be a pénz, minden kerületben fellendül a gazdaság, a nép önfeledten ünnepel, a terheiket csökkented!",
     hang: "happyCity"
   },
@@ -401,6 +470,10 @@ window.gevs = [
     cond: "day = 95",
     trophy: false,
     end: false,
+    btn: {
+      type: 15,
+      txt: ["A keservit!", "Nem adjuk a várost!", "Miénk az olaj!", "Büdös birkák!", "Adjunk nekik!"]
+    },
     desc: "A Gyehenna Fertelmes Szagú Nyája (GyFSzNy) névre hallgató, hírhedt motoros banda támadt rá a városra Dél-Keletről! Törnek-zúznak, rontják a levegőt és ki akarják rabolni az olajkészleteteket. Drasztikus intézkedéseket kell bevezetned, hogy megvédd a várost!",
     hang: "motorgang"
   },
@@ -421,6 +494,7 @@ window.gevs = [
     cond: "pop > 150000",
     trophy: true,
     end: false,
+    btn: goodBtn,
     desc: "Hatalmas méretűvé nőtt a városod, a lakosság elérte a 150 ezer főt. Egyre jelentősebb település a régióban.",
     hang: "happyCity"
   },
@@ -438,10 +512,14 @@ window.gevs = [
     num: 19,
     name: "Végzel a GyFSzNy vezérkarával",
     type: "global",
-    cond: "day > 100 & money > 5000000",
+    cond: "day > 100 & money > 3000000",
     trophy: true,
     end: false,
-    desc: "Sikerül egy olyan dróncsapatot legyártanod, ami megkeresi a Gyehenna Fertelmes Szagú Nyájának vezéreit, és halálos csapást mér rájuk. A vezetők nélkül a banda többi tagja abbahagyja a fosztogatást és vagy elhagyja a várost, vagy elrejtőzik. A levegő is tisztul.",
+    btn: {
+      type: 19,
+      txt: ["Nesztek!", "Takarodjatok!", "", "Hős vagyok, nem?", "Nem is volt kérdés."]
+    },
+    desc: "Sikerült végre elég embert és felszerelést  szerezned, hogy megkeressétek és likvidáljátok a Gyehenna Fertelmes Szagú Nyájának vezéreit. A vezetők nélkül a banda többi tagja abbahagyja a fosztogatást és vagy elhagyja a várost, vagy elrejtőzik. A levegő is tisztul.",
     hang: "happyCity"
   },
   {
@@ -451,6 +529,11 @@ window.gevs = [
     cond: "day = Math.floor(71+Math.random()*9)",
     trophy: false,
     end: false,
+    btn: {
+      type: 20,
+      txt: ["Köszönjük szépen!", "Ez jól jött!", "Kedves gesztus!", "Király vagy!", "Rendes fickó!"],
+      hang: "hammer"
+    },
     desc: "Egy gazdag üzletembernek megtetszik nagyon a városod és saját költségén ad nektek egy fejlesztést.",
     hang: "happyCity"
   },
@@ -461,6 +544,10 @@ window.gevs = [
     cond: "day = 125",
     trophy: false,
     end: false,
+    btn: {
+      type: 21,
+      txt: ["Hínye!", "Nem adjuk fel!", "Harcra fel!", "Megmutatjuk nekik!"],
+    },
     desc: "A városod felett idegen űrhajók jelennek meg. Miközben felülről lövik a lakosságot, a városodba korábban beszivárgott idegenek és a GyFSzNy maradék bandatagjai folyamatosan pusztítják a lakosságot és az épületeket. Úgy tűnik, ez a végső intenzív támadás a városod ellen!",
     hang: "alienEvent"
   },
@@ -471,6 +558,11 @@ window.gevs = [
     cond: "day > Math.floor(128+Math.random()*20) & day < 149",
     trophy: false,
     end: false,
+    btn: {
+      type: 22,
+      txt: ["Meddig még?!", "Dögöljenek meg!", "Tovább küzdünk!", "Menjenek haza!", "Kitartás, emberek!", "Szemtelenség!"],
+      hang: "rombol"
+    },
     desc: "Az idegenek szabotázst hajtottak végre a városod fejlesztései és gazdasága ellen.",
     hang: "alienEvent"
   },

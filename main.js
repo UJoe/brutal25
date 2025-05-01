@@ -272,7 +272,7 @@ function _load() {
             break;
 
           case "good":
-            bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!", "Juhéjj!", "Azta!"]
+            bar = ["Fasza!", "Király!", "Örömöm végtelen!", "Na végre!", "Szuper!", "Zsír!", "Juhéjj!", "Azta!", "De jó!"]
             break;
 
           case "bad":
@@ -320,6 +320,211 @@ function _load() {
             ch: c
           }
         ])
+      }
+
+      if (typeof bp.type == 'number') {
+        console.log("Csinálom: ", bp.type);
+        switch (bp.type) {
+          case 6:
+            for (k of ker) {
+              k.ufoC += Math.round(50 + Math.random() * (100 - k.defo * 50));
+            }
+            break;
+
+          case 8:
+            for (k of ker) {
+              k.nivC += Math.round(5 + Math.random() * 4 + k.eco);
+              k.joyC += Math.round(4 + Math.random() * 3);
+              k.popC += Math.round(10 + Math.random() * 10);
+            }
+            pros = 1.25
+            break;
+
+          case 9:
+            for (k of ker) {
+              k.joyC -= Math.round(10 + Math.random() * (10 - k.culto * 5));
+              k.nivC -= Math.round(15 + Math.random() * (15 - k.eco * 10));
+              k.ufoC += Math.round(50 + Math.random() * (50 - k.defo * 20));
+              k.defC -= Math.round(100 + Math.random() * (1.5 - k.defo) * 150);
+              k.popC -= Math.round(7 + Math.random() * 5);
+            }
+            pros = 0.5
+            break;
+
+          case 10:
+            for (k of ker) {
+              k.nivC += 1 + Math.round(k.eco + Math.random() * k.eco * 4);
+              k.ufoC += Math.round(250 + Math.random() * (500 - k.defo * 100));
+              k.popC -= Math.round(8 + Math.random() * (12 - k.defo * 5));
+            }
+            pros = 0.7
+            break;
+
+          case 11:
+            for (k of ker) {
+              k.nivC += Math.round(12 + Math.random() * k.eco * 10);
+              k.joyC += Math.round(5 + Math.random() * k.nivC / 2);
+              k.popC += 1;
+              if (k.had < 300) {
+                k.defC += Math.round(50 + Math.random() * k.defo * 100);
+              }
+            }
+            pros = 1;
+            money += 1000000;
+            break;
+
+          case 12:
+            for (k of ker) {
+              money += Math.round((2 - k.culto) * 50000);
+              k.culto = 1.3;
+              k.joyC += Math.round(5 + Math.random() * 5);
+              k.nivC += Math.round(1 + Math.random() * (k.eco - k.defo) * 5);
+              k.popC += 3;
+            }
+            break;
+
+          case 13:
+            money = Math.round(money / 2);
+            break;
+
+          case 14:
+            for (k of ker) {
+              if (k.eco < 1.1) { k.eco += .3; }
+              k.joyC += Math.round(5 + Math.random() * 5);
+              k.nivC += Math.round(15 + Math.random() * 10);
+              k.proC += Math.abs(k.pro);
+              k.defC -= parseInt((Math.random() / 4 + (1.5 - k.defo) / 4) * k.def)
+              if (k.defo > 1.1) { k.defo -= .3; }
+            }
+            tax = tax >= 40 ? tax - 20 : tax >= 20 ? tax - 10 : 10;
+            money += Math.round(10000000 + money / 5 + Math.random() * 5000000);
+            pros = 1.5;
+            break;
+
+          case 15:
+            let xs = "";
+            for (k of ker) {
+              k.joyC -= Math.round(k.num * 2 + Math.random() * 10);
+              k.nivC -= Math.round(k.num + 10 + Math.random() * 10);
+              k.popC -= Math.round(10 + Math.random() * k.num);
+              k.proC -= parseInt(k.pro / 2);
+              k.ufoC += Math.round((10 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
+              k.defC -= Math.round((1 + k.num) * 75 + (2 - k.defo) * Math.random() * 300)
+              if (k.defo < 1.2) {
+                k.defo += .3;
+              };
+              if (k.dev.length > 0 && k.had < 500 + Math.random() * 300) {
+                let devNo = rnd(k.dev);
+                let ndod = getDev(devNo);
+                delDev(k, ndod);
+                xs += `
+                <tr>
+                  <td>A GyFSzNy lerombolta <span class="gold">${k.hely}</span>:</td>
+                </tr>
+                <tr>
+                  <td class="bad center">${ndod.name}</td>
+                </tr>
+                `;
+              }
+            }
+            if (xs.length > 0) {
+              flier(k, [], xs, true);
+            }
+            tax = tax <= 40 ? tax + 20 : tax <= 60 ? tax + 10 : 90;
+            money -= Math.round(1000000 + money / 6 + Math.random() * 1000000);
+            pros = 0.75;
+            break;
+
+          case 19:
+            for (k of ker) {
+              k.joyC += Math.round(5 + Math.random() * 5);
+              k.nivC += Math.round(5 + Math.random() * 5);
+              k.popC += Math.round(1 + Math.random() * k.num);
+              k.proC += parseInt(k.pro / 3);
+              k.ufoC -= Math.round((1 + k.defo) * 300 + Math.random() * 200);
+              k.defC += Math.round((1 + k.defo) * 100 + Math.random() * 200);
+            }
+            money -= 2000000;
+            pros = 1;
+            break;
+
+          case 20:
+            let hit = false;
+            do {
+              let hdev = Math.floor(Math.random() * dev.length);
+              let hk = rnd(ker);
+              let hd = getDev(hdev);
+              if (hk.dev.indexOf(hdev) < 0) {
+                let xxs = `
+                  <tr>
+                    <td>Új fejlesztés:</td>
+                    <td class="good">${hd.name}</td>
+                  </tr>
+                  `;
+                flier(hk, [], xxs);
+                hit = true;
+                newDev(hk, hd);
+              }
+            } while (hit === false);
+            break;
+
+          case 21:
+            for (k of ker) {
+              k.nivC -= 3 + Math.round(Math.random() * (2 - k.eco) * 5);
+              k.ufoC += Math.round(1000 + Math.random() * (1000 - k.defo * 250));
+              k.popC -= Math.round(15 + Math.random() * (20 - k.defo * 5));
+              k.joyC -= Math.round(10 + Math.random() * (15 - k.defo * 5));
+            }
+            break;
+
+          case 22:
+            let xys = "";
+            let chlp = [
+              {
+                val: "joy",
+                ch: "-Math.round(1+Math.random()*4)"
+              },
+              {
+                val: "niv",
+                ch: "-Math.round(1+Math.random()*4)"
+              },
+              {
+                val: "pro",
+                ch: "-Math.round(Math.random()*1000)"
+              },
+              {
+                val: "def",
+                ch: "-Math.round(250+Math.random()*150)"
+              },
+              {
+                val: "ufo",
+                ch: "Math.round(250+Math.random()*150)"
+              }
+            ];
+            let xhk = rnd(ker);
+            if (xhk.dev.length > 0) {
+              let dNo = rnd(xhk.dev);
+              let dod = getDev(dNo);
+              delDev(xhk, dod);
+              xys = `
+              <tr>
+                <td colspan="2">Az idegenek lerombolták:</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="bad center">${dod.name}</td>
+              </tr>
+              `;
+            }
+            flier(xhk, chlp, xys);
+            if (pros > .1) {
+              pros -= Math.random() / 15;
+            }
+            break;
+
+          default:
+            break;
+
+        }
       }
 
       if (bp.type === "change" && kob) {
@@ -432,10 +637,13 @@ function _load() {
 
   }
 
-  function flier(kob, chs, xStr = "") {
-    let efStr = `<tr class="gold">
+  function flier(kob, chs, xStr = "", noker = false) {
+    let efStr = "";
+    if (noker === false) {
+      efStr = `<tr class="gold">
           <th colspan="2">${kob.name}</th>
         </tr>`;
+    }
     if (xStr.length > 0) {
       efStr += xStr;
     };
@@ -450,8 +658,14 @@ function _load() {
           bal = valToName(cval);
           window[cval] += ccc;
         } else {
-          bal = valToName(c.val);
-          cval = c.val + "C";
+          if (c.val === "defo") {
+            bal = "Véd-tám";
+            jobb = "csökken"
+            cval = c.val;
+          } else {
+            bal = valToName(c.val);
+            cval = c.val + "C";
+          }
           kob[cval] += ccc;
         }
         efStr += `
@@ -462,23 +676,26 @@ function _load() {
               `;
       }
     }
-    fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
-    fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
-    fly.innerHTML = efStr;
-    fly.classList.remove("effKi");
-    fly.classList.add("effBe");
-    clearTimeout(timo);
-    clearTimeout(timo2);
-    fly.style.display = "table";
-    timo = setTimeout(() => {
-      fly.classList.remove("effBe");
-      fly.classList.add("effKi");
+    if (efStr.length > 0) {
       fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
       fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
-    }, 3000);
-    timo2 = setTimeout(() => {
-      fly.style.display = "none";
-    }, 4000);
+      fly.innerHTML = efStr;
+      fly.classList.remove("effKi");
+      fly.classList.add("effBe");
+      clearTimeout(timo);
+      clearTimeout(timo2);
+      fly.style.display = "table";
+      timo = setTimeout(() => {
+        fly.classList.remove("effBe");
+        fly.classList.add("effKi");
+        fly.style.left = Math.round(40 + Math.random() * 20) + "vw";
+        fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
+      }, 3000);
+      timo2 = setTimeout(() => {
+        fly.style.display = "none";
+      }, 4000);
+    }
+   
   }
 
 
@@ -678,7 +895,8 @@ function _load() {
           <span class="gold">${g.name}</span>!</p>
           <p>${g.desc}`;
         if (g.end) {
-          //halál
+          //halál - buttont is írd át, Hall of Fame!
+          
           message(
             mStr,
             -1,
@@ -693,219 +911,16 @@ function _load() {
           document.body.classList.add("dark");
           return;
         } else {
-          let tb = g.trophy ? goodBtn : g.end ? badBtn : okBtn;
           pushMessage.push({
             msg: mStr,
             id: -1,
-            btn: tb,
+            btn: [g.btn],
             hang: g.hang
           });
           if (g.trophy) {
             trophy.push(g.num);
-          } else {
-            //Storyline
-            switch (g.num) {
-              case 6:
-                for (k of ker) {
-                  k.ufoC += Math.round(50 + Math.random() * (100 - k.defo * 50));
-                }
-                break;
-
-              case 8:
-                for (k of ker) {
-                  k.nivC += Math.round(5 + Math.random() * 4 + k.eco);
-                  k.joyC += Math.round(4 + Math.random() * 3);
-                  k.popC += Math.round(10 + Math.random() * 10);
-                }
-                pros = 1.25
-                break;
-
-              case 9:
-                for (k of ker) {
-                  k.joyC -= Math.round(10 + Math.random() * (10 - k.culto * 5));
-                  k.nivC -= Math.round(15 + Math.random() * (15 - k.eco * 10));
-                  k.ufoC += Math.round(50 + Math.random() * (50 - k.defo * 20));
-                  k.defC -= Math.round(100 + Math.random() * (1.5 - k.defo) * 150);
-                  k.popC -= Math.round(7 + Math.random() * 5);
-                }
-                pros = 0.5
-                break;
-
-              case 10:
-                for (k of ker) {
-                  k.nivC += 1 + Math.round(k.eco + Math.random() * k.eco * 4);
-                  k.ufoC += Math.round(250 + Math.random() * (500 - k.defo * 100));
-                  k.popC -= Math.round(8 + Math.random() * (12 - k.defo * 5));
-                }
-                pros = 0.7
-                break;
-
-              case 11:
-                for (k of ker) {
-                  k.nivC += Math.round(12 + Math.random() * k.eco * 10);
-                  k.joyC += Math.round(5 + Math.random() * k.nivC / 2);
-                  k.popC += 1;
-                  if (k.had < 300) {
-                    k.defC += Math.round(50 + Math.random() * k.defo * 100);
-                  }
-                }
-                pros = 1;
-                money += 1000000;
-                break;
-
-              case 12:
-                for (k of ker) {
-                  money += Math.round((2 - k.culto) * 50000);
-                  k.culto = 1.3;
-                  k.joyC += Math.round(5 + Math.random() * 5);
-                  k.nivC += Math.round(1 + Math.random() * (k.eco - k.defo) * 5);
-                  k.popC += 3;
-                }
-                break;
-
-              case 13:
-                money = Math.round(money / 2);
-                break;
-
-              case 14:
-                for (k of ker) {
-                  if (k.eco < 1.1) { k.eco += .3; }
-                  k.joyC += Math.round(5 + Math.random() * 5);
-                  k.nivC += Math.round(15 + Math.random() * 10);
-                  k.proC += Math.abs(k.pro);
-                  k.defC -= parseInt((Math.random() / 4 + (1.5 - k.defo) / 4) * k.def)
-                  if (k.defo > 1.1) { k.defo -= .3; }
-                }
-                tax = tax >= 40 ? tax - 20 : tax >= 20 ? tax - 10 : 10;
-                money += Math.round(10000000 + money / 5 + Math.random() * 5000000);
-                pros = 1.5;
-                break;
-
-              case 15:
-                let xs = "";
-                for (k of ker) {
-                  k.joyC -= Math.round(k.num * 2 + Math.random() * 10);
-                  k.nivC -= Math.round(k.num + 10 + Math.random() * 10);
-                  k.popC -= Math.round(10 + Math.random() * k.num);
-                  k.proC -= parseInt(k.pro / 2);
-                  k.ufoC += Math.round((10 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
-                  k.defC -= Math.round((1 + k.num) * 75 + (2 - k.defo) * Math.random() * 300)
-                  if (k.defo < 1.2) {
-                    k.defo += .3;
-                  };
-                  if (k.dev.length > 0 && k.had < 300 + Math.random() * 300) {
-                    let devNo = rnd(k.dev);
-                    let ndod = getDev(devNo);
-                    delDev(k, ndod);
-                    xs += `
-                    <tr>
-                      <td>A GyFSzNy lerombolta <span class="gold">${k.hely}</span>$:</td>
-                    </tr>
-                    <tr>
-                      <td class="bad center">${ndod.name}</td>
-                    </tr>
-                    `;
-                  }
-                }
-                flier(k, [], xs);
-                tax = tax <= 40 ? tax + 20 : tax <= 60 ? tax + 10 : 90;
-                money -= Math.round(1000000 + money / 6 + Math.random() * 1000000);
-                pros = 0.75;
-                break;
-
-              case 19:
-                for (k of ker) {
-                  k.joyC += Math.round(5 + Math.random() * 5);
-                  k.nivC += Math.round(5 + Math.random() * 5);
-                  k.popC += Math.round(1 + Math.random() * k.num);
-                  k.proC += parseInt(k.pro / 3);
-                  k.ufoC -= Math.round((1 + k.defo) * 300 + Math.random() * 200);
-                  k.defC += Math.round((1 + k.defo) * 200 + Math.random() * 300);
-                }
-                money -= 2000000;
-                pros = 1;
-                break;
-
-              case 20:
-                let hit = false;
-                do {
-                  let hdev = Math.floor(Math.random() * dev.length);
-                  let hk = rnd(ker);
-                  let hd = getDev(hdev);
-                  if (hk.dev.indexOf(hdev) < 0) {
-                    let xxs = `
-                      <tr>
-                        <td>AJÁNDÉK FEJLESZTÉS:</td>
-                        <td class="good">${hd.name}</td>
-                      </tr>
-                      `;
-                    flier(hk, [], xxs);
-                    hit = true;
-                    newDev(hk, hd);
-                  }
-                } while (hit === false);
-                break;
-
-              case 21:
-                for (k of ker) {
-                  k.nivC -= 3 + Math.round(Math.random() * (2 - k.eco) * 5);
-                  k.ufoC += Math.round(1000 + Math.random() * (1000 - k.defo * 250));
-                  k.popC -= Math.round(15 + Math.random() * (20 - k.defo * 5));
-                  k.joyC -= Math.round(10 + Math.random() * (15 - k.defo * 5));
-                }
-                break;
-
-              case 22:
-                let xys = "";
-                let chlp = [
-                  {
-                    val: "joy",
-                    ch: "-Math.round(1+Math.random()*4)"
-                  },
-                  {
-                    val: "niv",
-                    ch: "-Math.round(1+Math.random()*4)"
-                  },
-                  {
-                    val: "pro",
-                    ch: "-Math.round(Math.random()*1000)"
-                  },
-                  {
-                    val: "def",
-                    ch: "-Math.round(250+Math.random()*150)"
-                  },
-                  {
-                    val: "ufo",
-                    ch: "Math.round(250+Math.random()*150)"
-                  }
-                ];
-                let xhker = Math.floor(Math.random() * 10)
-                let xhk = ker[xhker];
-                if (xhk.dev.length > 0) {
-                  let dNo = rnd(xhk.dev);
-                  let dod = getDev(dNo);
-                  delDev(xhk, dod);
-                  xys = `
-                  <tr>
-                    <td colspan="2">Az idegenek lerombolták:</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" class="bad center">${dod.name}</td>
-                  </tr>
-                  `;
-                }
-                flier(xhk, chlp, xys);
-                if (pros > .1) {
-                  pros -= Math.random() / 15;
-                }
-                break;
-
-              default:
-                break;
-
-            }
-          }
-        }
+          } 
+       }
       }
     }
 
