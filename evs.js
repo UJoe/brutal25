@@ -243,7 +243,7 @@ window.evs = [
   },
   {
     title: "Zsarnokként kezd emlegetni a nép",
-    cond: "had > 1500 & defo > 0.8",
+    cond: "had > 1600 & defo > 0.8",
     chance: .4,
     hang: "angryCity",
     btns: [

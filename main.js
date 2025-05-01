@@ -6,6 +6,8 @@ function _load() {
   var sound = el("sound");
   music.volume = .9;
   sound.volume = .6;
+  var gmv = .9;
+  var gsv = .6;
   music.loop = true;
   sound.loop = false;
   var timo;
@@ -442,7 +444,7 @@ function _load() {
               k.popC += Math.round(1 + Math.random() * k.num);
               k.proC += parseInt(k.pro / 3);
               k.ufoC -= Math.round((1 + k.defo) * 300 + Math.random() * 200);
-              k.defC += Math.round((1 + k.defo) * 100 + Math.random() * 200);
+              k.defC += Math.round((1 + k.defo) * 100 + Math.random() * 100);
             }
             money -= 2000000;
             pros = 1;
