@@ -44,8 +44,8 @@ function _load() {
   window.curMusic = "basicMusic";
   music.src = "./audio/" + curMusic + ".mp3";
   sound.src = "./audio/done.mp3";
-  window.musicOn = false; //true ha éles
-  window.musIcon = "./img/soundOn.png";
+  /* window.musicOn = false; //true ha éles */
+ /*  window.musIcon = "./img/soundOn.png"; */
   window.tax = 50;
   window.money = 10000;
   window.pros = 1;
@@ -443,8 +443,7 @@ function _load() {
               k.nivC += Math.round(5 + Math.random() * 5);
               k.popC += Math.round(1 + Math.random() * k.num);
               k.proC += parseInt(k.pro / 3);
-              k.ufoC -= Math.round((1 + k.defo) * 300 + Math.random() * 200);
-              k.defC += Math.round((1 + k.defo) * 100 + Math.random() * 100);
+              k.ufoC -= Math.round((1 + k.defo) * 200 + Math.random() * 150);
             }
             money -= 2000000;
             pros = 1;
@@ -627,10 +626,8 @@ function _load() {
         happen.innerHTML = "";
         happen.classList.remove("see");
         happen.classList.add("nosee");
-        if (musicOn) {
-          music.volume = .9;
-          sound.volume = .6;
-        }
+        music.volume = gmv;
+        sound.volume = gsv;
         closeModal();
       }
     }
@@ -871,10 +868,7 @@ function _load() {
       for (e of evs) {
         if (balhé == false && checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
           balhé = true;
-          if (musicOn) {
-            music.volume = .01;
-            sound.volume = .9;
-          }
+          music.volume = 0.01;
           pushMessage.push({
             msg: e.title + " " + ko.hely + "!",
             id: ko.num,
@@ -889,10 +883,8 @@ function _load() {
 
     for (g of gevs) {
       if (checkCond(g.type, g.cond) && trophy.indexOf(g.num) < 0) {
-        if (musicOn) {
-          music.volume = .01;
-          sound.volume = .9;
-        }
+        music.volume = .01;
+        
         let mStr = `Egy jelentős esemény történt a városban: 
           <span class="gold">${g.name}</span>!</p>
           <p>${g.desc}`;
@@ -1071,20 +1063,20 @@ function _load() {
     pageUpdate();
   }
 
-  function changeMusic() {
-    let sBtn = el("soundBtn");
-    if (musicOn) {
-      music.pause();
-      sBtn.src = "./img/soundOff.png";
-      musicOn = false;
-    } else {
-      music.play();
-      sBtn.src = "./img/soundOn.png";
-      musicOn = true;
-    }
+  function changeMusic(e) {
+    let val = Number(e.target.value);
+    gmv = val/100;
+    music.volume = gmv;
   }
+  
+  function changeSound(e) {
+    let val = Number(e.target.value);
+    gsv = val/100;
+    sound.volume = gsv;
+  }
+  
 
-  function changeVolume(e) {
+  /* function changeVolume(e) {
     let ch = 0.05 * Math.sign(e.wheelDelta);
     let mv = music.volume + ch;
     let sv = sound.volume + ch;
@@ -1095,7 +1087,7 @@ function _load() {
       music.volume = mv;
     }
     el("soundBtn").title = `Zene: ${Math.round(music.volume * 100)}%, Hang: ${Math.round(sound.volume * 100)}%`;
-  }
+  } */
 
 
   function checkCond(ko, cond) {
@@ -1187,7 +1179,7 @@ function _load() {
     page.innerHTML = "";
     page.style.display = "none";
     music.src = "./audio/" + ko.name + ".mp3";
-    if (musicOn) music.play();
+    music.play();
     modal.style.display = "flex";
     let kerStr = `
     <button id="closeKer">x</button>
@@ -1583,7 +1575,7 @@ function _load() {
   function closeModal() {
     TODO: { }//késleltesd egy kicsit vagy mit tudom én
     music.src = "./audio/" + curMusic + ".mp3";
-    if (musicOn) music.play();
+    music.play();
     if (kerAct) {
       kerAct = false;
       newDay();
@@ -1599,18 +1591,28 @@ function _load() {
     let selInd = selector.findIndex(s => s.val === selVal);
     let selObj = selector[selInd];
     let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "gold";
-    let trump = trophy.length === 0 ? "" : trophy.length;
+    /* let trump = trophy.length === 0 ? "" : trophy.length; */
+    {/* <span class="navPair">
+    <span class="navNr">${trump}</span>
+    <img class="navBtn" id="saveBtn" src="./img/trophy.png">
+  </span>
+  <img class="navBtn" id="saveBtn" src="./img/save.jpg">
+  <img class="navBtn" id="loadBtn" src="./img/load.JPG">
+  <img id='soundBtn' title="Scrollal váltsd a hangerőt!" src=${musIcon} alt="music">
+  <span class="navPair">
+    */}
     let pageStr = `
       <div id="header">
         <div id="topMenu">
           <span class="navNr ${mc}" title=${money.toLocaleString()}>${bigNumber(money, "$")}</span>
           <span class="navPair">
-            <span class="navNr">${trump}</span>
-            <img class="navBtn" id="saveBtn" src="./img/trophy.png">
+            <img class="zeneBtn" src="./img/musicOn.png" alt="music"/>
+            <input class="zeneIn" id="musicVol" type="range" min="0" max="100" step="10" value=${gmv*100}>
           </span>
-          <img class="navBtn" id="saveBtn" src="./img/save.jpg">
-          <img class="navBtn" id="loadBtn" src="./img/load.JPG">
-          <img id='soundBtn' title="Scrollal váltsd a hangerőt!" src=${musIcon} alt="music">
+          <span class="navPair">
+            <img class="zeneBtn" src="./img/soundOn.png" alt="music"/>
+            <input class="zeneIn" id="soundVol" type="range" min="0" max="100" step="10" value=${gsv*100}>
+          </span>
           <span class="navPair">
             <span class="navNr">${day.toLocaleString()}</span>
             <img class="navBtn" id="endBtn" src="./img/moon.jpg">
@@ -1641,8 +1643,8 @@ function _load() {
 
     el("endBtn").addEventListener("click", newDay);
     document.querySelectorAll(".selBtn").forEach((s) => s.addEventListener("click", changeSel));
-    el("soundBtn").addEventListener("click", changeMusic);
-    el("soundBtn").addEventListener("wheel", changeVolume);
+    el("musicVol").addEventListener("change", changeMusic);
+    el("soundVol").addEventListener("change", changeSound);
     document.querySelectorAll(".ker").forEach((s) => s.addEventListener("click", openKer));
 
 
@@ -1655,7 +1657,7 @@ function _load() {
   }
 
   function startGame() {
-    if (musicOn) music.play();
+    music.play();
     main.innerHTML = "";
     page.style.display = "grid";
     pageUpdate();

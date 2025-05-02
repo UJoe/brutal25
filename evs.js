@@ -26,7 +26,7 @@ window.evs = [
       badBtn,
       {
         type: "change",
-        txt: "Pénzt szórsz közéjük",
+        txt: "Pénzt szórsz",
         hang: true,
         change: [
           {
@@ -49,7 +49,7 @@ window.evs = [
     btns: [
       {
         type: "change",
-        txt: "Közéjük lövetsz",
+        txt: "Sortűz!",
         hang: "machinegun",
         change: [
           {
@@ -72,7 +72,7 @@ window.evs = [
       },
       {
         type: "change",
-        txt: "Pénzt szórsz közéjük",
+        txt: "Pénzt szórsz",
         hang: true,
         change: [
           {
@@ -135,7 +135,7 @@ window.evs = [
     btns: [
       {
         type: "change",
-        txt: ["Kellemetlen.", "Pech!", "Kis huncutok!", "Megértem."],
+        txt: ["Kellemetlen.", "Pech!", "Huncutok!", "Megértem."],
         change: [
           {
             val: "pro",
@@ -199,7 +199,7 @@ window.evs = [
       },
       {
         type: "change",
-        txt: ["Rendőrt közéjük!", "Adok én nekik!"],
+        txt: ["Rendőrt ide!", "Adok nekik!"],
         hang: "machinegun",
         change: [
           {
@@ -226,7 +226,7 @@ window.evs = [
     btns: [
       {
         type: "change",
-        txt: ["Ez a sorsuk", "Legalább nyugtom lesz", "Szegények", "Végre már!"],
+        txt: ["Ez a sorsuk", "Szegények", "Végre már!"],
         change: [
           {
             val: "joy",
@@ -236,7 +236,7 @@ window.evs = [
       },
       {
         type: "betelepítés",
-        txt: "Betelepítési programot indítok",
+        txt: "Betelepítem",
         hang: true,
       }
     ],
@@ -250,7 +250,7 @@ window.evs = [
       badBtn,
       {
         type: "change",
-        txt: "Visszafogom a rendőröket",
+        txt: "Visszaveszek",
         hang: true,
         change: [
           {
@@ -344,7 +344,7 @@ window.gevs = [
     end: false,
     btn: {
       type: 6,
-      txt: ["Fene a pofájukat!", "Nana!"]
+      txt: ["Kapják be!", "Nana!"]
     },
     desc: "Egyre több furcsa lény jelenik meg az emberek között. Ismeretlen intelligens fajok, akik gyakran agresszíven viselkednek.",
     hang: "alienEvent"
@@ -384,7 +384,7 @@ window.gevs = [
     end: false,
     btn: {
       type: 9,
-      txt: ["Teringettét!", "Mindig ez van.", "Sejtettem, hogy ez lesz.", "Várható volt."],
+      txt: ["Teringettét!", "Mindig ez van.", "Sejtettem.", "Várható volt."],
       hang: false
     },
     desc: "Kipukkadt a gazdasági növekedés lufija. Recesszió, elszegényedés, megszorítások, káosz üti fel a fejét az egész országban.",
@@ -399,7 +399,7 @@ window.gevs = [
     end: false,
     btn: {
       type: 10,
-      txt: ["Még ez is...", "Már vártam!", "Fogjunk össze!", "Legyőzzük őket!", "Adok én nekik!"]
+      txt: ["Még ez is.", "Már vártam!", "Fogjunk össze!", "Legyőzzük őket!", "Adjunk nekik!"]
     },
     desc: "A válságot kihasználva egyre több idegen lény kezd randalírozni a városodban. Át akarják venni a hatalmat? Közben az állam próbálja helyreállítani a gazdaságot.",
     hang: "alienEvent"
@@ -428,7 +428,7 @@ window.gevs = [
     end: false,
     btn: {
       type: 12,
-      txt: ["Éljen!", "Felvirágzik a város!", "Legyen!"]
+      txt: ["Éljen!", "Felvirágzunk!", "Legyen!"]
     },
     desc: "Az állam átfogó támogatási programot indított a kultúra, oktatás és szabadidős tevékenységek fejlesztésére.",
     hang: "Kultúrnegyed"
@@ -442,7 +442,7 @@ window.gevs = [
     end: false,
     btn: {
       type: 13,
-      txt: ["Mi a szösz?", "Ne már!", "Nana!", "Mocskos tolvajok!"],
+      txt: ["Mi a szösz?", "Ne már!", "Nana!", "Tolvaj banda!"],
       hang: false
     },
     desc: "Hackeretámadás érte az Önkormányzat egyik bankszámláját! A pénzed felét elvesztetted!",
@@ -457,7 +457,7 @@ window.gevs = [
     end: false,
     btn: {
       type: 14,
-      txt: ["Jöhet az ExxonMobil!", "Az OPEC-nek annyi!", "Lenyomjuk Dubajt!", "Dőljön a lé!"],
+      txt: ["Jöhet az ExxonMobil!", "Az OPEC a múlté!", "Dubajnak annyi!", "Dőljön a lé!"],
       hang: true
     },
     desc: "Hatalmas kőolajlelőhelyre bukkantatok. Özönlik be a pénz, minden kerületben fellendül a gazdaság, a nép önfeledten ünnepel, a terheiket csökkented!",
@@ -502,7 +502,7 @@ window.gevs = [
     num: 18,
     name: "Vesszen a zsarnok!",
     type: "total",
-    cond: "had > 18000+Math.floor(Math.random()*4500)",
+    cond: "had > 18000+Math.floor(Math.random()*4500) & joy < 75",
     trophy: false,
     end: true,
     desc: "Hiába győzted le Bitang Botondot, ha magad is olyan zsarnokká váltál mint ő! A népnek elege lesz a túlzott rendőri zaklatásokból. A lázadók egy ügyes csoportja csapdába csal téged és végez veled.",
@@ -512,12 +512,12 @@ window.gevs = [
     num: 19,
     name: "Végzel a GyFSzNy vezérkarával",
     type: "global",
-    cond: "day > 100 & money > 3000000",
+    cond: "day > 100 & money > 5000000",
     trophy: true,
     end: false,
     btn: {
       type: 19,
-      txt: ["Nesztek!", "Takarodjatok!", "", "Hős vagyok, nem?", "Nem is volt kérdés."]
+      txt: ["Nesztek!", "Takarodjatok!", "Hős vagyok.", "Nem volt kérdés."]
     },
     desc: "Sikerült végre elég embert és felszerelést  szerezned, hogy megkeressétek és likvidáljátok a Gyehenna Fertelmes Szagú Nyájának vezéreit. A vezetők nélkül a banda többi tagja abbahagyja a fosztogatást és vagy elhagyja a várost, vagy elrejtőzik. A levegő is tisztul.",
     hang: "happyCity"
@@ -531,7 +531,7 @@ window.gevs = [
     end: false,
     btn: {
       type: 20,
-      txt: ["Köszönjük szépen!", "Ez jól jött!", "Kedves gesztus!", "Király vagy!", "Rendes fickó!"],
+      txt: ["Köszönjük!", "Ez jól jött!", "Kedves gesztus!", "Király vagy!", "Rendes fickó!"],
       hang: "hammer"
     },
     desc: "Egy gazdag üzletembernek megtetszik nagyon a városod és saját költségén ad nektek egy fejlesztést.",
