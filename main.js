@@ -471,7 +471,7 @@ function _load() {
 
           case 21:
             for (k of ker) {
-              k.nivC -= 3 + Math.round(Math.random() * (2 - k.eco) * 5);
+              k.nivC -= 5 + Math.round(Math.random() * (2 - k.eco) * 10);
               k.ufoC += Math.round(1000 + Math.random() * (1000 - k.defo * 250));
               k.popC -= Math.round(15 + Math.random() * (20 - k.defo * 5));
               k.joyC -= Math.round(10 + Math.random() * (15 - k.defo * 5));
@@ -801,9 +801,9 @@ function _load() {
       ko.nivCD = ko.nivC;
 
       let [hado, ufoo, defo] = [ko.had, ko.ufo, ko.def];
-      ko.defC += Math.round(ko.mtn * (ko.defo - 1) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
+      ko.defC += Math.round(ko.mtn * (ko.defo - 0.95) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(day / 9 + Math.random() * day / 1.2 + (ko.ufo - ko.def) / (10 + Math.random() * 3));
+      ko.ufoC += Math.round(day / 6 + Math.random() * day / 1.2 + (ko.ufo - ko.def / 1.25 + getDevs(ko.dev, "ufo")/(1.6 - ko.defo / 2)) / (10 + Math.random() * 3));
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       sign = hado === 0 ? 1 : Math.sign(hado);

@@ -467,7 +467,7 @@ window.gevs = [
     num: 15,
     name: "Motoros támadás",
     type: "global",
-    cond: "day = 95",
+    cond: "day = 90",
     trophy: false,
     end: false,
     btn: {
@@ -541,7 +541,7 @@ window.gevs = [
     num: 21,
     name: "Idegen invázió",
     type: "global",
-    cond: "day = 125",
+    cond: "day = 120",
     trophy: false,
     end: false,
     btn: {
@@ -555,12 +555,12 @@ window.gevs = [
     num: 22,
     name: "Idegen szabotázs",
     type: "global",
-    cond: "day > Math.floor(128+Math.random()*20) & day < 149",
+    cond: "day > Math.floor(120+Math.random()*20) & day < 149",
     trophy: false,
     end: false,
     btn: {
       type: 22,
-      txt: ["Meddig még?!", "Dögöljenek meg!", "Tovább küzdünk!", "Menjenek haza!", "Kitartás, emberek!", "Szemtelenség!"],
+      txt: ["Meddig még?!", "Dögöljenek meg!", "Tovább küzdünk!", "Menjenek haza!", "Kitartás, emberek!", "Szemtelenség!", "Bakker..."],
       hang: "rombol"
     },
     desc: "Az idegenek szabotázst hajtottak végre a városod fejlesztései és gazdasága ellen.",
