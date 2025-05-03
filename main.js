@@ -889,8 +889,14 @@ function _load() {
           <span class="gold">${g.name}</span>!</p>
           <p>${g.desc}`;
         if (g.end) {
-          //halál - buttont is írd át, Hall of Fame!
-          
+          //halál
+          let tr = trophy.length;
+          let score = day + tr * 50;
+          mStr+=`
+            <br><br>
+            A Bazibrutál II,V. része véget ért számodra. De ne keseredj el!<br>
+            Eljutottál a ${day}. napig és megszereztél a 4-ből ${tr} trófeát, így a végső pontod <span class="gold">${score}</span> lett. Gratulálunk!
+          `          
           message(
             mStr,
             -1,
@@ -905,16 +911,23 @@ function _load() {
           document.body.classList.add("dark");
           return;
         } else {
+          if (g.trophy) {
+            trophy.push(g.num);
+            mStr+= `
+            <br><br>
+            <span class="navPair">
+            <img class="zeneBtn" src="./img/trophy.png">
+            <span class="navNr">${trophy.length} / 4</span>
+            </span>
+            `
+          } 
           pushMessage.push({
             msg: mStr,
             id: -1,
             btn: [g.btn],
             hang: g.hang
           });
-          if (g.trophy) {
-            trophy.push(g.num);
-          } 
-       }
+        }
       }
     }
 

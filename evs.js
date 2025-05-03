@@ -573,7 +573,7 @@ window.gevs = [
     cond: "day = 150",
     trophy: false,
     end: true,
-    desc: "Álmodban hirtelen egy vakító villanást látsz. Megpróbálod kinyitni a szemed, de túl erős a fény. Émelygés jön rád és úgy érzed, forog körülötted a világ. Magatehetlenül sodródsz egy bizonytalan térben... Az idegenek elteleportáltak egy másik világba. Itt van a Bazibrutál II,V. részének vége!",
+    desc: "Álmodban hirtelen egy vakító villanást látsz. Megpróbálod kinyitni a szemed, de túl erős a fény. Émelygés jön rád és úgy érzed, forog körülötted a világ. Magatehetlenül sodródsz egy bizonytalan térben... Az idegenek elteleportáltak egy másik világba.",
     hang: "alienEvent"
   },
   {
