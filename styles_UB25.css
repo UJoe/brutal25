@@ -3,6 +3,11 @@
 	src: url("./assets/Oldenburg-Regular.ttf");
 }
 
+@font-face {
+	font-family: C64;
+	src: url("./assets/Commodore-64.TTF");
+}
+
 body {
 	font-family: Oldenburg;
 	background: #1f1e4d;
@@ -191,7 +196,7 @@ h1 {
 }
 
 .ker {
-	font-size: max(1.5vw, 1.2em);
+	font-size: max(1.5vw, 1.1em);
 	background-image: radial-gradient(royalblue 75%, darkblue);
 	text-align: center;
 	align-content: center;
@@ -598,8 +603,40 @@ li {
 }
 
 #hf {
+	font-family: C64;
+	display: grid;
 	height: 100vh;
 	width: 100vw;
+	grid-template-rows: 1fr 10fr 1fr;
+	/* grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(12, 1fr); */
 	color: white;
 	overflow: hidden;
+	z-index: 9999;
+	font-size: min(5vh, 5vw);
+}
+
+.hfspan {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#ht {
+	margin: auto;
+    border: 5px solid aqua;
+    height: 100%;
+}
+
+.hend {
+	text-align: end;
+}
+
+.hsta {
+	text-align: start;
+}
+
+#ht td {
+	padding: 0 5vw;
 }

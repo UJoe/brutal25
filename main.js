@@ -1,4 +1,5 @@
 function _load() {
+  var gameover = false;
   function el(id) {
     return document.getElementById(id);
   }
@@ -17,6 +18,7 @@ function _load() {
   var modal = el("modal");
   var happen = el("happen");
   var fly = el("fly");
+  var hf = el("hf");
   let okBtn = [
     {
       type: "rnd",
@@ -161,12 +163,42 @@ function _load() {
   ];
   window.selVal = "tax";
   
-  window.hfnames = ["EDE", "IMI", "LEÓ", "BEA", "ÉVI", "ATI", "NOÉ", "PÁL", "TBD", "U.G"];
-  window.hfscores = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300];
+  window.hfnames = ['U.G', 'EDE', 'IMI', 'LEO', 'ATI', 'EVI', 'BEA', 'PAL', 'NOE', 'XYZ'];
+  window.hfscores = [300, 270, 240, 210, 180, 150, 120, 90, 60, 30];
   if (localStorage.getItem("hfnames")) {
     hfnames = localStorage.getItem("hfnames").split(",");
     hfscores = localStorage.getItem("hfscores").split(",");
-  } 
+  }
+  var pos = 9;
+  function inBajnok(e) {
+    let curw = e.target.value;
+    let curp = curw.length-1;
+    let curl = curw.charAt(curp);
+    if (/[öüóőűúéáí]/i.test(curl)) {
+      curw = curw.slice(0, -1);
+      e.target.value = curw;
+    }
+  }
+
+  function finBajnok(e) {
+    let champ = e.target.value;
+    hfnames[pos]= champ.toUpperCase();
+    htStr = "";
+    for (let i = 0; i < 10; i++) {
+      let hs = hfscores[i];
+      let hn = hfnames[i];
+      htStr += `
+        <tr>
+          <td class="hend">${i+1}</td>
+          <td class="hsta">${hn}</td>
+          <td class="hend">${hs}</td>
+        </tr>
+      `;
+    }
+    el("ht").innerHTML=htStr;
+    localStorage.setItem("hfnames", hfnames.join())
+    localStorage.setItem("hfscores", hfscores.join())
+  }
     
 
   for (ko of ker) {
@@ -545,6 +577,61 @@ function _load() {
         return;
       }
 
+      //Hall of Fame
+      if (bp.type === "hf") {
+        happen.innerHTML = "";
+        happen.classList.remove("see");
+        happen.classList.add("nosee");
+        page.style.display = "none";
+        modal.classList.add("nosee");
+        hf.classList.remove("nosee");
+        document.body.classList.add("brighten");
+        sound.pause();
+        music.pause();
+        music.src="./audio/hallOfFame.mp3";
+        music.volume = gmv;
+        music.play();
+        let score = day + trophy.length * 50;
+        let hfStr = `
+          <div class="hfspan">HALL OF FAME</div>
+          <table id="ht"></table>
+          <button class="nosee"></button>
+        `;
+        hf.innerHTML = hfStr;
+        let htStr="";
+        let bajnok="";
+        let hit = false;
+        for (let i = 0; i < 10; i++) {
+          let hs = hfscores[i];
+          let hn = hfnames[i];
+          if (score >= hs && hit === false) {
+            pos = i;
+            hit = true;
+            hfscores.splice(pos, 0, score);
+            hfscores.pop();
+            hfnames.splice(pos, 0, "");
+            /* hfnames.splice(pos, 0, "&nbsp;"); */
+            hfnames.pop();
+            hn= `
+              <input type="text" id="hiname" maxlength="3" size="3">
+            `
+          }
+          hs = hfscores[i];
+          htStr += `
+            <tr>
+              <td class="hend">${i+1}</td>
+              <td class="hsta">${hn}</td>
+              <td class="hend">${hs}</td>
+            </tr>
+          `;
+        }
+        el("ht").innerHTML=htStr;
+        el("hiname").addEventListener("input", inBajnok);
+        el("hiname").addEventListener("change", finBajnok);
+        gameover = true;
+      }
+
+
       if (bp.type === "rombolás" && kob) {
         let xs = "";
         let chalap = [
@@ -624,6 +711,8 @@ function _load() {
         `;
         flier(kob, chalap, xs);
       }
+
+      if (gameover) return;
 
       pushMessage.shift();
       if (pushMessage.length > 0) {
@@ -905,7 +994,7 @@ function _load() {
             type: "restart",
             txt: "Újrakezdés",
           }];
-          if (score > hfscores[0]){
+          if (score >= hfscores[9]){
             hfStr = "Ezzel felkerültél a Hall of Fame listára! Gratulálunk!"
             hfBtn = [{
               type: "hf",
