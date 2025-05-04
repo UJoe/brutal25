@@ -160,6 +160,14 @@ function _load() {
     },
   ];
   window.selVal = "tax";
+  
+  window.hfnames = ["EDE", "IMI", "LEÓ", "BEA", "ÉVI", "ATI", "NOÉ", "PÁL", "TBD", "U.G"];
+  window.hfscores = [30, 60, 90, 120, 150, 180, 210, 240, 270, 300];
+  if (localStorage.getItem("hfnames")) {
+    hfnames = localStorage.getItem("hfnames").split(",");
+    hfscores = localStorage.getItem("hfscores").split(",");
+  } 
+    
 
   for (ko of ker) {
     ko.mtn = Math.round(ko.pop / 10 * (1 + ko.niv / 30 + Math.random() / 3 - Math.random() / 3));
@@ -892,20 +900,28 @@ function _load() {
           //halál
           let tr = trophy.length;
           let score = day + tr * 50;
+          let hfStr = "Ez kevés ahhoz, hogy felkerülj a Hall of Fame listára. Legközelebb ügyesebb legyél!";
+          let hfBtn = [{
+            type: "restart",
+            txt: "Újrakezdés",
+          }];
+          if (score > hfscores[0]){
+            hfStr = "Ezzel felkerültél a Hall of Fame listára! Gratulálunk!"
+            hfBtn = [{
+              type: "hf",
+              txt: "Feliratkozom!",
+            }]
+          }
           mStr+=`
             <br><br>
             A Bazibrutál II,V. része véget ért számodra. De ne keseredj el!<br>
-            Eljutottál a ${day}. napig és megszereztél a 4-ből ${tr} trófeát, így a végső pontod <span class="gold">${score}</span> lett. Gratulálunk!
+            Eljutottál a ${day}. napig és megszereztél a 4-ből ${tr} trófeát, így a végső pontod <span class="gold">${score}</span> lett.<br><br>
+            ${hfStr}
           `          
           message(
             mStr,
             -1,
-            [
-              {
-                type: "restart",
-                txt: "Újrakezdés",
-              }
-            ],
+            hfBtn,
             "sadCity"
           );
           document.body.classList.add("dark");

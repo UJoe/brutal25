@@ -110,6 +110,7 @@ h1 {
 	z-index: 9998;
 	border: cyan outset 5px;
 	border-radius: 10px;
+	overflow: auto;
 }
 
 #mescard p {
