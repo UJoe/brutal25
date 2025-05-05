@@ -456,6 +456,7 @@ h1 {
 
 ul {
 	list-style-type: "- ";
+	padding-left: 1vw;
 }
 
 li {
@@ -608,11 +609,13 @@ li {
 	height: 100vh;
 	width: 100vw;
 	grid-template-rows: 1fr 10fr 1fr;
-	/* grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(12, 1fr); */
 	color: white;
 	overflow: hidden;
 	z-index: 9999;
+	font-size: min(5vh, 5vw);
+}
+
+#hiname {
 	font-size: min(5vh, 5vw);
 }
 
@@ -625,8 +628,9 @@ li {
 
 #ht {
 	margin: auto;
-    border: 5px solid aqua;
+    border: 5px double aqua;
     height: 100%;
+	animation: colors 0.72s linear infinite alternate;
 }
 
 .hend {
@@ -639,4 +643,63 @@ li {
 
 #ht td {
 	padding: 0 5vw;
+}
+
+#hftitle {
+	animation: hfblink 0.72s linear infinite;
+}
+
+@keyframes hfblink {
+	0% {
+		filter: drop-shadow(10px 0 12px aqua);
+	}
+	25% {
+		filter: drop-shadow(0px 10px 12px aqua);
+	}
+	50% {
+		filter: drop-shadow(-10px 0 12px aqua);
+	}
+	75% {
+		filter: drop-shadow(0px -10px 12px aqua);
+	}
+	100% {
+		filter: drop-shadow(10px 0 12px aqua);
+	}
+}
+
+@keyframes colors {
+	0% {
+		border: 5px double aqua;
+	}
+	25% {
+		border: 5px double yellow;
+	}
+	50% {
+		border: 5px solid red;
+	}
+	75% {
+		border: 5px double lime;
+	}
+	100% {
+		border: 5px double aqua;
+	}
+}
+
+@keyframes colorstxt {
+	0% {
+		color: white;
+	}
+	25% {
+		color: aqua;
+	}
+	50% {
+		color: yellow;
+	}
+	75% {
+		color: lightskyblue;
+	}
+	100% {
+		color: purple;
+	}
+	
 }

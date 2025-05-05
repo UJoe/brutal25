@@ -26,7 +26,7 @@ window.evs = [
       badBtn,
       {
         type: "change",
-        txt: "Pénzt szórsz",
+        txt: "Pénzt osztok",
         hang: true,
         change: [
           {
@@ -72,7 +72,7 @@ window.evs = [
       },
       {
         type: "change",
-        txt: "Pénzt szórsz",
+        txt: "Pénzt osztok",
         hang: true,
         change: [
           {
@@ -174,7 +174,7 @@ window.evs = [
   },
   {
     title: "A túl nagy népsűrűség agresszívvá teszi az embereket",
-    cond: "pop > 18000 & def < 1000",
+    cond: "pop > 18000 & def < 900",
     chance: .3,
     hang: "hardCity",
     btns: [
@@ -219,7 +219,7 @@ window.evs = [
     ],
   },
   {
-    title: "Mindjárt kihal a nép",
+    title: "Kihal a nép",
     cond: "pop < 250",
     chance: .9,
     hang: "sadCity",

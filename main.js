@@ -6,9 +6,9 @@ function _load() {
   var music = el("music");
   var sound = el("sound");
   music.volume = .9;
-  sound.volume = .6;
+  sound.volume = .7;
   var gmv = .9;
-  var gsv = .6;
+  var gsv = .7;
   music.loop = true;
   sound.loop = false;
   var timo;
@@ -19,6 +19,7 @@ function _load() {
   var happen = el("happen");
   var fly = el("fly");
   var hf = el("hf");
+  hf.style.display="none";
   let okBtn = [
     {
       type: "rnd",
@@ -46,8 +47,6 @@ function _load() {
   window.curMusic = "basicMusic";
   music.src = "./audio/" + curMusic + ".mp3";
   sound.src = "./audio/done.mp3";
-  /* window.musicOn = false; //true ha éles */
- /*  window.musIcon = "./img/soundOn.png"; */
   window.tax = 50;
   window.money = 10000;
   window.pros = 1;
@@ -188,7 +187,7 @@ function _load() {
       let hs = hfscores[i];
       let hn = hfnames[i];
       htStr += `
-        <tr>
+        <tr id="hfline-${i}">
           <td class="hend">${i+1}</td>
           <td class="hsta">${hn}</td>
           <td class="hend">${hs}</td>
@@ -198,6 +197,11 @@ function _load() {
     el("ht").innerHTML=htStr;
     localStorage.setItem("hfnames", hfnames.join())
     localStorage.setItem("hfscores", hfscores.join())
+    for (let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        el("hfline-"+i).style.animation = "colorstxt 0.8s linear infinite";
+      }, i*180);
+    }
   }
     
 
@@ -272,7 +276,6 @@ function _load() {
     ko.dev.push(deo.id);
     for (e of deo.effect) {
       if (e.val !== "mtn" && e.val !== "pro" && e.val !== "pop") {
-        //change(ko, e.val, e.ch);
         let ec = e.val + "C";
         ko[ec] += e.ch;
       }
@@ -286,7 +289,6 @@ function _load() {
     }
     for (e of deo.effect) {
       if (e.val !== "mtn" && e.val !== "pro" && e.val !== "pop") {
-        //change(ko, e.val, -e.ch);
         let ec = e.val + "C";
         ko[ec] -= e.ch;
       }
@@ -585,6 +587,7 @@ function _load() {
         page.style.display = "none";
         modal.classList.add("nosee");
         hf.classList.remove("nosee");
+        hf.style.display="grid";
         document.body.classList.add("brighten");
         sound.pause();
         music.pause();
@@ -593,7 +596,7 @@ function _load() {
         music.play();
         let score = day + trophy.length * 50;
         let hfStr = `
-          <div class="hfspan">HALL OF FAME</div>
+          <div id="hftitle" class="hfspan">HALL OF FAME</div>
           <table id="ht"></table>
           <button class="nosee"></button>
         `;
@@ -610,7 +613,6 @@ function _load() {
             hfscores.splice(pos, 0, score);
             hfscores.pop();
             hfnames.splice(pos, 0, "");
-            /* hfnames.splice(pos, 0, "&nbsp;"); */
             hfnames.pop();
             hn= `
               <input type="text" id="hiname" maxlength="3" size="3">
@@ -626,6 +628,7 @@ function _load() {
           `;
         }
         el("ht").innerHTML=htStr;
+        el("hiname").focus();
         el("hiname").addEventListener("input", inBajnok);
         el("hiname").addEventListener("change", finBajnok);
         gameover = true;
@@ -698,7 +701,7 @@ function _load() {
           },
           {
             val: "money",
-            ch: -Math.round(pc * (250 + Math.random() * 100))
+            ch: -Math.round(migráncs * (250 + Math.random() * 100))
           },
         ];
         let xs = `
@@ -706,7 +709,7 @@ function _load() {
           <td colspan="2">Betelepülők száma:</td>
         </tr>
         <tr>
-          <td colspan="2" class="neutral center">${pc}</td>
+          <td colspan="2" class="neutral center">${migráncs}</td>
         </tr>
         `;
         flier(kob, chalap, xs);
@@ -812,7 +815,6 @@ function _load() {
       ko[val + "C"] = Math.round((100 - org) / org * 100);
       ko[val] = 100;
     }
-    TODO: { }//Egyéb hatások val-onként
   }
 
   function bigNumber(x, y = "") {
@@ -888,6 +890,8 @@ function _load() {
           newDev(ko, devo);
         }
       }
+      
+      /* if (ko.pop < 1) continue; */
 
       let sign = 1;
       ko.nivC += Math.round((ko.eco - 1) * 7 - (tax - 45) / (20 + Math.random() * 10));
@@ -963,7 +967,7 @@ function _load() {
       //EVENTS
       let balhé = false;
       for (e of evs) {
-        if (balhé == false && checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (3000 + Math.random() * 7000)) {
+        if (balhé == false && checkCond(ko, e.cond) && e.chance >= Math.random() && ko.had < (1500 + Math.random() * 1500) && (ko.pop > 0 || (ko.pop < 1 && e.title == "Kihal a nép"))) {
           balhé = true;
           music.volume = 0.01;
           pushMessage.push({
@@ -1193,21 +1197,6 @@ function _load() {
     sound.volume = gsv;
   }
   
-
-  /* function changeVolume(e) {
-    let ch = 0.05 * Math.sign(e.wheelDelta);
-    let mv = music.volume + ch;
-    let sv = sound.volume + ch;
-    mv = mv < 0.1 ? 0.1 : mv > 1 ? 1 : mv;
-    sv = (sv < 0.1 && musicOn) ? 0.1 : sv < 0 ? 0 : sv > 1 ? 1 : sv;
-    sound.volume = sv;
-    if (musicOn) {
-      music.volume = mv;
-    }
-    el("soundBtn").title = `Zene: ${Math.round(music.volume * 100)}%, Hang: ${Math.round(sound.volume * 100)}%`;
-  } */
-
-
   function checkCond(ko, cond) {
     let result = true;
     let conds = cond.split(" & ");
@@ -1325,6 +1314,7 @@ function _load() {
 
     modal.innerHTML = kerStr;
     el("kerStats").disabled = money < 100;
+    el("kerVisit").disabled = ko.pop < 1;
     updateSup(ko);
 
     //gendevs
@@ -1691,7 +1681,6 @@ function _load() {
   }
 
   function closeModal() {
-    TODO: { }//késleltesd egy kicsit vagy mit tudom én
     music.src = "./audio/" + curMusic + ".mp3";
     music.play();
     if (kerAct) {
@@ -1709,16 +1698,6 @@ function _load() {
     let selInd = selector.findIndex(s => s.val === selVal);
     let selObj = selector[selInd];
     let mc = money < 1000 ? "bad" : money > 1000000 ? "good" : "gold";
-    /* let trump = trophy.length === 0 ? "" : trophy.length; */
-    {/* <span class="navPair">
-    <span class="navNr">${trump}</span>
-    <img class="navBtn" id="saveBtn" src="./img/trophy.png">
-  </span>
-  <img class="navBtn" id="saveBtn" src="./img/save.jpg">
-  <img class="navBtn" id="loadBtn" src="./img/load.JPG">
-  <img id='soundBtn' title="Scrollal váltsd a hangerőt!" src=${musIcon} alt="music">
-  <span class="navPair">
-    */}
     let pageStr = `
       <div id="header">
         <div id="topMenu">
@@ -1764,14 +1743,6 @@ function _load() {
     el("musicVol").addEventListener("change", changeMusic);
     el("soundVol").addEventListener("change", changeSound);
     document.querySelectorAll(".ker").forEach((s) => s.addEventListener("click", openKer));
-
-
-    /* el("saveBtn").addEventListener("click", saveGame);
-    el("loadBtn").addEventListener("click", loadGame);
-    el("loadBtn").disabled = localStorage.getItem("charName") == null;
-    el("saveBtn").disabled = false; */
-
-
   }
 
   function startGame() {
