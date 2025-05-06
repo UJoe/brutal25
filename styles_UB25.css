@@ -549,6 +549,7 @@ li {
 	border: 2px outset lightcyan;
 	padding: 4px;
 	font-weight: 600;
+	display: flex;
 	margin: auto;
 	font-size: 0.8em;
 }

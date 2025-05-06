@@ -1478,7 +1478,7 @@ function _load() {
           devStr += `</table></td>
             <td title=${o.price.toLocaleString()} class="gold center">${bigNumber(o.price, "$")}<br><span class="good">${o.days} nap</span></td>
             <td class="centralCont">
-              <button class="devBtn goodB" id="newDev-${o.id}">Kell</button>
+              <button class="devBtn goodB" id="newDev-${o.id}">Legyen</button>
             </td>
             </tr>`;
         }
