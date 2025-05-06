@@ -1408,7 +1408,7 @@ function _load() {
         devStr += `</table></td>
                 <td>${ko.curDev[1]} nap</td>
                 <td class="centralCont">
-                  <button class="devBtn badB" id="curEnd">Hagyjuk!</button>
+                  <button class="devBtn badB" id="curEnd">Hagyjuk</button>
                 </td>
               </tr>
             </table>
@@ -1443,7 +1443,7 @@ function _load() {
           }
           devStr += `</table></td>
             <td class="centralCont">
-              <button class="devBtn badB" id="hasEnd-${o.id}">Nem kell!</button>
+              <button class="devBtn badB" id="hasEnd-${o.id}">Nem kell</button>
             </td>
             </tr>`;
         }
@@ -1478,7 +1478,7 @@ function _load() {
           devStr += `</table></td>
             <td title=${o.price.toLocaleString()} class="gold center">${bigNumber(o.price, "$")}<br><span class="good">${o.days} nap</span></td>
             <td class="centralCont">
-              <button class="devBtn goodB" id="newDev-${o.id}">Legyen!</button>
+              <button class="devBtn goodB" id="newDev-${o.id}">Kell</button>
             </td>
             </tr>`;
         }

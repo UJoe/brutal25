@@ -446,7 +446,7 @@ window.gevs = [
       hang: false
     },
     desc: "Hackeretámadás érte az Önkormányzat egyik bankszámláját! A pénzed felét elvesztetted!",
-    hang: false
+    hang: "computer"
   },
   {
     num: 14,
