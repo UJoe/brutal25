@@ -580,7 +580,7 @@ window.gevs = [
     num: 24,
     name: "Anarchia",
     type: "total",
-    cond: "had < -3000-Math.floor(Math.random()*2000)",
+    cond: "had < -4000-Math.floor(Math.random()*2000)",
     trophy: false,
     end: true,
     desc: "Képtelen vagy fenntartani a rendet a városodban. Az utcákat elözönlik a vandál bandák. Törnek-zúznak, rabolnak, gyilkolnak. Még téged is.",

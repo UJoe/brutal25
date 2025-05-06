@@ -447,6 +447,7 @@ function _load() {
 
           case 15:
             let xs = "";
+            let bum = true;
             for (k of ker) {
               k.joyC -= Math.round(k.num * 2 + Math.random() * 10);
               k.nivC -= Math.round(k.num + 10 + Math.random() * 10);
@@ -461,11 +462,16 @@ function _load() {
                 let devNo = rnd(k.dev);
                 let ndod = getDev(devNo);
                 delDev(k, ndod);
+                if (bum) {
+                  xs += `
+                    <tr>
+                      <td colspan="2">A GyFSzNy lerombolta:</td> 
+                    </tr>`;
+                  bum = false;
+                }
                 xs += `
                 <tr>
-                  <td>A GyFSzNy lerombolta <span class="gold">${k.hely}</span>:</td>
-                </tr>
-                <tr>
+                  <td class="gold">${k.hely}:</td>
                   <td class="bad center">${ndod.name}</td>
                 </tr>
                 `;
@@ -487,7 +493,7 @@ function _load() {
               k.proC += parseInt(k.pro / 3);
               k.ufoC -= Math.round((1 + k.defo) * 200 + Math.random() * 150);
             }
-            money -= 2000000;
+            money -= 5000000;
             pros = 1;
             break;
 
@@ -583,9 +589,9 @@ function _load() {
       if (bp.type === "hf") {
         happen.innerHTML = "";
         happen.classList.remove("see");
-        happen.classList.add("nosee");
+        happen.style.display = "none";
         page.style.display = "none";
-        modal.classList.add("nosee");
+        modal.style.display = "none";
         hf.classList.remove("nosee");
         hf.style.display="grid";
         document.body.classList.add("brighten");
