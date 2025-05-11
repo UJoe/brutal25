@@ -547,7 +547,7 @@ li {
 	max-width: 10vw;
 	border-radius: 10px;
 	border: 2px outset lightcyan;
-	padding: 4px;
+	padding: 4px 2px;
 	font-weight: 600;
 	display: flex;
 	margin: auto;

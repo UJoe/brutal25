@@ -43,7 +43,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 1000
+        ch: 500
       }
     ]
   },
@@ -81,7 +81,7 @@ window.dev = [
     id: 3,
     name: "Ingyen BBB",
     desc: "Ingyen bort, búzát, békességet!",
-    days: 12,
+    days: 11,
     price: 1100000,
     szigor: [6],
     effect: [
@@ -177,7 +177,7 @@ window.dev = [
     id: 7,
     name: "Agymosás-stop",
     desc: "Leszámolunk az agymosással!",
-    days: 10,
+    days: 9,
     price: 1234567,
     szigor: [0, 1, 2, 3, 5, 6, 7, 8],
     effect: [
@@ -249,7 +249,7 @@ window.dev = [
     id: 9,
     name: "Emlékek",
     desc: "A halottakra való örök emlékezés.",
-    days: 4,
+    days: 3,
     price: 20000,
     szigor: [0, 2, 6, 7, 8],
     effect: [
@@ -275,7 +275,7 @@ window.dev = [
     id: 10,
     name: "Szocotthon",
     desc: "A Városháza átalakítása szociális otthonná.",
-    days: 6,
+    days: 5,
     price: 1350000,
     szigor: [4],
     effect: [
@@ -341,7 +341,7 @@ window.dev = [
     id: 13,
     name: "MIB",
     desc: "Gyanús fekete öltönyös ügynökök, akik állítólag idegen lényekre vadásznak.",
-    days: 7,
+    days: 6,
     price: 3000000,
     szigor: [],
     effect: [
@@ -359,7 +359,7 @@ window.dev = [
       },
       {
         val: "mtn",
-        ch: 888
+        ch: 1000
       }
     ]
   },
@@ -393,7 +393,7 @@ window.dev = [
     id: 15,
     name: "Átnevelő",
     desc: "Az idegenek átnevelése hatékony földi életformára.",
-    days: 11,
+    days: 10,
     price: 4000000,
     szigor: [],
     effect: [
@@ -419,7 +419,7 @@ window.dev = [
     id: 16,
     name: "Sportközpont",
     desc: "Játszóterek és sportcsarnok a kikapcsolódni és erősödni vágyóknak.",
-    days: 6,
+    days: 5,
     price: 500000,
     szigor: [3, 5, 6, 7],
     effect: [
@@ -475,7 +475,7 @@ window.dev = [
     id: 18,
     name: "Trafikok",
     desc: "Különböző üzletek, amik bevételt hoznak az Önkormányzatnak.",
-    days: 5,
+    days: 4,
     price: 100000,
     szigor: [],
     effect: [
