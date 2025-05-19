@@ -463,7 +463,7 @@ window.dev = [
       },
       {
         val: "def",
-        ch: -20
+        ch: -10
       },
       {
         val: "mtn",
