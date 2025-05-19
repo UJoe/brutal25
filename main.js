@@ -440,12 +440,13 @@ function _load() {
               k.defC -= parseInt((Math.random() / 4 + (1.5 - k.defo) / 4) * k.def)
               if (k.defo > 1.1) { k.defo -= .3; }
             }
-            tax = tax >= 40 ? tax - 20 : tax >= 20 ? tax - 10 : 10;
+            tax = tax > 40 ? tax - 10 : tax;
             money += Math.round(10000000 + money / 5 + Math.random() * 5000000);
             pros = 1.5;
             break;
 
           case 15:
+            money -= Math.round(1000000 + money / 6 + Math.random() * 500000);
             let xs = "";
             let bum = true;
             for (k of ker) {
@@ -454,8 +455,8 @@ function _load() {
               k.popC -= Math.round(10 + Math.random() * k.num);
               k.proC -= parseInt(k.pro / 2);
               k.ufoC += Math.round((10 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
-              k.defC -= Math.round((1 + k.num) * 75 + (2 - k.defo) * Math.random() * 300)
-              if (k.defo < 1.2) {
+              k.defC -= Math.round((1 + k.num) * 75 + (1.5 - k.defo/2) * Math.random() * 300)
+              if (k.defo < 1.2 && k.had < 1000) {
                 k.defo += .3;
               };
               if (k.dev.length > 0 && k.had < 500 + Math.random() * 300) {
@@ -477,11 +478,10 @@ function _load() {
                 `;
               }
             }
-            if (xs.length > 0) {
+            if (xs.length>0) {
               flier(k, [], xs, true);
             }
-            tax = tax <= 40 ? tax + 20 : tax <= 60 ? tax + 10 : 90;
-            money -= Math.round(1000000 + money / 6 + Math.random() * 1000000);
+            tax = tax <= 40 ? tax + 20 : tax <= 60 ? tax + 10 : tax;
             pros = 0.75;
             break;
 
@@ -520,7 +520,7 @@ function _load() {
           case 21:
             for (k of ker) {
               k.nivC -= 5 + Math.round(Math.random() * (2 - k.eco) * 10);
-              k.ufoC += Math.round(1000 + Math.random() * (1000 - k.defo * 250));
+              k.ufoC += Math.round(800 + Math.random() * (1000 - k.defo * 250));
               k.popC -= Math.round(15 + Math.random() * (20 - k.defo * 5));
               k.joyC -= Math.round(10 + Math.random() * (15 - k.defo * 5));
             }
@@ -547,7 +547,7 @@ function _load() {
               },
               {
                 val: "ufo",
-                ch: "Math.round(250+Math.random()*150)"
+                ch: "Math.round(250+Math.random()*200)"
               }
             ];
             let xhk = rnd(ker);
@@ -910,7 +910,7 @@ function _load() {
       let [hado, ufoo, defo] = [ko.had, ko.ufo, ko.def];
       ko.defC += Math.round(ko.mtn * (ko.defo - 0.95) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(day / 6 + Math.random() * day / 1.2 + (ko.ufo - ko.def / 1.25 + getDevs(ko.dev, "ufo")/(1.6 - ko.defo / 2)) / (10 + Math.random() * 3));
+      ko.ufoC += Math.round(day / 6 + Math.random() * day / 1.2 + (ko.ufo - ko.def / 1.25 + getDevs(ko.dev, "ufo")/(1.5 - ko.defo / 2)) / (9 + Math.random() * 3));
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       sign = hado === 0 ? 1 : Math.sign(hado);
