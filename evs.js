@@ -129,7 +129,7 @@ window.evs = [
   },
   {
     title: "A túl sok profit miatt sokan adócsalók lettek",
-    cond: "pro > 12000 & def < 700",
+    cond: "pro > 15000 & def < 700",
     chance: .2,
     hang: "hardCity",
     btns: [
@@ -276,7 +276,7 @@ window.gevs = [
     num: 0,
     name: "Aranyváros",
     type: "total",
-    cond: "niv > 90 & pro > 200000",
+    cond: "niv > 90 & pro > 300000",
     trophy: true,
     end: false,
     btn: goodBtn,

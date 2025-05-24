@@ -1756,11 +1756,11 @@ function _load() {
     main.innerHTML = "";
     page.style.display = "grid";
     pageUpdate();
+    document.body.requestFullscreen();
   }
 
   el("start").addEventListener("click", startGame)
   el("start2").addEventListener("click", startGame)
-
 }
 
 window.addEventListener("load", _load);
