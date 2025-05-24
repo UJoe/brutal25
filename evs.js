@@ -20,7 +20,7 @@ window.evs = [
   {
     title: "Zúgolódik ellened a nép",
     cond: "joy < 21 & joy > 5",
-    chance: .4,
+    chance: .35,
     hang: "angryCity",
     btns: [
       badBtn,
@@ -43,8 +43,8 @@ window.evs = [
   },
   {
     title: "Lázadás tört ki",
-    cond: "joy < 10",
-    chance: .8,
+    cond: "joy < 10 & def < 1000",
+    chance: .7,
     hang: "angryCity",
     btns: [
       {
@@ -185,15 +185,15 @@ window.evs = [
         change: [
           {
             val: "pop",
-            ch: "-Math.round(15+Math.random()*35)"
+            ch: "-Math.round(10+Math.random()*35)"
           },
           {
             val: "joy",
-            ch: "-Math.round(15+Math.random()*45)"
+            ch: "-Math.round(10+Math.random()*45)"
           },
           {
             val: "def",
-            ch: "-Math.round(250+Math.random()*kob.pop/20)"
+            ch: "-Math.round(200+Math.random()*kob.pop/20)"
           },
         ]
       },
@@ -263,7 +263,7 @@ window.evs = [
           },
           {
             val: "joy",
-            ch: 2
+            ch: 5
           },
         ]
       }
@@ -353,7 +353,7 @@ window.gevs = [
     num: 7,
     name: "Vészesen fogy a pénz",
     type: "total",
-    cond: "pro < -50000",
+    cond: "pro < -20000",
     trophy: false,
     end: false,
     btn: badBtn,
