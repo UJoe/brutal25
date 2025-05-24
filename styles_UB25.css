@@ -564,7 +564,7 @@ li {
 	position: fixed;
 	top: 0;
 	left: 0;
-	font-size: 1.1em;
+	font-size: 1em;
 	color: aquamarine;
 	border-radius: 5px;
 	background-color: rgba(0, 0, 0, 0.8);
@@ -585,7 +585,7 @@ li {
 	filter: brightness(.7) opacity(0) blur(5px);
 }
 
-.fly td {
+#fly td {
 	border: none !important;
 	max-width: 10vw;
 	padding: 1px;
