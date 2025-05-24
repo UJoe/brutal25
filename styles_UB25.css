@@ -585,11 +585,11 @@ li {
 	filter: brightness(.7) opacity(0) blur(5px);
 }
 
-#fly td {
+/* #fly td {
 	border: none !important;
 	max-width: 10vw;
 	padding: 1px;
-}
+} */
 
 .darken {
 	transition: filter 2s;
