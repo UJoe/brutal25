@@ -783,7 +783,7 @@ function _load() {
     }
     if (efStr.length > 0) {
       fly.style.left = Math.round(35 + Math.random() * 20) + "vw";
-      fly.style.top = Math.round(40 + Math.random() * 20) + "vh";
+      fly.style.top = Math.round(35 + Math.random() * 20) + "vh";
       fly.innerHTML = efStr;
       fly.classList.remove("effKi");
       fly.classList.add("effBe");
