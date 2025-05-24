@@ -276,11 +276,11 @@ window.gevs = [
     num: 0,
     name: "Aranyváros",
     type: "total",
-    cond: "niv > 95",
+    cond: "niv > 90 & pro > 200000",
     trophy: true,
     end: false,
     btn: goodBtn,
-    desc: "A város életszínvonala mindenhol az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
+    desc: "A város életszínvonala és termelékenysége mindenhol az egekeben van, eltűntek a szegények, a hajléktalanok, a csapból is pénz folyik!",
     hang: "happyCity"
   },
   {
