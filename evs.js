@@ -520,7 +520,7 @@ window.gevs = [
       txt: ["Nesztek!", "Takarodjatok!", "Hős vagyok.", "Nem volt kérdés."]
     },
     desc: "Sikerült végre elég embert és felszerelést  szerezned, hogy megkeressétek és likvidáljátok a Gyehenna Fertelmes Szagú Nyájának vezéreit. A vezetők nélkül a banda többi tagja abbahagyja a fosztogatást és vagy elhagyja a várost, vagy elrejtőzik. A levegő is tisztul.",
-    hang: "happyCity"
+    hang: "motorgang"
   },
   {
     num: 20,
