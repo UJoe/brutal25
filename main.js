@@ -4,22 +4,40 @@ function _load() {
     return document.getElementById(id);
   }
   var music = el("music");
-  var sound = el("sound");
+  let sound = [el("sound"), el("sound2")];
+  let curS = 0;
+
   music.volume = .9;
-  sound.volume = .7;
+  sound[0].volume = .7;
+  sound[1].volume = .7;
   var gmv = .9;
   var gsv = .7;
   music.loop = true;
-  sound.loop = false;
+  sound[0].loop = false;
+  sound[1].loop = false;
+
+  let voice = (hang) => {
+    sound[curS].src = "./audio/" + hang + ".mp3";
+    sound[curS].play();
+    curS = Math.abs(curS - 1);
+    if (!sound[curS].paused) {
+      clearTimeout(soundtimo);
+      soundtimo = setTimeout(() => {
+        sound[curS].pause();
+      }, 1500);
+    }
+  }
+
   var timo;
   var timo2;
+  var soundtimo;
   var main = el("main");
   var page = el("page");
   var modal = el("modal");
   var happen = el("happen");
   var fly = el("fly");
   var hf = el("hf");
-  hf.style.display="none";
+  hf.style.display = "none";
   let okBtn = [
     {
       type: "rnd",
@@ -46,7 +64,7 @@ function _load() {
   modal.style.display = "none";
   window.curMusic = "basicMusic";
   music.src = "./audio/" + curMusic + ".mp3";
-  sound.src = "./audio/done.mp3";
+  sound[0].src = "./audio/done.mp3";
   window.tax = 50;
   window.money = 10000;
   window.pros = 1;
@@ -161,7 +179,7 @@ function _load() {
     },
   ];
   window.selVal = "tax";
-  
+
   window.hfnames = ['U.G', 'EDE', 'IMI', 'LEO', 'ATI', 'EVI', 'BEA', 'PAL', 'NOE', 'XYZ'];
   window.hfscores = [300, 270, 240, 210, 180, 150, 120, 90, 60, 30];
   if (localStorage.getItem("hfnames")) {
@@ -171,7 +189,7 @@ function _load() {
   var pos = 9;
   function inBajnok(e) {
     let curw = e.target.value;
-    let curp = curw.length-1;
+    let curp = curw.length - 1;
     let curl = curw.charAt(curp);
     if (/[öüóőűúéáí]/i.test(curl)) {
       curw = curw.slice(0, -1);
@@ -181,29 +199,29 @@ function _load() {
 
   function finBajnok(e) {
     let champ = e.target.value;
-    hfnames[pos]= champ.toUpperCase();
+    hfnames[pos] = champ.toUpperCase();
     htStr = "";
     for (let i = 0; i < 10; i++) {
       let hs = hfscores[i];
       let hn = hfnames[i];
       htStr += `
         <tr id="hfline-${i}">
-          <td class="hend">${i+1}</td>
+          <td class="hend">${i + 1}</td>
           <td class="hsta">${hn}</td>
           <td class="hend">${hs}</td>
         </tr>
       `;
     }
-    el("ht").innerHTML=htStr;
+    el("ht").innerHTML = htStr;
     localStorage.setItem("hfnames", hfnames.join())
     localStorage.setItem("hfscores", hfscores.join())
     for (let i = 0; i < 10; i++) {
       setTimeout(() => {
-        el("hfline-"+i).style.animation = "colorstxt 0.8s linear infinite";
-      }, i*180);
+        el("hfline-" + i).style.animation = "colorstxt 0.8s linear infinite";
+      }, i * 180);
     }
   }
-    
+
 
   for (ko of ker) {
     ko.mtn = Math.round(ko.pop / 10 * (1 + ko.niv / 30 + Math.random() / 3 - Math.random() / 3));
@@ -339,20 +357,17 @@ function _load() {
     if (typeof hang === "boolean") {
       emo(hang)
     } else if (hang !== "x") {
-      sound.src = "./audio/" + hang + ".mp3";
-      sound.play();
+      voice(hang);
     }
 
     function mesEnd(e) {
       let i = e.target.id.split("-")[1];
       let bp = btn[i];
-      sound.pause();
       if (bp.hang !== undefined) {
         if (typeof bp.hang === "boolean") {
           emo(bp.hang)
-        } else if (hang !== "x") {
-          sound.src = "./audio/" + bp.hang + ".mp3";
-          sound.play();
+        } else if (bp.hang !== "x") {
+          voice(bp.hang);
         }
       }
 
@@ -367,7 +382,6 @@ function _load() {
       }
 
       if (typeof bp.type == 'number') {
-        console.log("Csinálom: ", bp.type);
         switch (bp.type) {
           case 6:
             for (k of ker) {
@@ -455,7 +469,7 @@ function _load() {
               k.popC -= Math.round(10 + Math.random() * k.num);
               k.proC -= parseInt(k.pro / 2);
               k.ufoC += Math.round((10 + k.num) * 50 + (2 - k.defo) * Math.random() * 500)
-              k.defC -= Math.round((1 + k.num) * 75 + (1.5 - k.defo/2) * Math.random() * 300)
+              k.defC -= Math.round((1 + k.num) * 75 + (1.5 - k.defo / 2) * Math.random() * 300)
               if (k.defo < 1.2 && k.had < 1000) {
                 k.defo += .3;
               };
@@ -478,7 +492,7 @@ function _load() {
                 `;
               }
             }
-            if (xs.length>0) {
+            if (xs.length > 0) {
               flier(k, [], xs, true);
             }
             tax = tax <= 40 ? tax + 20 : tax <= 60 ? tax + 10 : tax;
@@ -593,11 +607,12 @@ function _load() {
         page.style.display = "none";
         modal.style.display = "none";
         hf.classList.remove("nosee");
-        hf.style.display="grid";
+        hf.style.display = "grid";
         document.body.classList.add("brighten");
-        sound.pause();
+        sound[0].pause();
+        sound[1].pause();
         music.pause();
-        music.src="./audio/hallOfFame.mp3";
+        music.src = "./audio/hallOfFame.mp3";
         music.volume = gmv;
         music.play();
         let score = day + trophy.length * 50;
@@ -607,8 +622,7 @@ function _load() {
           <button class="nosee"></button>
         `;
         hf.innerHTML = hfStr;
-        let htStr="";
-        let bajnok="";
+        let htStr = "";
         let hit = false;
         for (let i = 0; i < 10; i++) {
           let hs = hfscores[i];
@@ -620,20 +634,20 @@ function _load() {
             hfscores.pop();
             hfnames.splice(pos, 0, "");
             hfnames.pop();
-            hn= `
+            hn = `
               <input type="text" id="hiname" maxlength="3" size="3">
             `
           }
           hs = hfscores[i];
           htStr += `
             <tr>
-              <td class="hend">${i+1}</td>
+              <td class="hend">${i + 1}</td>
               <td class="hsta">${hn}</td>
               <td class="hend">${hs}</td>
             </tr>
           `;
         }
-        el("ht").innerHTML=htStr;
+        el("ht").innerHTML = htStr;
         el("hiname").focus();
         el("hiname").addEventListener("input", inBajnok);
         el("hiname").addEventListener("change", finBajnok);
@@ -733,8 +747,14 @@ function _load() {
         happen.classList.remove("see");
         happen.classList.add("nosee");
         music.volume = gmv;
-        sound.volume = gsv;
+        sound[0].volume = gsv;
+        sound[1].volume = gsv;
         closeModal();
+        clearTimeout(soundtimo);
+        soundtimo = setTimeout(() => {
+          sound[0].pause();
+          sound[1].pause();
+        }, 1500);
       }
     }
 
@@ -800,7 +820,7 @@ function _load() {
         fly.style.display = "none";
       }, 4000);
     }
-   
+
   }
 
 
@@ -853,8 +873,7 @@ function _load() {
   function emo(happy) {
     let soundN = happy ? "happy" : "angry";
     let dice = 1 + Math.floor(Math.random() * 8);
-    sound.src = "./audio/" + soundN + dice + ".mp3";
-    sound.play();
+    voice(soundN + dice);
   }
 
   //Test
@@ -870,10 +889,11 @@ function _load() {
 
   //NEW DAY
   function newDay() {
-    if (sound.paused) {
+    /* if (sound.paused) {
       sound.src = "./audio/done.mp3";
       sound.play();
-    }
+    } */
+    voice("done");
     day++;
 
     for (let s = 1; s < selector.length; s++) {
@@ -896,7 +916,7 @@ function _load() {
           newDev(ko, devo);
         }
       }
-      
+
       /* if (ko.pop < 1) continue; */
 
       let sign = 1;
@@ -910,7 +930,7 @@ function _load() {
       let [hado, ufoo, defo] = [ko.had, ko.ufo, ko.def];
       ko.defC += Math.round(ko.mtn * (ko.defo - 0.95) / 5 + Math.sign(ko.ufo - ko.def) * Math.random() * 5);
       change(ko, "def", ko.defC);
-      ko.ufoC += Math.round(day / 6 + Math.random() * day / 1.2 + (ko.ufo - ko.def / 1.25 + getDevs(ko.dev, "ufo")/(1.5 - ko.defo / 2)) / (9 + Math.random() * 3));
+      ko.ufoC += Math.round(day / 6 + Math.random() * day / 1.2 + (ko.ufo - ko.def / 1.25 + getDevs(ko.dev, "ufo") / (1.5 - ko.defo / 2)) / (9 + Math.random() * 3));
       change(ko, "ufo", ko.ufoC);
       ko.had = Math.round(ko.def - ko.ufo);
       sign = hado === 0 ? 1 : Math.sign(hado);
@@ -991,7 +1011,7 @@ function _load() {
     for (g of gevs) {
       if (checkCond(g.type, g.cond) && trophy.indexOf(g.num) < 0) {
         music.volume = .01;
-        
+
         let mStr = `Egy jelentős esemény történt a városban: 
           <span class="gold">${g.name}</span>!</p>
           <p>${g.desc}`;
@@ -1004,19 +1024,19 @@ function _load() {
             type: "restart",
             txt: "Újrakezdés",
           }];
-          if (score >= hfscores[9]){
+          if (score >= hfscores[9]) {
             hfStr = "Ezzel felkerültél a Hall of Fame listára! Gratulálunk!"
             hfBtn = [{
               type: "hf",
               txt: "Feliratkozom!",
             }]
           }
-          mStr+=`
+          mStr += `
             <br><br>
             A Bazibrutál II,V. része véget ért számodra. De ne keseredj el!<br>
             Eljutottál a ${day}. napig és megszereztél a 4-ből ${tr} trófeát, így a végső pontod <span class="gold">${score}</span> lett.<br><br>
             ${hfStr}
-          `          
+          `
           message(
             mStr,
             -1,
@@ -1028,14 +1048,14 @@ function _load() {
         } else {
           if (g.trophy) {
             trophy.push(g.num);
-            mStr+= `
+            mStr += `
             <br><br>
             <span class="navPair">
             <img class="zeneBtn" src="./img/trophy.png">
             <span class="navNr">${trophy.length} / 4</span>
             </span>
             `
-          } 
+          }
           pushMessage.push({
             msg: mStr,
             id: -1,
@@ -1193,16 +1213,17 @@ function _load() {
 
   function changeMusic(e) {
     let val = Number(e.target.value);
-    gmv = val/100;
+    gmv = val / 100;
     music.volume = gmv;
   }
-  
+
   function changeSound(e) {
     let val = Number(e.target.value);
-    gsv = val/100;
-    sound.volume = gsv;
+    gsv = val / 100;
+    sound[0].volume = gsv;
+    sound[1].volume = gsv;
   }
-  
+
   function checkCond(ko, cond) {
     let result = true;
     let conds = cond.split(" & ");
@@ -1710,11 +1731,11 @@ function _load() {
           <span class="navNr ${mc}" title=${money.toLocaleString()}>${bigNumber(money, "$")}</span>
           <span class="navPair">
             <img class="zeneBtn" src="./img/musicOn.png" alt="music"/>
-            <input class="zeneIn" id="musicVol" type="range" min="0" max="100" step="10" value=${gmv*100}>
+            <input class="zeneIn" id="musicVol" type="range" min="0" max="100" step="10" value=${gmv * 100}>
           </span>
           <span class="navPair">
             <img class="zeneBtn" src="./img/soundOn.png" alt="music"/>
-            <input class="zeneIn" id="soundVol" type="range" min="0" max="100" step="10" value=${gsv*100}>
+            <input class="zeneIn" id="soundVol" type="range" min="0" max="100" step="10" value=${gsv * 100}>
           </span>
           <span class="navPair">
             <span class="navNr">${day.toLocaleString()}</span>
