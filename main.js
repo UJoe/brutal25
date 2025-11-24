@@ -24,7 +24,7 @@ function _load() {
       clearTimeout(soundtimo);
       soundtimo = setTimeout(() => {
         sound[curS].pause();
-      }, 1500);
+      }, 2000);
     }
   }
 
@@ -754,7 +754,7 @@ function _load() {
         soundtimo = setTimeout(() => {
           sound[0].pause();
           sound[1].pause();
-        }, 1500);
+        }, 2000);
       }
     }
 
