@@ -631,8 +631,8 @@ li {
 
 #ht {
 	margin: auto;
-    border: 5px double aqua;
-    height: 100%;
+	border: 5px double aqua;
+	height: 100%;
 	animation: colors 0.72s linear infinite alternate;
 }
 
@@ -656,15 +656,19 @@ li {
 	0% {
 		filter: drop-shadow(10px 0 12px aqua);
 	}
+
 	25% {
 		filter: drop-shadow(0px 10px 12px aqua);
 	}
+
 	50% {
 		filter: drop-shadow(-10px 0 12px aqua);
 	}
+
 	75% {
 		filter: drop-shadow(0px -10px 12px aqua);
 	}
+
 	100% {
 		filter: drop-shadow(10px 0 12px aqua);
 	}
@@ -674,15 +678,19 @@ li {
 	0% {
 		border: 5px double aqua;
 	}
+
 	25% {
 		border: 5px double yellow;
 	}
+
 	50% {
 		border: 5px solid red;
 	}
+
 	75% {
 		border: 5px double lime;
 	}
+
 	100% {
 		border: 5px double aqua;
 	}
@@ -692,17 +700,21 @@ li {
 	0% {
 		color: white;
 	}
+
 	25% {
 		color: aqua;
 	}
+
 	50% {
 		color: yellow;
 	}
+
 	75% {
 		color: lightskyblue;
 	}
+
 	100% {
 		color: purple;
 	}
-	
+
 }

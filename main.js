@@ -16,21 +16,23 @@ function _load() {
   sound[0].loop = false;
   sound[1].loop = false;
 
+  var timo;
+  var timo2;
+  var soundtimo;
+  var soundtimo2;
+
   let voice = (hang) => {
     sound[curS].src = "./audio/" + hang + ".mp3";
     sound[curS].play();
     curS = Math.abs(curS - 1);
     if (!sound[curS].paused) {
-      clearTimeout(soundtimo);
-      soundtimo = setTimeout(() => {
+      clearTimeout(soundtimo2);
+      soundtimo2 = setTimeout(() => {
         sound[curS].pause();
       }, 2000);
     }
   }
 
-  var timo;
-  var timo2;
-  var soundtimo;
   var main = el("main");
   var page = el("page");
   var modal = el("modal");
@@ -751,10 +753,11 @@ function _load() {
         sound[1].volume = gsv;
         closeModal();
         clearTimeout(soundtimo);
+        clearTimeout(soundtimo2);
         soundtimo = setTimeout(() => {
           sound[0].pause();
           sound[1].pause();
-        }, 2000);
+        }, 5000);
       }
     }
 
