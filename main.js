@@ -29,7 +29,7 @@ function _load() {
       clearTimeout(soundtimo2);
       soundtimo2 = setTimeout(() => {
         sound[curS].pause();
-      }, 2000);
+      }, 1000);
     }
   }
 
